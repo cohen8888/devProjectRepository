@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>设备运行状态</title>
+	<link rel="stylesheet" href="css/normalize.css" />
+	<link rel="stylesheet" type="text/css" href="css/index.css"/>
+	
+</head>
+<body>
+	<div id="container" style="height: 100%"></div>
+	<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.js"></script>
+	<script src="js/echarts.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		console.log($)
+		$(function(){
+			var container = $("#container");
+			var myChart = echarts.init(container.get(0));
+			var app = {};
+			var option = null;
+			option = {
+			    xAxis: {
+			        type: 'category',
+			          axisLabel: {
+                                           interval:0,
+                                           rotate:40
+                                        },
+			        data: [{
+			        	value:"机电设备"
+			        }, '照明设备', '排水设备', '风机设备', '检测设备', '安防设备']
+			    },
+			    yAxis: {
+			        type: 'value'
+			    },
+			    series: [{
+			        data: [120, 200, 150, 80, 70, 110],
+			        type: 'bar',
+                			label:{
+			            		normal:{
+			            			show:true,
+			            			position:'top',
+			            			textStyle: {
+							            color: 'black'
+							          }
+			            		}
+			            	},
+			        itemStyle: {   
+            		//通常情况下：
+	            		normal:{  
+	　　　　　　　　　　　　//每个柱子的颜色即为colorList数组里的每一项，如果柱子数目多于colorList的长度，则柱子颜色循环使用该数组
+                			color: function (params){
+                    			var colorList = [new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                        				offset: 0,
+                        				color: '#99d9ea'
+                    				}, {
+                        			offset: 1,
+                        			color: '#ffa7dc'
+                    				}]),'rgb(42,170,227)','rgb(25,46,94)','rgb(195,229,235)','rgb(195,229,235)','rgb(195,229,235)'];
+                    			return colorList[params.dataIndex];
+                			}
+            			},
+			            //鼠标悬停时：
+			            emphasis: {
+			                    shadowBlur: 10,
+			                    shadowOffsetX: 0,
+			                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+			            }
+        			}
+			    }]
+            	
+			};
+			if (option && typeof option === "object") {
+			    myChart.setOption(option, true);
+			}
+		});	//jquery ready end;
+	
+       </script>
+</body>
+</html>
