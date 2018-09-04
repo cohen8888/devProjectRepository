@@ -39,7 +39,7 @@ $(function(){
 					color: 'white'
 				}
 	        }];	
-	var seriesData = [120, 200, 150, 80, 70, 110];	//柱状图数据，按顺序对应设备种类的名称
+	var seriesData = [120, 300, 150, 80, 70, 110];	//柱状图数据，按顺序对应设备种类的名称
 	
     //柱状图的颜色
 	function columnarColor(params){
@@ -58,6 +58,7 @@ $(function(){
 		'rgb(195,229,235)'];
 		return colorList[params.dataIndex];
 	}
+	//图形显示选项，必须是个对象
 	option = {
 	    xAxis: {
 	        type: 'category',
@@ -96,6 +97,7 @@ $(function(){
 	    }]
     	
 	};
+
 	if (option && typeof option === "object") {
 	    myChart.setOption(option, true);
 	}
