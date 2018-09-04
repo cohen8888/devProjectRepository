@@ -64,7 +64,8 @@ $(function(){
 	        type: 'category',
 	        axisLabel: {	//y轴坐标字样式，rotate设置文字斜着显示
 	          	interval:0,
-                rotate:40
+                rotate:40,
+                fontSize:40
             },
 	        data: xColumNameData
 	    },
@@ -79,7 +80,8 @@ $(function(){
         			show:true,
         			position:'top',
         			textStyle: {
-			            color: 'black'
+			            color: 'white',
+			            fontSize:40
 			         }
         		}
         	},
