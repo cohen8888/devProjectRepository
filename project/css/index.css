@@ -1,28 +1,21 @@
-html,body{
-	width: 100%;
-	height: 100%;
-}
 .wrap{
-	width: 100%;
+	width: 3200px;
 	height: 100%;
 	overflow: hidden;
 	background:radial-gradient(ellipse at bottom,#052ea5 1%,#0d0c3e);
 }
 .content{
-	width: 1235px;
-	margin-left: -19px;
+	width: 3040px;
+	margin-left: -50px;
 	margin: 12px auto;
 }
-.box{
-	margin-top: 18px;
-	margin-left: 19px;
-	float: left;
-}
 .video_wrap{
-	padding-bottom: 14px;
+	padding-bottom: 40px;
+	margin-top: -40px;
 }
 .video_wrap video{
-	margin-left:10px;
+	margin-left:28px;
+	margin-top: 40px;
 }
 .pie_eachrts1{
 	float: left;
@@ -30,9 +23,12 @@ html,body{
 .pie_eachrts2{
 	float: left;
 }
-
+.rcTable{
+	font-size:30px;
+	
+}
 .rcTable tr{
-	line-height: 32px;
+	line-height: 80px;
 	text-align: center;
 }
 .rcTable tr:nth-of-type(odd){

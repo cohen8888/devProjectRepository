@@ -6,10 +6,11 @@
 					textStyle:{
 						color:"white",
 						fontWeight:100,
-						fontSize:12
+						fontSize:30,
+						lineHeight:68
 					},
-					bottom:0,
-					left:72
+					bottom:20,
+					x:"center"
 				},
 			    tooltip: {
 			        trigger: 'item',
@@ -17,24 +18,24 @@
 			    },
 			    legend: {
 			        orient: 'horizontal',
-			        itemWidth:8,
-			        itemHeight:8,
-			        borderRadius:"100%",
-			        x: 'left',
+			        itemGap:16,
+			        itemWidth:20,
+			        itemHeight:20,
+			        icon:"circle",
+			        x:'center',
 			        data:["维修","故障"],
-			        bottom:28,
-			        left:45,
+			        bottom:68,
 			        textStyle:{
 			        	color:"#ccc",
-			        	fontSize:10
+			        	fontSize:25,
 			        }
 			    },
 			    series: [
 			        {
 			            name:'维修/故障',
 			            type:'pie',
-			            radius: ['40px', '50px'],
-			            center:["88px","80px"],
+			            radius: ["center", '125px'],
+			            center:["220px","200px"],
 			            avoidLabelOverlap: false,
 			            label: {
 			                normal: {
@@ -45,7 +46,7 @@
 			                emphasis: {
 		                    	show:true,
 			                    textStyle: {
-			                        fontSize: 30,
+			                        fontSize: 80,
 			                        fontWeight: 700,
 			                    }
 			                }
@@ -98,10 +99,11 @@
 					textStyle:{
 						color:"white",
 						fontWeight:100,
-						fontSize:12
+						fontSize:30,
+						lineHeight:68
 					},
-					bottom:0,
-					left:62
+					bottom:20,
+					x:"center"
 				},
 			    tooltip: {
 			        trigger: 'item',
@@ -109,25 +111,24 @@
 			    },
 			    legend: {
 			        orient: 'horizontal',
-			        itemWidth:8,
-			        itemHeight:8,
-			        itemGap:5,
-			        borderRadius:"100%",
-			        x: 'left',
+			        itemGap:16,
+			        itemWidth:20,
+			        itemHeight:20,
+			        icon:"circle",
+			        x:'center',
 			        data:["已排查","排查中","已转工单"],
-			        bottom:28,
-			        left:0,
+			        bottom:68,
 			        textStyle:{
 			        	color:"#ccc",
-			        	fontSize:10
+			        	fontSize:25,
 			        }
 			    },
 			    series: [
 			        {
 			            name:'维修/故障',
 			            type:'pie',
-			            radius: ['40px', '50px'],
-			            center:["80px","80px"],
+			            radius: ["center", '125px'],
+			            center:["220px","200px"],
 			            avoidLabelOverlap: false,
 			            label: {
 			                normal: {
@@ -138,7 +139,7 @@
 			                emphasis: {
 		                    	show:true,
 			                    textStyle: {
-			                        fontSize: 30,
+			                        fontSize: 80,
 			                        fontWeight: 700,
 			                    }
 			                }
