@@ -1,3 +1,4 @@
+	let rem = document.documentElement.style.fontSize.substr(0,document.documentElement.style.fontSize.length-2)*1;
 {
 	let jrxcry_canvas = document.querySelector(".jrxcry_canvas1");
 	let myEchart = echarts.init(jrxcry_canvas);
@@ -7,33 +8,33 @@
 					text:"一组",
 					textStyle:{
 						color:"white",
-						fontWeight:100,
-						fontSize:25,
-						lineHeight:68
+						fontWeight:1*rem,
+						fontSize:0.25*rem,
+						lineHeight:0.68*rem
 					},
-					bottom:20,
+					bottom:0.68*rem,
 					x:"center"
 				},
 			    legend: {
 			        orient: 'horizontal',
-			        itemGap:16,
-			        itemWidth:20,
-			        itemHeight:20,
+			        itemGap:0.16*rem,
+			        itemWidth:0.2*rem,
+			        itemHeight:0.2*rem,
 			        icon:"circle",
 			        x:'center',
 			        data:["总人数","到岗人数"],
-			        bottom:68,
+			        bottom:0.2*rem,
 			        textStyle:{
 			        	color:"#ccc",
-			        	fontSize:25,
+			        	fontSize:0.25*rem,
 			        }
 			    },
 			    series: [
 			        {
 			            name:'一组',
 			            type:'pie',
-			            center: ["center", '215px'],
-			            radius:["125px","160px"],
+			            center: ["center", 2.15*rem],
+			            radius:[1.25*rem,1.6*rem],
 			            avoidLabelOverlap: false,
 			            label: {
 			                normal: {
@@ -44,7 +45,7 @@
 			                emphasis: {
 		                    	show:true,
 			                    textStyle: {
-			                        fontSize: 30,
+			                        fontSize: 0.3*rem,
 			                        fontWeight: 100,
 			                        color:"rgb(146,191,215)"
 			                    }
@@ -88,32 +89,32 @@
 					textStyle:{
 						color:"white",
 						fontWeight:100,
-						fontSize:25,
-						lineHeight:68
+						fontSize:0.25*rem,
+						lineHeight:0.68*rem
 					},
-					bottom:20,
+					bottom:0.68*rem,
 					x:"center"
 				},
 			    legend: {
 			        orient: 'horizontal',
-			        itemGap:16,
-			        itemWidth:20,
-			        itemHeight:20,
+			        itemGap:0.16*rem,
+			        itemWidth:0.2*rem,
+			        itemHeight:0.2*rem,
 			        icon:"circle",
 			        x:'center',
 			        data:["总人数"],
-			        bottom:68,
+			        bottom:0.2*rem,
 			        textStyle:{
 			        	color:"#ccc",
-			        	fontSize:25,
+			        	fontSize:0.25*rem,
 			        }
 			    },
 			    series: [
 			        {
 			            name:'二组',
 			            type:'pie',
-			            center: ["center", '215px'],
-			            radius:["125px","160px"],
+			            center: ["center", 2.15*rem],
+			            radius:[1.25*rem,1.6*rem],
 			            avoidLabelOverlap: false,
 			            label: {
 			                normal: {
@@ -124,7 +125,7 @@
 			                emphasis: {
 		                    	show:true,
 			                    textStyle: {
-			                        fontSize: 30,
+			                        fontSize: 0.3*rem,
 			                        fontWeight: 100,
 			                        color:"rgb(146,191,215)"
 			                    }
@@ -156,32 +157,32 @@
 					textStyle:{
 						color:"white",
 						fontWeight:100,
-						fontSize:25,
-						lineHeight:68
+						fontSize:0.25*rem,
+						lineHeight:0.68*rem
 					},
-					bottom:20,
+					bottom:0.68*rem,
 					x:"center"
 				},
 			    legend: {
 			        orient: 'horizontal',
-			        itemGap:16,
-			        itemWidth:20,
-			        itemHeight:20,
+			        itemGap:0.16*rem,
+			        itemWidth:0.2*rem,
+			        itemHeight:0.2*rem,
 			        icon:"circle",
 			        x:'center',
 			        data:["总人数"],
-			        bottom:68,
+			        bottom:0.2*rem,
 			        textStyle:{
 			        	color:"#ccc",
-			        	fontSize:25,
+			        	fontSize:0.25*rem,
 			        }
 			    },
 			    series: [
 			        {
 			            name:'三组',
 			            type:'pie',
-			            center: ["center", '215px'],
-			            radius:["125px","160px"],
+			            center: ["center", 2.15*rem],
+			            radius:[1.25*rem,1.6*rem],
 			            avoidLabelOverlap: false,
 			            label: {
 			                normal: {
@@ -192,7 +193,7 @@
 			                emphasis: {
 		                    	show:true,
 			                    textStyle: {
-			                        fontSize: 30,
+			                        fontSize: 0.3*rem,
 			                        fontWeight: 100,
 			                        color:"rgb(146,191,215)"
 			                    }

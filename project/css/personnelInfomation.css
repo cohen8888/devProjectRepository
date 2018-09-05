@@ -1,5 +1,33 @@
+html,body{width:32rem;}
+html,body,div,p,dl,dd,dt,ul,li,a,span,img,h1,h2,h3,h4,h5,ol,header,footer,section,aside,article,nav,input,select{
+	padding: 0;
+	margin: 0;
+	text-decoration: none;
+	list-style: none;
+}
+.wrap{background: #fff url(../img/bg.png) no-repeat center center;width:30.4rem;padding: 0.8rem;}
+.content{
+	width: 30.40rem;
+}
+.h2_titleText{
+	color: white;
+	font-size: 0.62rem;
+}
+.h3_titleText{
+	color: rgb(231,231,236);
+	font-size: 0.4rem;
+	text-shadow: 0px 0px 10px purple;
+	line-height: 1.04rem;
+	text-indent: 0.28rem;
+}
+.h4_titleText{
+	font-size: 0.33rem;
+	color: rgb(231,231,236);
+	line-height: 1rem;
+	text-indent: 0.42rem;
+}
 .left{
-	width:1550px
+	width:15.5rem
 }
 header{
 	width: 100%;
@@ -9,34 +37,51 @@ header{
 .header_left dl{
 	color:rgb(129,206,242);
 	text-align: center;
-	padding-left: 25px;
-	padding-top: 25px;
+	padding-left: 0.25rem;
+	padding-top: 0.25rem;
 }
 .header_left dt{
-	font-size: 20px;
+	font-size: 0.2rem;
 }
 .header_left dd{
-	font-size: 20px;
+	font-size: 0.2rem;
 }
 .header_right{
-	width: 2900px;
+	width: 29rem;
 	display: flex;
-	border-bottom: 1px solid cyan;
+	border-bottom: 1px solid transparent;
+	/*border-image: -webkit-linear-gradient(rgb(42,50,216) 10%,rgb(52,36,147),rgb(113,34,202)) 30 30;
+    border-image: -moz-linear-gradient(rgb(42,50,216),rgb(52,36,147),rgb(113,34,202)) 30 30;*/
+    border-image: linear-gradient(rgb(42,50,216) 30%,rgb(52,36,147) 30%,rgb(113,34,202) 30%) 2 2;
 	justify-content: space-between;
 }
 .timeText{
 	color: white;
-	font-size: 30px;
-	line-height:95px;
+	font-size: 0.3rem;
+	line-height:0.95rem;
 }
 section{
-	margin-top: 58px;
+	margin-top: 0.58rem;
+	display: flex;
+	justify-content: space-between;
 }
 .section_left{
-	width: 1558px;
+	width: 15.58rem;
 }
 .section_right{
-	width: 1558px;
+	width: 14.85rem;
+	border: 1px solid transparent;
+	border-image: linear-gradient(rgb(42,50,216) 20%,rgb(143,105,223) 20%,rgb(101,113,223) 20%,rgb(71,172,226) 20%,rgb(21,155,230) 20%) 30 30;
+}
+.section_right select{
+	width: 3.72rem;
+	height: 0.78rem;
+	background: radial-gradient(rgb(47,29,160) 80%,rgb(77,39,183));
+	border: 1px solid rgb(172,68,235);
+	margin-left: 0.42rem;
+	color: white;
+	font-size: 0.42rem;
+	display: block;
 }
 .canvasBox{
 	display: flex;
@@ -44,12 +89,30 @@ section{
 	justify-content: center;
 }
 .section_left_dbry{
-	padding-top: 85px;
+	padding-top: 0.85rem;
 }
 table{
-	width: 1427px;
-	padding: 28px;
+	width: 14.27rem;
+	padding: 0.28rem;
 	text-align: center;
-	background: url(../img/border_bg.png);
-	line-height: 78px;
+	background: url(../img/border_bg.png) no-repeat;
+	background-size: 100% 100%;
+	line-height: 0.78rem;
+	font-size: 0.3rem;
+}
+table tr{
+	line-height: 0.8rem;
+	text-align: center;
+}
+.default{
+	color:rgb(138,181,207)
+}
+table tr:nth-of-type(even){
+	background: rgba(22,60,120,0.3)
+}
+.map{
+	width: 14.15rem;
+	height: 11.98rem;
+	padding: 0.42rem;
+	display: block;
 }

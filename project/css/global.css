@@ -40,7 +40,6 @@ html,body{
     border-image: -webkit-linear-gradient(rgb(34,70,224),rgb(84,185,227)) 30 30;
     border-image: -moz-linear-gradient(rgb(34,70,224),rgb(84,185,227)) 30 30;
     border-image: linear-gradient(rgb(34,70,224),rgb(84,185,227)) 30 30;
-    border-radius: 6px;
     box-sizing: border-box;
 }
 .box{

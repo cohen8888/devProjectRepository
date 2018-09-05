@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>人员信息</title>
-		<link rel="stylesheet" type="text/css" href="../css/global.css"/>
+		<!--<link rel="stylesheet" type="text/css" href="../css/global.css"/>-->
 		<link rel="stylesheet" type="text/css" href="../css/personnelInfomation.css"/>
 	</head>
 	<body>
@@ -26,29 +26,35 @@
 						<div class="section_left_person">
 							<p class="h4_titleText">今日现场人员</p>
 							<div class="canvasBox">
-								<div class="jrxcry_canvas1" style="width: 30%; height: 545px;"></div>
-								<div class="jrxcry_canvas2" style="width: 30%; height: 545px;"></div>
-								<div class="jrxcry_canvas3" style="width: 30%; height: 545px;"></div>
+								<div class="jrxcry_canvas1" style="width: 30%; height: 5.45rem;"></div>
+								<div class="jrxcry_canvas2" style="width: 30%; height: 5.45rem;"></div>
+								<div class="jrxcry_canvas3" style="width: 30%; height: 5.45rem;"></div>
 							</div>
 						</div>
 						<div class="section_left_dbry">
 							<p class="h4_titleText">当班人员</p>
+							<table class="default" align="center" border="0" cellspacing="0" cellpadding="0">
+								<tr><td>工号</td><td>人员姓名</td><td>所属班组</td><td>工作内容</td></tr>
+								<tr><td>A0987</td><td>张某某</td><td>一组</td><td>巡检</td></tr>
+								<tr><td>A0987</td><td>张某某</td><td>一组</td><td>巡检</td></tr>
+								<tr><td>A0987</td><td>张某某</td><td>一组</td><td>巡检</td></tr>
+								<tr><td>A0987</td><td>张某某</td><td>一组</td><td>巡检</td></tr>
+								<tr><td>A0987</td><td>张某某</td><td>一组</td><td>巡检</td></tr>
+							</table>
 						</div>
 					</div>
 					<div class="section_right">
-						<table class="default" align="center" border="0" cellspacing="0" cellpadding="0">
-							<tr><td>工号</td><td>人员姓名</td><td>所属班组</td><td>工作内容</td></tr>
-							<tr><td>A0987</td><td>张某某</td><td>一组</td><td>巡检</td></tr>
-							<tr><td>A0987</td><td>张某某</td><td>一组</td><td>巡检</td></tr>
-							<tr><td>A0987</td><td>张某某</td><td>一组</td><td>巡检</td></tr>
-							<tr><td>A0987</td><td>张某某</td><td>一组</td><td>巡检</td></tr>
-							<tr><td>A0987</td><td>张某某</td><td>一组</td><td>巡检</td></tr>
-						</table>
+						<p class="h4_titleText">人员信息</p>
+						<select name="">
+							<option value="1">时间类型</option>
+						</select>
+						<img class="map" src="../img/map.png" alt="" />
 					</div>
 				</section>
 			</div>
 		</div>
 	</body>
+	<script src="../js/rem.js" type="text/javascript" charset="utf-8"></script>
 	<script src="../js/echarts.js" type="text/javascript" charset="utf-8"></script>
 	<script src="../js/personnelInfomation.js" type="text/javascript" charset="utf-8"></script>
 </html>
