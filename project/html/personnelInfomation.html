@@ -4,7 +4,9 @@
 		<meta charset="UTF-8">
 		<title>人员信息</title>
 		<!--<link rel="stylesheet" type="text/css" href="../css/global.css"/>-->
+		<link rel="stylesheet" type="text/css" href="../css/font-awesome.min.css"/>
 		<link rel="stylesheet" type="text/css" href="../css/personnelInfomation.css"/>
+		
 	</head>
 	<body>
 		<div class="wrap">
@@ -18,7 +20,7 @@
 					</div>
 					<div class="header_right">
 						<h2 class="h2_titleText">人员信息</h2>
-						<p class="timeText">2018.09.04  14:30:32</p>
+						<p class="timeText"><span class="fa fa-clock-o fa"></span><span>2018.09.04</span>  <span>14:30:32</span></p>
 					</div>
 				</header>
 				<section>
@@ -26,20 +28,17 @@
 						<div class="section_left_person">
 							<p class="h4_titleText">今日现场人员</p>
 							<div class="canvasBox">
-								<div class="jrxcry_canvas1" style="width: 30%; height: 5.45rem;"></div>
+								<!--<div class="jrxcry_canvas1" style="width: 30%; height: 5.45rem;"></div>
 								<div class="jrxcry_canvas2" style="width: 30%; height: 5.45rem;"></div>
-								<div class="jrxcry_canvas3" style="width: 30%; height: 5.45rem;"></div>
+								<div class="jrxcry_canvas3" style="width: 30%; height: 5.45rem;"></div>-->
 							</div>
 						</div>
 						<div class="section_left_dbry">
 							<p class="h4_titleText">当班人员</p>
 							<table class="default" align="center" border="0" cellspacing="0" cellpadding="0">
-								<tr><td>工号</td><td>人员姓名</td><td>所属班组</td><td>工作内容</td></tr>
-								<tr><td>A0987</td><td>张某某</td><td>一组</td><td>巡检</td></tr>
-								<tr><td>A0987</td><td>张某某</td><td>一组</td><td>巡检</td></tr>
-								<tr><td>A0987</td><td>张某某</td><td>一组</td><td>巡检</td></tr>
-								<tr><td>A0987</td><td>张某某</td><td>一组</td><td>巡检</td></tr>
-								<tr><td>A0987</td><td>张某某</td><td>一组</td><td>巡检</td></tr>
+								<thead><tr><td>工号</td><td>人员姓名</td><td>所属班组</td><td>工作内容</td></tr></thead>
+								<tbody>
+								</tbody>
 							</table>
 						</div>
 					</div>
@@ -48,13 +47,14 @@
 						<select name="">
 							<option value="1">时间类型</option>
 						</select>
-						<img class="map" src="../img/map.png" alt="" />
+						<img class="map" src="" alt="" />
 					</div>
 				</section>
 			</div>
 		</div>
 	</body>
 	<script src="../js/rem.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../js/jquery-3.3.1.js" type="text/javascript" charset="utf-8"></script>
 	<script src="../js/echarts.js" type="text/javascript" charset="utf-8"></script>
 	<script src="../js/personnelInfomation.js" type="text/javascript" charset="utf-8"></script>
 </html>
