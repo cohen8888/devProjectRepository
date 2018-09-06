@@ -2,270 +2,194 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<link rel="stylesheet" href="../css/index.css" />
-		<link rel="stylesheet" href="../css/global.css" />
+		<link rel="stylesheet" type="text/css" href="../css/eventAlarm.css"/>
 		
 		<title>事件告警</title>
-		<style type="text/css">
-			.header{
-				width: 3040px;
-				margin: 80px auto;
-				height: 112px;
-			}
-			#backButton{
-				background: url(img/back.png) no-repeat 40px 20px;
-				width: 108px;
-				height: 100%;
-				border:2px solid #3828D1;
-				border-radius: 10px;
-				text-align: center;
-				line-height: 120px;
-				font-size: 30px;
-				color: #7ECAE2;
-				float: left;
-				cursor: pointer;
-			}
-			#heardRight{
-				width: 2901px;
-				height: 98%;
-				margin-left: 20px;
-				border-bottom: 1px solid #492481;
-				float: left;
-			}
-			#clockBg{
-				display: inline-block;
-				width: 41px;
-				height: 110px;
-				line-height: 110px;
-				background: url(img/clock.png)no-repeat 0px 35px;
-				float: right;
-			}
-			.time{
-				font-size: 40px;
-				line-height: 110px;
-				float: right;
-			}
-			.title{
-				line-height: 110px;
-				float: left;
-			}
-			.main{
-				width: 3040px;
-				height: 1495px;
-				margin: 0px auto;
-			}
-			select{
-				width: 100%;
-				height: 75px;
-				line-height: 40px;
-                border: none;
-                outline: none;
-                background:radial-gradient(#251486 30%  , #2348E0);
-			}
-			.selectStyle{
-				border-radius: 8px;
-				width: 369px;
-				height: 75px;
-				margin: 56px 0px 44px 25px;
-				box-shadow: 0 0 5px #ccc;
-			}
-			.waringData{
-				width: 1500px;
-				float: left;
-				height: 100%;
-			}
-			.tableBg{
-				width: 1500px;
-				height: 1310px;
-				background: url(img/table_bg.png) no-repeat;
-			}
-			table{
-				padding-top: 26px;
-				padding-left: 45px;
-				font-size:30px;
-			}
-			table tr{
-				line-height: 80px;
-				text-align: center;
-			}
-			table tr:nth-of-type(odd){
-				background: rgba(22,60,120,0.8)
-			}
-			table tr:first-child{
-				background: none;
-			}
-			
-		</style>
 	</head>
 	<body>
 		<div class="wrap">
-			<div class="content clear_float ">
-				<div class="header clear_float">
-					<span id="backButton">返回</span>
-					<div id="heardRight">
-						<p class="h3_titleText title">事件告警</p>
-						<p class="h3_titleText time">2018.08.17&nbsp;&nbsp;12:30:30</p>
-						<span id="clockBg"></span>
+			<div class="content">
+				<header>
+					<div id="header_back">
+						<dl>
+							<dt>←</dt>
+							<dd>返回</dd>
+						</dl>
 					</div>
-				</div>
-				<div class="main box boxBorder clear_float">
-					
-					<div id="container" style=" width: 1520px; height: 80%; float: left;" >&nbsp;</div>
-					<div class="waringData">
-						<form action="#" method="post">
-							<div class="selectStyle">
-								<select name="" >
-									<option value="" >时间类型</option>
-								</select>
-							</div>
-							<div class="tableBg">
-								<table class="default" cellpadding="0" cellspacing="0" border="0" width="1410">
-						<tr>
-							
-							<th>序号</th>
-							<th>告警类型</th>
-							<th>告警内容</th>
-							<th>时间</th>
-							<th>提报人</th>
-							<th>跟进人</th>
-							<th>状态</th>
-						</tr>
-						<tr>
-							<td>01</td>
-							<td>类型一</td>
-							<td>内容一</td>
-							<td>12:23:00</td>
-							<td>张某某</td>
-							<td>张某某</td>
-							<td>正常</td>
-						</tr>
-						<tr>
-							<td>01</td>
-							<td>类型一</td>
-							<td>内容一</td>
-							<td>12:23:00</td>
-							<td>张某某</td>
-							<td>张某某</td>
-							<td>正常</td>
-						</tr>
-						<tr>
-							<td>01</td>
-							<td>类型一</td>
-							<td>内容一</td>
-							<td>12:23:00</td>
-							<td>张某某</td>
-							<td>张某某</td>
-							<td>正常</td>
-						</tr>
-						<tr>
-							<td>01</td>
-							<td>类型一</td>
-							<td>内容一</td>
-							<td>12:23:00</td>
-							<td>张某某</td>
-							<td>张某某</td>
-							<td>正常</td>
-						</tr>
-						<tr>
-							<td>01</td>
-							<td>类型一</td>
-							<td>内容一</td>
-							<td>12:23:00</td>
-							<td>张某某</td>
-							<td>张某某</td>
-							<td>正常</td>
-						</tr>
-						<tr>
-							<td>01</td>
-							<td>类型一</td>
-							<td>内容一</td>
-							<td>12:23:00</td>
-							<td>张某某</td>
-							<td>张某某</td>
-							<td>正常</td>
-						</tr>
-						<tr>
-							<td>01</td>
-							<td>类型一</td>
-							<td>内容一</td>
-							<td>12:23:00</td>
-							<td>张某某</td>
-							<td>张某某</td>
-							<td>正常</td>
-						</tr>
-						<tr>
-							<td>01</td>
-							<td>类型一</td>
-							<td>内容一</td>
-							<td>12:23:00</td>
-							<td>张某某</td>
-							<td>张某某</td>
-							<td>正常</td>
-						</tr>
-						<tr>
-							<td>01</td>
-							<td>类型一</td>
-							<td>内容一</td>
-							<td>12:23:00</td>
-							<td>张某某</td>
-							<td>张某某</td>
-							<td>正常</td>
-						</tr>
-						<tr>
-							<td>01</td>
-							<td>类型一</td>
-							<td>内容一</td>
-							<td>12:23:00</td>
-							<td>张某某</td>
-							<td>张某某</td>
-							<td>正常</td>
-						</tr>
-						<tr>
-							<td>01</td>
-							<td>类型一</td>
-							<td>内容一</td>
-							<td>12:23:00</td>
-							<td>张某某</td>
-							<td>张某某</td>
-							<td>正常</td>
-						</tr>
-						<tr>
-							<td>01</td>
-							<td>类型一</td>
-							<td>内容一</td>
-							<td>12:23:00</td>
-							<td>张某某</td>
-							<td>张某某</td>
-							<td>正常</td>
-						</tr>
-						<tr>
-							<td>01</td>
-							<td>类型一</td>
-							<td>内容一</td>
-							<td>12:23:00</td>
-							<td>张某某</td>
-							<td>张某某</td>
-							<td>正常</td>
-						</tr>
-						<tr>
-							<td>01</td>
-							<td>类型一</td>
-							<td>内容一</td>
-							<td>12:23:00</td>
-							<td>张某某</td>
-							<td>张某某</td>
-							<td>正常</td>
-						</tr>
-					</table>
-							</div>
-						</form> 
+					<div id="titleAndTime">
+						<h2 class="h2_titleText">事件告警</h2>
+						<div class="imgAndTime">
+							<img id="clockBg" src="../img/clock.png" />
+							<p class="timeText">2018.08.17  12:30:30</p>
+						</div>
 					</div>
+				</header>
+				<div class="sectionBg">
+				<section>
+					<div class="section_left">
+						<div id="container"  ></div>
+					</div>
+					<div class="section_right">
+							<select name="" >
+								<option value="" >时间类型</option>
+							</select>
+							<div class="section_right_table">
+								<table class="default" cellpadding="0" cellspacing="0" border="0" >
+									<tr>
+										<th>序号</th>
+										<th>告警类型</th>
+										<th>告警内容</th>
+										<th>时间</th>
+										<th>提报人</th>
+										<th>跟进人</th>
+										<th>状态</th>
+									</tr>
+									<tr>
+										<td>01</td>
+										<td>类型一</td>
+										<td>内容一</td>
+										<td>12:23:00</td>
+										<td>张某某</td>
+										<td>张某某</td>
+										<td>正常</td>
+									</tr>
+									<tr>
+										<td>02</td>
+										<td>类型一</td>
+										<td>内容一</td>
+										<td>12:23:00</td>
+										<td>张某某</td>
+										<td>张某某</td>
+										<td>正常</td>
+									</tr>
+									<tr>
+										<td>03</td>
+										<td>类型一</td>
+										<td>内容一</td>
+										<td>12:23:00</td>
+										<td>张某某</td>
+										<td>张某某</td>
+										<td>正常</td>
+									</tr>
+									<tr>
+										<td>04</td>
+										<td>类型一</td>
+										<td>内容一</td>
+										<td>12:23:00</td>
+										<td>张某某</td>
+										<td>张某某</td>
+										<td>正常</td>
+									</tr>
+									<tr>
+										<td>05</td>
+										<td>类型一</td>
+										<td>内容一</td>
+										<td>12:23:00</td>
+										<td>张某某</td>
+										<td>张某某</td>
+										<td>正常</td>
+									</tr>
+									<tr>
+										<td>06</td>
+										<td>类型一</td>
+										<td>内容一</td>
+										<td>12:23:00</td>
+										<td>张某某</td>
+										<td>张某某</td>
+										<td>正常</td>
+									</tr>
+									<tr>
+										<td>07</td>
+										<td>类型一</td>
+										<td>内容一</td>
+										<td>12:23:00</td>
+										<td>张某某</td>
+										<td>张某某</td>
+										<td>正常</td>
+									</tr>
+									<tr>
+										<td>08</td>
+										<td>类型一</td>
+										<td>内容一</td>
+										<td>12:23:00</td>
+										<td>张某某</td>
+										<td>张某某</td>
+										<td>正常</td>
+									</tr>
+									<tr>
+										<td>09</td>
+										<td>类型一</td>
+										<td>内容一</td>
+										<td>12:23:00</td>
+										<td>张某某</td>
+										<td>张某某</td>
+										<td>正常</td>
+									</tr>
+									<tr>
+										<td>10</td>
+										<td>类型一</td>
+										<td>内容一</td>
+										<td>12:23:00</td>
+										<td>张某某</td>
+										<td>张某某</td>
+										<td>正常</td>
+									</tr>
+									<tr>
+										<td>11</td>
+										<td>类型一</td>
+										<td>内容一</td>
+										<td>12:23:00</td>
+										<td>张某某</td>
+										<td>张某某</td>
+										<td>正常</td>
+									</tr>
+									<tr>
+										<td>12</td>
+										<td>类型一</td>
+										<td>内容一</td>
+										<td>12:23:00</td>
+										<td>张某某</td>
+										<td>张某某</td>
+										<td>正常</td>
+									</tr>
+									<tr>
+										<td>13</td>
+										<td>类型一</td>
+										<td>内容一</td>
+										<td>12:23:00</td>
+										<td>张某某</td>
+										<td>张某某</td>
+										<td>正常</td>
+									</tr>
+									<tr>
+										<td>14</td>
+										<td>类型一</td>
+										<td>内容一</td>
+										<td>12:23:00</td>
+										<td>张某某</td>
+										<td>张某某</td>
+										<td>正常</td>
+									</tr>
+									<tr>
+										<td>15</td>
+										<td>类型一</td>
+										<td>内容一</td>
+										<td>12:23:00</td>
+										<td>张某某</td>
+										<td>张某某</td>
+										<td>正常</td>
+									</tr>
+								</table>
+							</div>
+						
+					</div>
+				</section>
 				</div>
-				
 			</div>
 			
 		</div>
 	</body>
+	<script src="../js/rem.js" type="text/javascript" charset="utf-8"></script>
 	<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.js"></script>
 	<script type="text/javascript" src="../js/echarts.js"  charset="UTF-8"></script>
 	<script type="text/javascript" src="../js/eventalarm.js" charset="UTF-8"></script>

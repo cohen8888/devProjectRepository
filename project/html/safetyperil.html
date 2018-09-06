@@ -1,293 +1,64 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>安全隐患</title>
-	<link rel="stylesheet" href="../css/global.css" />
-	<link rel="stylesheet" type="text/css" href="../css/index.css"/>
-	<style type="text/css">
-		.header{
-			width: 3040px;
-			height: 112px;
-		}
-		#backButton{
-			background: url(img/back.png) no-repeat 40px 20px;
-			width: 108px;
-			height: 100%;
-			border:2px solid #3828D1;
-			border-radius: 10px;
-			text-align: center;
-			line-height: 120px;
-			font-size: 30px;
-			color: #7ECAE2;
-			float: left;
-			cursor: pointer;
-		}
-		#titleAndTime{
-			width: 1390px;
-			height: 98%;
-			margin-left: 20px;
-			border-bottom: 1px solid #492481;
-			float: left;
-		}
-		#keyWords{
-			width: 1502px;
-			height: 98%;
-			float: left;
-		}
-		#keyWords span{
-			float: left;
-			font-size: 40px;
-			color: #fff;
-			line-height: 80px;
-			margin: 20px 60px 0px 60px;
-		}
-		#clockBg{
-			display: inline-block;
-			width: 41px;
-			height: 110px;
-			line-height: 110px;
-			background: url(img/clock.png)no-repeat 0px 35px;
-			float: right;
-		}
-		.time{
-			font-size: 40px;
-			line-height: 110px;
-			float: right;
-		}
-		.title{
-			line-height: 110px;
-			float: left;
-		}
-		.main{
-			width: 3040px;
-			height: 1495px;
-			margin: 0px auto;
-		}
-		select{
-			width: 100%;
-			height: 75px;
-			line-height: 40px;
-		    border: none;
-		    outline: none;
-		    background:radial-gradient(#251486 30%  , #2348E0);
-		}
-		.selectStyle{
-			border-radius: 8px;
-			width: 369px;
-			height: 75px;
-			margin: 20px 0px 20px 0px;
-			box-shadow: 0 0 5px #ccc;
-			float: left;
-		}
-		.waringData{
-			width: 1500px;
-			float: left;
-			height: 100%;
-		}
-		.tableBg{
-			width: 1500px;
-			height: 1310px;
-			background: url(img/table_bg.png) no-repeat;
-		}
-		table{
-			padding-top: 26px;
-			padding-left: 45px;
-			font-size:30px;
-		}
-		table tr{
-			line-height: 80px;
-			text-align: center;
-		}
-		table tr:nth-of-type(odd){
-			background: rgba(22,60,120,0.8)
-		}
-		table tr:first-child{
-			background: none;
-		}
-	</style>
-</head>
-<body>
-	<div class="wrap">
-			<div class="content clear_float ">
-				<div class="header clear_float">
-					<span id="backButton">返回</span>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" type="text/css" href="../css/eventAlarm.css"/>
+		
+		<title>安全隐患</title>
+	</head>
+	<body>
+		<div class="wrap">
+			<div class="content">
+				<header>
+					<div id="header_back">
+						<dl>
+							<dt>←</dt>
+							<dd>返回</dd>
+						</dl>
+					</div>
 					<div id="titleAndTime">
-						<p class="h3_titleText title">安全隐患</p>
-						<p class="h3_titleText time">2018.08.17&nbsp;&nbsp;12:30:30</p>
-						<span id="clockBg"></span>
-					</div>
-					<div id="keyWords">
-						<span>设备类别</span>
-						<div class="selectStyle">
-							<select name="" >
-								<option value="" >机电设备</option>
-							</select>
-						</div>
-						<span>设备</span>
-						<div class="selectStyle">
-							<select name="" >
-								<option value="" >机电设备</option>
-							</select>
+						<h2 class="h2_titleText">安全隐患</h2>
+						<div class="imgAndTime">
+							<img id="clockBg" src="../img/clock.png" />
+							<p class="timeText">2018.08.17  12:30:30</p>
 						</div>
 					</div>
-				</div>
-				<div class="main box boxBorder clear_float">
-					<div id="container" style="width:1520px;height:100% ;float: left;">
+				</header>
+				<div class="sectionBg">
+				<section>
+					<div class="section_left">
+						<div id="container"  ></div>
 					</div>
-					<div class="waringData ">
-						<form action="#" method="post">
-							<div class="tableBg">
-								<table class="default" cellpadding="0" cellspacing="0" border="0" width="1410">
-									<tr>
-										<th>编码</th>
-										<th>设备名称</th>
-										<th>设备类别</th>
-										<th>当前运行状态</th>
-										<th>上次停车时间</th>
-										<th>本次运行时间</th>
-										<th>累计运行时间</th>
-									</tr>
-									<tr>
-										<td>1</td>
-										<td>机械设备</td>
-										<td>机械设备</td>
-										<td>正常运行</td>
-										<td>2018-08-08</td>
-										<td>25:30:56</td>
-										<td>25:30:56</td>
-									</tr>
-									<tr>
-										<td>1</td>
-										<td>机械设备</td>
-										<td>机械设备</td>
-										<td>正常运行</td>
-										<td>2018-08-08</td>
-										<td>25:30:56</td>
-										<td>25:30:56</td>
-									</tr>
-									<tr>
-										<td>1</td>
-										<td>机械设备</td>
-										<td>机械设备</td>
-										<td>正常运行</td>
-										<td>2018-08-08</td>
-										<td>25:30:56</td>
-										<td>25:30:56</td>
-									</tr>
-									<tr>
-										<td>1</td>
-										<td>机械设备</td>
-										<td>机械设备</td>
-										<td>正常运行</td>
-										<td>2018-08-08</td>
-										<td>25:30:56</td>
-										<td>25:30:56</td>
-									</tr>
-									<tr>
-										<td>1</td>
-										<td>机械设备</td>
-										<td>机械设备</td>
-										<td>正常运行</td>
-										<td>2018-08-08</td>
-										<td>25:30:56</td>
-										<td>25:30:56</td>
-									</tr>
-									<tr>
-										<td>1</td>
-										<td>机械设备</td>
-										<td>机械设备</td>
-										<td>正常运行</td>
-										<td>2018-08-08</td>
-										<td>25:30:56</td>
-										<td>25:30:56</td>
-									</tr>
-									<tr>
-										<td>1</td>
-										<td>机械设备</td>
-										<td>机械设备</td>
-										<td>正常运行</td>
-										<td>2018-08-08</td>
-										<td>25:30:56</td>
-										<td>25:30:56</td>
-									</tr>
-									<tr>
-										<td>1</td>
-										<td>机械设备</td>
-										<td>机械设备</td>
-										<td>正常运行</td>
-										<td>2018-08-08</td>
-										<td>25:30:56</td>
-										<td>25:30:56</td>
-									</tr>
-									<tr>
-										<td>1</td>
-										<td>机械设备</td>
-										<td>机械设备</td>
-										<td>正常运行</td>
-										<td>2018-08-08</td>
-										<td>25:30:56</td>
-										<td>25:30:56</td>
-									</tr>
-									<tr>
-										<td>1</td>
-										<td>机械设备</td>
-										<td>机械设备</td>
-										<td>正常运行</td>
-										<td>2018-08-08</td>
-										<td>25:30:56</td>
-										<td>25:30:56</td>
-									</tr>
-									<tr>
-										<td>1</td>
-										<td>机械设备</td>
-										<td>机械设备</td>
-										<td>正常运行</td>
-										<td>2018-08-08</td>
-										<td>25:30:56</td>
-										<td>25:30:56</td>
-									</tr>
-									<tr>
-										<td>1</td>
-										<td>机械设备</td>
-										<td>机械设备</td>
-										<td>正常运行</td>
-										<td>2018-08-08</td>
-										<td>25:30:56</td>
-										<td>25:30:56</td>
-									</tr>
-									<tr>
-										<td>1</td>
-										<td>机械设备</td>
-										<td>机械设备</td>
-										<td>正常运行</td>
-										<td>2018-08-08</td>
-										<td>25:30:56</td>
-										<td>25:30:56</td>
-									</tr>
-									<tr>
-										<td>1</td>
-										<td>机械设备</td>
-										<td>机械设备</td>
-										<td>正常运行</td>
-										<td>2018-08-08</td>
-										<td>25:30:56</td>
-										<td>25:30:56</td>
-									</tr>
-									
-									
-								</table>
-							</div>
-						</form> 
+					<div class="section_right">
+						<div class="section_right_table_top">
+							<p class="h4_titleText">隐患发现</p>
+							<table class="default" cellpadding="0" cellspacing="0" border="0" >
+								<tr><th>隐患代码</th><th>发现时间</th><th>发现人</th><th>发现班组</th><th width="34%" >隐患内容</th></tr>
+								<tr><td>A0987</td><td>12:23:00</td><td>张某某</td><td>二组</td><td class="line_height">工字钢及槽钢上固定。广泛用于铁路</td></tr>
+								<tr><td>A0987</td><td>12:23:00</td><td>张某某</td><td>二组</td><td class="line_height">隐患内容描述如下。</td></tr>
+								<tr><td>A0987</td><td>12:23:00</td><td>张某某</td><td>二组</td><td class="line_height">工字钢及槽钢上固定。广泛用于铁路，交通系统工程，自动化控制设备，厂房内及屋内钢结构悬吊挂件系列。</td> </tr>
+								<tr><td>A0987</td><td>12:23:00</td><td>张某某</td><td>二组</td><td class="line_height">工字钢及槽钢上固定。广泛用于铁路，交通系统工程，自动化控制设备，厂房内及屋内钢结构悬吊挂件系列。</td> </tr>
+							</table>
+						</div>
+						<div class="section_right_table_bottom">
+							<p class="h4_titleText">隐患排查</p>
+							<table class="default" cellpadding="0" cellspacing="0" border="0" >
+								<tr><th>隐患代码</th><th>完成事件</th><th>排查人</th><th>排查班组</th><th>状态</th></tr>
+								<tr><td>A0987</td><td>12:23:00</td><td>张某某</td><td>二组</td><td>已完成</td> </tr>
+								<tr><td>A0987</td><td>12:23:00</td><td>张某某</td><td>二组</td><td>已完成</td> </tr>
+								<tr><td>A0987</td><td>12:23:00</td><td>张某某</td><td>二组</td><td>已完成</td> </tr>
+								<tr><td>A0987</td><td>12:23:00</td><td>张某某</td><td>二组</td><td>已完成</td> </tr>
+							</table>
+						</div>
 					</div>
+				</section>
 				</div>
-				
 			</div>
 			
 		</div>
-	
-	<script src="../js/jquery-3.3.1.js"></script>
-	<script src="../js/echarts.js" type="text/javascript" charset="utf-8"></script>
-	<script type="text/javascript" src="../js/safetyperil.js"></script>
-</body>
+	</body>
+	<script src="../js/rem.js" type="text/javascript" charset="utf-8"></script>
+	<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.js"></script>
+	<script type="text/javascript" src="../js/echarts.js"  charset="UTF-8"></script>
+	<script type="text/javascript" src="../js/eventalarm.js" charset="UTF-8"></script>
 </html>
