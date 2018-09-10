@@ -1,0 +1,196 @@
+html,body{width:32rem;}
+html,body,div,p,dl,dd,dt,ul,li,a,span,img,h1,h2,h3,h4,h5,ol,header,footer,section,aside,article,nav,input,select{
+	padding: 0;
+	margin: 0;
+	text-decoration: none;
+	list-style: none;
+}
+.wrap{background: #fff url(../img/bg.png) no-repeat center center;width:30.40rem;padding: 0.8rem;}
+.content{
+	width: 30.40rem;
+}
+.h2_titleText{
+	color: white;
+	font-size: 0.62rem;
+}
+.h3_titleText{
+	color: rgb(231,231,236);
+	font-size: 0.4rem;
+	text-shadow: 0px 0px 10px purple;
+	line-height: 1.04rem;
+	text-indent: 0.28rem;
+}
+.h4_titleText{
+	font-size: 0.33rem;
+	color: rgb(231,231,236);
+	line-height: 1rem;
+	text-indent: 0.42rem;
+}
+header{
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+}
+#header_back dl{
+	color:rgb(129,206,242);
+	text-align: center ;
+	padding-left: 0.25rem;
+	padding-top: 0.25rem;
+}
+#header_back dt{
+	font-size: 0.2rem;
+}
+#header_back dd{
+	font-size: 0.2rem;
+}
+.timeText{
+	width: 100%;
+	color: white;
+	font-size: 0.4rem;
+	line-height:0.4rem;
+}
+#titleAndTime{
+	
+	padding-bottom: 0.13rem;
+	width: 29rem;
+	display: flex;
+	justify-content: space-between;
+	align-items: center ;
+	border-bottom: 1px solid transparent;
+	border-image: linear-gradient(rgb(42,50,216) 30%,rgb(52,36,147) 30%,rgb(113,34,202) 30%) 2 2;
+}
+.imgAndTime{
+	display: flex;
+	justify-content: flex-end;
+	align-items: center ;
+}
+#clockBg{
+	width: 0.4rem;
+	height: 0.4rem;
+	margin-right: 0.1rem;
+}
+
+section{
+	margin-top: 0.58rem;
+	margin-bottom: 0.11rem;
+	display: flex;
+	flex-flow: row;
+	border-image: linear-gradient(rgb(42,50,216) 20%,rgb(143,105,223) 20%,rgb(101,113,223) 20%,rgb(71,172,226) 20%,rgb(21,155,230) 20%) 30 30;
+}
+
+.section_left{
+	width: 5.08rem;
+	/*height: 14.72rem;*/
+	display: flex;
+	flex-flow: column;
+	border: 1px solid #2348E0;
+	border-radius: 0.1rem;
+}
+.videomodulelist li{
+	width: 5.08rem;
+	height: 0.95rem;
+	font-size: 0.4rem;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	color: #77A3BC;
+	border: 1px solid #4D67B7;
+}
+.videomodulelist li:first-child{
+	background-color: rgba(29,52,107,0.7);
+	color: white;
+}
+#savebtn a{
+	color: white;
+}
+.redblock{
+	width: 0.54rem;
+	height: 0.12rem;
+	background: #FF433A;
+}
+#add{
+	width: 4rem;
+	height: 0.65rem;
+	border: 1px dashed #99B6F2;
+	border-radius: 0.05rem;
+	text-align: center;
+	font-size: 0.3rem;
+	line-height: 0.65rem;
+	color: #46619B;
+}
+.videolist li{
+	font-size: 0.3rem;
+	color: #77A3BC;
+	padding: 0.19rem;
+	padding-left: 0.5rem;
+}
+.videolist li:first-child{
+	background-color: rgba(29,52,107,0.7);
+	color: white;
+	font-size: 0.4rem;
+	margin-bottom: 0.26rem;
+}
+
+
+.section_right{
+	width: 25.10rem;
+	flex: 1;
+	display: flex;
+	flex-flow: column;
+	margin-left: 0.4rem;
+}
+.videosmodule{
+	width: 100%;
+	padding-bottom: 0.4rem;
+	display: flex;
+	flex-flow: row;
+	justify-content: space-between;
+	border-bottom: 1px solid #800080;
+}
+.videocontrol{
+	width: 5.90rem;
+	height: 3.33rem;
+	position: relative;
+}
+.controlimg img{
+	width: 0.4rem;
+	height: 0.4rem;
+	float: right;
+	margin-left: 0.2rem;
+}
+.controlimg{
+	height: 0.5rem;
+	position: absolute;
+	top: 0.2rem;
+	right: 0.2rem;
+	overflow: hidden;
+	z-index: 22;
+}
+
+.videoname{
+	font-size: 0.4rem;
+	color: #92BAD5;
+	position: absolute;
+	bottom: 0.2rem;
+	right: 0.2rem;
+}
+video{
+	width: 5.90rem;
+	height: 3.33rem;
+}
+.addvideosmodule{
+	background: url(../img/addvideo.png) no-repeat center center;
+	background-size: 100%;
+	width: 5.90rem;
+	height: 3.33rem;
+	
+}
+.videos{
+	flex: 1;
+	display: flex;
+	flex-wrap: wrap;
+	margin-top: 0.4rem;
+	justify-content: space-between;
+	align-content: space-between;
+
+}
