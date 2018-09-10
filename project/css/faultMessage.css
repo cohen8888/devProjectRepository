@@ -1,0 +1,59 @@
+section{
+	margin-top: 0.5rem;
+	width: 100%;
+	border: 1px solid transparent;
+	border-image: linear-gradient(rgb(42,50,216) 20%,rgb(143,105,223) 20%,rgb(101,113,223) 20%,rgb(71,172,226) 20%,rgb(21,155,230) 20%) 30 30;
+}
+.section_left{
+	width: 16.32rem;
+	float: left;
+}
+.titleGroup{
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.titleGroup ul{
+	padding-bottom: 0.48rem;
+	background:url(../img/border_bottom.png) no-repeat;
+	background-position:0.42rem bottom;
+	background-size:10.4rem 0.48rem;
+}
+.titleGroup ul li {
+	width: 1.97rem;
+	height: 3.89rem;
+	float: left;
+	background: url(../img/title_border.png);
+	background-size: 100% 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.titleGroup ul li:nth-of-type(1) p {
+	font-size: 0.46rem;
+	width: 0.46rem;
+}
+.titleGroup ul li p {
+	font-size: 0.3rem;
+	width: 0.46rem;
+	color: white;		
+}
+.section_right{
+	float: left;
+	width: 14.05rem;
+}
+.section_right select{
+	float: left;
+	margin-right:0.38rem;
+}
+.select_group{
+	padding: 0.6rem 0px;
+}
+table{
+	width: 13.06rem;
+	background: url(../img/table_border.png);
+	background-size: 100% 100%;
+	color: white;
+	
+}
