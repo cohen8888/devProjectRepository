@@ -7,7 +7,18 @@
 		<title>视频在线</title>
 	</head>
 	<body>
+		
 		<div class="wrap">
+			<div class="mark">
+				<div class="markVideo">
+					<p class="markControlImg">
+						<img class="markReplay" src="../img/replay.png"/>
+						<img class="markFullscreen" src="../img/shrink.png"/>
+					</p>
+					<p class="markVideoName">监测点一</p>
+					<video src="" poster="../img/mark_video_bg.jpg"></video>
+				</div>
+			</div>
 			<div class="content">
 				<header>
 					<div id="header_back">
@@ -195,8 +206,10 @@
 	<script type="text/javascript" src="../js/eventalarm.js" charset="UTF-8"></script>
 	<script type="text/javascript">
 		$(".fullscreen").click(function(){
-			alert(1)
 			$(".mark").show()
+		})
+		$(".markFullscreen").click(function(){
+			$(".mark").hide()
 		})
 	</script>
 </html>

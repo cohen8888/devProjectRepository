@@ -194,3 +194,46 @@ video{
 	align-content: space-between;
 
 }
+
+
+.mark{
+	width: 32rem;
+	height: 18rem;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 100;
+	display: none;
+}
+.markVideo{
+	width: 23rem;
+	height: 12.8rem;
+	position: absolute;
+	top: 3.35rem;
+	left: 7.36rem;
+}
+.markControlImg img{
+	width: 0.8rem;
+	height: 0.8rem;
+	float: right;
+	margin-left: 0.5rem;
+}
+.markControlImg{
+	position: absolute;
+	top: 0.5rem;
+	right: 0.8rem;
+	overflow: hidden;
+	z-index: 22;
+}
+
+.markVideoName{
+	font-size: 0.5rem;
+	color: #92BAD5;
+	position: absolute;
+	bottom: 0.5rem;
+	right: 0.8rem;
+}
+.mark video{
+	width: 22.90rem;
+	height: 12.80rem;
+}

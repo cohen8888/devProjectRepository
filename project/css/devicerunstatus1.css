@@ -103,10 +103,61 @@ section{
 }
 .section_left{
 	width: 15.58rem;
+	display: flex;
+	flex-flow: column;
 }
-#container{
-	width: 95%; height: 90%;
+.dev1{
+	display: flex;
+	flex-flow: row;
+	font-size: 20px;
+	margin-bottom: 0.4rem;
 }
+.runTime{
+	flex: 1;
+	text-align: center;
+}
+.runTime p{
+	margin: 0.25rem;
+}
+.devImg{
+	/*width:7.78rem;
+	height: 7.15rem;*/
+	width:7.28rem;
+	height: 6.66rem;
+}
+.devName{
+	color: white;
+	font-size: 0.4rem;
+}
+.currTimeTitle, .allTimeTitle {
+	color: white;
+	font-size: 0.3rem;
+}
+.currTime{
+	background: linear-gradient(to bottom ,white 30%,#BEEA7B );
+	-webkit-background-clip: text;
+	color: transparent;
+	font-size: 1.3rem;
+	font-family: "黑体";
+	font-weight: bold;
+}
+.allTime{
+	background: linear-gradient(to bottom ,white 30%,#FF9274 );
+	-webkit-background-clip: text;
+	color: transparent;
+	font-size: 1.3rem;
+	font-family: "黑体";
+	font-weight: bold;
+}
+.lastInfo{
+	color: #9895D8;
+	font-size: 0.3rem;
+}
+
+
+
+
+
 .section_right{
 	width: 14.85rem;
 }
