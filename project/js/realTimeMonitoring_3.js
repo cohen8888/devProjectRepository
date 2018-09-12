@@ -5,7 +5,7 @@
 */
 
 $(function(){
-	var container = $("#container");
+	var container = $("#container_3");
 	var myChart = echarts.init(container.get(0));
 	var app = {};
 	var option = null;
@@ -27,13 +27,12 @@ $(function(){
 	    	 textStyle:{
                 color:'white',
                 fontSize:15
-                
             },
             bottom:'0',
 	        data:['类型1', '类型2','类型3','类型4']
 	    },
 	    grid: {
-	        top: 50,
+	        top: 10,
 	        bottom: 80
 	    },
 	    xAxis: [
@@ -79,11 +78,13 @@ $(function(){
 	    yAxis: [
 	        {
 	            type: 'value',
+	            
 	            axisLabel:{
 	                color:'white',
 	                fontSize:15,
 	                formatter: '{value} ℃'
 	            }
+	            
 	            
 	        }
 	    ],

@@ -5,7 +5,7 @@
 */
 
 $(function(){
-	var container = $("#container");
+	var container = $("#container_1");
 	var myChart = echarts.init(container.get(0));
 	var app = {};
 	var option = null;
@@ -33,11 +33,12 @@ $(function(){
 	        data:['类型1', '类型2','类型3','类型4']
 	    },
 	    grid: {
-	        top: 50,
+	        top: 10,
 	        bottom: 80
 	    },
 	    xAxis: [
 	        {
+	        	
 	            type: 'category',
 	            axisLine: {
 	                onZero: false,
@@ -78,6 +79,7 @@ $(function(){
 	    ],
 	    yAxis: [
 	        {
+	        	
 	            type: 'value',
 	            axisLabel:{
 	                color:'white',

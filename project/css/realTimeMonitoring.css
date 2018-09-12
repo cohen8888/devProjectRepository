@@ -70,9 +70,15 @@ header{
 	height: 0.4rem;
 	margin-right: 0.1rem;
 }
+.keyWords{
+	width: 100%;
+	display: flex;
+	justify-content: flex-start ;
+	align-items: center ;
+}
 
 select{
-	width: 3.72rem;
+	width: 2.36rem;
 	height: 0.78rem;
 	margin: 0.4rem 0rem 0.2rem 0.4rem;
 	line-height: 0.42rem;
@@ -100,25 +106,27 @@ section{
 }
 
 .section_left{
-	width: 15.20rem;
-	display: flex;
-	justify-content: flex-end;
-	align-items: center;
+	width: 10.20rem;
 }
-#container{
-	width: 95%; height: 60%; 
+#container_1,#container_2,#container_3{
+	width: 9.9rem;
+	height: 4.7rem;
+	margin: 1rem auto;
+}
+.section_middle{
+	width: 10.20rem;
 }
 .section_right{
-	width: 15.10rem;
+	width: 10.20rem;
 }
 table{
-	width: 14.27rem;
+	width: 10rem;
 	padding: 0.28rem;
 	text-align: center;
-	background: url(../img/table_bg.png) no-repeat;
+	background: url(../img/realTime_table_bg.png) no-repeat;
 	background-size: 100% 100%;
 	line-height: 0.78rem;
-	font-size: 0.3rem;
+	font-size: 0.28rem;
 }
 table tr{
 	line-height: 0.8rem;
@@ -126,8 +134,8 @@ table tr{
 }
 
 table tr:nth-of-type(even){
-	background: rgba(22,60,120,0.3);
+	background: rgba(22,60,120,0.3)
 }
 .default{
-	color:rgb(138,181,207);
+	color:rgb(138,181,207)
 }
