@@ -1,0 +1,34 @@
+[
+	{
+		"potentialRisk":"A0987",
+		"potentialRiskDate":"2018.09.03 24:00:00",
+		"findUser":"张三",
+		"group":"一组",
+		"potentialRiskContent":"隐患内容",
+		"isCheck":false
+	},
+	{
+		"potentialRisk":"A0987",
+		"potentialRiskDate":"2018.09.03 24:00:00",
+		"findUser":"张三",
+		"group":"一组",
+		"potentialRiskContent":"隐患内容",
+		"isCheck":false
+	},
+	{
+		"potentialRisk":"A0987",
+		"potentialRiskDate":"2018.09.03 24:00:00",
+		"findUser":"张三",
+		"group":"一组",
+		"potentialRiskContent":"隐患内容",
+		"isCheck":false
+	},
+	{
+		"potentialRisk":"A0987",
+		"potentialRiskDate":"2018.09.03 24:00:00",
+		"findUser":"张三",
+		"group":"一组",
+		"potentialRiskContent":"隐患内容",
+		"isCheck":false
+	}
+]
