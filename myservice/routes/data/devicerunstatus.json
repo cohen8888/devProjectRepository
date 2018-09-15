@@ -8,7 +8,7 @@
 	"cumulativeRuntime":"26:00:00"
 },
 {
-	"codeNum":"01",
+	"codeNum":"02",
 	"equipmentType":"机电设备",
 	"equipmentName":"机械设备1",
 	"equipmentCurrentStatus":"正常运行",
@@ -17,7 +17,7 @@
 	"cumulativeRuntime":"26:00:00"
 },
 {
-	"codeNum":"01",
+	"codeNum":"03",
 	"equipmentType":"照明设备",
 	"equipmentName":"机械设备1",
 	"equipmentCurrentStatus":"正常运行",
@@ -26,7 +26,7 @@
 	"cumulativeRuntime":"26:00:00"
 },
 {
-	"codeNum":"01",
+	"codeNum":"04",
 	"equipmentType":"排水设备",
 	"equipmentName":"机械设备1",
 	"equipmentCurrentStatus":"正常运行",
@@ -35,7 +35,7 @@
 	"cumulativeRuntime":"26:00:00"
 },
 {
-	"codeNum":"01",
+	"codeNum":"05",
 	"equipmentType":"机械设备",
 	"equipmentName":"机械设备1",
 	"equipmentCurrentStatus":"正常运行",
@@ -44,7 +44,7 @@
 	"cumulativeRuntime":"26:00:00"
 },
 {
-	"codeNum":"01",
+	"codeNum":"06",
 	"equipmentType":"排水设备",
 	"equipmentName":"机械设备1",
 	"equipmentCurrentStatus":"正常运行",
@@ -53,7 +53,7 @@
 	"cumulativeRuntime":"26:00:00"
 },
 {
-	"codeNum":"01",
+	"codeNum":"07",
 	"equipmentType":"风机设备",
 	"equipmentName":"机械设备1",
 	"equipmentCurrentStatus":"正常运行",
@@ -62,7 +62,7 @@
 	"cumulativeRuntime":"26:00:00"
 },
 {
-	"codeNum":"01",
+	"codeNum":"08",
 	"equipmentType":"风机设备",
 	"equipmentName":"机械设备1",
 	"equipmentCurrentStatus":"正常运行",

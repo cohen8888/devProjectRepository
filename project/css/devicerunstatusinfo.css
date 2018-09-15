@@ -187,5 +187,7 @@ table tr:nth-of-type(even){
 /*div{
 	border: 1px solid red;
 }*/
-
+.tb1 tbody tr:hover {
+	background-color:rgba(84,148,168,0.5);
+}
 

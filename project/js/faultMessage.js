@@ -7,14 +7,16 @@ let baseUrl = "http://localhost:3000/api/";
 let rem = document.documentElement.style.fontSize.substr(0,document.documentElement.style.fontSize.length - 2) * 1;
 let colors = ['#D8DA03', '#1CD38D', '#00A1E8','#7FCDF6','#EB6976','#F57223'];	//饼形图的颜色
 let option = null;
+
 option = {
 	title: {
 		show:true,
         text: '设备\n类型',
+        x:'center',
         left: 'center',
         top: 'middle',
         textStyle:{
-        	fontSize:'40',
+        	fontSize:0.5 * rem,
         	fontWeight:'bold',
         	color:'#A4B4EC',
         },
@@ -28,7 +30,7 @@ option = {
 	series: [{	
 	    name :'设备类型',
 	    type :'pie',
-	    radius : ['45%', '60%'],
+	    radius : ['45%', '70%'],
 	    avoidLabelOverlap : false,
 	    selectedMode : 'multiple',	//选择类型，支持多选
 	    markPoint : {
@@ -51,7 +53,7 @@ option = {
 	    labelLine : {
 	        normal : {
 	            lineStyle : {
-	                // color: 'rgba(0, 0, 0, 0.3)'
+	                //color: 'rgba(0, 0, 0, 0.3)'
 	            },
 	            smooth: 0.2,
 	            length: 20,
@@ -59,12 +61,12 @@ option = {
 	        }
 	    },
 	    data:[
-	        {value:100, name:'01机电设备',selected:true},
-	        {value:100, name:'02照明设备',selected:true},
-	        {value:100, name:'03排水设备',selected:true},
-	        {value:100, name:'04风机设备',selected:true},
-	        {value:100, name:'05监测设备',selected:true},
-	        {value:100, name:'06安防设备',selected:true}
+	        {value:5, name:'01机电设备',selected:true},
+	        {value:1, name:'02照明设备',selected:true},
+	        {value:4, name:'03排水设备',selected:true},
+	        {value:3, name:'04风机设备',selected:true},
+	        {value:5, name:'05监测设备',selected:true},
+	        {value:5, name:'06安防设备',selected:true}
 	    ]
 	}]
 };
@@ -85,6 +87,32 @@ function generateTableData(rootElem, data){
 	}
 }
 
+/**
+* 生成环形图数据
+*
+*/
+function generateAnnularChartData(data){
+	var result = [];
+	var key = {};
+	for(var i = 0, len = data.length; i < len ; i++){
+		if(data[i]['faultEquipment'] in key){
+			key[data[i]['faultEquipment']]++;
+		}else{
+			key[data[i]['faultEquipment']] = 1;
+		}
+	}
+	var j = 1;
+	for (k in key){
+		var obj = {};
+		obj.value = key[k];
+		obj.name = (j < 9 ? '0'+j: j) + k;
+		obj.selected = true; 
+		result.push(obj);
+		j++;
+	}
+	return result;
+}
+
 
 $(function(){
 
@@ -93,7 +121,8 @@ $(function(){
 		console.log(res.data);
 		let container = $("#canvasWrap");
 		let myChart = echarts.init(container.get(0));
-
+		console.log(generateAnnularChartData(res.data));
+		option.series[0].data = generateAnnularChartData(res.data);	//为环型图生成数据
 
 		if (option && typeof option === "object") {
 		    myChart.setOption(option, true);
@@ -101,6 +130,8 @@ $(function(){
 
 		//渲染表格数据
 		generateTableData($('#faultinfotable'), res.data);
+
+		
 
 	});
 

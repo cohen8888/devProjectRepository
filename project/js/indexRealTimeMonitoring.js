@@ -1,10 +1,5 @@
-/**
-* author : Cohen.Lee
-* date : 2018-09-03
-* 
-*/
-let rem = document.documentElement.style.fontSize.substr(0,document.documentElement.style.fontSize.length-2)*1;
 $(function(){
+	let rem = document.documentElement.style.fontSize.substr(0,document.documentElement.style.fontSize.length-2)*1;
 	var container = $("#indexMonitoring");
 	var myChart = echarts.init(container.get(0));
 	var app = {};

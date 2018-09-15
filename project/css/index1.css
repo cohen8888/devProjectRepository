@@ -110,6 +110,18 @@ html,body,div,p,dl,dd,dt,ul,li,a,span,img,h1,h2,h3,h4,h5,ol,header,footer,sectio
 	width: 100%;
 	height: 4.70rem;
 }
+.pie_eachrts4{
+	width: 100%;
+	height: 90%;
+}
+.pie_eachrts5{
+	width: 100%;
+	height: 60%;
+}
+.pie_eachrts6{
+	width: 100%;
+	height: 85%;
+}
 .medal{
 	width: 100%;
 	display: flex;
