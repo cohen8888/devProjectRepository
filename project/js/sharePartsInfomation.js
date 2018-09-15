@@ -1,8 +1,34 @@
 let rem = document.documentElement.style.fontSize.substr(0,document.documentElement.style.fontSize.length-2)*1;
+let baseUrl = "http://localhost:3000/api/";
 {
 	let jrxcry_canvas = document.querySelector(".jrxcry_canvas1");
 	let myEchart = echarts.init(jrxcry_canvas);
-	
+	ajax(baseUrl,"sparePartsInformation")
+	.then(res=>{
+		console.log(res);
+		let str1 = "";
+		let str2 = ""
+		res.data.forEach((item,index)=>{
+			if(index<=4){
+				str1+="<tr>"
+				str1+="<td>"+item.workNum+"</td>";
+				str1+="<td>"+item.workUser+"</td>";
+				str1+="<td>"+item.group+"</td>";
+				str1+="<td>"+item.workContent+"</td>";
+				str1+="</tr>";
+			}else{
+				str2+="<tr>"
+				str2+="<td>"+item.workNum+"</td>";
+				str2+="<td>"+item.workUser+"</td>";
+				str2+="<td>"+item.group+"</td>";
+				str2+="<td>"+item.workContent+"</td>";
+				str2+="</tr>";
+			}
+		})
+		$(".tb1 tbody").html(str1);
+		$(".tb2 tbody").html(str2);
+		
+	})
 	let opt = {
 			    legend: {
 			        orient: 'horizontal',

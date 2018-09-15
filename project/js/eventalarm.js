@@ -5,16 +5,43 @@
 */
 
 $(function(){
+	let baseUrl = "http://localhost:3000/api/";
+	let rem = document.documentElement.style.fontSize.substr(0,document.documentElement.style.fontSize.length-2)*1;
 	var container = $("#container");
 	var myChart = echarts.init(container.get(0));
 	var app = {};
 	var option = null;
-//	var colors = ['#5793f3', '#d14a61', '#675bba'];
+	ajax(baseUrl,"eventAlarm").then(res=>{
+		console.log(res);
+		let str1 = ""
+		res.data.tableVal.forEach((item,index)=>{
+				str1+="<tr>"
+				str1+="<td>"+(index+1)+"</td>";
+				str1+="<td>"+item.alarmType+"</td>";
+				str1+="<td>"+item.alarmContent+"</td>";
+				str1+="<td>"+item.alarmDatetime+"</td>";
+				str1+="<td>"+item.submitUsername+"</td>";				
+				str1+="<td>"+item.traceUsername+"</td>";
+				str1+="<td>"+item.status+"</td>";
+				str1+="</tr>";
+		})
+		$(".tb1 tbody").html(str1);
+	
 	var colors = ['red', 'yellow', 'blue','green'];
 
-	var xAxisItem =  ['00:00', '02:00','04:00','08:00','10:00','12:00','14:00',
-        '16:00','18:00','20:00','22:00','24:00'];   //图表x轴区间及刻度名称
-
+	var xAxisItem =  res.data.echartVal[0].val.map((item,index)=>{
+		return item.time;
+	});   //图表x轴区间及刻度名称
+	var dataOpt = res.data.echartVal.map((item,index)=>{
+		  var obj = {
+				 name:item.type,
+				 type:"line",
+				 data:item.val.map((key,val)=>{
+					 return key.val;
+				 })
+			}
+			return obj;
+	})
 	option = {
     	color: colors,
 	    tooltip: {
@@ -30,7 +57,9 @@ $(function(){
                 
             },
             bottom:'0',
-	        data:['类型1', '类型2','类型3','类型4']
+	        data:res.data.echartVal.map((item,index)=>{
+						return item.type;
+					})
 	    },
 	    grid: {
 	        top: 50,
@@ -53,7 +82,7 @@ $(function(){
 	                align:'right',
 	                formatter: function (value, index) {            
 	                    //使用函数模板，函数参数分别为刻度数值（类目），刻度的索引
-	                    return value+"点";
+	                    return value;
 	                },
 	            },
 	            axisPointer: {
@@ -87,35 +116,11 @@ $(function(){
 	            
 	        }
 	    ],
-	    series: [
-	        {
-	            name:'类型1',
-	            type:'line',
-	           
-	            data: [21, 21, 20, 21, 19, 18, 17, 19, 23, 26, 23, 21]
-	        },
-	        {
-	            name:'类型2',
-	            type:'line',
-	            
-	            data: [10, 11, 15, 22, 26, 30, 34, 31, 28, 28, 22, 16]
-	        },
-	        {
-	            name:'类型3',
-	            type:'line',
-	           
-	            data: [16.9, 3.9, 1.1, 18.7, 28.3, 9.2, 21.6, 6.6, 5.4, 18.4, 10.3, 0.7]
-	        },
-	        {
-	            name:'类型4',
-	            type:'line',
-	            
-	            data: [23.9, 4.9, 7.1, 8.7, 8.3, 9.2, 31.6, 4.6, 22.4, 19.4, 20.3, 0.4]
-	        }
-	    ]
+	    series: dataOpt
 	};
 
 	if (option && typeof option === "object") {
 	    myChart.setOption(option, true);
 	}
-});	//jquery ready end;
+});
+	})//jquery ready end;

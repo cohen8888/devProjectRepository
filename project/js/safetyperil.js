@@ -1,6 +1,37 @@
 $(function(){
+		let baseUrl = "http://localhost:3000/api/";
+		let rem = document.documentElement.style.fontSize.substr(0,document.documentElement.style.fontSize.length-2)*1;
     var container = $("#container");
-    console.log(container.get(0));
+    ajax(baseUrl,"safetyperll")
+    .then(res=>{
+    	console.log(res);
+    	let str1 = "";
+    	res.data.forEach((item,index)=>{
+				str1+="<tr>"
+				str1+="<td>"+item.potentialRisk+"</td>";
+				str1+="<td>"+item.potentialRiskDate.split(" ")[1]+"</td>";
+				str1+="<td>"+item.findUser+"</td>";
+				str1+="<td>"+item.group+"</td>";
+				str1+="<td>"+item.potentialRiskContent+"</td>";
+				str1+="</tr>";
+    	})
+    	$(".tb1 tbody").html(str1);
+    })
+		ajax(baseUrl,"safeTyperRes")
+		.then(res=>{
+			console.log(res);
+			let str1 = "";
+			res.data.forEach((item,index)=>{
+				str1+="<tr>"
+				str1+="<td>"+item.potentialRisk+"</td>";
+				str1+="<td>"+item.finishDate.split(" ")[1]+"</td>";
+				str1+="<td>"+item.checkUser+"</td>";
+				str1+="<td>"+item.group+"</td>";
+				str1+="<td>"+item.status+"</td>";
+				str1+="</tr>";
+			})
+			$(".tb2 tbody").html(str1);
+		})
     var myChart = echarts.init(container.get(0));
     var app = {};
     var dataColumn = ['隐患发现', '隐患排查'];  //图表数据项
@@ -22,9 +53,9 @@ $(function(){
             data: dataColumn,
             textStyle:{
                 color:'white',
-                fontSize:30
+                fontSize:0.3*rem
             },
-            padding:[5, 50]
+            padding:[5, 0.5*rem]
         },
         grid: {
             left: '3%',
@@ -46,11 +77,11 @@ $(function(){
                 interval:0,
                 rotate:50,
                 color:'white',
-                fontSize:30,
+                fontSize:0.3*rem,
                 align:'right',
                 formatter: function (value, index) {            
                     //使用函数模板，函数参数分别为刻度数值（类目），刻度的索引
-                    return value+"点";
+                    return value;
                 },
             },
             data : xAxisItem
@@ -65,7 +96,7 @@ $(function(){
             },
             axisLabel:{
                 color:'white',
-                fontSize:30
+                fontSize:0.3*rem
             },
             type: 'value'
         },
@@ -101,3 +132,11 @@ $(function(){
         myChart.setOption(option, true);
     }
 });            //jquery ready function end;
+
+var a = {val:1};
+function fn (obj){
+	obj = new Object();
+	obj["val"] = 2
+}
+fn(a);
+console.log(a.val)

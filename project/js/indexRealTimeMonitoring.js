@@ -3,9 +3,9 @@
 * date : 2018-09-03
 * 
 */
-
+let rem = document.documentElement.style.fontSize.substr(0,document.documentElement.style.fontSize.length-2)*1;
 $(function(){
-	var container = $("#container_3");
+	var container = $("#indexMonitoring");
 	var myChart = echarts.init(container.get(0));
 	var app = {};
 	var option = null;
@@ -26,17 +26,19 @@ $(function(){
 	    legend: {
 	    	 textStyle:{
                 color:'white',
-                fontSize:15
+                fontSize:0.15*rem
+                
             },
-            bottom:'0',
+            bottom:0,
 	        data:['类型1', '类型2','类型3','类型4']
 	    },
 	    grid: {
-	        top: 10,
-	        bottom: 80
+	        top: 0.10*rem,
+	        bottom: 0.8*rem
 	    },
 	    xAxis: [
 	        {
+	        	
 	            type: 'category',
 	            axisLine: {
 	                onZero: false,
@@ -48,7 +50,7 @@ $(function(){
 	                interval:0,
 	                rotate:50,
 	                color:'white',
-	                fontSize:15,
+	                fontSize:0.15*rem,
 	                align:'right',
 	                formatter: function (value, index) {            
 	                    //使用函数模板，函数参数分别为刻度数值（类目），刻度的索引
@@ -57,7 +59,7 @@ $(function(){
 	            },
 	            axisPointer: {
 	                label: {
-	                	fontSize:15,
+	                	fontSize:0.15*rem,
 	                    formatter: function (params) {
 	                        return '温度  ' + params.value
 	                            + (params.seriesData.length ? '：' + params.seriesData[0].data : '')+'℃';
@@ -77,14 +79,13 @@ $(function(){
 	    ],
 	    yAxis: [
 	        {
+	        	
 	            type: 'value',
-	            
 	            axisLabel:{
 	                color:'white',
-	                fontSize:15,
+	                fontSize:0.15*rem,
 	                formatter: '{value} ℃'
 	            }
-	            
 	            
 	        }
 	    ],

@@ -1,3 +1,4 @@
+let rem = document.documentElement.style.fontSize.substr(0,document.documentElement.style.fontSize.length-2)*1;
 {
 			let myEchart = echarts.init(document.querySelector(".pie_eachrts1"));
 			let opt1 = {
@@ -6,10 +7,10 @@
 					textStyle:{
 						color:"white",
 						fontWeight:100,
-						fontSize:30,
-						lineHeight:68
+						fontSize:0.3*rem,
+						lineHeight:0.68*rem
 					},
-					bottom:20,
+					bottom:0.2*rem,
 					x:"center"
 				},
 			    tooltip: {
@@ -18,24 +19,24 @@
 			    },
 			    legend: {
 			        orient: 'horizontal',
-			        itemGap:16,
-			        itemWidth:20,
-			        itemHeight:20,
+			        itemGap:0.16*rem,
+			        itemWidth:0.2*rem,
+			        itemHeight:0.2*rem,
 			        icon:"circle",
 			        x:'center',
 			        data:["维修","故障"],
-			        bottom:68,
+			        bottom:0.68*rem,
 			        textStyle:{
 			        	color:"#ccc",
-			        	fontSize:25,
+			        	fontSize:0.25*rem,
 			        }
 			    },
 			    series: [
 			        {
 			            name:'维修/故障',
 			            type:'pie',
-			            radius: ["center", '125px'],
-			            center:["220px","200px"],
+			            radius: ["center", 1.25*rem],
+			            center:[2.20*rem,2.20*rem],
 			            avoidLabelOverlap: false,
 			            label: {
 			                normal: {
@@ -46,7 +47,7 @@
 			                emphasis: {
 		                    	show:true,
 			                    textStyle: {
-			                        fontSize: 80,
+			                        fontSize: 0.8*rem,
 			                        fontWeight: 700,
 			                    }
 			                }
@@ -99,10 +100,10 @@
 					textStyle:{
 						color:"white",
 						fontWeight:100,
-						fontSize:30,
-						lineHeight:68
+						fontSize:0.3*rem,
+						lineHeight:0.68*rem
 					},
-					bottom:20,
+					bottom:0.2*rem,
 					x:"center"
 				},
 			    tooltip: {
@@ -111,24 +112,24 @@
 			    },
 			    legend: {
 			        orient: 'horizontal',
-			        itemGap:16,
-			        itemWidth:20,
-			        itemHeight:20,
+			        itemGap:0.16*rem,
+			        itemWidth:0.2*rem,
+			        itemHeight:0.2*rem,
 			        icon:"circle",
 			        x:'center',
 			        data:["已排查","排查中","已转工单"],
-			        bottom:68,
+			        bottom:0.68*rem,
 			        textStyle:{
 			        	color:"#ccc",
-			        	fontSize:25,
+			        	fontSize:0.25*rem,
 			        }
 			    },
 			    series: [
 			        {
 			            name:'维修/故障',
 			            type:'pie',
-			            radius: ["center", '125px'],
-			            center:["220px","200px"],
+			            radius: ["center", 1.25*rem],
+			            center:[2.20*rem,2*rem"],
 			            avoidLabelOverlap: false,
 			            label: {
 			                normal: {
@@ -139,7 +140,7 @@
 			                emphasis: {
 		                    	show:true,
 			                    textStyle: {
-			                        fontSize: 80,
+			                        fontSize: 0.8*rem,
 			                        fontWeight: 700,
 			                    }
 			                }
