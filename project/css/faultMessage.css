@@ -30,6 +30,11 @@ section{
 	justify-content: center;
 	align-items: center;
 }
+.titleGroup li:hover{
+	cursor: pointer;
+	background: url(../img/title_border_1.png);
+	background-size: 100% 100%;
+}
 .titleGroup ul li:nth-of-type(1) p {
 	font-size: 0.46rem;
 	width: 0.46rem;
@@ -52,8 +57,7 @@ section{
 }
 table{
 	width: 13.06rem;
-	background: url(../img/table_border.png);
+	background: url(../img/table_bg.png);
 	background-size: 100% 100%;
 	color: white;
-	
 }
