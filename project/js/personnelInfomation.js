@@ -1,9 +1,6 @@
 	let rem = document.documentElement.style.fontSize.substr(0,document.documentElement.style.fontSize.length-2)*1;
 	
-	$.get("http://localhost:3000/equipment",{
-		userStartDate:"2018.09.03 00:00:00",
-		userEndDate:"2018.09.03 24:00:00"
-	},function(res){
+	$.get("http://localhost:3000/api/personnelInfomation",function(res){
 		info(JSON.parse(res).data)
 		setCanvas(JSON.parse(res).data)
 	})

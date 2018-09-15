@@ -14,7 +14,7 @@ $(function(){
 	ajax(baseUrl,"eventAlarm").then(res=>{
 		console.log(res);
 		let str1 = ""
-		res.data.tableVal.forEach((item,index)=>{
+		res.data.tableVal.slice(0,16).forEach((item,index)=>{
 				str1+="<tr>"
 				str1+="<td>"+(index+1)+"</td>";
 				str1+="<td>"+item.alarmType+"</td>";
