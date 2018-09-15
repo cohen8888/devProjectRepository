@@ -56,15 +56,18 @@ function generateColumnarColor(lowRangeColor, HightRangeColor){
 }
 function columnarColor(params){
 	//每个柱子的颜色即为colorList数组里的每一项，如果柱子数目多于colorList的长度，则柱子颜色循环使用该数组					
-	var colorList = [generateColumnarColor('#99d9ea','#ffa7dc'),generateColumnarColor('#99d9ea','#ffa7dc'),
-	'rgb(25,46,94)',
-	'rgb(195,229,235)',
-	'rgb(195,229,235)',
-	generateColumnarColor('#FA5C4B','#F4C05C')];
+	var colorList = [
+		generateColumnarColor('#D197C0','#F9F2C5'),
+		generateColumnarColor('#CDFCF8','#F3DC9E'),
+		generateColumnarColor('#A5B9EE','#EDBAEA'),
+		generateColumnarColor('#EDA4F9','#F8C9C3'),
+		generateColumnarColor('#EBE861','#F7BAE5'),
+		generateColumnarColor('#FA5C4B','#F4C05C')
+		];
 	return colorList[params.dataIndex];
 }
 
-	
+	  
 $(function(){
 
 	
