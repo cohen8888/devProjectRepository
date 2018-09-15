@@ -6,7 +6,7 @@ html,body,div,p,dl,dd,dt,ul,li,a,span,img,h1,h2,h3,h4,h5,ol,header,footer,sectio
 	list-style: none;
 }
 .wrap{
-	background:url(../img/bg.png) no-repeat center center;
+	background:url(../img/bg.png) no-repeat center center/100% 100%;
 	width:30.40rem;
 	height: 16.4rem;
 	padding: 0.8rem;

@@ -4,6 +4,10 @@
 * 
 */
 
+
+let baseUrl = "http://localhost:3000/api/";
+let rem = document.documentElement.style.fontSize.substr(0,document.documentElement.style.fontSize.length-2)*1;
+
 //计算设备类型数量
 function calcCavnasData(data){
 	let key = {};
@@ -18,6 +22,7 @@ function calcCavnasData(data){
 	}
 	return key;
 }
+
 //计算图表x轴数据项及样式，传入通过calcCavnasData函数计算设备类型数量对象和x轴刻度样式
 function calcCavansColumnStyle(categoryInfo, style){
 	let result = [];
@@ -29,6 +34,7 @@ function calcCavansColumnStyle(categoryInfo, style){
 	}
 	return result;
 }
+
 //计算设备运行状态图的显示数据返回数组，传入x轴的数据项，和通过calcCavnasData函数计算设备类型数量对象
 function calcCavansYData(xColumNameData, data){
 	let result = [];
@@ -54,6 +60,8 @@ function generateColumnarColor(lowRangeColor, HightRangeColor){
 			color: HightRangeColor
 	}]);
 }
+
+//柱形图，的每根柱子的颜色
 function columnarColor(params){
 	//每个柱子的颜色即为colorList数组里的每一项，如果柱子数目多于colorList的长度，则柱子颜色循环使用该数组					
 	var colorList = [
@@ -69,11 +77,7 @@ function columnarColor(params){
 
 	  
 $(function(){
-
 	
-
-	let rem = document.documentElement.style.fontSize.substr(0,document.documentElement.style.fontSize.length-2)*1;
-	let baseUrl = "http://localhost:3000/api/";
 	//从后端获取数据
 	ajax(baseUrl,"devicerunstatus").then(res=>{
 		let container = $("#container");
@@ -103,7 +107,7 @@ $(function(){
 		        axisLabel: {	//y轴坐标字样式，rotate设置文字斜着显示
 		          	interval:0,
 	                rotate:45,
-	                fontSize:0.3*rem
+	                fontSize: 0.3 * rem
 	            },
 		        data: xColumNameData
 		    },

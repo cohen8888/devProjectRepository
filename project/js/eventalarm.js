@@ -3,10 +3,10 @@
 * date : 2018-09-03
 * 
 */
+let baseUrl = "http://localhost:3000/api/";
+let rem = document.documentElement.style.fontSize.substr(0,document.documentElement.style.fontSize.length-2)*1;
 
 $(function(){
-	let baseUrl = "http://localhost:3000/api/";
-	let rem = document.documentElement.style.fontSize.substr(0,document.documentElement.style.fontSize.length-2)*1;
 	var container = $("#container");
 	var myChart = echarts.init(container.get(0));
 	var app = {};
@@ -33,14 +33,14 @@ $(function(){
 		return item.time;
 	});   //图表x轴区间及刻度名称
 	var dataOpt = res.data.echartVal.map((item,index)=>{
-		  var obj = {
-				 name:item.type,
-				 type:"line",
-				 data:item.val.map((key,val)=>{
-					 return key.val;
-				 })
-			}
-			return obj;
+		var obj = {
+			 name:item.type,
+			 type:"line",
+			 data:item.val.map((key,val)=>{
+				 return key.val;
+			 })
+		}
+		return obj;
 	})
 	option = {
     	color: colors,
@@ -50,20 +50,25 @@ $(function(){
 	            type: 'cross'
 	        }
 	    },
+		grid: {
+			left: '5%',//距离div左边的距离
+			right: '4%',//距离div右边的距离
+			bottom: '5%',//距离下面
+			containLabel: true
+		},
 	    legend: {
-	    	 textStyle:{
-                color:'white',
-                fontSize:15
-                
-            },
-            bottom:'0',
-	        data:res.data.echartVal.map((item,index)=>{
-						return item.type;
-					})
-	    },
-	    grid: {
-	        top: 50,
-	        bottom: 80
+			padding:[2, 20],
+			itemWidth:0.4 * rem,
+			itemHeight:0.2 * rem,
+			textStyle:{
+				color:'white',
+				fontSize : 0.3 * rem,
+				width:0.3 * rem
+			},
+			bottom:'0',
+			data:res.data.echartVal.map((item,index) => {
+				return item.type;
+			})
 	    },
 	    xAxis: [
 	        {
@@ -75,11 +80,11 @@ $(function(){
 	                }
 	            },
 	            axisLabel: {  //x轴坐标字样式，rotate设置文字斜着显示
-	                interval:0,
-	                rotate:50,
-	                color:'white',
-	                fontSize:15,
-	                align:'right',
+	                interval : 0,
+	                rotate : 50,
+	                color: 'white',
+	                fontSize : 0.2 * rem,
+	                align : 'right',
 	                formatter: function (value, index) {            
 	                    //使用函数模板，函数参数分别为刻度数值（类目），刻度的索引
 	                    return value;
@@ -87,7 +92,7 @@ $(function(){
 	            },
 	            axisPointer: {
 	                label: {
-	                	fontSize:15,
+	                	fontSize:0.3 * rem,
 	                    formatter: function (params) {
 	                        return '温度  ' + params.value
 	                            + (params.seriesData.length ? '：' + params.seriesData[0].data : '')+'℃';
@@ -110,7 +115,7 @@ $(function(){
 	            type: 'value',
 	            axisLabel:{
 	                color:'white',
-	                fontSize:15,
+	                fontSize:0.3 * rem,
 	                formatter: '{value} ℃'
 	            }
 	            

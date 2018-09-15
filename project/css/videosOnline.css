@@ -5,7 +5,7 @@ html,body,div,p,dl,dd,dt,ul,li,a,span,img,h1,h2,h3,h4,h5,ol,header,footer,sectio
 	text-decoration: none;
 	list-style: none;
 }
-.wrap{background: #fff url(../img/bg.png) no-repeat center center;width:30.40rem;padding: 0.8rem;}
+.wrap{background: #fff url(../img/bg.png) no-repeat center center/100% 100%;width:30.40rem;padding: 0.8rem;}
 .content{
 	width: 30.40rem;
 }
