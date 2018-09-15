@@ -124,12 +124,17 @@ section{
 	width: 100%;
 	height: 45%;
 }
-.section_right_table_top table{
-	width: 14.27rem;
+.tableBox{
+	width: 13.71rem;
+	height: 6.5rem;
 	padding: 0.28rem;
-	text-align: center;
 	background: url(../img/border_bg.png) no-repeat;
 	background-size: 100% 100%;
+	overflow: hidden;
+}
+.section_right_table_top table{
+	width: 13.71rem;
+	text-align: center;
 	line-height: 0.78rem;
 	font-size: 0.3rem;
 	table-layout: fixed;
@@ -149,12 +154,17 @@ section{
 	overflow: hidden;
 }
 
-.section_right_table_bottom table{
-	width: 14.27rem;
+.tableBox_1{
+	width: 13.71rem;
+	height: 5.0rem;
 	padding: 0.28rem;
-	text-align: center;
 	background: url(../img/border_bg.png) no-repeat;
 	background-size: 100% 100%;
+	overflow: hidden;
+}
+.section_right_table_bottom table{
+	width: 13.71rem;
+	text-align: center;
 	line-height: 0.78rem;
 	font-size: 0.3rem;
 }

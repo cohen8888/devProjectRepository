@@ -95,7 +95,7 @@ header{
 .jg{
 	color: rgb(214,154,12);
 }
-table{
+/*table{
 	width: 14.27rem;
 	padding: 0.28rem;
 	text-align: center;
@@ -108,13 +108,13 @@ table tr{
 	line-height: 0.8rem;
 	text-align: center;
 }
-/*table tr{
+table tr{
 	line-height: 80px;
 	text-align: center;
-}*/
-table tr:nth-of-type(even){
-	background: rgba(22,60,120,0.3)
 }
+table tr:nth-of-type(even){
+	background: rgba(22,60,120,0.3)*/
+}*/
 select{
 	width: 3.72rem;
 	height: 0.78rem;
