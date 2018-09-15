@@ -119,18 +119,30 @@ section{
 .section_right{
 	width: 10.20rem;
 }
-table{
-	width: 10rem;
+.tableBox{
+	width: 9.44rem;
+	height: 5.56rem;
 	padding: 0.28rem;
-	text-align: center;
 	background: url(../img/realTime_table_bg.png) no-repeat;
 	background-size: 100% 100%;
+	overflow: hidden;
+}
+table{
+	width: 9.44rem;
+	/*height: 5.0rem;*/
+	/*padding: 0.28rem;*/
+	text-align: center;
+	/*background: url(../img/realTime_table_bg.png) no-repeat;*/
 	line-height: 0.78rem;
 	font-size: 0.28rem;
 }
 table tr{
+	height: 0.8rem;
 	line-height: 0.8rem;
 	text-align: center;
+}
+table tr td{
+	height: 0.8rem;
 }
 
 table tr:nth-of-type(even){
