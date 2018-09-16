@@ -1,0 +1,64 @@
+.left{
+	width:15.5rem
+}
+.canvasItem{
+	/*width: 30%;*/
+	height:5.45rem;
+}
+section{
+	margin-top: 0.58rem;
+	display: flex;
+	justify-content: space-between;
+}
+.section_left{
+	width: 15.58rem;
+}
+.section_right{
+	width: 14.85rem;
+	border: 1px solid transparent;
+	border-image: linear-gradient(rgb(42,50,216) 20%,rgb(143,105,223) 20%,rgb(101,113,223) 20%,rgb(71,172,226) 20%,rgb(21,155,230) 20%) 30 30;
+}
+.section_right select{
+	width: 3.72rem;
+	height: 0.78rem;
+	background: radial-gradient(rgb(47,29,160) 80%,rgb(77,39,183));
+	border: 1px solid rgb(172,68,235);
+	margin-left: 0.42rem;
+	color: white;
+	font-size: 0.42rem;
+	display: block;
+}
+
+.section_left_bottom{
+	padding-top: 0.55rem;
+}
+
+.map{
+	width: 14.15rem;
+	height: 12.70rem;
+	padding: 0.42rem;
+	display: block;
+}
+
+.tableBox{
+	width: 13.70rem;
+	padding: 0.28rem;
+	height: 5.5rem;
+	background: url(../img/dailyLive.png) no-repeat;
+	background-size: 100% 100%;
+	overflow: hidden;
+}
+table{
+	width: 13.70rem;
+	text-align: center ;
+	line-height: 0.78rem;
+	font-size: 0.3rem;
+}
+table tr{
+	line-height: 0.8rem;
+	text-align: center;
+}
+
+table tr:nth-of-type(even){
+	background: rgba(22,60,120,0.3);
+}
