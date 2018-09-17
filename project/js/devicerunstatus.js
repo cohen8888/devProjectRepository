@@ -4,15 +4,8 @@
 * 
 */
 
-let rem = document.documentElement.style.fontSize
-	.substr(0,document.documentElement.style.fontSize.length - 2) * 1;
 baseUrl = baseUrl + "/api/";
-let currentDate = null;
 
-function timingDate(){
-	currentDate.html(new Date().Format('yyyy.MM.DD HH:mm:ss'));
-	setTimeout(timingDate, 1000);
-}
 
 //计算设备类型数量
 function calcCavnasData(data){
@@ -84,10 +77,9 @@ function columnarColor(params){
 	  
 $(function(){
 	
-	setLink($("#header_back"));
+	setLink($(".header_left dl"));
 
-	currentDate = $('.timeText');
-
+	currentDateObj = $('.timeText');
 	timingDate();
 	//从后端获取数据
 	ajax(baseUrl,"devicerunstatus").then(res=>{

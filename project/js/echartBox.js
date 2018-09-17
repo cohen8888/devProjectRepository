@@ -1,49 +1,48 @@
-let rem = document.documentElement.style.fontSize.substr(0,document.documentElement.style.fontSize.length-2)*1;
-const baseUrl = "http://localhost:3000/api/";
+
+ baseUrl = baseUrl +  "/api/";
 function setData(data,opt){
 	for( k in data){
 		opt[k] = data[k];
 	}
 	return opt;
 }
-ajax(baseUrl,"index")
-.then(res=>{
 
-{
+ajax(baseUrl,"index").then( res =>{
+
 	const data = res.data.rcxc.maintain;
-			let legendData = data.list.map((item,index)=>{return item.name});
-			let seriesData = data.list.map((item,index)=>{
-				if(item.name === "故障"){
-					return setData(item,{
-						itemStyle:{
-							color:"rgb(233,106,121)"
-						},
-					})
-				}else{
-					return setData(item,{
-						itemStyle:{
-							color: {
-								type: 'linear',
-								x: 0,
-								y: 0,
-								x2: 1,
-								y2: 1,
-								colorStops: [{
-									offset: 0, color: "rgb(223,230,118)" // 0% 处的颜色
-								}, {
-									offset: 1, color: "rgb(139,235,152)" // 100% 处的颜色
-								}],
-								globalCoord: false // 缺省为 false
-							}
-						},
-						label:{
-							color:"rgb(224,230,117)"
-						}
-					})
+	let legendData = data.list.map((item,index)=>{return item.name});
+	let seriesData = data.list.map((item,index) => {
+		if(item.name === "故障"){
+			return setData(item,{
+				itemStyle:{
+					color:"rgb(233,106,121)"
+				},
+			})
+		}else{
+			return setData(item,{
+				itemStyle:{
+					color: {
+						type: 'linear',
+						x: 0,
+						y: 0,
+						x2: 1,
+						y2: 1,
+						colorStops: [{
+							offset: 0, color: "rgb(223,230,118)" // 0% 处的颜色
+						}, {
+							offset: 1, color: "rgb(139,235,152)" // 100% 处的颜色
+						}],
+						globalCoord: false // 缺省为 false
+					}
+				},
+				label:{
+					color:"rgb(224,230,117)"
 				}
 			})
-			let myEchart = echarts.init(document.querySelector(".pie_eachrts1"));
-			let opt1 = {
+		}
+	});
+	let myEchart = echarts.init(document.querySelector(".pie_eachrts1"));
+	let opt1 = {
 				title:{
 					text:data.title,
 					textStyle:{
@@ -104,7 +103,6 @@ ajax(baseUrl,"index")
 			    ]
 			};
 			myEchart.setOption(opt1);
-		}
 		{
 			const data = res.data.rcxc.malfunction;
 			let colorObj = {
@@ -358,6 +356,12 @@ ajax(baseUrl,"index")
 			var app = {};
 			var opt = null;
 			opt = {
+				grid: {
+					left: '2%',//距离div左边的距离
+					right: '2%',//距离div右边的距离
+					bottom: '5%',//距离下面
+					containLabel: true
+				},
 				xAxis:  {
 						type: 'category',
 						splitLine:{
@@ -389,7 +393,12 @@ ajax(baseUrl,"index")
 						},
 						axisLabel:{
 								color:'white',
-								fontSize:0.3*rem
+								fontSize:0.3*rem,
+								formatter: function (value, index) {            
+				                    //使用函数模板，函数参数分别为刻度数值（类目），刻度的索引
+				                    return value + '天';
+				                }
+
 						},
 						type: 'value'
 				},

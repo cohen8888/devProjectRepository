@@ -1,10 +1,15 @@
+baseUrl = baseUrl + "/api/";
+
+
 $(function(){
-		let baseUrl = "http://localhost:3000/api/";
-		let rem = document.documentElement.style.fontSize.substr(0,document.documentElement.style.fontSize.length-2)*1;
+
+	setLink($(".header_left dl"));
+
+	currentDateObj = $('.timeText');
+	timingDate();
+
     var container = $("#container");
-    ajax(baseUrl,"safetyperll")
-    .then(res=>{
-    	console.log(res);
+    ajax(baseUrl,"safetyperll").then(res => {
     	let str1 = "";
     	res.data.slice(0,4).forEach((item,index)=>{
 				str1+="<tr>"
@@ -17,30 +22,27 @@ $(function(){
     	})
     	$(".tb1 tbody").html(str1);
     })
-		ajax(baseUrl,"safeTyperRes")
-		.then(res=>{
-			console.log(res);
+		ajax(baseUrl,"safeTyperRes").then(res=>{
 			let str1 = "";
 			res.data.slice(0,4).forEach((item,index)=>{
 				str1+="<tr>"
 				str1+="<td>"+item.potentialRisk+"</td>";
-				str1+="<td>"+item.finishDate.split(" ")[1]+"</td>";
 				str1+="<td>"+item.checkUser+"</td>";
+				str1+="<td>"+item.finishDate.split(" ")[1]+"</td>";
 				str1+="<td>"+item.group+"</td>";
 				str1+="<td>"+item.status+"</td>";
 				str1+="</tr>";
 			})
 			$(".tb2 tbody").html(str1);
 		})
-		ajax(baseUrl,"safeEcharts")
-		.then(res=>{
+		ajax(baseUrl,"safeEcharts").then(res=>{
 			var myChart = echarts.init(container.get(0));
 			    var app = {};
 			    var dataColumn = res.data[0].data.map((item,index)=>{return item.type});  //图表数据项
 			    var xAxisItem =  res.data.map((item,index)=>{return item.time});   //图表x轴区间及刻度名称
 			    var perilFindData = res.data.map((item,index)=>{return item.data[0].val});    //隐患发现数据
 			    var perilCheckData = res.data.map((item,index)=>{return item.data[1].val});    //隐患排查数据
-			
+
 			    app.title = '安全隐患图';
 			    option = null;
 			    option = {
@@ -97,8 +99,13 @@ $(function(){
 			            },
 			            axisLabel:{
 			                color:'white',
-			                fontSize:0.3*rem
+			                fontSize:0.3 * rem,
+			                formatter: function (value, index) {            
+			                    //使用函数模板，函数参数分别为刻度数值（类目），刻度的索引
+			                    return value + '天';
+			                },
 			            },
+			            splitNumber:8,
 			            type: 'value'
 			        },
 			        series: [
@@ -134,4 +141,4 @@ $(function(){
 			    }
 		})
     
-});            //jquery ready function end;
+});//jquery ready function end;

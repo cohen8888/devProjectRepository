@@ -127,6 +127,6 @@ select option{
 	background: #3828D1;
 }
 
-.header_left {
+.header_left dl{
 	cursor:pointer;
 }

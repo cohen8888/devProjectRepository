@@ -1,5 +1,8 @@
-let rem = document.documentElement.style.fontSize.substr(0,document.documentElement.style.fontSize.length-2)*1;
+
 baseUrl = baseUrl + '/api/';
+currentDateObj = null;
+let jrxcry_canvas = document.querySelector(".jrxcry_canvas1");
+let myEchart = echarts.init(jrxcry_canvas);
 
 function rgb(){
 	return "rgb("+rand(255,0)+","+rand(255,0)+","+rand(255,0)+")";
@@ -8,13 +11,15 @@ function rgb(){
 function rand(max,min){
 	return parseInt(Math.random()*(max-min+1))+min;
 }
-let jrxcry_canvas = document.querySelector(".jrxcry_canvas1");
-let myEchart = echarts.init(jrxcry_canvas);
+
 
 //jQuery ready start
 $(function(){
 
-	setLink($(".header_left"));
+	setLink($(".header_left dl"));
+
+	currentDateObj = $('.timeText');
+	timingDate();
 	
 	ajax(baseUrl,"sparepartsinformation").then(res=>{
 		let str1 = "";

@@ -3,13 +3,16 @@
 * date : 2018-09-03
 * 
 */
-let baseUrl = "http://localhost:3000/api/";
-let rem = document.documentElement.style.fontSize.substr(0,document.documentElement.style.fontSize.length-2)*1;
+baseUrl = baseUrl + "/api/";
 
 $(function(){
+	setLink($(".header_left dl"));
+
+	currentDateObj = $('.timeText');
+	timingDate();
+
 	var container = $("#container");
 	var myChart = echarts.init(container.get(0));
-	var app = {};
 	var option = null;
 	ajax(baseUrl,"eventAlarm").then(res=>{
 		console.log(res);

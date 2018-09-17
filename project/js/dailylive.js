@@ -2,15 +2,9 @@
 *  日常现场
 *
 */
-let rem = document.documentElement.style.fontSize
-	.substr(0,document.documentElement.style.fontSize.length-2) * 1;
-baseUrl = baseUrl + "/api/";
 
-//页面的时钟
-function timingDate(){
-	currentDate.html(new Date().Format('yyyy.MM.DD HH:mm:ss'));
-	setTimeout(timingDate, 1000);
-}
+baseUrl = baseUrl + "/api/";
+currentDateObj = null;
 
 /**
 * 渲染维修列表
@@ -34,6 +28,10 @@ function renderTableData(rootElem, data, attrs){
 $(function(){
 
 	setLink($(".header_left"));
+
+	currentDateObj = $('.timeText');
+	timingDate();
+
 	$.get(baseUrl + "dailylive", (res) => {
 		let data = JSON.parse(res).data;
 		$('.map').attr('src',data.mapUrl);

@@ -5,8 +5,8 @@
 * date： 2018-09-15
 * 
 */
-let baseUrl = "http://localhost:3000/api/";
-
+baseUrl = baseUrl + "/api/";
+currentDateObj = null;
 /**
 * 生成检测图数据函数
 * 
@@ -173,7 +173,10 @@ let xColumNameData =['00:00', '02:00','04:00','08:00','10:00','12:00','14:00','1
 
 $(function(){
 	
-	setLink($(".header_left"));
+	setLink($(".header_left dl"));
+
+	currentDateObj = $('.timeText');
+	timingDate();
 
 	let environmentMonitorChart = echarts.init($("#container_1").get(0));		//环境检测echarts图
 	let equipmentMonitorChart = echarts.init($("#container_2").get(0));			//设备检测echarts图

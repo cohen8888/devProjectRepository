@@ -5,7 +5,9 @@
 
 //接口地址
 let baseUrl = "http://localhost:3000";
+let currentDateObj = null;
 
+let rem = document.documentElement.style.fontSize.substr(0,document.documentElement.style.fontSize.length-2)*1;
  /**
  *
  * 给元素设置，返回上一个历史页面
@@ -159,36 +161,34 @@ function IsValidDate(DateStr){
 //| 日期时间检查
 //| 格式为：YYYY-MM-DD HH:MM:SS
 //+---------------------------------------------------
-function CheckDateTime(str)
-{
-var reg = /^(\d+)-(\d{ 1,2 })-(\d{ 1,2 }) (\d{ 1,2 }):(\d{ 1,2 }):(\d{ 1,2 })$/;
-var r = str.match(reg);
-if(r==null)return false;
-r[2]=r[2]-1;
-var d= new Date(r[1],r[2],r[3],r[4],r[5],r[6]);
-if(d.getFullYear()!=r[1])return false;
-if(d.getMonth()!=r[2])return false;
-if(d.getDate()!=r[3])return false;
-if(d.getHours()!=r[4])return false;
-if(d.getMinutes()!=r[5])return false;
-if(d.getSeconds()!=r[6])return false;
-return true;
+function CheckDateTime(str){
+  var reg = /^(\d+)-(\d{ 1,2 })-(\d{ 1,2 }) (\d{ 1,2 }):(\d{ 1,2 }):(\d{ 1,2 })$/;
+  var r = str.match(reg);
+  if(r==null)return false;
+  r[2]=r[2]-1;
+  var d= new Date(r[1],r[2],r[3],r[4],r[5],r[6]);
+  if(d.getFullYear()!=r[1])return false;
+  if(d.getMonth()!=r[2])return false;
+  if(d.getDate()!=r[3])return false;
+  if(d.getHours()!=r[4])return false;
+  if(d.getMinutes()!=r[5])return false;
+  if(d.getSeconds()!=r[6])return false;
+  return true;
 }
  
 //+---------------------------------------------------
 //| 把日期分割成数组
 //+---------------------------------------------------
-Date.prototype.toArray = function()
-{
-var myDate = this;
-var myArray = Array();
-myArray[0] = myDate.getFullYear();
-myArray[1] = myDate.getMonth();
-myArray[2] = myDate.getDate();
-myArray[3] = myDate.getHours();
-myArray[4] = myDate.getMinutes();
-myArray[5] = myDate.getSeconds();
-return myArray;
+Date.prototype.toArray = function(){
+  var myDate = this;
+  var myArray = Array();
+  myArray[0] = myDate.getFullYear();
+  myArray[1] = myDate.getMonth();
+  myArray[2] = myDate.getDate();
+  myArray[3] = myDate.getHours();
+  myArray[4] = myDate.getMinutes();
+  myArray[5] = myDate.getSeconds();
+  return myArray;
 }
  
 //+---------------------------------------------------
@@ -196,36 +196,33 @@ return myArray;
 //| 参数 interval 表示数据类型
 //| y 年 m月 d日 w星期 ww周 h时 n分 s秒
 //+---------------------------------------------------
-Date.prototype.DatePart = function(interval)
-{
-var myDate = this;
-var partStr='';
-var Week = ['日','一','二','三','四','五','六'];
-switch (interval)
-{
-case 'y' :partStr = myDate.getFullYear();break;
-case 'm' :partStr = myDate.getMonth()+1;break;
-case 'd' :partStr = myDate.getDate();break;
-case 'w' :partStr = Week[myDate.getDay()];break;
-case 'ww' :partStr = myDate.WeekNumOfYear();break;
-case 'h' :partStr = myDate.getHours();break;
-case 'n' :partStr = myDate.getMinutes();break;
-case 's' :partStr = myDate.getSeconds();break;
-}
-return partStr;
+Date.prototype.DatePart = function(interval){
+  var myDate = this;
+  var partStr='';
+  var Week = ['日','一','二','三','四','五','六'];
+  switch (interval){
+    case 'y' :partStr = myDate.getFullYear();break;
+    case 'm' :partStr = myDate.getMonth()+1;break;
+    case 'd' :partStr = myDate.getDate();break;
+    case 'w' :partStr = Week[myDate.getDay()];break;
+    case 'ww' :partStr = myDate.WeekNumOfYear();break;
+    case 'h' :partStr = myDate.getHours();break;
+    case 'n' :partStr = myDate.getMinutes();break;
+    case 's' :partStr = myDate.getSeconds();break;
+  }
+  return partStr;
 }
  
 //+---------------------------------------------------
 //| 取得当前日期所在月的最大天数
 //+---------------------------------------------------
-Date.prototype.MaxDayOfDate = function()
-{
-var myDate = this;
-var ary = myDate.toArray();
-var date1 = (new Date(ary[0],ary[1]+1,1));
-var date2 = date1.dateAdd(1,'m',1);
-var result = dateDiff(date1.Format('yyyy-MM-dd'),date2.Format('yyyy-MM-dd'));
-return result;
+Date.prototype.MaxDayOfDate = function(){
+  var myDate = this;
+  var ary = myDate.toArray();
+  var date1 = (new Date(ary[0],ary[1]+1,1));
+  var date2 = date1.dateAdd(1,'m',1);
+  var result = dateDiff(date1.Format('yyyy-MM-dd'),date2.Format('yyyy-MM-dd'));
+  return result;
 }
 
  
@@ -233,17 +230,24 @@ return result;
 //| 字符串转成日期类型
 //| 格式 MM/dd/YYYY MM-dd-YYYY YYYY/MM/dd YYYY-MM-dd
 //+---------------------------------------------------
-function StringToDate(DateStr)
-{
- 
-var converted = Date.parse(DateStr);
-var myDate = new Date(converted);
-if (isNaN(myDate))
-{
-//var delimCahar = DateStr.indexOf('/')!=-1?'/':'-';
-var arys= DateStr.split('-');
-myDate = new Date(arys[0],--arys[1],arys[2]);
-}
-return myDate;
+function StringToDate(DateStr){
+   
+  var converted = Date.parse(DateStr);
+  var myDate = new Date(converted);
+  if (isNaN(myDate)){
+    //var delimCahar = DateStr.indexOf('/')!=-1?'/':'-';
+    var arys= DateStr.split('-');
+    myDate = new Date(arys[0],--arys[1],arys[2]);
+  }
+  return myDate;
 }
 
+//页面的时钟
+function timingDate(){
+  if (currentDateObj){
+    let currentDate = new Date().Format('yyyy.MM.DD HH:mm:ss').toString();
+    currentDateObj.children('span').eq(1).html(currentDate.split(' ')[0]);
+    currentDateObj.children('span').eq(2).html(currentDate.split(' ')[1]);
+    setTimeout(timingDate, 1000);
+  }
+}
