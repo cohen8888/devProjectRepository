@@ -61,6 +61,12 @@ header{
 .timeText span{
 	padding-left: 0.33rem;
 }
+/*头部时钟图片*/
+.clockBg{
+	width: 0.4rem;
+	height: 0.4rem;
+	margin-right: 0.1rem;
+}
 .boxBorder{
 	border:1px solid rgb(71,147,225);
     border-image: -webkit-linear-gradient(rgb(34,70,224),rgb(84,185,227)) 30 30;
