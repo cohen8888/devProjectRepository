@@ -1,9 +1,14 @@
+	
 	let rem = document.documentElement.style.fontSize.substr(0,document.documentElement.style.fontSize.length-2)*1;
 	
+	$(function(){
+		setLink($(".header_left"));
+	});	//jQuery ready end;
 	$.get("http://localhost:3000/api/personnelInfomation",function(res){
 		info(JSON.parse(res).data)
 		setCanvas(JSON.parse(res).data)
 	})
+
 	function info(opt){
 		let str = "";
 		opt.users.forEach((item,index)=>{
@@ -18,6 +23,7 @@
 //		console.log(opt.map)
 		$(".map").attr('src',opt.mapUrl);
 	}
+
 	function setCanvas(obj){
 		let canvasBox = document.querySelector(".canvasBox");
 		obj.group.forEach((item,index)=>{

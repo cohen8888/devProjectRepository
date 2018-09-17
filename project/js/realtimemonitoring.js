@@ -172,6 +172,8 @@ let monitoringTypes = ['环境监测', '设备监测', '本体监测'];
 let xColumNameData =['00:00', '02:00','04:00','08:00','10:00','12:00','14:00','16:00','18:00','20:00','22:00','24:00'];
 
 $(function(){
+	
+	setLink($(".header_left"));
 
 	let environmentMonitorChart = echarts.init($("#container_1").get(0));		//环境检测echarts图
 	let equipmentMonitorChart = echarts.init($("#container_2").get(0));			//设备检测echarts图

@@ -1,0 +1,53 @@
+{
+	"mapUrl" : "http://localhost:3000/video/rcxc.mp4",
+	"data" : {
+		"maintain" : {
+			"data" : [{
+				"workOrderCode" : "A00987",
+				"workStation" : "01",
+				"maintenanceContent" : "维修内容一",
+				"craft" : "工艺一",
+				"maintenaceMan" : "张三",
+				"group" : "一组",
+				"maintenanceState" : "正常",
+				"maintenanceDatetime" : "2018-09-16 20:35:12"
+			},{
+				"workOrderCode" : "A10987",
+				"workStation" : "021",
+				"maintenanceContent" : "维修内容二",
+				"craft" : "工艺八",
+				"maintenaceMan" : "张三",
+				"group" : "一组",
+				"maintenanceState" : "正常",
+				"maintenanceDatetime" : "2018-09-16 20:35:12"
+			}]
+		},
+		"fault" : {
+			"data" : [{
+				"faultNum" : "A09876",
+				"faultCode" : "87",
+				"faultDescription" : "故障描述一",
+				"reportDatetime" : "2018-09-14 20:35:12",
+				"state" : "正常",
+				"checkMan" : "李四",
+				"group" : "一组"
+			},{
+				"faultNum" : "A09832",
+				"faultCode" : "233",
+				"faultDescription" : "故障描述二",
+				"reportDatetime" : "2018-09-14 20:35:12",
+				"state" : "正常",
+				"checkMan" : "李大四",
+				"group" : "三组"
+			},{
+				"faultNum" : "A01832",
+				"faultCode" : "23",
+				"faultDescription" : "故障描述六",
+				"reportDatetime" : "2018-09-04 20:35:12",
+				"state" : "正常",
+				"checkMan" : "李小四",
+				"group" : "二组"
+			}]
+		}
+	}
+}

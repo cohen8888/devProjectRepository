@@ -1,4 +1,4 @@
-.DS_Store
+**/.DS_Store
 
 #忽略所有扩展名为.tmp的文件
 *.tmp

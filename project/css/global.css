@@ -125,3 +125,7 @@ select{
 	font-size: 0.42rem;
 	display: block;
 }
+
+.header_left {
+	cursor:pointer;
+}
