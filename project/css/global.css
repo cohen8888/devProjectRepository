@@ -37,6 +37,7 @@ header{
 	padding: 0.25rem;
 	padding/*-top*/: 0.25rem;
 	border: 1px solid #492481;
+	border-radius: 0.1rem;
 }
 .header_left dt{
 	font-size: 0.2rem;
@@ -55,7 +56,7 @@ header{
 }
 .timeText{
 	color: white;
-	font-size: 0.3rem;
+	font-size: 0.35rem;
 	line-height:0.95rem;
 }
 .timeText span{
@@ -101,27 +102,7 @@ header{
 .jg{
 	color: rgb(214,154,12);
 }
-/*table{
-	width: 14.27rem;
-	padding: 0.28rem;
-	text-align: center;
-	background: url(../img/border_bg.png) no-repeat;
-	background-size: 100% 100%;
-	line-height: 0.78rem;
-	font-size: 0.3rem;
-}
-table tr{
-	line-height: 0.8rem;
-	text-align: center;
-}
-table tr{
-	line-height: 80px;
-	text-align: center;
-}
-table tr:nth-of-type(even){
-	background: rgba(22,60,120,0.3)*/
-}*/
-select{
+/*select{
 	width: 3.72rem;
 	height: 0.78rem;
 	background: radial-gradient(rgb(47,29,160) 80%,rgb(77,39,183));
@@ -130,6 +111,20 @@ select{
 	color: white;
 	font-size: 0.42rem;
 	display: block;
+}*/
+select{
+	width: 3.72rem;
+	height: 0.78rem;
+	margin-left: 0.4rem;
+	line-height: 0.42rem;
+	font-size: 0.42rem;
+	color: white;
+	padding-left: 0.3rem;
+	border-radius: 0.08rem;
+    background:radial-gradient(#251486 30%  , #2348E0);
+}
+select option{
+	background: #3828D1;
 }
 
 .header_left {

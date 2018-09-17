@@ -4,16 +4,6 @@
 section{
 	margin-top: 0.58rem;
 }
-.section_top select{
-	width: 3.72rem;
-	height: 0.78rem;
-	background: radial-gradient(rgb(47,29,160) 80%,rgb(77,39,183));
-	border: 1px solid rgb(172,68,235);
-	margin-left: 0.42rem;
-	color: white;
-	font-size: 0.42rem;
-	display: block;
-}
 .canvasBox{
 	display: flex;
 	width: 100%;
