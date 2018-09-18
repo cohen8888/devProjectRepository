@@ -200,8 +200,20 @@ select option{
 .titleCenter{
 	text-align: center;
 }
-
-
+.pie_eachrts5 ul{
+	width: 90%;
+	margin: 0 auto;
+}
+.pie_eachrts5 ul li {
+	float: left;
+	color: white;
+}
+.kitem{
+	height: 1rem;
+}
+.titem{
+	font-size: 0.3rem;
+}
 
 
 /*div{

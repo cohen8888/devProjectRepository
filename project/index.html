@@ -11,37 +11,37 @@
 				<!--视频在线及日常现场模块-->
 				<div class="content_left">
 					<!--视频在线-->
-					<a href="html/videosonline.html">
-						<div class="videos boxBorder" >
+					<div class="videos boxBorder" >
+						<a href="html/videosonline.html">
 							<p class="h3_titleText">视频在线</p>
-							<div class="video_wrap">
-								<video  poster="img/video_bg.png" src=""></video>
-								<video  poster="img/video_bg.png" src=""></video>
-								<video  poster="img/video_bg.png" src=""></video>
-								<video  poster="img/video_bg.png" src=""></video>
-							</div>
+						</a>
+						<div class="video_wrap">
+							<video  poster="img/video_bg.png" src=""></video>
+							<video  poster="img/video_bg.png" src=""></video>
+							<video  poster="img/video_bg.png" src=""></video>
+							<video  poster="img/video_bg.png" src=""></video>
 						</div>
-					</a>
+					</div>
 					<!--日常现场-->
-					<a href="html/dailylive.html">
-						<div class="daily_live boxBorder " >
+					<div class="daily_live boxBorder " >
+						<a href="html/dailylive.html">
 							<p class="h3_titleText">日常现场</p>
-							<div class="daily_canvas">
-								<div class="pie_eachrts1" ></div>
-								<div class="pie_eachrts2" ></div>	
-							</div>
-							<table class="rcTable default tb1" cellpadding="0" cellspacing="0" border="0" width="100%">
-								<thead>
-									<tr>
-										<th>巡检路线</th>
-										<th>巡检状态</th>
-										<th>巡检结果</th>
-									</tr>
-								</thead>
-								<tbody></tbody>
-							</table>
+						</a>
+						<div class="daily_canvas">
+							<div class="pie_eachrts1" ></div>
+							<div class="pie_eachrts2" ></div>
 						</div>
-					</a>
+						<table class="rcTable default tb1" cellpadding="0" cellspacing="0" border="0" width="100%">
+							<thead>
+								<tr>
+									<th>巡检路线</th>
+									<th>巡检状态</th>
+									<th>巡检结果</th>
+								</tr>
+							</thead>
+							<tbody></tbody>
+						</table>
+					</div>
 				</div>
 				<!--本月班组绩效及设备运行状态模块-->
 				<div class="content_center">
@@ -69,12 +69,12 @@
 						</ul>
 					</div>
 					<!--设备运行状态-->
-					<a href="html/devicerunstatus.html">
 					<div class="deviceRunStatus boxBorder box">
-						<p class="h3_titleText">设备运行状态</p>
+						<a href="html/devicerunstatus.html">
+							<p class="h3_titleText">设备运行状态</p>
+						</a>
 						<div class="pie_eachrts4"></div>
-					</div>
-					</a>
+					</div>	
 				</div>
 				<!--实时监控、事件警告、人员信息及安全隐患模块-->
 				<div class="content_right">
@@ -101,12 +101,16 @@
 						<!--右下方盒子中的左边盒子-->
 						<div class="c_r_b_left">
 							<!--事件告警-->
-							<a href="html/eventalarm.html">
+							
 							<div class="warningWrap boxBorder box"  >
-								<p class="h3_titleText">事件告警</p>
-								<div class="pie_eachrts5"></div>
+								<a href="html/eventalarm.html">
+									<p class="h3_titleText">事件告警</p>
+								</a>
+								<div class="pie_eachrts5">
+									<ul class="clear_float">
+									</ul>
+								</div>
 							</div>
-							</a>
 							<!--人员信息-->
 							<a href="html/personnelinfomation.html">
 							<div class="employeeInfoWrap boxBorder box" style="height: 4.20rem; ">
@@ -140,9 +144,6 @@
 	<script src="js/jquery-3.3.1.js" type="text/javascript" charset="utf-8"></script>
 	<script src="js/rem.js" type="text/javascript" charset="UTF-8"></script>
 	<script src="js/echarts.js" type="text/javascript" charset="utf-8"></script>
-	<script src="js/commons.js" type="text/javascript" charset="utf-8"></script>
 	<script src="js/ajax.js" type="text/javascript" charset="utf-8"></script>
-	<script src="js/echartbox.js" type="text/javascript" charset="utf-8"></script>
-	<!-- <script src="js/indexRealTimeMonitoring.js" type="text/javascript" charset="utf-8"></script> -->
-	
+	<script src="js/echartBox.js" type="text/javascript" charset="utf-8"></script>
 </html>

@@ -1,48 +1,49 @@
-
- baseUrl = baseUrl +  "/api/";
+let rem = document.documentElement.style.fontSize.substr(0,document.documentElement.style.fontSize.length-2)*1;
+const baseUrl = "http://localhost:3000/api/";
 function setData(data,opt){
 	for( k in data){
 		opt[k] = data[k];
 	}
 	return opt;
 }
+ajax(baseUrl,"index")
+.then(res=>{
 
-ajax(baseUrl,"index").then( res =>{
-
+{
 	const data = res.data.rcxc.maintain;
-	let legendData = data.list.map((item,index)=>{return item.name});
-	let seriesData = data.list.map((item,index) => {
-		if(item.name === "故障"){
-			return setData(item,{
-				itemStyle:{
-					color:"rgb(233,106,121)"
-				},
-			})
-		}else{
-			return setData(item,{
-				itemStyle:{
-					color: {
-						type: 'linear',
-						x: 0,
-						y: 0,
-						x2: 1,
-						y2: 1,
-						colorStops: [{
-							offset: 0, color: "rgb(223,230,118)" // 0% 处的颜色
-						}, {
-							offset: 1, color: "rgb(139,235,152)" // 100% 处的颜色
-						}],
-						globalCoord: false // 缺省为 false
-					}
-				},
-				label:{
-					color:"rgb(224,230,117)"
+			let legendData = data.list.map((item,index)=>{return item.name});
+			let seriesData = data.list.map((item,index)=>{
+				if(item.name === "故障"){
+					return setData(item,{
+						itemStyle:{
+							color:"rgb(233,106,121)"
+						},
+					})
+				}else{
+					return setData(item,{
+						itemStyle:{
+							color: {
+								type: 'linear',
+								x: 0,
+								y: 0,
+								x2: 1,
+								y2: 1,
+								colorStops: [{
+									offset: 0, color: "rgb(223,230,118)" // 0% 处的颜色
+								}, {
+									offset: 1, color: "rgb(139,235,152)" // 100% 处的颜色
+								}],
+								globalCoord: false // 缺省为 false
+							}
+						},
+						label:{
+							color:"rgb(224,230,117)"
+						}
+					})
 				}
 			})
-		}
-	});
-	let myEchart = echarts.init(document.querySelector(".pie_eachrts1"));
-	let opt1 = {
+			let myEchart = echarts.init(document.querySelector(".pie_eachrts1"));
+			let opt1 = {
 				title:{
 					text:data.title,
 					textStyle:{
@@ -103,6 +104,7 @@ ajax(baseUrl,"index").then( res =>{
 			    ]
 			};
 			myEchart.setOption(opt1);
+		}
 		{
 			const data = res.data.rcxc.malfunction;
 			let colorObj = {
@@ -202,8 +204,8 @@ ajax(baseUrl,"index").then( res =>{
 			    ]
 			};
 			myEchart.setOption(opt2);
-			
-			
+
+
 			let tableData = res.data.rcxc.list;
 			let str = "";
 			tableData.forEach((item,index)=>{
@@ -214,7 +216,7 @@ ajax(baseUrl,"index").then( res =>{
 				str+=`</tr>`
 			})
 			$(".tb1 tbody").html(str);
-			
+
 		}
 		{
 			const data = res.data.bzjx;
@@ -249,7 +251,7 @@ ajax(baseUrl,"index").then( res =>{
 								color:'white',
 								fontSize:0.3*rem,
 								align:'center',
-								formatter: function (value, index) {            
+								formatter: function (value, index) {
 										//使用函数模板，函数参数分别为刻度数值（类目），刻度的索引
 										return value;
 								},
@@ -308,7 +310,7 @@ ajax(baseUrl,"index").then( res =>{
 								},
 								data : badwork
 						},{
-								
+
 								name: '',
 								type: 'bar',
 								stack: '总量',
@@ -323,13 +325,13 @@ ajax(baseUrl,"index").then( res =>{
 								},
 								data : stopwork
 						}
-					
+
 				]
 			};
 			if (opt && typeof opt === "object") {
 					myChart.setOption(opt, true);
 			}
-			
+
 			console.log(data.rack)
 			const rack = data.rack;
 			let lis = `<li>
@@ -349,19 +351,13 @@ ajax(baseUrl,"index").then( res =>{
 			</li>`
 			$(".medal").html(lis);
 		}
-		
+
 		{
 			const data = res.data.sbzt;
 			let myChart = echarts.init(document.querySelector(".pie_eachrts4"));
 			var app = {};
 			var opt = null;
 			opt = {
-				grid: {
-					left: '2%',//距离div左边的距离
-					right: '2%',//距离div右边的距离
-					bottom: '5%',//距离下面
-					containLabel: true
-				},
 				xAxis:  {
 						type: 'category',
 						splitLine:{
@@ -376,7 +372,7 @@ ajax(baseUrl,"index").then( res =>{
 								color:'white',
 								fontSize:0.3*rem,
 								align:'center',
-								formatter: function (value, index) {            
+								formatter: function (value, index) {
 										//使用函数模板，函数参数分别为刻度数值（类目），刻度的索引
 										return value;
 								},
@@ -393,12 +389,7 @@ ajax(baseUrl,"index").then( res =>{
 						},
 						axisLabel:{
 								color:'white',
-								fontSize:0.3*rem,
-								formatter: function (value, index) {            
-				                    //使用函数模板，函数参数分别为刻度数值（类目），刻度的索引
-				                    return value + '天';
-				                }
-
+								fontSize:0.3*rem
 						},
 						type: 'value'
 				},
@@ -439,7 +430,7 @@ ajax(baseUrl,"index").then( res =>{
 												formatter:function(params){
 													return params.value+"\n"+params.seriesName
 												}
-												
+
 										}
 								},
 								itemStyle:{
@@ -447,7 +438,7 @@ ajax(baseUrl,"index").then( res =>{
 								},
 								data : [13,12,15,18]
 						},{
-								
+
 								name: '进行中',
 								type: 'bar',
 								stack: '总量',
@@ -465,125 +456,26 @@ ajax(baseUrl,"index").then( res =>{
 								},
 								data : [13,12,15,18]
 						}
-					
+
 				]
 			};
 			if (opt && typeof opt === "object") {
 					myChart.setOption(opt, true);
 			}
 		}
-{
+		{
 			const data = res.data.sjgj;
-			let myChart = echarts.init(document.querySelector(".pie_eachrts5"));
-			var app = {};
-			var opt = null;
-			opt = {
-				xAxis:  {
-						type: 'category',
-						splitLine:{
-								show:false,
-								lineStyle:{
-										width:2,
-										type:'dotted'  //'dotted'虚线 'solid'实线
-								}
-						},
-						axisLabel: {  //y轴坐标字样式，rotate设置文字斜着显示
-								interval:0,
-								color:'white',
-								fontSize:0.3*rem,
-								align:'center',
-								position:"bottom",
-								formatter: function (value, index) {            
-										//使用函数模板，函数参数分别为刻度数值（类目），刻度的索引
-										return value;
-								},
-						},
-						data : ["监测报告","安全事件","隐患风险","安防检查"]
-				},
-				yAxis: {
-					show:false
-// 						splitLine:{
-// 								show:false,
-// 								lineStyle:{
-// 										width:2,
-// 										type:'dotted'  //'dotted'虚线 'solid'实线
-// 								}
-// 						},
-// 						axisLabel:{
-// 								color:'white',
-// 								fontSize:0.3*rem
-// 						},
-// 						type: 'value'
-				},
-				series: [
-						{
-								name: '停工',
-								type: 'bar',
-								stack: '总量',
-								label: {
-										normal: {
-												show: true,
-												position: 'inside',
-												formatter:function(params){
-													return params.value
-												}
-										}
-								},
-								itemStyle:{
-									color: new echarts.graphic.LinearGradient(
-											0, 0, 0, 1,
-											[
-												{offset: 0, color: '#653ea2'},
-												{offset: 0.5, color: '#392168'},
-												// {offset: 1, color: '#ddd'}
-											]
-										)
-								},
-								data : [15,10,5,10]
-						},
-						{
-								name: '故障',
-								type: 'bar',
-								stack: '总量',
-								label: {
-										normal: {
-												show: true,
-												position: 'inside',
-												formatter:function(params){
-													return params.value
-												}
-												
-										}
-								},
-								itemStyle:{
-									color:'#3b92da'
-								},
-								data : [13,12,15,18]
-						},{
-								
-								name: '进行中',
-								type: 'bar',
-								stack: '总量',
-								label: {
-										normal: {
-												show: true,
-												position: 'inside',
-												formatter:function(params){
-													return params.value
-												}
-										}
-								},
-								itemStyle:{
-									color:'#38dabb'
-								},
-								data : [13,12,15,18]
-						}
-					
-				]
-			};
-			if (opt && typeof opt === "object") {
-					myChart.setOption(opt, true);
-			}
+			console.log(data);
+			let color = ["green","blue","red","pink"];
+			let sum = 0;
+			data.list.forEach(item=>{
+				sum += item.value
+			})
+			data.list.forEach((item,index)=>{
+				console.log(item)
+				$(".pie_eachrts5 ul").append($("<li/>").css("width",item.value/sum*100+"%").append($("<div/>").css("background",color[index]).attr("class","kitem")).append($("<p/>").html(item.name).attr("class","titem")));
+				
+			})
 		}
 		{
 			const data = res.data.ryxx;
@@ -599,7 +491,7 @@ ajax(baseUrl,"index").then( res =>{
 								show: true,
 								position: 'center',
 								formatter:'现场\n\n'+data.workCount+'/'+data.workSum,
-								
+
 							}
 						},
 						data:[
@@ -625,14 +517,14 @@ ajax(baseUrl,"index").then( res =>{
 										str += data.workGroup;
 										return str;
 									},
-									
+
 								},
 								labelLine:{
 									show:true,
 									length:10
-									
+
 								}
-								
+
 							}
 						]
 					}]
@@ -661,7 +553,7 @@ ajax(baseUrl,"index").then( res =>{
 				var option = null;
 			//	var colors = ['#5793f3', '#d14a61', '#675bba'];
 				var colors = ['red', 'yellow', 'blue','green'];
-			
+
 				var xAxisItem =  data.list[0].data.map((item,index)=>{
 					return item.time;
 				});   //图表x轴区间及刻度名称
@@ -684,7 +576,7 @@ ajax(baseUrl,"index").then( res =>{
 				    	 textStyle:{
 			                color:'white',
 			                fontSize:0.15*rem
-			                
+
 			            },
 			            bottom:0,
 				        data:data.list.map(item=>{return item.watchLine})
@@ -695,7 +587,7 @@ ajax(baseUrl,"index").then( res =>{
 				    },
 				    xAxis: [
 				        {
-				        	
+
 				            type: 'category',
 				            axisLine: {
 				                onZero: false,
@@ -709,7 +601,7 @@ ajax(baseUrl,"index").then( res =>{
 				                color:'white',
 				                fontSize:0.15*rem,
 				                align:'right',
-				                formatter: function (value, index) {            
+				                formatter: function (value, index) {
 				                    //使用函数模板，函数参数分别为刻度数值（类目），刻度的索引
 				                    return value;
 				                },
@@ -732,23 +624,23 @@ ajax(baseUrl,"index").then( res =>{
 				            },
 				            data: xAxisItem
 				        }
-				        
+
 				    ],
 				    yAxis: [
 				        {
-				        	
+
 				            type: 'value',
 				            axisLabel:{
 				                color:'white',
 				                fontSize:0.15*rem,
 				                formatter: '{value} ℃'
 				            }
-				            
+
 				        }
 				    ],
 				    series:seriesData
 				};
-			
+
 				if (option && typeof option === "object") {
 				    myChart.setOption(option, true);
 				}

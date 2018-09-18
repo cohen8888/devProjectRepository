@@ -5,46 +5,77 @@
 * date： 2018-09-15
 * 
 */
+
+//初始化变量
 baseUrl = baseUrl + "/api/";
 currentDateObj = null;
+//环境检测类型
+let monitoringTypes = ['环境监测', '设备监测', '本体监测'];
+//图形x轴刻度标签值
+let xColumNameData =['00:00', '02:00','04:00','08:00','10:00',
+	'12:00','14:00','16:00','18:00','20:00','22:00','24:00'];
+//获取当前值的毫秒数
+let changeDataTimeInterval = 5000;
+let timeIntervalGetData = 20000;
+//缓存到页面端的数据
+let cacheDatas = {};
+let cacheInitDatas = {};
+let pageSize = 2;
+let timeId = null;
+let dataTimeId = null;
+
+
 /**
-* 生成检测图数据函数
-* 
+* 生成检测点
 */
-function generateMonitorDataObj(categoryName, data, lineType){
+function genLengedData(datas){
 	let result = [];
-	for (var i = 0; i < data.length; i++){
-		if (data[i]['monitoringType'] == categoryName){
-			let obj = {};
-			obj.name = data[i]['monitoringPoint'];
-			obj.type = lineType;
-			obj.data = data[i].data;
-			result.push(obj);
+	if (typeof datas == 'object' && datas instanceof Array){
+		for(var i = 0, len = datas.length > pageSize ? pageSize : datas.length ; i < len ;i++){
+			result.push(datas[i]['monitoringPoint'])
 		}
 	}
 	return result;
 }
 
-/**
-*
-*  生成检测点名称，返回数据
-*/
-function generateMonitorLegendData(generateMonitorDataObj){
-	let result = [];
-	for (var i = 0; i < generateMonitorDataObj.length; i++){
-		result.push(generateMonitorDataObj[i]['name']);
+
+
+function genSeriesObjects(datas, lengeds){
+	var result = [];
+	for (var i = 0, len = datas.length > pageSize ? pageSize : datas.length; i < len; i++){
+		var obj = {};
+		obj['name'] = lengeds[i];
+		obj['type'] = 'line';
+		obj['data'] = datas[i]['data'];
+		obj['smooth'] = false;
+		result.push(obj);
 	}
 	return result;
 }
 
-
+/**
+* 根据从后端返回的数据，进行页面的列表的渲染
+*/
+function generateList(elem, datas, catagory){
+	elem.children().remove();
+	for(var i = 0,len = datas.length > pageSize ? pageSize : datas.length; i < len; i++){
+		var tr = $('<tr></tr>');
+		tr.append('<td>'+datas[i]['monitoringPoint']+'</td>')
+			.append('<td>'+catagory+'</td>')
+			.append('<td>'+datas[i]['monitoringValue']+'</td>')
+			.append('<td>'+datas[i]['upperLimit']+'</td>')
+			.append('<td>'+datas[i]['lowerLimit']+'</td>')
+			.append('<td>'+datas[i]['sataus']+'</td>');
+			elem.append(tr);
+	}	
+}
 
 /**
 * 生成检测点的颜色，返回数据
 */
-function generateMonitorLineColor(generateMonitorLegendData){
+function generateMonitorLineColor(lineNumber){
 	let result = [];
-	for (var i = 0; i < generateMonitorDataObj.length; i++){
+	for (var i = 0; i < lineNumber.length; i++){
 		var r = Math.floor(Math.random()*256);
 		var g = Math.floor(Math.random()*256);
 		var b = Math.floor(Math.random()*256);
@@ -53,6 +84,8 @@ function generateMonitorLineColor(generateMonitorLegendData){
 	}
 	return result;
 }
+
+
 
 
 /**
@@ -88,7 +121,6 @@ function initChart(chartsObj, lineColors, xAxisItem, legendData, seriesData){
 	    },
 	    xAxis: [
 	        {
-	        	
 	            type: 'category',
 	            axisLine: {
 	                onZero: false,
@@ -125,11 +157,9 @@ function initChart(chartsObj, lineColors, xAxisItem, legendData, seriesData){
 	            },
 	            data: xAxisItem
 	        }
-	        
 	    ],
 	    yAxis: [
 	        {
-	        	
 	            type: 'value',
 	            axisLabel:{
 	                color:'white',
@@ -140,7 +170,7 @@ function initChart(chartsObj, lineColors, xAxisItem, legendData, seriesData){
 	        }
 	    ],
 	    series: seriesData
-	};												//环境检测图显示选项
+	};
 	if (option && typeof option === "object") {
 	    chartsObj.setOption(option, true);
 	}
@@ -148,67 +178,59 @@ function initChart(chartsObj, lineColors, xAxisItem, legendData, seriesData){
 
 
 /**
-*
-* 根据从后端返回的数据，进行页面的列表的渲染
+* 每间隔timeinterval时间，执行一次callback任务
+* 
 */
-function generateList(elem, data, category){
-	for(var i = 0; i < data.length; i++){
-		if (category != null && category == data[i]['monitoringType']){
-			var tr = $('<tr></tr>');
-			tr.append('<td>'+data[i]['monitoringPoint']+'</td>')
-				.append('<td>'+data[i]['monitoringType']+'</td>')
-				.append('<td>'+data[i]['monitoringValue']+'</td>')
-				.append('<td>'+data[i]['upperLimit']+'</td>')
-				.append('<td>'+data[i]['lowerLimit']+'</td>')
-				.append('<td>'+data[i]['sataus']+'</td>');
-				elem.append(tr);
-		}	
+function renderChartsListFn(charts, tables, datas, catagorys){
+	for(var i = 0, len = charts.length; i < len; i++){
+		//生成图
+		var lineColors = generateMonitorLineColor(datas[catagorys[i]]);
+		var lenged = genLengedData(datas[catagorys[i]]);
+		var seriesData = genSeriesObjects(datas[catagorys[i]], genLengedData(datas[catagorys[i]]));
+		initChart(charts[i],lineColors,xColumNameData,lenged,seriesData);
+		generateList(tables[i], datas[catagorys[i]], catagorys[i]);
 	}
 }
 
-//环境检测类型
-let monitoringTypes = ['环境监测', '设备监测', '本体监测'];
-//图形x轴刻度标签值
-let xColumNameData =['00:00', '02:00','04:00','08:00','10:00','12:00','14:00','16:00','18:00','20:00','22:00','24:00'];
-
+//jQuery ready function start
 $(function(){
 	
 	setLink($(".header_left dl"));
-
 	currentDateObj = $('.timeText');
 	timingDate();
 
-	let environmentMonitorChart = echarts.init($("#container_1").get(0));		//环境检测echarts图
-	let equipmentMonitorChart = echarts.init($("#container_2").get(0));			//设备检测echarts图
-	let noumenonMonitorChart = echarts.init($("#container_3").get(0));			//本体检测echarts图
+	let chartsObjs = [echarts.init($("#container_1").get(0)),
+		echarts.init($("#container_2").get(0)),
+		echarts.init($("#container_3").get(0))];
+
+	let tablelists = [$("#environmentMonitor tbody"), 
+		$("#equipmentMonitor tbody"), 
+		$("#noumenonMonitor tbody")];
 	
-	ajax(baseUrl,"realtimemonitoring").then(res=>{
-		//获取数据中的检测类型
-
-		//环境检测echarts图
-		let environmentMonitorSeriesData = generateMonitorDataObj(monitoringTypes[0], res.data, 'line');
-		let environmentMonitorLegendData = generateMonitorLegendData(environmentMonitorSeriesData);
-		let environmentLineColors = generateMonitorLineColor(environmentMonitorLegendData);
-		initChart(environmentMonitorChart,environmentLineColors,xColumNameData,environmentMonitorLegendData,environmentMonitorSeriesData);
-		//设备检测echarts图
-		let equipmentMonitorSeriesData = generateMonitorDataObj(monitoringTypes[1], res.data, 'line');
-		let equipmentMonitorLegendData = generateMonitorLegendData(equipmentMonitorSeriesData);
-		let equipmentLineColors = generateMonitorLineColor(equipmentMonitorLegendData);
-		initChart(equipmentMonitorChart,equipmentLineColors,xColumNameData,equipmentMonitorLegendData,equipmentMonitorSeriesData);
-
-		//本体检测echarts图
-		let noumenonMonitorSeriesData = generateMonitorDataObj(monitoringTypes[2], res.data, 'line');
-		let noumenonMonitorLegendData = generateMonitorLegendData(noumenonMonitorSeriesData);
-		let noumenonLineColors = generateMonitorLineColor(noumenonMonitorLegendData);
-		initChart(noumenonMonitorChart,noumenonLineColors,xColumNameData,noumenonMonitorLegendData,noumenonMonitorSeriesData);
-
-
-		//列表数据
-		generateList($("#environmentMonitor"), res.data, monitoringTypes[0]);
-		generateList($("#equipmentMonitor"), res.data, monitoringTypes[1]);
-		generateList($("#noumenonMonitor"), res.data, monitoringTypes[2]);
-
-	});
+	//定时向后端发送请求，获取数据
+	dataTimeId = setInterval(function(){
+		console.log('重新获取数据');		
+		//从后端获取数据，并启动页面定时器
+		ajax(baseUrl,"realtimemonitoring").then(res => {
+			console.log(res.data);
+			for(var i = 0,len = res.data.length; i < len; i++){
+				cacheDatas[res.data[i]['type']] = res.data[i]['data'];
+			}
+			console.log(cacheDatas);
+			//cacheInitDatas = cacheDatas;	//存储从后端获取的数据
+			clearInterval(timeId);
+			timeId = setInterval(function(){
+				console.log('重新刷新数据')
+				renderChartsListFn(chartsObjs, tablelists, cacheDatas, monitoringTypes);
+				for(key in cacheDatas){
+					for(var i = 0; i < pageSize; i++){
+						cacheDatas[key].shift();
+					}
+				}
+				console.log(cacheDatas);
+			},changeDataTimeInterval);
+		});
+	},timeIntervalGetData);
 	
 });		//jQuery ready function end.
 
