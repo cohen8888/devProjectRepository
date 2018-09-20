@@ -6,6 +6,9 @@
 
 baseUrl = baseUrl + "/api/";
 
+let availableTags = [];
+let getDataTimeInterval = 100000;		//设置获取数据的时间间隔
+let cacheData = [];
 
 //计算设备类型数量
 function calcCavnasData(data){
@@ -45,13 +48,14 @@ function calcCavansYData(xColumNameData, data){
 
 //设备类型下拉列表内容填充
 function optEquipType(categoryInfo, equipmentTypeElem){
+	equipmentTypeElem.children().remove();
 	for(category in categoryInfo){
 		equipmentTypeElem.append('<option value="' + category + '" >'+ category +'</option>')
 	}
 }
 
 function generateColumnarColor(lowRangeColor, HightRangeColor){
-	return new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+	return new echarts.graphic.LinearGradient(0, 0, 1, 1, [{
 			offset: 0,
 			color: lowRangeColor
 	}, {
@@ -69,107 +73,158 @@ function columnarColor(params){
 		generateColumnarColor('#A5B9EE','#EDBAEA'),
 		generateColumnarColor('#EDA4F9','#F8C9C3'),
 		generateColumnarColor('#EBE861','#F7BAE5'),
-		generateColumnarColor('#FA5C4B','#F4C05C')
-		];
+		generateColumnarColor('#FA5C4B','#F4C05C'),
+		generateColumnarColor('#bA534B','#abC05C')
+	];
 	return colorList[params.dataIndex];
 }
 
-	  
+function drawChart(chartRootElem, xColumNameData, seriesData, columnarColor){
+	let option = null;
+	//图形显示选项，必须是个对象
+	option = {
+		grid: {
+			left: '10%',
+			bottom:'8%',
+			top:'5%'
+		},
+	    xAxis: {
+	    	splitLine:{
+		　　　　show:false
+		　　},
+	        type: 'category',
+	        axisLabel: {	//y轴坐标字样式，rotate设置文字斜着显示
+	          	interval:0,
+                rotate:45,
+                fontSize: 0.29 * rem
+            },
+	        data: xColumNameData
+	    },
+	    yAxis: {
+	        type: 'value',
+	        axisLabel:{					//y轴坐标样式
+	        	color:'white',
+	        	fontSize:0.3 * rem,
+	        	formatter: function (value, index) {            
+                    //使用函数模板，函数参数分别为刻度数值（类目），刻度的索引
+                    return value + '天';
+                }
+	        },
+			splitLine:{
+		　　　　show:false
+		　　}
+	    },
+	    series: [{
+	        data: seriesData,
+	        type: 'bar',
+			label:{			//标签为在柱状图上面显示的数字	
+        		normal:{
+        			show:true,
+        			position:'top',
+        			textStyle: {
+			            color: 'white',
+			            fontSize:0.5 * rem
+			         }
+        		}
+        	},
+	        itemStyle: {
+        		normal:{
+        			color:columnarColor
+    			},
+	            //鼠标悬停时：
+	            emphasis: {
+	                shadowBlur: 10,
+	                shadowOffsetX: 0,
+	                shadowColor: 'rgba(0, 0, 0, 0.5)'
+	            }
+			}
+	    }]
+	};
+	if (option && typeof option === "object") {
+	    chartRootElem.setOption(option, true);
+	}
+}
+
+/**
+*
+* 获取设备名称列表
+*/
+function getEquipmentName(datas){
+	var result = [];
+	for(var i = 0, len = datas.length; i < len; i++){
+		result.push(datas[i]['equipmentName']);
+	}
+	return result;
+}
+
+function renderListData(rootElem, datas){
+	let str = "";
+	rootElem.children().remove();
+	datas.slice(0,16).forEach((item,index)=>{
+		str+="<tr>"
+		str+="<td>"+item.codeNum+"</td>";
+		str+="<td>"+item.equipmentName+"</td>";
+		str+="<td>"+item.equipmentType+"</td>";
+		str+="<td>"+item.equipmentCurrentStatus+"</td>";
+		str+="<td>"+item.lastStopDatetime+"</td>";				
+		str+="<td>"+item.thisRuntime+"</td>";
+		str+="<td>"+item.cumulativeRuntime+"</td>";
+		str+="</tr>";
+	})
+	rootElem.html(str);
+}
+
 $(function(){
 	
 	setLink($(".header_left dl"));
-
 	currentDateObj = $('.timeText');
 	timingDate();
-	//从后端获取数据
-	ajax(baseUrl,"devicerunstatus").then(res=>{
-		let container = $("#container");
-		let myChart = echarts.init(container.get(0));
-		let app = {};
-		let option = null;
-		let categoryInfo = calcCavnasData(res.data);
-		let xColumNameData = calcCavansColumnStyle(categoryInfo, {color: 'white'});
-		let seriesData = calcCavansYData(xColumNameData, categoryInfo);	//柱状图数据，按顺序对应设备种类的名称
-		optEquipType(categoryInfo, $('#equipmentTypeName'));
-	    //柱状图的颜色
-		
+	let container = $("#container");
+	let myChart = echarts.init(container.get(0));
 
-		//图形显示选项，必须是个对象
-		option = {
-
-			grid: {
-				left: '10%',
-				bottom:'8%',
-				top:'5%'
-			},
-		    xAxis: {
-		    	splitLine:{
-			　　　　show:false
-			　　},
-		        type: 'category',
-		        axisLabel: {	//y轴坐标字样式，rotate设置文字斜着显示
-		          	interval:0,
-	                rotate:45,
-	                fontSize: 0.3 * rem
-	            },
-		        data: xColumNameData
-		    },
-		    yAxis: {
-		        type: 'value',
-		        axisLabel:{					//y轴坐标样式
-		        	color:'white',
-		        	fontSize:0.3*rem
-		        },
-				splitLine:{
-			　　　　show:false
-			　　}
-		       
-		    },
-		    series: [{
-		        data: seriesData,
-		        type: 'bar',
-				label:{			//标签为在柱状图上面显示的数字	
-	        		normal:{
-	        			show:true,
-	        			position:'top',
-	        			textStyle: {
-				            color: 'white',
-				            fontSize:0.4*rem
-				         }
-	        		}
-	        	},
-		        itemStyle: {
-	        		normal:{
-	        			color:columnarColor
-	    			},
-		            //鼠标悬停时：
-		            emphasis: {
-		                shadowBlur: 10,
-		                shadowOffsetX: 0,
-		                shadowColor: 'rgba(0, 0, 0, 0.5)'
-		            }
+	
+	function filterData(findKey){
+		if(!(cacheData == null && findKey == null )){
+			let tmpData = [];
+			for(var i = 0, len = cacheData.length; i < len; i++){
+				if((findKey == cacheData[i]['codeNum']) || findKey == cacheData[i]['equipmentName']){
+					tmpData.push(cacheData[i]);
 				}
-		    }]
-	    	
-		};
-
-
-		let str1 = "";
-		res.data.slice(0,16).forEach((item,index)=>{
-				str1+="<tr>"
-				str1+="<td>"+item.codeNum+"</td>";
-				str1+="<td>"+item.equipmentName+"</td>";
-				str1+="<td>"+item.equipmentType+"</td>";
-				str1+="<td>"+item.equipmentCurrentStatus+"</td>";
-				str1+="<td>"+item.lastStopDatetime+"</td>";				
-				str1+="<td>"+item.thisRuntime+"</td>";
-				str1+="<td>"+item.cumulativeRuntime+"</td>";
-				str1+="</tr>";
-		})
-		$(".tb1 tbody").html(str1);
-		if (option && typeof option === "object") {
-		    myChart.setOption(option, true);
+			}
+			renderListData($(".tb1 tbody"), tmpData);
 		}
-	});
+	}
+
+
+	function renderPage(){
+		//从后端获取数据
+		ajax(baseUrl,"devicerunstatus").then(res => {
+			let categoryInfo = calcCavnasData(res.data);
+			let xColumNameData = calcCavansColumnStyle(categoryInfo, {color: 'white'});
+			//柱状图数据，按顺序对应设备种类的名称
+			let seriesData = calcCavansYData(xColumNameData, categoryInfo);	
+			cacheData = res.data;
+			optEquipType(categoryInfo, $('#equipmentTypeName'));
+		    //柱状图的颜色
+
+		    availableTags = getEquipmentName(res.data);
+		    $("#equipmentNameAutocomplete").autocomplete({
+				source: availableTags
+			});
+		    $("#equipmentNameAutocomplete").on('keyup',function(e){
+		    	var key = e.which;
+		    	if(key == 13){
+		    		filterData(e.target.value);
+		    	}
+		    });
+		    drawChart(myChart,xColumNameData,seriesData,columnarColor);
+			renderListData($(".tb1 tbody"),res.data);
+		});
+	}
+
+	renderPage();
+	setInterval(function(){
+		renderPage();
+	}, getDataTimeInterval);
 	
 });	//jquery ready end;

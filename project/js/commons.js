@@ -8,6 +8,7 @@ let baseUrl = "http://localhost:3000";
 let currentDateObj = null;
 
 let rem = document.documentElement.style.fontSize.substr(0,document.documentElement.style.fontSize.length-2)*1;
+ 
  /**
  *
  * 给元素设置，返回上一个历史页面

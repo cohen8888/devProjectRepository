@@ -20,9 +20,12 @@ let timeIntervalGetData = 20000;
 //缓存到页面端的数据
 let cacheDatas = {};
 let cacheInitDatas = {};
-let pageSize = 2;
-let timeId = null;
-let dataTimeId = null;
+let pageSize = 2;		//列表页的每页数据数
+let timeId = null;		//滚动数据定时器
+let dataTimeId = null;	//从后端获取数据定时器
+let environmentMonitorPointAvailableTags = [];
+let equipmentMonitorPointAvailableTags = [];
+let noumenonMonitorPointAvailableTags = [];
 
 
 /**
@@ -73,33 +76,37 @@ function generateList(elem, datas, catagory){
 /**
 * 生成检测点的颜色，返回数据
 */
-function generateMonitorLineColor(lineNumber){
+function generateMonitorLineColor(lineData){
 	let result = [];
-	for (var i = 0; i < lineNumber.length; i++){
-		var r = Math.floor(Math.random()*256);
-		var g = Math.floor(Math.random()*256);
-		var b = Math.floor(Math.random()*256);
-
+	for (var i = 0; i < lineData.length; i++){
+		var current = lineData[i]['monitoringValue'].slice(0,lineData[i]['monitoringValue'].length-2)
+		var lowWarning = lineData[i]['lowerLimit'].slice(0,lineData[i]['lowerLimit'].length-2)
+		if (current < lowWarning){
+			result.push('rgb(255, 0, 0)');
+		}else{
+			var r = Math.floor(Math.random()*100);
+			var g = Math.floor(Math.random()*256);
+			var b = Math.floor(Math.random()*256);
+		}
+		
 		result.push('rgb('+r+','+g+','+b+')');
 	}
 	return result;
 }
 
 
-
-
 /**
 * 创建图形函数
 * @param chartsObj 	类型charts对象， 图对象
-* @param lineColors 类型数组，图形上线条的颜色
+* @param lcolors 类型数组，图形上线条的颜色
 * @param xAxisItem  类型数组，图形x轴的刻度
 * @param legendData 类型数据，每个线条类型名称
 * @param series		类型数组，每个类型线条的数据
 */
-function initChart(chartsObj, lineColors, xAxisItem, legendData, seriesData){
+function initChart(chartsObj, lcolors, xAxisItem, legendData, seriesData){
 	let option = null;
 	option = {
-    	color:lineColors,
+    	color:lcolors,
 	    tooltip:{
 	        trigger: 'none',
 	        axisPointer: {
@@ -109,11 +116,10 @@ function initChart(chartsObj, lineColors, xAxisItem, legendData, seriesData){
 	    legend: {
 	    	 textStyle:{
                 color:'white',
-                fontSize:15
-                
+                fontSize:0.1 * rem   
             },
             bottom:'0',
-	        data:legendData
+	        data:legendData,
 	    },
 	    grid: {
 	        top: 10,
@@ -125,7 +131,7 @@ function initChart(chartsObj, lineColors, xAxisItem, legendData, seriesData){
 	            axisLine: {
 	                onZero: false,
 	                lineStyle: {
-	                    color: lineColors
+	                    color: lcolors
 	                }
 	            },
 	            axisLabel: {  //x轴坐标字样式，rotate设置文字斜着显示
@@ -166,7 +172,6 @@ function initChart(chartsObj, lineColors, xAxisItem, legendData, seriesData){
 	                fontSize:15,
 	                formatter: '{value} ℃'
 	            }
-	            
 	        }
 	    ],
 	    series: seriesData
@@ -187,8 +192,64 @@ function renderChartsListFn(charts, tables, datas, catagorys){
 		var lineColors = generateMonitorLineColor(datas[catagorys[i]]);
 		var lenged = genLengedData(datas[catagorys[i]]);
 		var seriesData = genSeriesObjects(datas[catagorys[i]], genLengedData(datas[catagorys[i]]));
+
 		initChart(charts[i],lineColors,xColumNameData,lenged,seriesData);
 		generateList(tables[i], datas[catagorys[i]], catagorys[i]);
+	}
+}
+function fromBackendData(chartsObjs,tablelists){
+	ajax(baseUrl,"realtimemonitoring").then(res => {
+
+		genderAutoData(res.data, monitoringTypes);
+		$('#environmentMonitorPoint').autocomplete({
+			source : environmentMonitorPointAvailableTags
+		});
+		$('#equipmentMonitorPoint').autocomplete({
+			source : equipmentMonitorPointAvailableTags
+		});
+		$('#noumenonMonitorPoint').autocomplete({
+			source : noumenonMonitorPointAvailableTags
+		});
+
+		for(var i = 0,len = res.data.length; i < len; i++){
+			cacheDatas[res.data[i]['type']] = res.data[i]['data'];
+		}
+		renderChartsListFn(chartsObjs, tablelists, cacheDatas, monitoringTypes);
+		clearInterval(timeId);	//
+		timeId = setInterval(function(){
+			renderChartsListFn(chartsObjs, tablelists, cacheDatas, monitoringTypes);
+			for(key in cacheDatas){
+				for(var i = 0; i < pageSize; i++){
+					cacheDatas[key].shift();
+				}
+			}
+		},changeDataTimeInterval);
+	});
+}
+
+/**
+*  生成模糊查询数据项
+*/
+function genderAutoData(datas, mTypes){
+	environmentMonitorPointAvailableTags = [];
+	equipmentMonitorPointAvailableTags = [];
+	noumenonMonitorPointAvailableTags = [];
+	for (var i = 0, len = datas.length; i < len; i++){
+		if (mTypes[0] == datas[i]['type']){
+			for(var j = 0, leng = datas[i]['data'].length; j < leng; j++){
+				environmentMonitorPointAvailableTags.push(datas[i]['data'][j]['monitoringPoint']);
+			}
+		}
+		if (mTypes[1] == datas[i]['type']){
+			for(var j = 0, leng = datas[i]['data'].length; j < leng; j++){
+				equipmentMonitorPointAvailableTags.push(datas[i]['data'][j]['monitoringPoint']);
+			}
+		}
+		if (mTypes[2] == datas[i]['type']){
+			for(var j = 0, leng = datas[i]['data'].length; j < leng; j++){
+				noumenonMonitorPointAvailableTags.push(datas[i]['data'][j]['monitoringPoint']);
+			}
+		}
 	}
 }
 
@@ -206,30 +267,13 @@ $(function(){
 	let tablelists = [$("#environmentMonitor tbody"), 
 		$("#equipmentMonitor tbody"), 
 		$("#noumenonMonitor tbody")];
-	
+	//从后端获取数据，并启动页面定时器
+	fromBackendData(chartsObjs,tablelists)
+
 	//定时向后端发送请求，获取数据
-	dataTimeId = setInterval(function(){
-		console.log('重新获取数据');		
+	dataTimeId = setInterval(function(){		
 		//从后端获取数据，并启动页面定时器
-		ajax(baseUrl,"realtimemonitoring").then(res => {
-			console.log(res.data);
-			for(var i = 0,len = res.data.length; i < len; i++){
-				cacheDatas[res.data[i]['type']] = res.data[i]['data'];
-			}
-			console.log(cacheDatas);
-			//cacheInitDatas = cacheDatas;	//存储从后端获取的数据
-			clearInterval(timeId);
-			timeId = setInterval(function(){
-				console.log('重新刷新数据')
-				renderChartsListFn(chartsObjs, tablelists, cacheDatas, monitoringTypes);
-				for(key in cacheDatas){
-					for(var i = 0; i < pageSize; i++){
-						cacheDatas[key].shift();
-					}
-				}
-				console.log(cacheDatas);
-			},changeDataTimeInterval);
-		});
+		fromBackendData(chartsObjs,tablelists)
 	},timeIntervalGetData);
 	
 });		//jQuery ready function end.

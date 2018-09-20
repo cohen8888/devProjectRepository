@@ -123,6 +123,18 @@ select{
 	border-radius: 0.08rem;
     background:radial-gradient(#251486 30%  , #2348E0);
 }
+.qryInput {
+	width: 3.72rem;
+	height: 0.78rem;
+	margin-left: 0.4rem;
+	line-height: 0.42rem;
+	font-size: 0.42rem;
+	color: white;
+	padding-left: 0.3rem;
+	border-radius: 0.08rem;
+    background:radial-gradient(#251486 30%  , #2348E0);
+}
+
 select option{
 	background: #3828D1;
 }

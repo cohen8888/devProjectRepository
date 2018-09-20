@@ -5,8 +5,8 @@
 */
 
 baseUrl = baseUrl + "/api/";
-let changeDataTimeInterval = 5000;
-let getChartDataTimeInterval = 20000;								//切换数据时间
+let changeDataTimeInterval = 3000;								//切换数据时间
+let getChartDataTimeInterval = 15000;							//从后端取数据的间隔时间	
 let pageSize = 5;												//表格显示最大数据
 let chartColumn = ['隐患排查', '隐患发现'];	
 let xColumNameData =['00:00', '02:00','04:00','06:00','08:00','10:00',
@@ -17,6 +17,7 @@ let xColumNameData =['00:00', '02:00','04:00','06:00','08:00','10:00',
 *
 */
 function renderTableData(elem, datas, cols){
+	$("tbody").animate({opacity:1},400);
 	elem.children().remove();
 	let str = "";
 	datas.slice(0, pageSize).forEach((item, index) => {
@@ -47,7 +48,7 @@ function renderCharts(chartRootElem, chartColumn, xAxisItem, datas){
 	        data: chartColumn,
 	        textStyle:{
 	            color:'white',
-	            fontSize:0.3*rem
+	            fontSize:0.5*rem
 	        },
 	        padding:[5, 0.5*rem]
 	    },
@@ -152,6 +153,8 @@ function handlerData(data, pageSize){
 
 function getBackendListData(){
 	ajax(baseUrl,"safetyperll").then(res => {
+		clearInterval(timeId1);
+		clearInterval(timeId2);
     	data1 = res.data;
     	renderTableData($(".tb1 tbody"), data1, 
     		["potentialRisk","potentialRiskDate","findUser","group","potentialRiskContent"]);
@@ -162,10 +165,12 @@ function getBackendListData(){
     	
     });
 	ajax(baseUrl,"safetyperres").then(res=>{
+		clearInterval(timeId1);
+		clearInterval(timeId2);
 		data2 = res.data;
 		renderTableData($(".tb2 tbody"), 
 				data2,['potentialRisk','checkUser','finishDate','group','status']);
-		timeId1 = setInterval(function(){
+		timeId2 = setInterval(function(){
 			data2 = handlerData(data2, pageSize);
 			renderTableData($(".tb2 tbody"), 
 				data2,['potentialRisk','checkUser','finishDate','group','status']);
@@ -175,7 +180,6 @@ function getBackendListData(){
 }
 
 function getBackendData(myChart){
-	console.log("重新发请求");
 	getBackendListData();
 	ajax(baseUrl,"safeecharts").then(res=>{
 		renderCharts(myChart, chartColumn, xColumNameData, res.data);
@@ -195,7 +199,10 @@ $(function(){
     setInterval(function(){
     	clearInterval(timeId1);
     	clearInterval(timeId2);
-    	getBackendData(myChart);
+		$("tbody").animate({opacity:"0"},changeDataTimeInterval,function(){
+			getBackendData(myChart);
+		})
+    	
     },getChartDataTimeInterval);
 	    
     
