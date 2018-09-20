@@ -15,18 +15,19 @@ let monitoringTypes = ['环境监测', '设备监测', '本体监测'];
 let xColumNameData =['00:00', '02:00','04:00','06:00','08:00','10:00',
 	'12:00','14:00','16:00','18:00','20:00','22:00','24:00'];
 //获取当前值的毫秒数
-let changeDataTimeInterval = 5000;
-let timeIntervalGetData = 20000;
+let changeDataTimeInterval = 10000;
+let timeIntervalGetData = 200000;
 //缓存到页面端的数据
 let cacheDatas = {};
 let cacheInitDatas = {};
 let pageSize = 2;		//列表页的每页数据数
 let timeId = null;		//滚动数据定时器
 let dataTimeId = null;	//从后端获取数据定时器
-let environmentMonitorPointAvailableTags = [];
+let environmentMonitorPointAvailableTags = [];		//
 let equipmentMonitorPointAvailableTags = [];
 let noumenonMonitorPointAvailableTags = [];
-
+let chartsObjs = [];								//折线图对象
+let tablelists = [];
 
 /**
 * 生成检测点
@@ -181,7 +182,6 @@ function initChart(chartsObj, lcolors, xAxisItem, legendData, seriesData){
 	}
 };
 
-
 /**
 * 每间隔timeinterval时间，执行一次callback任务
 * 
@@ -197,10 +197,36 @@ function renderChartsListFn(charts, tables, datas, catagorys){
 		generateList(tables[i], datas[catagorys[i]], catagorys[i]);
 	}
 }
+
+function registerSearchFn(elem, type, datas, chart, lineColor,tab){
+	elem.on('keyup',(event) => {
+		console.log("aaaa")
+		if (event.which == 13){
+			let seriesData = [];
+			for(key in datas){
+				if (key == type){
+					for(var j = 0 , jLen = datas[key].length; j < jLen; j++){
+						if (datas[key][j]['monitoringPoint'] == event.target.value){
+							seriesData = datas[key][j];
+							break;
+						}
+					}
+				}
+			}
+			var obj = {};
+			obj['name'] = event.target.value;
+			obj['type'] = 'line';
+			obj['data'] = seriesData['data'];
+			obj['smooth'] = false;
+			initChart(chart,lineColor,xColumNameData,[event.target.value],[obj]);
+			generateList(tab, [seriesData], type);
+		}
+	});
+}
+
 function fromBackendData(chartsObjs,tablelists){
 	ajax(baseUrl,"realtimemonitoring").then(res => {
-
-		genderAutoData(res.data, monitoringTypes);
+		genderAutoData(res.data, monitoringTypes);	//获取监测点模糊搜索数据
 		$('#environmentMonitorPoint').autocomplete({
 			source : environmentMonitorPointAvailableTags
 		});
@@ -210,17 +236,24 @@ function fromBackendData(chartsObjs,tablelists){
 		$('#noumenonMonitorPoint').autocomplete({
 			source : noumenonMonitorPointAvailableTags
 		});
+		
 
 		for(var i = 0,len = res.data.length; i < len; i++){
 			cacheDatas[res.data[i]['type']] = res.data[i]['data'];
 		}
+
+		registerSearchFn($('#environmentMonitorPoint'),monitoringTypes[0] ,cacheDatas , chartsObjs[0],['rgb(255,0,0)'],tablelists[0]);
+		registerSearchFn($('#equipmentMonitorPoint'),monitoringTypes[1] , cacheDatas, chartsObjs[1],['rgb(255,0,0)'],tablelists[1]);
+		registerSearchFn($('#noumenonMonitorPoint'),monitoringTypes[2], cacheDatas, chartsObjs[2],['rgb(255,0,0)'],tablelists[2]);
 		renderChartsListFn(chartsObjs, tablelists, cacheDatas, monitoringTypes);
 		clearInterval(timeId);	//
 		timeId = setInterval(function(){
 			renderChartsListFn(chartsObjs, tablelists, cacheDatas, monitoringTypes);
+
 			for(key in cacheDatas){
 				for(var i = 0; i < pageSize; i++){
-					cacheDatas[key].shift();
+					var elem = cacheDatas[key].shift();
+					cacheDatas[key].push(elem);
 				}
 			}
 		},changeDataTimeInterval);
@@ -260,11 +293,11 @@ $(function(){
 	currentDateObj = $('.timeText');
 	timingDate();
 
-	let chartsObjs = [echarts.init($("#container_1").get(0)),
+	chartsObjs = [echarts.init($("#container_1").get(0)),
 		echarts.init($("#container_2").get(0)),
 		echarts.init($("#container_3").get(0))];
 
-	let tablelists = [$("#environmentMonitor tbody"), 
+	 tablelists= [$("#environmentMonitor tbody"), 
 		$("#equipmentMonitor tbody"), 
 		$("#noumenonMonitor tbody")];
 	//从后端获取数据，并启动页面定时器
