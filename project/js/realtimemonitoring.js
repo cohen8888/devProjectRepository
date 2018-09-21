@@ -52,6 +52,22 @@ function genSeriesObjects(datas, lengeds){
 		obj['type'] = 'line';
 		obj['data'] = datas[i]['data'];
 		obj['smooth'] = false;
+		obj['areaStyle'] = {
+				            color: {
+				                type: 'linear',
+				                x: 0,
+				                y: 0,
+				                x2: 0,
+				                y2: 1,
+				                colorStops: [{
+				                    offset: 0, color: 'rgb(101,67,97)' // 0% 处的颜色
+				                }, {
+				                    offset: 1, color: 'rgb(64,33,86)' // 100% 处的颜色
+				                }],
+				                globalCoord: false // 缺省为 false
+
+				            }
+				        }
 		result.push(obj);
 	}
 	return result;

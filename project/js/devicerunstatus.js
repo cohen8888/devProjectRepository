@@ -1,14 +1,15 @@
 /**
+* 设备运行状态
 * author : Cohen.Lee
 * date : 2018-09-03
 * 
 */
-
 baseUrl = baseUrl + "/api/";
 
 let availableTags = [];
 let getDataTimeInterval = 100000;		//设置获取数据的时间间隔
 let cacheData = [];
+let searchCatagoryResult = [];
 
 //计算设备类型数量
 function calcCavnasData(data){
@@ -88,6 +89,12 @@ function drawChart(chartRootElem, xColumNameData, seriesData, columnarColor){
 			bottom:'8%',
 			top:'5%'
 		},
+		tooltip : {
+	        trigger: 'axis',
+	        axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+	            type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+	        }
+	    },
 	    xAxis: {
 	    	splitLine:{
 		　　　　show:false
@@ -97,6 +104,9 @@ function drawChart(chartRootElem, xColumNameData, seriesData, columnarColor){
 	          	interval:0,
                 rotate:45,
                 fontSize: 0.29 * rem
+            },
+            axisTick: {
+                alignWithLabel: true
             },
 	        data: xColumNameData
 	    },
@@ -157,6 +167,9 @@ function getEquipmentName(datas){
 	return result;
 }
 
+/**
+*  渲染数据列表
+*/
 function renderListData(rootElem, datas){
 	let str = "";
 	rootElem.children().remove();
@@ -174,6 +187,58 @@ function renderListData(rootElem, datas){
 	rootElem.html(str);
 }
 
+/**
+* 根据关键字过滤数据，按照设备名的关键字进行查询
+*/
+function filterData(findKey){
+	if(!(cacheData == null && findKey == null )){
+		let tmpData = [];
+		for(var i = 0, len = cacheData.length; i < len; i++){
+			if((findKey == cacheData[i]['codeNum']) || findKey == cacheData[i]['equipmentName']){
+				tmpData.push(cacheData[i]);
+			}
+		}
+		renderListData($(".tb1 tbody"), tmpData);
+	}
+}
+
+/**
+*  渲染页面
+*
+*/
+function renderPage(chart){
+	//从后端获取数据
+	ajax(baseUrl,"devicerunstatus").then(res => {
+		let categoryInfo = calcCavnasData(res.data);
+		cacheData = res.data;		//从后端缓存的数据
+		let xColumNameData = calcCavansColumnStyle(categoryInfo, {color: 'white'});
+		//柱状图数据，按顺序对应设备种类的名称
+		let seriesData = calcCavansYData(xColumNameData, categoryInfo);	
+		optEquipType(categoryInfo, $('#equipmentTypeName'));
+
+	    availableTags = getEquipmentName(res.data);
+	    $("#equipmentNameAutocomplete").autocomplete({
+			source: availableTags
+		});
+	    
+	    drawChart(chart,xColumNameData,seriesData,columnarColor);
+		renderListData($(".tb1 tbody"),res.data);
+	});
+}
+
+/**
+*	搜索类别数据
+*/
+function searchCatagoryData(datas, key){
+	let result = [];
+	datas.forEach((item, index) => {
+		if (item['equipmentType'] == key){
+				result.push(item);
+		}
+	});
+	return result;
+}
+
 $(function(){
 	
 	setLink($(".header_left dl"));
@@ -182,49 +247,27 @@ $(function(){
 	let container = $("#container");
 	let myChart = echarts.init(container.get(0));
 
-	
-	function filterData(findKey){
-		if(!(cacheData == null && findKey == null )){
-			let tmpData = [];
-			for(var i = 0, len = cacheData.length; i < len; i++){
-				if((findKey == cacheData[i]['codeNum']) || findKey == cacheData[i]['equipmentName']){
-					tmpData.push(cacheData[i]);
-				}
-			}
-			renderListData($(".tb1 tbody"), tmpData);
+	//类别搜索下拉列表
+	$("#equipmentTypeName").on('change',(event) => {
+		let searchValue = event.target.value;
+		if (!searchValue){
+			return;
 		}
-	}
+		var r = searchCatagoryData(cacheData, searchValue);
+		renderListData($(".tb1 tbody"), r);
+	})
+	//搜索设备名称事件处理器
+	$("#equipmentNameAutocomplete").on('keyup',function(e){
+    	var key = e.which;
+    	if(key == 13){
+    		filterData(e.target.value);
+    	}
+    });
 
+	renderPage(myChart);
 
-	function renderPage(){
-		//从后端获取数据
-		ajax(baseUrl,"devicerunstatus").then(res => {
-			let categoryInfo = calcCavnasData(res.data);
-			let xColumNameData = calcCavansColumnStyle(categoryInfo, {color: 'white'});
-			//柱状图数据，按顺序对应设备种类的名称
-			let seriesData = calcCavansYData(xColumNameData, categoryInfo);	
-			cacheData = res.data;
-			optEquipType(categoryInfo, $('#equipmentTypeName'));
-		    //柱状图的颜色
-
-		    availableTags = getEquipmentName(res.data);
-		    $("#equipmentNameAutocomplete").autocomplete({
-				source: availableTags
-			});
-		    $("#equipmentNameAutocomplete").on('keyup',function(e){
-		    	var key = e.which;
-		    	if(key == 13){
-		    		filterData(e.target.value);
-		    	}
-		    });
-		    drawChart(myChart,xColumNameData,seriesData,columnarColor);
-			renderListData($(".tb1 tbody"),res.data);
-		});
-	}
-
-	renderPage();
 	setInterval(function(){
-		renderPage();
+		renderPage(myChart);
 	}, getDataTimeInterval);
 	
 });	//jquery ready end;

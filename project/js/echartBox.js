@@ -36,6 +36,22 @@ ajax(baseUrl,"index")
 								globalCoord: false // 缺省为 false
 							}
 						},
+						 areaStyle: {
+				            color: {
+				                type: 'linear',
+				                x: 0,
+				                y: 0,
+				                x2: 0,
+				                y2: 1,
+				                colorStops: [{
+				                    offset: 0, color: 'rgb(101,67,97)' // 0% 处的颜色
+				                }, {
+				                    offset: 1, color: 'rgb(64,33,86)' // 100% 处的颜色
+				                }],
+				                globalCoord: false // 缺省为 false
+
+				            }
+				        },
 						label:{
 							color:"rgb(224,230,117)"
 						}
@@ -465,8 +481,7 @@ ajax(baseUrl,"index")
 		}
 		{
 			const data = res.data.sjgj;
-			console.log(data);
-			let color = ["green","blue","red","pink"];
+			let color = ['rgb(84,219,187)','rgb(73,144,221)','rgb(85,25,110)','rgb(34,2,45)'];
 			let sum = 0;
 			data.list.forEach(item=>{
 				sum += item.value
