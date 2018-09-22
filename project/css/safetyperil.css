@@ -23,20 +23,25 @@ section{
 	margin-bottom: 0.11rem;
 	display: flex;
 	justify-content: space-between;
-	border: 1px solid transparent;
+	/*border: 1px solid transparent;
 	border-image: linear-gradient(rgb(42,50,216) 20%,rgb(143,105,223) 20%,rgb(101,113,223) 20%,rgb(71,172,226) 20%,rgb(21,155,230) 20%) 30 30;
-	background: url(../img/content_bg.png)no-repeat center center ;
+	background: url(../img/content_bg.png)no-repeat center center ;*/
+	background: url(../img/sectionBg.png)no-repeat center center;
 	background-size: 100% 100%;
 }
 
 .section_left{
 	width: 15.20rem;
 	display: flex;
-	justify-content: flex-end;
+	flex-direction: column;
+	justify-content: flex-start;
 	align-items: center;
 }
+#containerPie{
+	width: 95%;height: 45%;
+}
 #container{
-	width: 95%; height: 80%; 
+	width: 95%; height: 45%; 
 }
 .section_right{
 	width: 15.10rem;
@@ -58,8 +63,10 @@ section{
 	width: 13.71rem;
 	height: 6.5rem;
 	padding: 0.28rem;
-	background: url(../img/border_bg.png) no-repeat;
-	background-size: 100% 100%;
+	background: url(../img/table_top.png) top no-repeat,
+				url(../img/table_bottom.png) bottom no-repeat;
+	background-size: 100% 50%;
+	
 	overflow: hidden;
 }
 .section_right_table_top table{
@@ -83,13 +90,18 @@ section{
 	text-overflow: ellipsis;
 	overflow: hidden;
 }
+/*table tr td:hover{
+	white-space: normal;
+	overflow: visible;
+}*/
 
 .tableBox_1{
 	width: 13.71rem;
 	height: 5.0rem;
 	padding: 0.28rem;
-	background: url(../img/border_bg.png) no-repeat;
-	background-size: 100% 100%;
+	background: url(../img/table_top.png) top no-repeat,
+				url(../img/table_bottom.png) bottom no-repeat;
+	background-size: 100% ;
 	overflow: hidden;
 }
 .section_right_table_bottom table{
@@ -97,10 +109,16 @@ section{
 	text-align: center;
 	line-height: 0.78rem;
 	font-size: 0.3rem;
+	table-layout: fixed;
 }
 .section_right_table_bottom table tr{
 	line-height: 0.8rem;
 	text-align: center;
+}
+.section_right_table_bottom table td{
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
 }
 
 .section_right_table_bottom table tr:nth-of-type(even){

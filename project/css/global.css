@@ -5,7 +5,7 @@ html,body,div,p,dl,dd,dt,ul,li,a,span,img,h1,h2,h3,h4,h5,ol,header,footer,sectio
 	text-decoration: none;
 	list-style: none;
 }
-.wrap{background: #fff url(../img/bg.png) no-repeat center center/100% 100%;width:30.4rem;padding: 0.8rem;}
+.wrap{background: #fff url(../img/bg.png) no-repeat center center/100% 100%;width:30.4rem;height:16.4rem;padding: 0.8rem;}
 .content{
 	width: 30.40rem;
 }
@@ -28,8 +28,13 @@ html,body,div,p,dl,dd,dt,ul,li,a,span,img,h1,h2,h3,h4,h5,ol,header,footer,sectio
 }
 header{
 	width: 100%;
+	height: 1.05rem;
 	display: flex;
 	justify-content: space-between;
+}
+.header_left img{
+	width: 1.05rem;
+	height: 1.05rem;
 }
 .header_left dl{
 	color:rgb(129,206,242);

@@ -48,14 +48,15 @@ function renderCharts(chartRootElem, chartColumn, xAxisItem, datas){
 	        data: chartColumn,
 	        textStyle:{
 	            color:'white',
-	            fontSize:0.5*rem
+	            fontSize:0.4*rem
 	        },
+	        bottom:0,  				//放在图表底部
 	        padding:[5, 0.5*rem]
 	    },
 	    grid: {
 	        left: '3%',
 	        right: '4%',
-	        bottom: '3%',
+	        bottom: '8%',
 	        containLabel: true,
 	        show:true               //显示图表边框
 	    },
@@ -101,22 +102,11 @@ function renderCharts(chartRootElem, chartColumn, xAxisItem, datas){
 	        type: 'value'
 	    },
 	    series: [
-	        {
-	            name: '隐患发现',
-	            type: 'bar',
-	            stack: '总量',
-	            label: {
-	                normal: {
-	                    show: true,
-	                    position: 'insideTopRight'
-	                }
-	            },
-	            data : perilFindData
-	        },
-	        {
+	    	{
 	            name: '隐患排查',
 	            type: 'bar',
 	            stack: '总量',
+	            color: '#1CD38D',
 	            label: {
 	                normal: {
 	                    show: true,
@@ -124,7 +114,21 @@ function renderCharts(chartRootElem, chartColumn, xAxisItem, datas){
 	                }
 	            },
 	            data : perilCheckData
+	       },
+	        {
+	            name: '隐患发现',
+	            type: 'bar',
+	            stack: '总量',
+	            color: '#00A0E8',
+	            label: {
+	                normal: {
+	                    show: true,
+	                    position: 'insideTopRight'
+	                }
+	            },
+	            data : perilFindData
 	        }
+	        
 	    ]
 	};
 	if (option && typeof option === "object") {
