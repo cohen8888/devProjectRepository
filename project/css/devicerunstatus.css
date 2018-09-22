@@ -50,10 +50,15 @@ section{
 }
 .section_left{
 	width: 15.58rem;
+	
+}
+#containerPie{
+	width: 95%; 
+	height: 45%;
 }
 #container{
 	width: 95%; 
-	height: 12.4rem;
+	height: 50%;
 }
 .section_right{
 	width: 14.85rem;
@@ -61,7 +66,7 @@ section{
 .tableBox{
 	width: 13.70rem;
 	padding: 0.28rem;
-	height: 13.58rem;
+	height: 14.35rem;
 	background: url(../img/status_table_bg.png) no-repeat;
 	background-size: 100% 100%;
 	overflow: hidden;

@@ -90,10 +90,10 @@ section{
 	text-overflow: ellipsis;
 	overflow: hidden;
 }
-/*table tr td:hover{
+table tr td:hover{
 	white-space: normal;
 	overflow: visible;
-}*/
+}
 
 .tableBox_1{
 	width: 13.71rem;

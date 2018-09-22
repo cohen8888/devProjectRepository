@@ -86,8 +86,8 @@ function drawChart(chartRootElem, xColumNameData, seriesData, columnarColor){
 	option = {
 		grid: {
 			left: '10%',
-			bottom:'8%',
-			top:'5%'
+			bottom:'15%',
+			top:'10%'
 		},
 		tooltip : {
 	        trigger: 'axis',
@@ -102,7 +102,7 @@ function drawChart(chartRootElem, xColumNameData, seriesData, columnarColor){
 	        type: 'category',
 	        axisLabel: {	//y轴坐标字样式，rotate设置文字斜着显示
 	          	interval:0,
-                rotate:45,
+                rotate:35,
                 fontSize: 0.29 * rem
             },
             axisTick: {
