@@ -498,8 +498,8 @@ ajax(baseUrl,"index")
 				let opt = {
 							series: [{
 						type:'pie',
-						center: [("66%"), 1.5*rem],
-						radius:[1*rem,1.25*rem],
+						center: [("65%"), 1.15*rem],
+						radius:[0.65*rem,0.95*rem],
 						avoidLabelOverlap: false,
 						label: {
 							normal: {
@@ -536,9 +536,10 @@ ajax(baseUrl,"index")
 								},
 								labelLine:{
 									show:true,
-									length:10
-
+									length:6,
+									length2:0.8*rem
 								}
+								
 
 							}
 						]
