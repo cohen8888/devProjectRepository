@@ -1,179 +1,185 @@
-[{
-	"codeNum":"01",
-	"equipmentType":"机电设备",
-	"equipmentName":"大数据反馈",
-	"equipmentCurrentStatus":"正常运行",
-	"lastStopDatetime":"2018.09.03",
-	"thisRuntime":"26:00:00",
-	"cumulativeRuntime":"26:00:00"
-},
 {
-	"codeNum":"02",
-	"equipmentType":"机电设备",
-	"equipmentName":"微是",
-	"equipmentCurrentStatus":"正常运行",
-	"lastStopDatetime":"2018.09.03",
-	"thisRuntime":"26:00:00",
-	"cumulativeRuntime":"26:00:00"
-},
-{
-	"codeNum":"03",
-	"equipmentType":"照明设备",
-	"equipmentName":"我儿",
-	"equipmentCurrentStatus":"正常运行",
-	"lastStopDatetime":"2018.09.03",
-	"thisRuntime":"26:00:00",
-	"cumulativeRuntime":"26:00:00"
-},
-{
-	"codeNum":"04",
-	"equipmentType":"排水设备",
-	"equipmentName":"我俄日",
-	"equipmentCurrentStatus":"正常运行",
-	"lastStopDatetime":"2018.09.03",
-	"thisRuntime":"26:00:00",
-	"cumulativeRuntime":"26:00:00"
-},
-{
-	"codeNum":"05",
-	"equipmentType":"机械设备",
-	"equipmentName":"是胜多负少",
-	"equipmentCurrentStatus":"正常运行",
-	"lastStopDatetime":"2018.09.03",
-	"thisRuntime":"26:00:00",
-	"cumulativeRuntime":"26:00:00"
-},
-{
-	"codeNum":"06",
-	"equipmentType":"排水设备",
-	"equipmentName":"去诶",
-	"equipmentCurrentStatus":"正常运行",
-	"lastStopDatetime":"2018.09.03",
-	"thisRuntime":"26:00:00",
-	"cumulativeRuntime":"26:00:00"
-},
-{
-	"codeNum":"07",
-	"equipmentType":"风机设备",
-	"equipmentName":"战略性地方",
-	"equipmentCurrentStatus":"正常运行",
-	"lastStopDatetime":"2018.09.03",
-	"thisRuntime":"26:00:00",
-	"cumulativeRuntime":"26:00:00"
-},
-{
-	"codeNum":"08",
-	"equipmentType":"风机设备",
-	"equipmentName":"温柔",
-	"equipmentCurrentStatus":"正常运行",
-	"lastStopDatetime":"2018.09.03",
-	"thisRuntime":"26:00:00",
-	"cumulativeRuntime":"26:00:00"
-},
-{
-	"codeNum":"01",
-	"equipmentType":"风机设备",
-	"equipmentName":"我去玩可靠",
-	"equipmentCurrentStatus":"正常运行",
-	"lastStopDatetime":"2018.09.03",
-	"thisRuntime":"26:00:00",
-	"cumulativeRuntime":"26:00:00"
-},{
-	"codeNum":"01",
-	"equipmentType":"机械设备",
-	"equipmentName":"请问",
-	"equipmentCurrentStatus":"正常运行",
-	"lastStopDatetime":"2018.09.03",
-	"thisRuntime":"26:00:00",
-	"cumulativeRuntime":"26:00:00"
-},
-{
-	"codeNum":"01",
-	"equipmentType":"检测设备",
-	"equipmentName":"去我",
-	"equipmentCurrentStatus":"正常运行",
-	"lastStopDatetime":"2018.09.03",
-	"thisRuntime":"26:00:00",
-	"cumulativeRuntime":"26:00:00"
-},
-{
-	"codeNum":"01",
-	"equipmentType":"检测设备",
-	"equipmentName":"参谋",
-	"equipmentCurrentStatus":"正常运行",
-	"lastStopDatetime":"2018.09.03",
-	"thisRuntime":"26:00:00",
-	"cumulativeRuntime":"26:00:00"
-},
-{
-	"codeNum":"01",
-	"equipmentType":"安防设备",
-	"equipmentName":"是的开发接口",
-	"equipmentCurrentStatus":"正常运行",
-	"lastStopDatetime":"2018.09.03",
-	"thisRuntime":"26:00:00",
-	"cumulativeRuntime":"26:00:00"
-},
-{
-	"codeNum":"01",
-	"equipmentType":"安防设备",
-	"equipmentName":"请问",
-	"equipmentCurrentStatus":"正常运行",
-	"lastStopDatetime":"2018.09.03",
-	"thisRuntime":"26:00:00",
-	"cumulativeRuntime":"26:00:00"
-},
-{
-	"codeNum":"01",
-	"equipmentType":"机械设备",
-	"equipmentName":" 沃尔沃",
-	"equipmentCurrentStatus":"正常运行",
-	"lastStopDatetime":"2018.09.03",
-	"thisRuntime":"26:00:00",
-	"cumulativeRuntime":"26:00:00"
-},
-{
-	"codeNum":"01",
-	"equipmentType":"安防设备",
-	"equipmentName":"本次",
-	"equipmentCurrentStatus":"正常运行",
-	"lastStopDatetime":"2018.09.03",
-	"thisRuntime":"26:00:00",
-	"cumulativeRuntime":"26:00:00"
-},
-{
-	"codeNum":"01",
-	"equipmentType":"安防设备",
-	"equipmentName":"微请问",
-	"equipmentCurrentStatus":"正常运行",
-	"lastStopDatetime":"2018.09.03",
-	"thisRuntime":"26:00:00",
-	"cumulativeRuntime":"26:00:00"
-},
-{
-	"codeNum":"03",
-	"equipmentType":"安防设备",
-	"equipmentName":"机械设备1",
-	"equipmentCurrentStatus":"正常运行",
-	"lastStopDatetime":"2018.09.03",
-	"thisRuntime":"26:00:00",
-	"cumulativeRuntime":"26:00:00"
-},
-{
-	"codeNum":"03",
-	"equipmentType":"安防设备",
-	"equipmentName":"自行车v",
-	"equipmentCurrentStatus":"正常运行",
-	"lastStopDatetime":"2018.09.03",
-	"thisRuntime":"26:00:00",
-	"cumulativeRuntime":"26:00:00"
-},
-{
-	"codeNum":"01",
-	"equipmentType":"安防设备",
-	"equipmentName":"热土",
-	"equipmentCurrentStatus":"正常运行",
-	"lastStopDatetime":"2018.09.03",
-	"thisRuntime":"26:00:00",
-	"cumulativeRuntime":"26:00:00"
-}]
+	"chartPieData":{
+		"title":["监测设备","风机设备","排水设备","照明设备","机电设备","安防设备"],
+		"data":[36, 12, 5, 7, 10, 30]
+	},
+	"otherData":[{
+		"codeNum":"01",
+		"equipmentType":"机电设备",
+		"equipmentName":"大数据反馈",
+		"equipmentCurrentStatus":"正常运行",
+		"lastStopDatetime":"2018.09.03",
+		"thisRuntime":"26:00:00",
+		"cumulativeRuntime":"26:00:00"
+	},
+	{
+		"codeNum":"02",
+		"equipmentType":"机电设备",
+		"equipmentName":"微是",
+		"equipmentCurrentStatus":"正常运行",
+		"lastStopDatetime":"2018.09.03",
+		"thisRuntime":"26:00:00",
+		"cumulativeRuntime":"26:00:00"
+	},
+	{
+		"codeNum":"03",
+		"equipmentType":"照明设备",
+		"equipmentName":"我儿",
+		"equipmentCurrentStatus":"正常运行",
+		"lastStopDatetime":"2018.09.03",
+		"thisRuntime":"26:00:00",
+		"cumulativeRuntime":"26:00:00"
+	},
+	{
+		"codeNum":"04",
+		"equipmentType":"排水设备",
+		"equipmentName":"我俄日",
+		"equipmentCurrentStatus":"正常运行",
+		"lastStopDatetime":"2018.09.03",
+		"thisRuntime":"26:00:00",
+		"cumulativeRuntime":"26:00:00"
+	},
+	{
+		"codeNum":"05",
+		"equipmentType":"机械设备",
+		"equipmentName":"是胜多负少",
+		"equipmentCurrentStatus":"正常运行",
+		"lastStopDatetime":"2018.09.03",
+		"thisRuntime":"26:00:00",
+		"cumulativeRuntime":"26:00:00"
+	},
+	{
+		"codeNum":"06",
+		"equipmentType":"排水设备",
+		"equipmentName":"去诶",
+		"equipmentCurrentStatus":"正常运行",
+		"lastStopDatetime":"2018.09.03",
+		"thisRuntime":"26:00:00",
+		"cumulativeRuntime":"26:00:00"
+	},
+	{
+		"codeNum":"07",
+		"equipmentType":"风机设备",
+		"equipmentName":"战略性地方",
+		"equipmentCurrentStatus":"正常运行",
+		"lastStopDatetime":"2018.09.03",
+		"thisRuntime":"26:00:00",
+		"cumulativeRuntime":"26:00:00"
+	},
+	{
+		"codeNum":"08",
+		"equipmentType":"风机设备",
+		"equipmentName":"温柔",
+		"equipmentCurrentStatus":"正常运行",
+		"lastStopDatetime":"2018.09.03",
+		"thisRuntime":"26:00:00",
+		"cumulativeRuntime":"26:00:00"
+	},
+	{
+		"codeNum":"01",
+		"equipmentType":"风机设备",
+		"equipmentName":"我去玩可靠",
+		"equipmentCurrentStatus":"正常运行",
+		"lastStopDatetime":"2018.09.03",
+		"thisRuntime":"26:00:00",
+		"cumulativeRuntime":"26:00:00"
+	},{
+		"codeNum":"01",
+		"equipmentType":"机械设备",
+		"equipmentName":"请问",
+		"equipmentCurrentStatus":"正常运行",
+		"lastStopDatetime":"2018.09.03",
+		"thisRuntime":"26:00:00",
+		"cumulativeRuntime":"26:00:00"
+	},
+	{
+		"codeNum":"01",
+		"equipmentType":"检测设备",
+		"equipmentName":"去我",
+		"equipmentCurrentStatus":"正常运行",
+		"lastStopDatetime":"2018.09.03",
+		"thisRuntime":"26:00:00",
+		"cumulativeRuntime":"26:00:00"
+	},
+	{
+		"codeNum":"01",
+		"equipmentType":"检测设备",
+		"equipmentName":"参谋",
+		"equipmentCurrentStatus":"正常运行",
+		"lastStopDatetime":"2018.09.03",
+		"thisRuntime":"26:00:00",
+		"cumulativeRuntime":"26:00:00"
+	},
+	{
+		"codeNum":"01",
+		"equipmentType":"安防设备",
+		"equipmentName":"是的开发接口",
+		"equipmentCurrentStatus":"正常运行",
+		"lastStopDatetime":"2018.09.03",
+		"thisRuntime":"26:00:00",
+		"cumulativeRuntime":"26:00:00"
+	},
+	{
+		"codeNum":"01",
+		"equipmentType":"安防设备",
+		"equipmentName":"请问",
+		"equipmentCurrentStatus":"正常运行",
+		"lastStopDatetime":"2018.09.03",
+		"thisRuntime":"26:00:00",
+		"cumulativeRuntime":"26:00:00"
+	},
+	{
+		"codeNum":"01",
+		"equipmentType":"机械设备",
+		"equipmentName":" 沃尔沃",
+		"equipmentCurrentStatus":"正常运行",
+		"lastStopDatetime":"2018.09.03",
+		"thisRuntime":"26:00:00",
+		"cumulativeRuntime":"26:00:00"
+	},
+	{
+		"codeNum":"01",
+		"equipmentType":"安防设备",
+		"equipmentName":"本次",
+		"equipmentCurrentStatus":"正常运行",
+		"lastStopDatetime":"2018.09.03",
+		"thisRuntime":"26:00:00",
+		"cumulativeRuntime":"26:00:00"
+	},
+	{
+		"codeNum":"01",
+		"equipmentType":"安防设备",
+		"equipmentName":"微请问",
+		"equipmentCurrentStatus":"正常运行",
+		"lastStopDatetime":"2018.09.03",
+		"thisRuntime":"26:00:00",
+		"cumulativeRuntime":"26:00:00"
+	},
+	{
+		"codeNum":"03",
+		"equipmentType":"安防设备",
+		"equipmentName":"机械设备1",
+		"equipmentCurrentStatus":"正常运行",
+		"lastStopDatetime":"2018.09.03",
+		"thisRuntime":"26:00:00",
+		"cumulativeRuntime":"26:00:00"
+	},
+	{
+		"codeNum":"03",
+		"equipmentType":"安防设备",
+		"equipmentName":"自行车v",
+		"equipmentCurrentStatus":"正常运行",
+		"lastStopDatetime":"2018.09.03",
+		"thisRuntime":"26:00:00",
+		"cumulativeRuntime":"26:00:00"
+	},
+	{
+		"codeNum":"01",
+		"equipmentType":"安防设备",
+		"equipmentName":"热土",
+		"equipmentCurrentStatus":"正常运行",
+		"lastStopDatetime":"2018.09.03",
+		"thisRuntime":"26:00:00",
+		"cumulativeRuntime":"26:00:00"
+	}]
+}

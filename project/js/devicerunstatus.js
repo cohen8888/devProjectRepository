@@ -10,6 +10,7 @@ let availableTags = [];
 let getDataTimeInterval = 100000;		//设置获取数据的时间间隔
 let cacheData = [];
 let searchCatagoryResult = [];
+let pieColors = ['rgb(249,92,75)','rgb(235,232,93)','rgb(235,162,251)','rgb(165,185,238)','rgb(204,252,251)','rgb(208,150,191)'];
 
 //计算设备类型数量
 function calcCavnasData(data){
@@ -80,7 +81,7 @@ function columnarColor(params){
 	return colorList[params.dataIndex];
 }
 
-function drawChart(chartRootElem, xColumNameData, seriesData, columnarColor){
+function drawBarChart(chartRootElem, xColumNameData, seriesData, columnarColor){
 	let option = null;
 	//图形显示选项，必须是个对象
 	option = {
@@ -206,23 +207,25 @@ function filterData(findKey){
 *  渲染页面
 *
 */
-function renderPage(chart){
+function renderPage(myBarChart, myPieChart){
 	//从后端获取数据
 	ajax(baseUrl,"devicerunstatus").then(res => {
-		let categoryInfo = calcCavnasData(res.data);
-		cacheData = res.data;		//从后端缓存的数据
+		let categoryInfo = calcCavnasData(res.data.otherData);
+		
+		cacheData = res.data.otherData;		//从后端缓存的数据
 		let xColumNameData = calcCavansColumnStyle(categoryInfo, {color: 'white'});
 		//柱状图数据，按顺序对应设备种类的名称
 		let seriesData = calcCavansYData(xColumNameData, categoryInfo);	
 		optEquipType(categoryInfo, $('#equipmentTypeName'));
 
-	    availableTags = getEquipmentName(res.data);
+	    availableTags = getEquipmentName(res.data.otherData);
 	    $("#equipmentNameAutocomplete").autocomplete({
 			source: availableTags
 		});
 	    
-	    drawChart(chart,xColumNameData,seriesData,columnarColor);
-		renderListData($(".tb1 tbody"),res.data);
+	    drawBarChart(myBarChart,xColumNameData,seriesData,columnarColor);
+	    drawPieChart(myPieChart, res.data.chartPieData);
+		renderListData($(".tb1 tbody"), res.data.otherData);
 	});
 }
 
@@ -239,14 +242,72 @@ function searchCatagoryData(datas, key){
 	return result;
 }
 
+/**
+* 绘制饼形图
+*  
+*/
+function drawPieChart(chartRootElem, data){
+	let legendData = [];
+	let seriesData = [];
+	let obj = {};
+	obj.data = [];
+
+	for(var i = 0, len = data['title'].length; i < len; i++){
+		legendData.push(data['data'][i] + '% ' +  data['title'][i]);
+		let dataObj = {};
+		dataObj.name = data['data'][i] + '% ' +  data['title'][i];
+		dataObj.value = data['data'][i];
+		dataObj.itemStyle = {color:pieColors[i]};
+		dataObj.label = {fontSize:0.3 * rem};
+		dataObj.labelLine = {length:0.7 * rem, length2:0.5 * rem};
+		obj.data.push(dataObj);
+	}
+	
+	obj.type = 'pie';
+	obj.radius = '75%';
+	obj.selectedMode = 'single';
+	obj.center = ['50%', '50%'];
+	obj.itemStyle = {
+        emphasis: {
+            shadowBlur: 100,
+            shadowOffsetX: 0,
+            shadowColor: 'rgba(255, 255, 0, 0.1)'
+        }
+    }
+
+	seriesData.push(obj);
+	let option = null;
+	//图形显示选项，必须是个对象
+	option = {
+		tooltip : {
+	        trigger: 'item',
+	        /*formatter: "{a} <br/>{b} : {c} ({d}%)"*/
+    	},
+    	legend: {
+	        // orient: 'vertical',
+	        // top: 'middle',
+	        bottom: 10,
+	        show:false,
+	        data: legendData
+	    },
+	    series: seriesData
+	}
+
+	if (option && typeof option === "object") {
+	    chartRootElem.setOption(option, true);
+	}
+}
+
+
 $(function(){
 	
-	setLink($(".header_left dl"));
+	setLink($(".header_left .header_back"));
 	currentDateObj = $('.timeText');
 	timingDate();
 	let container = $("#container");
-	let myChart = echarts.init(container.get(0));
-
+	let containerPie = $('#containerPie');
+	let myBarChart = echarts.init(container.get(0));
+	let myPieChart = echarts.init(containerPie.get(0));
 	//类别搜索下拉列表
 	$("#equipmentTypeName").on('change',(event) => {
 		let searchValue = event.target.value;
@@ -264,10 +325,10 @@ $(function(){
     	}
     });
 
-	renderPage(myChart);
+	renderPage(myBarChart,myPieChart);
 
 	setInterval(function(){
-		renderPage(myChart);
+		renderPage(myBarChart,myPieChart);
 	}, getDataTimeInterval);
 	
 });	//jquery ready end;

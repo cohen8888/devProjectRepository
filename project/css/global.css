@@ -144,6 +144,6 @@ select option{
 	background: #3828D1;
 }
 
-.header_left dl{
+.header_left .header_back{
 	cursor:pointer;
 }

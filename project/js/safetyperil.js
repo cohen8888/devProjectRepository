@@ -11,6 +11,10 @@ let pageSize = 5;												//表格显示最大数据
 let chartColumn = ['隐患排查', '隐患发现'];	
 let xColumNameData =['00:00', '02:00','04:00','06:00','08:00','10:00',
 	'12:00','14:00','16:00','18:00','20:00','22:00','24:00'];	//图形x轴刻度标签值
+let timeId1 = null;
+let timeId2 = null;
+let data1 = null;
+let data2 = null;
 
 /**
 * 渲染表格数据
@@ -31,13 +35,21 @@ function renderTableData(elem, datas, cols){
 }
 
 /**
-*渲染图表
+*渲染隐患值图
 */
 function renderCharts(chartRootElem, chartColumn, xAxisItem, datas){
 	option = null;
 	var perilFindData = datas.map((item,index)=>{return item.data[0].val});    //隐患发现数据
 	var perilCheckData = datas.map((item,index)=>{return item.data[1].val});    //隐患排查数据
 	option = {
+		title:{
+
+			text: '隐患值',
+			textStyle:{
+				color:'white',
+				verticalAlign:'top'
+			}
+		},
 	    tooltip : {
 	        trigger: 'axis',
 	        axisPointer : {            // 坐标轴指示器，坐标轴触发有效
@@ -136,10 +148,26 @@ function renderCharts(chartRootElem, chartColumn, xAxisItem, datas){
 	}
 }
 
-let timeId1 = null;
-let timeId2 = null;
-let data1 = null;
-let data2 = null;
+function renderTroubleFindChart(chartRootElem, tooltip, ){
+	let option = null;
+	option = {
+		tooltip: {
+        	trigger: 'item',
+        	formatter: "{a} <br/>{b}: {c} ({d}%)"
+    	},
+    	legend: {
+        	orient: 'vertical',
+        	x: 'left',
+        	data:['直接访问','邮件营销','联盟广告','视频广告','搜索引擎']
+    	}
+
+	}
+	if (option && typeof option === "object") {
+	    chartRootElem.setOption(option, true);
+	}
+}
+
+
 
 /**
 *
