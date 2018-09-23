@@ -52,11 +52,17 @@ section{
 	margin: 0.25rem;
 }
 .devImg{
-	/*width:7.78rem;
-	height: 7.15rem;*/
-	width:7.28rem;
-	height: 6.66rem;
+	width:7.78rem;
+	height: 7.0rem;
+	background: url(../img/devicerunstatusBorder.png) no-repeat center center/100% 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
+.devImg img{
+	height: 90%;
+}
+
 .devName{
 	color: white;
 	font-size: 0.4rem;
@@ -86,17 +92,13 @@ section{
 	font-size: 0.3rem;
 }
 
-
-
-
-
 .section_right{
 	width: 14.85rem;
 }
 .tableBox{
 	width: 13.70rem;
 	padding: 0.28rem;
-	height: 13.58rem;
+	height: 14.35rem;
 	background: url(../img/status_table_bg.png) no-repeat;
 	background-size: 100% 100%;
 	overflow: hidden;
@@ -106,6 +108,7 @@ table{
 	text-align: center ;
 	line-height: 0.78rem;
 	font-size: 0.3rem;
+	table-layout: fixed;
 }
 table tr{
 	line-height: 0.8rem;
@@ -114,6 +117,11 @@ table tr{
 
 table tr:nth-of-type(even){
 	background: rgba(22,60,120,0.3)
+}
+table tr td{
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
 }
 #tableTitle{
 	padding-left: 0.18rem;

@@ -6,7 +6,7 @@
 baseUrl = baseUrl + "/api/";
 
 $(function(){
-	setLink($(".header_left dl"));
+	setLink($(".header_left img"));
 
 	currentDateObj = $('.timeText');
 	timingDate();
@@ -75,11 +75,13 @@ $(function(){
 	    },
 	    xAxis: [
 	        {
+	        	
 	            type: 'category',
 	            axisLine: {
 	                onZero: false,
 	                lineStyle: {
-	                    color: colors
+	                	color:'white',
+	                	type:'dotted'
 	                }
 	            },
 	            axisLabel: {  //x轴坐标字样式，rotate设置文字斜着显示
@@ -105,7 +107,7 @@ $(function(){
 	            splitLine:{
 	                show:true,
 	                lineStyle:{
-	                    width:2,
+	                    width:1,
 	                    type:'dotted'  //'dotted'虚线 'solid'实线
 	                }
 	            },
@@ -116,10 +118,24 @@ $(function(){
 	    yAxis: [
 	        {
 	            type: 'value',
+	            axisLine: {
+	                onZero: false,
+	                lineStyle: {
+	                	color:'white',
+	                	type:'dotted'
+	                }
+	            },
 	            axisLabel:{
 	                color:'white',
 	                fontSize:0.3 * rem,
 	                formatter: '{value} ℃'
+	            },
+	            splitLine:{
+	                show:true,
+	                lineStyle:{
+	                    width:1,
+	                    type:'dotted'  //'dotted'虚线 'solid'实线
+	                }
 	            }
 	            
 	        }

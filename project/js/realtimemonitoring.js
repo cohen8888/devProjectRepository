@@ -133,7 +133,7 @@ function initChart(chartsObj, lcolors, xAxisItem, legendData, seriesData){
 	    legend: {
 	    	 textStyle:{
                 color:'white',
-                fontSize:0.1 * rem   
+                fontSize:0.2 * rem   
             },
             bottom:'0',
 	        data:legendData,

@@ -46,41 +46,43 @@ select option{
 section{
 	margin-top: 0.58rem;
 	margin-bottom: 0.11rem;
+	padding-bottom: 0.38rem;
 	display: flex;
-	justify-content: space-between;
-	border: 1px solid transparent;
-	border-image: linear-gradient(rgb(42,50,216) 20%,rgb(143,105,223) 20%,rgb(101,113,223) 20%,rgb(71,172,226) 20%,rgb(21,155,230) 20%) 30 30;
-	background: url(../img/content_bg.png)no-repeat center center ;
+	justify-content: center;
+	background: url(../img/sectionBg.png)no-repeat center center ;
 	background-size: 100% 100%;
 }
 
 .section_left{
-	width: 10.20rem;
+	width: 10.00rem;
 }
 #container_1,#container_2,#container_3{
 	width: 9.9rem;
 	height: 4.7rem;
-	margin: 1rem auto;
+	margin: 1.2rem auto;
 }
 .section_middle{
-	width: 10.20rem;
+	width: 10.00rem;
 }
 .section_right{
-	width: 10.20rem;
+	width: 10.00rem;
 }
 .tableBox{
-	width: 9.44rem;
-	height: 5.56rem;
+	margin: 0 auto;
+	width: 9.24rem;
+	height: 4.80rem;
 	padding: 0.28rem;
-	background: url(../img/realTime_table_bg.png) no-repeat;
-	background-size: 100% 100%;
+	background: url(../img/table_top.png) top no-repeat,
+				url(../img/table_bottom.png) bottom no-repeat;
+	background-size: 100% 50%;
 	overflow: hidden;
 }
 table{
-	width: 9.44rem;
+	width: 9.24rem;
 	text-align: center;
 	line-height: 0.78rem;
 	font-size: 0.28rem;
+	table-layout: fixed;
 }
 table tr{
 	height: 0.8rem;
@@ -89,9 +91,12 @@ table tr{
 }
 table tr td{
 	height: 0.8rem;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
 }
 
-table tr:nth-of-type(even){
+table tbody tr:nth-of-type(odd){
 	background: rgba(22,60,120,0.3)
 }
 .default{

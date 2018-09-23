@@ -76,6 +76,7 @@ table{
 	text-align: center ;
 	line-height: 0.78rem;
 	font-size: 0.3rem;
+	table-layout: fixed;
 }
 table tr{
 	line-height: 0.8rem;
@@ -84,6 +85,11 @@ table tr{
 
 table tr:nth-of-type(even){
 	background: rgba(22,60,120,0.3)
+}
+table tr td{
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
 }
 #tableTitle{
 	padding-left: 0.18rem;

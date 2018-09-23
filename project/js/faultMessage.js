@@ -30,7 +30,7 @@ option = {
 	series: [{	
 	    name :'设备类型',
 	    type :'pie',
-	    radius : ['45%', '70%'],
+	    radius : ['40%', '50%'],
 	    avoidLabelOverlap : false,
 	    selectedMode : 'multiple',	//选择类型，支持多选
 	    markPoint : {
@@ -53,10 +53,10 @@ option = {
 	    labelLine : {
 	        normal : {
 	            lineStyle : {
-	                //color: 'rgba(0, 0, 0, 0.3)'
+	            	color:'white',
+	            	width:2
 	            },
-	            smooth: 0.2,
-	            length: 20,
+	            length: 30,
 	            length2: 50
 	        }
 	    },
