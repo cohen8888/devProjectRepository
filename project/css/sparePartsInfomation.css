@@ -3,6 +3,8 @@
 }
 section{
 	margin-top: 0.58rem;
+	background: url(../img/sectionBg.png) no-repeat center center/100% 100%;
+	padding-bottom: 0.5rem;
 }
 .canvasBox{
 	display: flex;
@@ -16,10 +18,11 @@ section{
 
 .tableBox{
 	width: 13.71rem;
-	height: 5.0rem;
+	height: 6.5rem;
 	padding: 0.28rem;
-	background: url(../img/border_bg.png) no-repeat;
-	background-size: 100% 100%;
+	background: url(../img/table_top.png) top no-repeat,
+				url(../img/table_bottom.png) bottom no-repeat;
+	background-size: 100% 50%;
 	overflow: hidden;
 }
 table{
@@ -27,6 +30,7 @@ table{
 	text-align: center;
 	line-height: 0.78rem;
 	font-size: 0.3rem;
+	table-layout: fixed;
 }
 table tr{
 	line-height: 0.8rem;
@@ -35,4 +39,14 @@ table tr{
 
 table tr:nth-of-type(even){
 	background: rgba(22,60,120,0.3)
+}
+table tr td{
+	height: 1.42rem;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
+table tr td:hover{
+	white-space: normal;
+	overflow: visible;
 }
