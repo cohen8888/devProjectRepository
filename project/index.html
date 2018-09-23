@@ -3,10 +3,22 @@
 	<head>
 		<meta charset="UTF-8">
 		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/font-awesome.min.css"/>
+		<link rel="stylesheet" type="text/css" href="css/global.css"/>
 		<link rel="stylesheet" type="text/css" href="css/index1.css"/>
+		
 	</head>
 	<body>
 		<div class="wrap">
+			<header>
+				<div class="logo">
+					<img src="img/logoImgAndText.png"/>
+					<!--<img id="logo" src="img/logo.png"/>
+					<h2 class="h2_titleText">地下综合管廊运营维护一体化平台</h2>
+					<img src="img/indexTitleRightImg.png"/>-->
+				</div>
+				<p class="timeText"><span class="fa fa-clock-o fa"></span><span>2018.09.04</span>  <span>14:30:32</span></p>
+			</header>
 			<div class="content">
 				<!--视频在线及日常现场模块-->
 				<div class="content_left">
@@ -46,7 +58,7 @@
 				<!--本月班组绩效及设备运行状态模块-->
 				<div class="content_center">
 					<!--本月班组绩效-->
-					<div class="performanceinfo boxBorder box" >
+					<div class="performanceinfo boxBorder" >
 						<p class="h3_titleText">本月班组绩效</p>
 						<div class="pie_eachrts3"></div>
 						<p class="h3_titleText">人员绩效</p>
@@ -69,7 +81,7 @@
 						</ul>
 					</div>
 					<!--设备运行状态-->
-					<div class="deviceRunStatus boxBorder box">
+					<div class="deviceRunStatus boxBorder">
 						<a href="html/devicerunstatus.html">
 							<p class="h3_titleText">设备运行状态</p>
 						</a>
@@ -79,8 +91,8 @@
 				<!--实时监控、事件警告、人员信息及安全隐患模块-->
 				<div class="content_right">
 					<!--实时监控/环境监控-->
-					<a href="html/realtimemonitoring.html">
-					<div class="monitoringWrap  boxBorder box"  >
+					
+					<div class="monitoringWrap  boxBorder"  >
 						<div class="keywordsAndTitle">
 							<div id="keyWords">
 								<p class="h3_titleText">监控点</p>
@@ -90,19 +102,21 @@
 									<option value="" >3</option>
 								</select>
 							</div>
-							<p class="h3_titleText">实时监控/环境监控</p>
+							<a href="html/realtimemonitoring.html">
+								<p class="h3_titleText">实时监控/环境监控</p>
+							</a>
 						</div>
 						<!--监控图表-->
 						<div id="indexMonitoring"></div>
 					</div>
-					</a>
+					
 					<!--右下方盒子-->
 					<div class="c_right_bottom">
 						<!--右下方盒子中的左边盒子-->
 						<div class="c_r_b_left">
 							<!--事件告警-->
 							
-							<div class="warningWrap boxBorder box"  >
+							<div class="warningWrap boxBorder"  >
 								<a href="html/eventalarm.html">
 									<p class="h3_titleText">事件告警</p>
 								</a>
@@ -113,16 +127,18 @@
 							</div>
 							<!--人员信息-->
 							<a href="html/personnelinfomation.html">
-							<div class="employeeInfoWrap boxBorder box" style="height: 4.20rem; ">
+							<div class="employeeInfoWrap boxBorder" >
 								<p class="h3_titleText">人员信息</p>
 								<div class="pie_eachrts6"></div>
 							</div>
 							</a>
 						</div>
 						<!--安全隐患-->
-						<a href="html/safehiddentrouble.html">
-						<div class="hiddenTroubleWrap boxBorder box" >
-							<p class="titleCenter h3_titleText">安全隐患</p>
+						
+						<div class="hiddenTroubleWrap boxBorder" >
+							<a href="html/safehiddentrouble.html">
+								<p class="titleCenter h3_titleText">安全隐患</p>
+							</a>
 							<table class="rcTable default tb2" cellpadding="0" cellspacing="0" border="0" width="100%">
 							<thead>
 								<tr>
@@ -135,7 +151,7 @@
 							<tbody></tbody>
 						</table>
 						</div>
-						</a>
+						
 					</div>
 				</div>
 			</div>

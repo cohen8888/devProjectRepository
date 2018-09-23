@@ -8,14 +8,13 @@ html,body,div,p,dl,dd,dt,ul,li,a,span,img,h1,h2,h3,h4,h5,ol,header,footer,sectio
 .wrap{
 	background:url(../img/bg.png) no-repeat center center/100% 100%;
 	width:30.40rem;
-	height: 16.4rem;
-	padding: 0.8rem;
+	height: 17.2rem;
+	padding: 0.4rem 0.8rem;
 }
-.box{
-	margin-top: 0.18rem;
-	margin-left: 0.50rem;
-}
+
 .boxBorder{
+	margin-top: 0.18rem;
+	margin-left: 0.30rem;
 	border: 2px solid #45449A;
 	border-radius: 10px;
 }
@@ -36,6 +35,21 @@ html,body,div,p,dl,dd,dt,ul,li,a,span,img,h1,h2,h3,h4,h5,ol,header,footer,sectio
 	line-height: 1rem;
 	text-indent: 0.42rem;
 }
+header{
+	width: 100%;
+	height: 1.4rem;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
+
+.logo img{
+	width: 17.68rem;
+}
+header .timeText{
+	line-height: 2rem;
+	margin-right: 0.15rem;
+}
 .content{
 	width: 30.40rem;
 	display: flex;
@@ -51,7 +65,6 @@ html,body,div,p,dl,dd,dt,ul,li,a,span,img,h1,h2,h3,h4,h5,ol,header,footer,sectio
 	margin-top: 0.18rem;
 }
 .video_wrap{
-	
 	width: 8.03rem;
 	display: flex;
 	flex-flow: row wrap;
@@ -67,11 +80,14 @@ html,body,div,p,dl,dd,dt,ul,li,a,span,img,h1,h2,h3,h4,h5,ol,header,footer,sectio
 }
 /*日常现场*/
 .daily_live{
+	height: 9.3rem;
 	margin-top: 0.18rem;
 	display: flex;
 	flex-direction: column;
+	overflow: hidden;
 }
 .daily_canvas{
+	height: 5.0rem;
 	display: flex;
 	flex-direction: row;
 	justify-content: center;
@@ -82,13 +98,14 @@ html,body,div,p,dl,dd,dt,ul,li,a,span,img,h1,h2,h3,h4,h5,ol,header,footer,sectio
 	height: 5.0rem;
 }
 .rcTable{
+	height: 2.96rem;
 	font-size:0.30rem;
 }
 .rcTable tr{
 	line-height: 0.8rem;
 	text-align: center;
 }
-.rcTable tr:nth-of-type(odd){
+.rcTable tbody tr:nth-of-type(odd){
 	background: rgba(22,60,120,0.8)
 }
 .default{
@@ -133,6 +150,7 @@ html,body,div,p,dl,dd,dt,ul,li,a,span,img,h1,h2,h3,h4,h5,ol,header,footer,sectio
 	font-size: 0.25rem;
 	text-align: center;
 	margin: 0.05rem;
+	margin-top: 0;
 }
 .medal img{
 	width: 1.1rem;
@@ -141,12 +159,15 @@ html,body,div,p,dl,dd,dt,ul,li,a,span,img,h1,h2,h3,h4,h5,ol,header,footer,sectio
 /*设备运行状态*/
 .deviceRunStatus{
 	width: 6.50rem;
-	height: 7.30rem;
+	height: 6.65rem;
+}
+.pie_eachrts4{
+	height:5.5rem;
 }
 
 /*实时监控/环境监控*/
 .monitoringWrap{
-	width: 14.93rem; 
+	width: 14.80rem; 
 	height: 8.70rem;
 }
 .keywordsAndTitle{
@@ -183,21 +204,29 @@ select option{
 }
 /*右下盒子 包含 事件告警 人员信息 及安全隐患*/
 .c_right_bottom{
+	height: 6.65rem;
 	display: flex;
 	flex-direction: row;
 }
 
 .warningWrap{
 	width: 6.55rem;
-	height: 2.80rem;
+	height: 2.89rem;
 }
-
+.employeeInfoWrap{
+	height: 3.58rem;
+}
+.pie_eachrts6{
+	height: 2.45rem;
+}
 
 .hiddenTroubleWrap{
-	width: 7.80rem;
-	height: 7.30rem;
+	width: 7.95rem;
+	height: 6.65rem;
+	overflow: hidden;
 }
 .titleCenter{
+	line-height: 1.8rem;
 	text-align: center;
 }
 .pie_eachrts5 ul{
