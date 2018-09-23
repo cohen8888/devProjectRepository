@@ -242,7 +242,15 @@ select option{
 .titem{
 	font-size: 0.3rem;
 }
-
+.deviceRunStatusChart{
+	text-align:center;
+}
+.pie_deviceRunStatus {
+	float: left;
+	width: 3.13rem;
+	height: 2.7rem;
+	margin-left: 0.05rem;
+}
 
 /*div{
 	border: 0.5px solid red;

@@ -5,7 +5,7 @@ function setData(data,opt){
 	}
 	return opt;
 }
-
+let deviceRunStatusChartColors = ['rgb(37,218,190)','rgb(83,28,97)','rgb(52,221,249)','rgb(51,140,221)']
 
 /**
 * 日常现场图对象1
@@ -380,108 +380,74 @@ function personPerformanceList(listRoot, data){
 
 
 /**
-*设备运行状态，该方法需求已变，需要重新写
+*设备运行状态
 */
-function deviceRunStatusChart(chartRootElem, datas){
-	let option = {
-		xAxis:  {
-			type: 'category',
-			splitLine:{
-				show:false,
-				lineStyle:{
-					width:2,
-					type:'dotted'  //'dotted'虚线 'solid'实线
-				}
+function deviceRunStatusChart(chartRootElem, datas, title){
+	let legendData = [];
+	let seriesDataObj = {};
+	seriesDataObj.name = title;
+	seriesDataObj.type = 'pie';
+	seriesDataObj.radius = ['45%','65%'];
+	seriesDataObj.selectedMode = 'single';
+	seriesDataObj.avoidLabelOverlap = false;
+    seriesDataObj.data = [];
+    datas.forEach((item, index) => {
+		legendData.push(item.name);
+		let dataObj = {};
+		dataObj.name = item.name;
+		dataObj.value = item.value;
+		dataObj.label = {
+			normal:{
+				show:true,
+				formatter: '{c}\n{b}',
+				fontSize: 0.2 * rem,
+				color: 'white',
+				align: 'center',
+				position: 'inside',
 			},
-			axisLabel: {  //y轴坐标字样式，rotate设置文字斜着显示
-				interval:0,
-				color:'white',
-				fontSize:0.3*rem,
-				align:'center',
-				formatter: function (value, index) {
-						//使用函数模板，函数参数分别为刻度数值（类目），刻度的索引
-						return value;
-				},
-			},
-			data :datas.list.map((item,index)=>{return item.type})
-		},
-		yAxis: {
-			splitLine:{
-				show:false,
-				lineStyle:{
-					width:2,
-					type:'dotted'  //'dotted'虚线 'solid'实线
-				}
-			},
-			axisLabel:{
-				color:'white',
-				fontSize:0.3*rem
-			},
-			type: 'value'
-		},
-		series: [{
-			name: '停工',
-			type: 'bar',
-			stack: '总量',
-			label: {
-				normal: {
-					show: true,
-					position: 'inside',
-					formatter:function(params){
-						return params.value+"\n"+params.seriesName
-					}
-				}
-			},
-			itemStyle:{
-				color: new echarts.graphic.LinearGradient(
-					0, 0, 0, 1,
-					[
-						{offset: 0, color: '#653ea2'},
-						{offset: 0.5, color: '#392168'},
-						// {offset: 1, color: '#ddd'}
-					]
-				)
-			},
-			data : [15,10,5,10]
-			},{
-				name: '故障',
-				type: 'bar',
-				stack: '总量',
-				label: {
-					normal: {
-						show: true,
-						position: 'inside',
-						formatter:function(params){
-							return params.value+"\n"+params.seriesName
-						}
-
-					}
-				},
-				itemStyle:{
-					color:'#3b92da'
-				},
-				data : [13,12,15,18]
-			},{
-
-				name: '进行中',
-				type: 'bar',
-				stack: '总量',
-				label: {
-					normal: {
-						show: true,
-						position: 'inside',
-						formatter:function(params){
-							return params.value+"\n"+params.seriesName
-						}
-					}
-				},
-				itemStyle:{
-					color:'#38dabb'
-				},
-				data : [13,12,15,18]
+			emphasis: {
+			    show: true,
+			    textStyle: {
+			        fontSize: 0.25 * rem,
+			        fontWeight: 'bold'
+			    }
 			}
-		]
+		};
+		dataObj.itemStyle = {
+			color:deviceRunStatusChartColors[index],
+        	label : { 
+        		show : true,
+	            position : 'center'
+	        },
+			labelLine : { 
+				show : true
+        	}
+		}
+		dataObj.labelLine = {
+			show: false
+		}
+		seriesDataObj.data.push(dataObj);
+	});
+	let option = {
+		title : {
+			text: title,
+	        textStyle: {
+	            color: 'white'
+	        }
+		},
+		tooltip : {
+	        trigger: 'item',
+	        formatter: "{a} <br/>{b} : {c} ({d}%)"
+	    },
+	    legend: {
+	    	show:false,
+	        data: legendData
+	    },
+	    series:[
+	    	seriesDataObj
+	    ]
 	};
+
 	if (option && typeof option === "object") {
 		chartRootElem.setOption(option, true);
 	}
@@ -674,33 +640,40 @@ function safeHiddenTroubleTableList(rootElem, datas){
 	rootElem.html(str);
 }
 
+$(function(){
+	currentDateObj = $('.timeText');
+	timingDate();
+	
+	ajax(baseUrl,"index").then(res=>{
+		//日常现场图1
+		let myDaliyLive1Echart = echarts.init($(".pie_eachrts1").get(0));
+		generateDailyLive1Chart(myDaliyLive1Echart, res.data.rcxc.maintain);
+		//日常现场图2
+		let myDaliyLive2Echart = echarts.init($(".pie_eachrts2").get(0));
+		generateDailyLive2Chart(myDaliyLive2Echart, res.data.rcxc.malfunction);
+		//日常现场列表
+		generateDailyLiveTableList($(".tb1 tbody"), res.data.rcxc.list);
+		//本月班组绩效
+		let myCurrentMonthGroupPerformanceChart = echarts.init($(".pie_eachrts3").get(0));
+		generateCurrentMonthGroupPerformanceChart(myCurrentMonthGroupPerformanceChart, res.data.bzjx.list);
+		//人员绩效列表
+		personPerformanceList($(".medal"), res.data.bzjx.rack);
+		//设备运行状态图——需要修改
+		$(".pie_deviceRunStatus").each((index, elem) => {
+			deviceRunStatusChart(echarts.init(elem), res.data.sbzt.list[index].data,res.data.sbzt.list[index].type);
+		});
 
-ajax(baseUrl,"index").then(res=>{
-	//日常现场图1
-	let myDaliyLive1Echart = echarts.init(document.querySelector(".pie_eachrts1"));
-	generateDailyLive1Chart(myDaliyLive1Echart, res.data.rcxc.maintain);
-	//日常现场图2
-	let myDaliyLive2Echart = echarts.init(document.querySelector(".pie_eachrts2"));
-	generateDailyLive2Chart(myDaliyLive2Echart, res.data.rcxc.malfunction);
-	//日常现场列表
-	generateDailyLiveTableList($(".tb1 tbody"), res.data.rcxc.list);
-	//本月班组绩效
-	let myCurrentMonthGroupPerformanceChart = echarts.init(document.querySelector(".pie_eachrts3"));
-	generateCurrentMonthGroupPerformanceChart(myCurrentMonthGroupPerformanceChart, res.data.bzjx.list);
-	//人员绩效列表
-	personPerformanceList($(".medal"), res.data.bzjx.rack);
-	//设备运行状态图——需要修改
-	let mydeviceRunStatusChart = echarts.init(document.querySelector(".pie_eachrts4"));
-	deviceRunStatusChart(mydeviceRunStatusChart, res.data.sbzt);
-	//事件告警图
-	eventAlarmChart(res.data.sjgj);
-	//人员信息图
-	let mypersonInfoEchart = echarts.init(document.querySelector(".pie_eachrts6"));
-	personInfoChart(mypersonInfoEchart, res.data.ryxx);
-	//实时监控
-	var myrealtimeMonitoringChart = echarts.init($("#indexMonitoring").get(0));
-	realtimeMonitoring(myrealtimeMonitoringChart, res.data.ssjk);
-	//安全隐患
-	safeHiddenTroubleTableList($(".tb2 tbody"), res.data.aqyh);
+		//事件告警图
+		eventAlarmChart(res.data.sjgj);
+		//人员信息图
+		let mypersonInfoEchart = echarts.init(document.querySelector(".pie_eachrts6"));
+		personInfoChart(mypersonInfoEchart, res.data.ryxx);
+		//实时监控
+		var myrealtimeMonitoringChart = echarts.init($("#indexMonitoring").get(0));
+		realtimeMonitoring(myrealtimeMonitoringChart, res.data.ssjk);
+		//安全隐患
+		safeHiddenTroubleTableList($(".tb2 tbody"), res.data.aqyh);
+	});
 });
+
 
