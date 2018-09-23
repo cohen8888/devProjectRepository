@@ -1,7 +1,7 @@
 /**
 * 安全隐患模块
-*
-*
+* author : cohen.Lee
+* 
 */
 
 baseUrl = baseUrl + "/api/";
@@ -11,18 +11,20 @@ let pageSize = 5;												//表格显示最大数据
 let chartColumn = ['隐患排查', '隐患发现'];	
 let xColumNameData =['00:00', '02:00','04:00','06:00','08:00','10:00',
 	'12:00','14:00','16:00','18:00','20:00','22:00','24:00'];	//图形x轴刻度标签值
-let timeId1 = null;
-let timeId2 = null;
-let data1 = null;
-let data2 = null;
+let timeId = null;
+let getBackendTimeID = null;
+let hiddentroubleFindListData = null;							//隐患发现列表缓冲数据
+let hiddentroubleCheckListData = null;							//隐患排查列表缓冲数据
+let pieColors = ['rgb(70,194,252)','rgb(131,240,145)','rgb(236,232,93)','rgb(253,112,69)'];
+
 
 /**
 * 渲染表格数据
 *
 */
 function renderTableData(elem, datas, cols){
-	$("tbody").animate({opacity:1},400);
-	elem.children().remove();
+	$("tbody").animate({opacity : 1}, 400);		//表格数据添加动画
+	elem.children().remove();					
 	let str = "";
 	datas.slice(0, pageSize).forEach((item, index) => {
 			str+="<tr>"
@@ -34,20 +36,21 @@ function renderTableData(elem, datas, cols){
    	elem.html(str);
 }
 
+
 /**
 *渲染隐患值图
 */
 function renderCharts(chartRootElem, chartColumn, xAxisItem, datas){
 	option = null;
-	var perilFindData = datas.map((item,index)=>{return item.data[0].val});    //隐患发现数据
-	var perilCheckData = datas.map((item,index)=>{return item.data[1].val});    //隐患排查数据
+	var perilFindData = datas.hiddenTroubleFind;    //隐患发现数据
+	var perilCheckData = datas.hiddenTroubleCheck;    //隐患排查数据
 	option = {
 		title:{
-
 			text: '隐患值',
 			textStyle:{
 				color:'white',
-				verticalAlign:'top'
+				verticalAlign:'top',
+				fontSize:0.2*rem
 			}
 		},
 	    tooltip : {
@@ -60,7 +63,7 @@ function renderCharts(chartRootElem, chartColumn, xAxisItem, datas){
 	        data: chartColumn,
 	        textStyle:{
 	            color:'white',
-	            fontSize:0.4*rem
+	            fontSize:0.3*rem
 	        },
 	        bottom:0,  				//放在图表底部
 	        padding:[5, 0.5*rem]
@@ -139,8 +142,7 @@ function renderCharts(chartRootElem, chartColumn, xAxisItem, datas){
 	                }
 	            },
 	            data : perilFindData
-	        }
-	        
+	        }    
 	    ]
 	};
 	if (option && typeof option === "object") {
@@ -148,26 +150,53 @@ function renderCharts(chartRootElem, chartColumn, xAxisItem, datas){
 	}
 }
 
-function renderTroubleFindChart(chartRootElem, tooltip, ){
-	let option = null;
-	option = {
-		tooltip: {
-        	trigger: 'item',
-        	formatter: "{a} <br/>{b}: {c} ({d}%)"
-    	},
-    	legend: {
-        	orient: 'vertical',
-        	x: 'left',
-        	data:['直接访问','邮件营销','联盟广告','视频广告','搜索引擎']
-    	}
-
+function renderPieCharts(chartRootElem, datas){
+	let legendData = datas.group;
+	let seriesData = [];
+	let obj = {};
+	obj.type = 'pie';
+	obj.radius = ['40%', '80%'];
+	obj.selectMode = 'single';
+	obj.data = [];
+	
+	obj.name = '';
+	for(var i = 0, len = datas['groupProportion'].length; i < len; i++){
+		let tmp = {};
+		tmp.name = legendData[i];
+		tmp.value = datas['groupProportion'][i];
+		tmp.itemStyle ={color : pieColors[i],borderColor:'rgb(21,26,92,0.1)',borderWidth:10}
+		tmp.labelLine = {length:0.5 * rem, length2:0.4 * rem};
+		tmp.label = {
+			align : 'center',
+			normal : {
+				fontSize : 0.3 * rem,
+				formatter: [
+					'{c}%',
+					'{b}'
+				].join('\n')	
+			}
+		};
+		obj.data.push(tmp);
 	}
+	seriesData.push(obj);
+	let option = {
+	    tooltip: {
+	        trigger: 'item',
+	        formatter: "{b}: {c} ({d}%)"
+	    },
+	    legend: {
+	        orient: 'vertical',
+	        x: 'left',
+	        show:false,
+	        data:legendData
+	    },
+	    series:seriesData
+	};
+
 	if (option && typeof option === "object") {
 	    chartRootElem.setOption(option, true);
 	}
 }
-
-
 
 /**
 *
@@ -183,59 +212,50 @@ function handlerData(data, pageSize){
 	return data;
 }
 
-function getBackendListData(){
-	ajax(baseUrl,"safetyperll").then(res => {
-		clearInterval(timeId1);
-		clearInterval(timeId2);
-    	data1 = res.data;
-    	renderTableData($(".tb1 tbody"), data1, 
+/**
+* 获取后端返回数据，1.表格数据缓存到本地；2.绘制图
+*/
+function getBackendData(myChart, myChartPie){
+	clearInterval(timeId);
+	ajax(baseUrl,"safehiddentrouble").then(res => {
+		hiddentroubleFindListData = res.data.hiddenTroubleFindListData;
+		hiddentroubleCheckListData = res.data.hiddenTroubleCheckListData;
+
+    	renderTableData($(".tb1 tbody"), hiddentroubleFindListData, 
     		["potentialRisk","potentialRiskDate","findUser","group","potentialRiskContent"]);
-    	timeId1 = setInterval(function(){
-    		data1 = handlerData(data1, pageSize);
-    		renderTableData($(".tb1 tbody"), data1, ["potentialRisk","potentialRiskDate","findUser","group","potentialRiskContent"]);
+    	renderTableData($(".tb2 tbody"), 
+				hiddentroubleCheckListData,['potentialRisk','checkUser','finishDate','group','status']);
+    	timeId = setInterval(function(){
+    		hiddentroubleFindListData = handlerData(hiddentroubleFindListData, pageSize);
+    		hiddentroubleCheckListData = handlerData(hiddentroubleCheckListData, pageSize);
+    		renderTableData($(".tb1 tbody"), hiddentroubleFindListData, ["potentialRisk","potentialRiskDate","findUser","group","potentialRiskContent"]);
+    		renderTableData($(".tb2 tbody"), hiddentroubleCheckListData,['potentialRisk','checkUser','finishDate','group','status']);
     	}, changeDataTimeInterval);
-    	
+    	renderCharts(myChart, chartColumn, xColumNameData, res.data.hiddenTroubleValueData);
+    	renderPieCharts(myChartPie,  res.data.hiddenTroubleFindData);
     });
-	ajax(baseUrl,"safetyperres").then(res=>{
-		clearInterval(timeId1);
-		clearInterval(timeId2);
-		data2 = res.data;
-		renderTableData($(".tb2 tbody"), 
-				data2,['potentialRisk','checkUser','finishDate','group','status']);
-		timeId2 = setInterval(function(){
-			data2 = handlerData(data2, pageSize);
-			renderTableData($(".tb2 tbody"), 
-				data2,['potentialRisk','checkUser','finishDate','group','status']);
-    	}, changeDataTimeInterval);
-		
-	});
 }
 
-function getBackendData(myChart){
-	getBackendListData();
-	ajax(baseUrl,"safeecharts").then(res=>{
-		renderCharts(myChart, chartColumn, xColumNameData, res.data);
-	});
-}
 
+
+
+//jQuery ready function start
 $(function(){
-
-	setLink($(".header_left dl"));
+	setLink($(".header_left img"));
 	currentDateObj = $('.timeText');
 	timingDate();
 
-    var myChart = echarts.init($("#container").get(0));	//展示图DOM元素
-    getBackendListData();
-    getBackendData(myChart);
-    
-    setInterval(function(){
-    	clearInterval(timeId1);
-    	clearInterval(timeId2);
+	var myChart = echarts.init($("#container").get(0));	//柱状图根元素
+	var myChartPie = echarts.init($("#containerPie").get(0));	//饼形图根元素
+
+	getBackendData(myChart, myChartPie);
+
+	//定时从后端获取数据
+	getBackendTimeID = setInterval(function(){
+    	clearInterval(timeId);
 		$("tbody").animate({opacity:"0"},changeDataTimeInterval,function(){
-			getBackendData(myChart);
-		})
+			getBackendData(myChart, myChartPie);
+		});
     	
     },getChartDataTimeInterval);
-	    
-    
-});//jquery ready function end;
+}); //jQuery ready function end

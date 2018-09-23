@@ -1,0 +1,166 @@
+{
+	"hiddenTroubleFindData" : {
+		"group":["一班","二班","三班","四班"],
+		"groupProportion":[35, 30, 15, 20]
+	},
+	"hiddenTroubleValueData" : {
+		"hiddenTroubleFind" : [10, 3, 3, 5, 4, 30, 3, 6, 4, 7, 3, 4],
+		"hiddenTroubleCheck" : [5, 12, 11, 7, 9, 30, 45, 22, 33, 12, 11, 34]
+	},
+	"hiddenTroubleFindListData" : [{
+			"potentialRisk":"A3301",
+			"potentialRiskDate":"2018.09.03 24:00:00",
+			"findUser":"张三1",
+			"group":"一组",
+			"potentialRiskContent":"隐患内容",
+			"isCheck":false
+		},
+		{
+			"potentialRisk":"A3302",
+			"potentialRiskDate":"2018.09.03 24:00:00",
+			"findUser":"张三2",
+			"group":"一组",
+			"potentialRiskContent":"隐患内容",
+			"isCheck":false
+		},
+		{
+			"potentialRisk":"A3303",
+			"potentialRiskDate":"2018.09.03 24:00:00",
+			"findUser":"张三3",
+			"group":"一组",
+			"potentialRiskContent":"隐患内容",
+			"isCheck":false
+		},
+		{
+			"potentialRisk":"A3304",
+			"potentialRiskDate":"2018.09.03 24:00:00",
+			"findUser":"张三4",
+			"group":"一组",
+			"potentialRiskContent":"隐患内容",
+			"isCheck":false
+		},{
+			"potentialRisk":"A3305",
+			"potentialRiskDate":"2018.09.03 24:00:00",
+			"findUser":"张三5",
+			"group":"一组",
+			"potentialRiskContent":"隐患内容",
+			"isCheck":false
+		},
+		{
+			"potentialRisk":"A3306",
+			"potentialRiskDate":"2018.09.03 24:00:00",
+			"findUser":"张三6",
+			"group":"一组",
+			"potentialRiskContent":"隐患内容",
+			"isCheck":false
+		},
+		{
+			"potentialRisk":"A3307",
+			"potentialRiskDate":"2018.09.03 24:00:00",
+			"findUser":"张三7",
+			"group":"一组",
+			"potentialRiskContent":"隐患内容",
+			"isCheck":false
+		},
+		{
+			"potentialRisk":"A3308",
+			"potentialRiskDate":"2018.09.03 24:00:00",
+			"findUser":"张三8",
+			"group":"一组",
+			"potentialRiskContent":"隐患内容",
+			"isCheck":false
+		}
+	],
+	"hiddenTroubleCheckListData" : [{
+			"potentialRisk":"A01",
+			"finishDate":"2018.09.03 24:00:00",
+			"checkUser":"阿斯蒂芬",
+			"group":"二组",
+			"status":"已完成"
+		},
+		{
+			"potentialRisk":"A02",
+			"finishDate":"2018.09.03 24:00:00",
+			"checkUser":"请问",
+			"group":"二组",
+			"status":"已完成"
+		},
+		{
+			"potentialRisk":"A03",
+			"finishDate":"2018.09.03 24:00:00",
+			"checkUser":"额外若无若无",
+			"group":"二组",
+			"status":"已完成"
+		},
+		{
+			"potentialRisk":"A04",
+			"finishDate":"2018.09.03 24:00:00",
+			"checkUser":"我去二无群二群无",
+			"group":"二组",
+			"status":"已完成"
+		},
+		{
+			"potentialRisk":"A05",
+			"finishDate":"2018.09.03 24:00:00",
+			"checkUser":"是的发送沙发斯蒂芬",
+			"group":"二组",
+			"status":"已完成"
+		},
+		{
+			"potentialRisk":"A06",
+			"finishDate":"2018.09.03 24:00:00",
+			"checkUser":"电饭锅电饭锅",
+			"group":"二组",
+			"status":"已完成"
+		},
+		{
+			"potentialRisk":"A07",
+			"finishDate":"2018.09.03 24:00:00",
+			"checkUser":"UI味儿",
+			"group":"二组",
+			"status":"已完成"
+		},
+		{
+			"potentialRisk":"A08",
+			"finishDate":"2018.09.03 24:00:00",
+			"checkUser":"客人",
+			"group":"二组",
+			"status":"已完成"
+		},
+		{
+			"potentialRisk":"A09",
+			"finishDate":"2018.09.03 24:00:00",
+			"checkUser":"234李四",
+			"group":"二组",
+			"status":"已完成"
+		},
+		{
+			"potentialRisk":"A10",
+			"finishDate":"2018.09.03 24:00:00",
+			"checkUser":"3二李四",
+			"group":"二组",
+			"status":"已完成"
+		},
+		{
+			"potentialRisk":"A11",
+			"finishDate":"2018.09.03 24:00:00",
+			"checkUser":"的李四",
+			"group":"二组",
+			"status":"已完成"
+		},
+		{
+			"potentialRisk":"A12",
+			"finishDate":"2018.09.03 24:00:00",
+			"checkUser":"李四的",
+			"group":"二组",
+			"status":"已完成"
+		},
+		{
+			"potentialRisk":"A13",
+			"finishDate":"2018.09.03 24:00:00",
+			"checkUser":"地方四",
+			"group":"二组",
+			"status":"已完成"
+		}
+	]
+}
