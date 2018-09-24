@@ -95,7 +95,11 @@ table tr td{
 	text-overflow: ellipsis;
 	overflow: hidden;
 }
-
+table tr td:hover{
+	white-space: normal;
+	overflow: visible;
+	line-height: 0.45rem;
+}
 table tbody tr:nth-of-type(odd){
 	background: rgba(22,60,120,0.3)
 }
