@@ -23,18 +23,46 @@ function renderTableData(rootElem, data, attrs){
 	}
 }
 
+/**
+* 
+*
+*/
+function viewpagerVideo(urls, playElem){
+    var vLen = urls.length; 
+    var curr = 0; 
+    var video = $('.map');
+
+    playElem.on('ended', function(){
+		play();
+	});  
+     
+    function play() {
+    	console.log(playElem.get(0))
+        playElem.get(0).src = urls[curr];
+        playElem.get(0).load();   
+        playElem.get(0).play();  
+        curr++;
+        if(curr >= vLen){  
+            curr = 0; //重新循环播放
+        }
+    }  
+    play();
+}
 
 //jQuery ready function start
 $(function(){
 
-	setLink($(".header_left"));
+	setLink($(".header_left img"));
 
 	currentDateObj = $('.timeText');
 	timingDate();
 
 	$.get(baseUrl + "dailylive", (res) => {
 		let data = JSON.parse(res).data;
-		$('.map').attr('src',data.mapUrl);
+
+		console.log(data)
+		viewpagerVideo(data.mapUrls, $('.map'));
+
 		renderTableData($('.section_left_top table') 
 			,data.data.maintain.data
 			,['workOrderCode'

@@ -115,4 +115,18 @@
 	"findDatetime":"2018.09.03 24:00:00",
 	"currentEquipStatus":"正常",
 	"faultSource":"永久性故障"
+},
+{
+	"faultCode":"f0018",
+	"faultEquipment":"监测设备",
+	"findDatetime":"2018.09.03 24:00:00",
+	"currentEquipStatus":"正常",
+	"faultSource":"永久性故障"
+},
+{
+	"faultCode":"f0019",
+	"faultEquipment":"监测设备",
+	"findDatetime":"2018.09.03 24:00:00",
+	"currentEquipStatus":"正常",
+	"faultSource":"永久性故障"
 }]

@@ -1,5 +1,7 @@
 {
-	"mapUrl" : "http://localhost:3000/video/rcxc.mp4",
+	"mapUrls" : ["http://localhost:3000/video/rcxc.mp4",
+	"http://localhost:3000/video/rcxc.mp4",
+	"http://localhost:3000/video/rcxc.mp4"],
 	"data" : {
 		"maintain" : {
 			"data" : [{

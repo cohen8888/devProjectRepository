@@ -20,7 +20,7 @@ let timeIntervalGetData = 200000;
 //缓存到页面端的数据
 let cacheDatas = {};
 let cacheInitDatas = {};
-let pageSize = 2;		//列表页的每页数据数
+let pageSize = 5;		//列表页的每页数据数
 let timeId = null;		//滚动数据定时器
 let dataTimeId = null;	//从后端获取数据定时器
 let environmentMonitorPointAvailableTags = [];		//
@@ -53,21 +53,21 @@ function genSeriesObjects(datas, lengeds){
 		obj['data'] = datas[i]['data'];
 		obj['smooth'] = false;
 		obj['areaStyle'] = {
-				            color: {
-				                type: 'linear',
-				                x: 0,
-				                y: 0,
-				                x2: 0,
-				                y2: 1,
-				                colorStops: [{
-				                    offset: 0, color: 'rgb(101,67,97)' // 0% 处的颜色
-				                }, {
-				                    offset: 1, color: 'rgb(64,33,86)' // 100% 处的颜色
-				                }],
-				                globalCoord: false // 缺省为 false
+            color: {
+                type: 'linear',
+                x: 0,
+                y: 0,
+                x2: 0,
+                y2: 1,
+                colorStops: [{
+                    offset: 0, color: '#301B55' // 0% 处的颜色
+                }, {
+                    offset: 1, color: '#3F2351' // 100% 处的颜色
+                }],
+                globalCoord: false // 缺省为 false
 
-				            }
-				        }
+            }
+        }
 		result.push(obj);
 	}
 	return result;
@@ -94,6 +94,7 @@ function generateList(elem, datas, catagory){
 * 生成检测点的颜色，返回数据
 */
 function generateMonitorLineColor(lineData){
+	let  preinstallColors = ['#F2DEF2', '#E8D897', '#AAD5B3', '#83F0FE', '#D6B9F2'];
 	let result = [];
 	for (var i = 0; i < lineData.length; i++){
 		var current = lineData[i]['monitoringValue'].slice(0,lineData[i]['monitoringValue'].length-2)
@@ -101,13 +102,10 @@ function generateMonitorLineColor(lineData){
 		if (current < lowWarning){
 			result.push('rgb(255, 0, 0)');
 		}else{
-			var r = Math.floor(Math.random()*100);
-			var g = Math.floor(Math.random()*256);
-			var b = Math.floor(Math.random()*256);
+			result.push(preinstallColors[i]);	
 		}
-		
-		result.push('rgb('+r+','+g+','+b+')');
 	}
+
 	return result;
 }
 
@@ -146,11 +144,12 @@ function initChart(chartsObj, lcolors, xAxisItem, legendData, seriesData){
 	        {
 	            type: 'category',
 	            axisLine: {
-	                onZero: false,
+	                onZero: true,
 	                lineStyle: {
 	                    color: lcolors
 	                }
 	            },
+	            boundaryGap:false,
 	            axisLabel: {  //x轴坐标字样式，rotate设置文字斜着显示
 	                interval:0,
 	                rotate:50,
@@ -216,7 +215,6 @@ function renderChartsListFn(charts, tables, datas, catagorys){
 
 function registerSearchFn(elem, type, datas, chart, lineColor,tab){
 	elem.on('keyup',(event) => {
-		console.log("aaaa")
 		if (event.which == 13){
 			let seriesData = [];
 			for(key in datas){
@@ -261,6 +259,7 @@ function fromBackendData(chartsObjs,tablelists){
 		registerSearchFn($('#environmentMonitorPoint'),monitoringTypes[0] ,cacheDatas , chartsObjs[0],['rgb(255,0,0)'],tablelists[0]);
 		registerSearchFn($('#equipmentMonitorPoint'),monitoringTypes[1] , cacheDatas, chartsObjs[1],['rgb(255,0,0)'],tablelists[1]);
 		registerSearchFn($('#noumenonMonitorPoint'),monitoringTypes[2], cacheDatas, chartsObjs[2],['rgb(255,0,0)'],tablelists[2]);
+
 		renderChartsListFn(chartsObjs, tablelists, cacheDatas, monitoringTypes);
 		clearInterval(timeId);	//
 		timeId = setInterval(function(){
@@ -305,7 +304,7 @@ function genderAutoData(datas, mTypes){
 //jQuery ready function start
 $(function(){
 	
-	setLink($(".header_left dl"));
+	setLink($(".header_left img"));
 	currentDateObj = $('.timeText');
 	timingDate();
 

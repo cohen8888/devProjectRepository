@@ -5,7 +5,7 @@ function setData(data,opt){
 	}
 	return opt;
 }
-let deviceRunStatusChartColors = ['rgb(37,218,190)','rgb(83,28,97)','rgb(52,221,249)','rgb(51,140,221)']
+let deviceRunStatusChartColors = ['#38DABB','#00D3FE','#3B92DA','#663FA5','#511862'];
 
 /**
 * 日常现场图对象1
@@ -378,11 +378,26 @@ function personPerformanceList(listRoot, data){
 	listRoot.html(lis);
 }
 
-
 /**
 *设备运行状态
 */
 function deviceRunStatusChart(chartRootElem, datas, title){
+	let links = [{name:'运行状态',link:'html/devicerunstatusinfo.html'}, 
+		{name:'设备类别',link:'html/devicerunstatus.html'},
+		{name:'备件信息',link:'html/sparepartsinformation.html'},
+		{name:'故障信息',link:'html/faultmessage.html'}
+	];
+	function getLink(key){
+		let link = '';
+		for(var i = 0, len = links.length; i < len;i++){
+			if (title == links[i]['name']){
+				link = links[i]['link'];
+				break;
+			}
+		}
+		return link;
+	}
+
 	let legendData = [];
 	let seriesDataObj = {};
 	seriesDataObj.name = title;
@@ -429,12 +444,20 @@ function deviceRunStatusChart(chartRootElem, datas, title){
 		seriesDataObj.data.push(dataObj);
 	});
 	let option = {
-		title : {
-			text: title,
-	        textStyle: {
-	            color: 'white'
-	        }
-		},
+		title: {
+			show:true,
+	        text: (title.substring(0,2) + '\n' + title.substring(2)),
+	        x:'center',
+	        left: 'center',
+	        top: 'middle',
+	        link:getLink(title),
+	        target:'self',
+	        textStyle:{
+	        	fontSize:0.25 * rem,
+	        	fontWeight:'bold',
+	        	color:'#A4B4EC',
+	        },
+	    },
 		tooltip : {
 	        trigger: 'item',
 	        formatter: "{a} <br/>{b} : {c} ({d}%)"
@@ -455,18 +478,21 @@ function deviceRunStatusChart(chartRootElem, datas, title){
 
 
 /**
-* 事件告警图,需要修改，与原图不符
+* 事件告警图
 */
 function eventAlarmChart(datas){
-	let color = ['rgb(84,219,187)','rgb(73,144,221)','rgb(85,25,110)','rgb(34,2,45)'];
+	let color = ['#3BD9BB','#3192D2','#63389D','#21042B'];
 	let sum = 0;
 	datas.list.forEach(item=>{
 		sum += item.value
 	})
+
+
 	datas.list.forEach((item,index)=>{
+		console.log(item);
 		$(".pie_eachrts5 ul")
-		.append($("<li/>").css("width",item.value/sum*100+"%")
-			.append($("<div/>").css("background",color[index]).attr("class","kitem")).
+		.append($("<li></li>").css("width",item.value/sum*100+"%")
+			.append($("<div>"+item.value+"</div>").css("background",color[index]).attr("class","kitem")).
 			append($("<p/>").html(item.name).attr("class","titem")));
 		
 	});
@@ -531,8 +557,8 @@ function personInfoChart(chartRootElem, datas){
 * 实时监控
 */
 function realtimeMonitoring(chartRootElem, datas){
-	let colors = ['red', 'yellow', 'blue','green'];
-	let xAxisItem = ['00:00', '02:00','04:00','08:00','10:00','12:00','14:00',
+	let colors = ['#FFD5D9', '#FFD837', '#92DB85','#D6B9F2'];
+	let xAxisItem = ['00:00', '02:00','04:00','06:00','08:00','10:00','12:00','14:00',
         '16:00','18:00','20:00','22:00','24:00'];
 	/*var xAxisItem =  datas.list[0].data.map((item,index)=>{
 		return item.time;
@@ -544,6 +570,22 @@ function realtimeMonitoring(chartRootElem, datas){
 		obj.type = "line",
 		obj.name = item.watchLine;
 		obj.data = item.data.map(key=>{return key.value});
+		obj['areaStyle'] = {
+            color: {
+                type: 'linear',
+                x: 0,
+                y: 0,
+                x2: 0,
+                y2: 1,
+                colorStops: [{
+                    offset: 0, color: '#301B55' // 0% 处的颜色
+                }, {
+                    offset: 1, color: '#3F2351' // 100% 处的颜色
+                }],
+                globalCoord: false // 缺省为 false
+
+            }
+        }
 		return obj ;
 	});
 
@@ -576,6 +618,7 @@ function realtimeMonitoring(chartRootElem, datas){
 	                    color: colors
 	                }
 	            },
+	            boundaryGap:false,
 	            axisLabel: {  //x轴坐标字样式，rotate设置文字斜着显示
 	                interval:0,
 	                rotate:50,
@@ -589,7 +632,7 @@ function realtimeMonitoring(chartRootElem, datas){
 	            },
 	            axisPointer: {
 	                label: {
-	                	fontSize:0.15*rem,
+	                	fontSize:0.15 * rem,
 	                    formatter: function (params) {
 	                        return '温度  ' + params.value
 	                            + (params.seriesData.length ? '：' + params.seriesData[0].data : '')+'℃';

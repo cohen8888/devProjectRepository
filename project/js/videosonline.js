@@ -3,7 +3,7 @@ currentDateObj = null;
 //jQuery ready function start
 $(function(){
 	
-	setLink($(".header_left dl"));
+	setLink($(".header_left img"));
 
 	currentDateObj = $('.timeText');
 	timingDate();

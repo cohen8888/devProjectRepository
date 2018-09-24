@@ -251,7 +251,17 @@ select option{
 	height: 2.7rem;
 	margin-left: 0.05rem;
 }
-
+.pie_eachrts5 ul li{
+	display: inline;
+	text-align: center;
+}
+.pie_eachrts5 ul div{
+	font-size: 0.3rem;
+	line-height: 1rem;
+}
+.pie_eachrts5 ul p{
+	font-size: 0.2rem;
+}
 /*div{
 	border: 0.5px solid red;
 }*/

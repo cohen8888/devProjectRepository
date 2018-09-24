@@ -3,9 +3,11 @@
 * date : 2018-09-15
 * 
 */
-let baseUrl = "http://localhost:3000/api/";
-let rem = document.documentElement.style.fontSize.substr(0,document.documentElement.style.fontSize.length - 2) * 1;
+baseUrl = baseUrl + "/api/";
+
 let colors = ['#D8DA03', '#1CD38D', '#00A1E8','#7FCDF6','#EB6976','#F57223'];	//饼形图的颜色
+
+
 let option = null;
 
 option = {
@@ -116,6 +118,11 @@ function generateAnnularChartData(data){
 
 $(function(){
 
+	setLink($(".header_left img"));
+	console.log()
+	currentDateObj = $('.timeText');
+	timingDate();
+
 	//从后端获取数据
 	ajax(baseUrl,"faultmessage").then(res => {
 		console.log(res.data);
@@ -130,8 +137,6 @@ $(function(){
 
 		//渲染表格数据
 		generateTableData($('#faultinfotable'), res.data);
-
-		
 
 	});
 
