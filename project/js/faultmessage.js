@@ -119,7 +119,6 @@ function generateAnnularChartData(data){
 $(function(){
 
 	setLink($(".header_left img"));
-	console.log()
 	currentDateObj = $('.timeText');
 	timingDate();
 

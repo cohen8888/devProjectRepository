@@ -4,8 +4,7 @@
 * 
 */
 
-let rem = document.documentElement.style.fontSize.substr(0,document.documentElement.style.fontSize.length-2)*1;
-let baseUrl = "http://localhost:3000/api/";
+baseUrl = baseUrl + "/api/";
 
 /**
 * 生成表格数据
@@ -29,11 +28,12 @@ function generateTableData(rootElem, data, eventCallBack){
 
 
 $(function(){
-	
+	setLink($(".header_left img"));
+	currentDateObj = $('.timeText');
+	timingDate();
 	ajax(baseUrl,"devicerunstatus").then(res => {
-
 		let str1 = "";
-		generateTableData($(".tb1 tbody"), res.data, function(event){
+		generateTableData($(".tb1 tbody"), res.data.otherData, function(event){
 			var e = event || window.event;
 			var target = e.target || window.event.srcElement;
 			e.stopPropagation();

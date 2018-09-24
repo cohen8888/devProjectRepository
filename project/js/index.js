@@ -48,7 +48,7 @@ function generateDailyLive1Chart(chartRootElem, datas){
 		                }, {
 		                    offset: 1, color: 'rgb(64,33,86)' // 100% 处的颜色
 		                }],
-		                globalCoord: false // 缺省为 false
+		                globalCoord: false //缺省为 false
 
 		            }
 		        },
@@ -266,8 +266,8 @@ function generateCurrentMonthGroupPerformanceChart(chartRootElem, datas){
 			splitLine:{
 				show:false,
 				lineStyle:{
-						width:2,
-						type:'dotted'  //'dotted'虚线 'solid'实线
+					width:2,
+					type:'dotted'  //'dotted'虚线 'solid'实线
 				}
 			},
 			axisLabel: {  //y轴坐标字样式，rotate设置文字斜着显示
@@ -276,8 +276,8 @@ function generateCurrentMonthGroupPerformanceChart(chartRootElem, datas){
 				fontSize:0.3*rem,
 				align:'center',
 				formatter: function (value, index) {
-						//使用函数模板，函数参数分别为刻度数值（类目），刻度的索引
-						return value;
+					//使用函数模板，函数参数分别为刻度数值（类目），刻度的索引
+					return value;
 				},
 			},
 			data : datas.map((item,index)=>{return item.group})

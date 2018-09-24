@@ -1,128 +1,141 @@
 
 baseUrl = baseUrl + '/api/';
 currentDateObj = null;
-let jrxcry_canvas = document.querySelector(".jrxcry_canvas1");
-let myEchart = echarts.init(jrxcry_canvas);
+
 
 function rgb(){
 	return "rgb("+rand(255,0)+","+rand(255,0)+","+rand(255,0)+")";
 }
 
-function rand(max,min){
+function rand(max, min){
 	return parseInt(Math.random()*(max-min+1))+min;
+}
+
+/**
+* 备件信息图
+*/
+function sharepartsInfoChart(chartRootElem, datas){
+	//图例数据
+	let legendData = datas.map((item,index)=>{
+		return item.type;
+	});
+	//图数据
+	let seriesData = datas.map((item,index)=>{
+		return {
+			name:item.type,
+			type:'pie',
+			center: [(12.5+(index*25)+"%"), 2.15*rem],
+			radius:[1.25*rem,1.6*rem],
+			avoidLabelOverlap: false,
+			label: {
+				normal: {
+					show: true,
+					position: 'center',
+					formatter:'库存\n\n'+item.count,
+					fontSize: 0.3 * rem
+				}
+			},
+			data:[
+				{
+					value:item.count-item.haveUse,
+					name:"今日未使用",
+					itemStyle:{
+						color:rgb()
+					}
+				},{
+					value:item.haveUse,
+					name:'今日使用',
+					info:item.option,
+					itemStyle:{
+						color: rgb()
+					},
+					label:{
+						show:true,
+						position:"outside",
+						formatter:function(params){
+							let str = "";
+							str += params.name;
+							str += "\n";
+							str += params.value;
+							str += "\n";
+							str += params.data.info;
+							return str;
+						},
+					},
+					labelLine:{
+						show:true,
+						length:30
+					}
+				}
+			]
+		}
+	});
+	let dataLabel = {
+		show:true,
+		position:"outside"
+	}
+	let opt = {
+		legend: {
+			orient: 'horizontal',
+			itemGap:0.16*rem,
+			itemWidth:0.2*rem,
+			itemHeight:0.2*rem,
+			icon:"circle",
+			x:'center',
+			data:legendData,
+			bottom:0.2*rem,
+			textStyle:{
+				color:"#ccc",
+				fontSize:0.25*rem,
+			}
+		},
+		series: seriesData
+	};
+	chartRootElem.setOption(opt);
+}
+
+
+/**
+* 备件信息列表
+*/
+function sharepartsInfoList(tb1, tb2, datas){
+	let str1 = "";
+	let str2 = "";
+	datas.slice(0,10).forEach((item,index)=>{
+		if(index<=4){
+			str1+="<tr>"
+			str1+="<td>"+item.workNum+"</td>";
+			str1+="<td>"+item.workUser+"</td>";
+			str1+="<td>"+item.group+"</td>";
+			str1+="<td>"+item.workContent+"</td>";
+			str1+="<td>"+item.purpose+"</td>";
+			str1+="</tr>";
+		}else{
+			str2+="<tr>"
+			str2+="<td>"+item.workNum+"</td>";
+			str2+="<td>"+item.workUser+"</td>";
+			str2+="<td>"+item.group+"</td>";
+			str2+="<td>"+item.workContent+"</td>";
+			str2+="<td>"+item.purpose+"</td>";
+			str2+="</tr>";
+		}
+	});
+	tb1.html(str1);
+	tb2.html(str2);
 }
 
 
 //jQuery ready start
 $(function(){
 
-	setLink($(".header_left dl"));
-
+	setLink($(".header_left img"));
 	currentDateObj = $('.timeText');
 	timingDate();
 	
-	ajax(baseUrl,"sparepartsinformation").then(res=>{
-		let str1 = "";
-		let str2 = ""
-		res.data.slice(0,10).forEach((item,index)=>{
-			if(index<=4){
-				str1+="<tr>"
-				str1+="<td>"+item.workNum+"</td>";
-				str1+="<td>"+item.workUser+"</td>";
-				str1+="<td>"+item.group+"</td>";
-				str1+="<td>"+item.workContent+"</td>";
-				str1+="</tr>";
-			}else{
-				str2+="<tr>"
-				str2+="<td>"+item.workNum+"</td>";
-				str2+="<td>"+item.workUser+"</td>";
-				str2+="<td>"+item.group+"</td>";
-				str2+="<td>"+item.workContent+"</td>";
-				str2+="</tr>";
-			}
-		})
-		$(".tb1 tbody").html(str1);
-		$(".tb2 tbody").html(str2);
+	ajax(baseUrl,"sparepartsinformation").then(res => {
+		sharepartsInfoList($(".tb1 tbody"), $(".tb2 tbody"), res.data.dataList);
+		sharepartsInfoChart(echarts.init($(".jrxcry_canvas1").get(0)),res.data.dataChart);
 	});
 
-
-	ajax(baseUrl,"spareechart").then(res => {
-		let legendData = res.data.map((item,index)=>{
-			return item.type;
-		});
-		let seriesData = res.data.map((item,index)=>{
-			return {
-				name:item.type,
-				type:'pie',
-				center: [(12.5+(index*25)+"%"), 2.15*rem],
-				radius:[1.25*rem,1.6*rem],
-				avoidLabelOverlap: false,
-				label: {
-					normal: {
-						show: true,
-						position: 'center',
-						formatter:'库存\n\n'+item.count
-					}
-				},
-				data:[
-					{
-						value:item.count-item.haveUse,
-						name:"今日未使用",
-						itemStyle:{
-							color:rgb()
-						}
-					},{
-						value:item.haveUse,
-						name:'今日使用',
-						info:item.option,
-						itemStyle:{
-							color: rgb()
-						},
-						label:{
-							show:true,
-							position:"outside",
-							formatter:function(params){
-								console.log(params);
-								let str = "";
-								str += params.name;
-								str += "\n";
-								str += params.value;
-								str += "\n";
-								str += params.data.info;
-								return str;
-							},
-						},
-						labelLine:{
-							show:true,
-							length:30
-							
-						}
-					}
-				]
-			}
-		})
-		let dataLabel = {
-			show:true,
-			position:"outside"
-		}
-		let opt = {
-					legend: {
-						orient: 'horizontal',
-						itemGap:0.16*rem,
-						itemWidth:0.2*rem,
-						itemHeight:0.2*rem,
-						icon:"circle",
-						x:'center',
-						data:legendData,
-						bottom:0.2*rem,
-						textStyle:{
-							color:"#ccc",
-							fontSize:0.25*rem,
-						}
-					},
-					series: seriesData
-				};
-		myEchart.setOption(opt);
-	});
 
 }); //jQuery ready end;
