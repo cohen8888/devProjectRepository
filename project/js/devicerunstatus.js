@@ -135,7 +135,7 @@ function drawBarChart(chartRootElem, xColumNameData, seriesData, columnarColor){
         			textStyle: {
 			            color: 'white',
 			            fontSize:0.5 * rem
-			         }
+			        }
         		}
         	},
 	        itemStyle: {

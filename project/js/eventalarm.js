@@ -4,38 +4,21 @@
 * 
 */
 baseUrl = baseUrl + "/api/";
+let lineColors = ['#F2DEF2', '#E8D897', '#AAD5B3', '#83F0FE', '#D6B9F2'];
+let eventDataCache = [];
+let pageSize = 16
 
-$(function(){
-	setLink($(".header_left img"));
 
-	currentDateObj = $('.timeText');
-	timingDate();
-
-	var container = $("#container");
-	var myChart = echarts.init(container.get(0));
-	var option = null;
-	ajax(baseUrl,"eventAlarm").then(res=>{
-		console.log(res);
-		let str1 = ""
-		res.data.tableVal.slice(0,16).forEach((item,index)=>{
-				str1+="<tr>"
-				str1+="<td>"+(index+1)+"</td>";
-				str1+="<td>"+item.alarmType+"</td>";
-				str1+="<td>"+item.alarmContent+"</td>";
-				str1+="<td>"+item.alarmDatetime+"</td>";
-				str1+="<td>"+item.submitUsername+"</td>";				
-				str1+="<td>"+item.traceUsername+"</td>";
-				str1+="<td>"+item.status+"</td>";
-				str1+="</tr>";
-		})
-		$(".tb1 tbody").html(str1);
-	
-	var colors = ['red', 'yellow', 'blue','green'];
-
-	var xAxisItem =  res.data.echartVal[0].val.map((item,index)=>{
+/**
+*
+* 事件类型折线图
+*/
+function generateChart(datas, chartRootElem){
+	let xAxisItem =  datas.echartVal[0].val.map((item,index)=>{
 		return item.time;
-	});   //图表x轴区间及刻度名称
-	var dataOpt = res.data.echartVal.map((item,index)=>{
+	});
+	//图表x轴区间及刻度名称
+	var dataOpt = datas.echartVal.map((item,index)=>{
 		var obj = {
 			 name:item.type,
 			 type:"line",
@@ -44,9 +27,9 @@ $(function(){
 			 })
 		}
 		return obj;
-	})
-	option = {
-    	color: colors,
+	});
+	let option = {
+    	color: lineColors,
 	    tooltip: {
 	        trigger: 'none',
 	        axisPointer: {
@@ -69,7 +52,7 @@ $(function(){
 				width:0.3 * rem
 			},
 			bottom:'0',
-			data:res.data.echartVal.map((item,index) => {
+			data:datas.echartVal.map((item,index) => {
 				return item.type;
 			})
 	    },
@@ -113,7 +96,6 @@ $(function(){
 	            },
 	            data: xAxisItem
 	        }
-	        
 	    ],
 	    yAxis: [
 	        {
@@ -144,7 +126,80 @@ $(function(){
 	};
 
 	if (option && typeof option === "object") {
-	    myChart.setOption(option, true);
+	    chartRootElem.setOption(option, true);
 	}
-});
-	})//jquery ready end;
+
+}
+
+/**
+* 事件告警数据列表
+*/
+function generateTableList(data, tableElem){
+	tableElem.children().remove();		
+	let str1 = ""
+	pageSize = data.length > pageSize ? pageSize : data.length;
+
+	data.slice(0, pageSize).forEach((item,index)=>{
+			str1+="<tr>"
+			str1+="<td>"+(index+1)+"</td>";
+			str1+="<td>"+item.alarmType+"</td>";
+			str1+="<td>"+item.alarmContent+"</td>";
+			str1+="<td>"+item.alarmDatetime+"</td>";
+			str1+="<td>"+item.submitUsername+"</td>";				
+			str1+="<td>"+item.traceUsername+"</td>";
+			str1+="<td>"+item.status+"</td>";
+			str1+="</tr>";
+	})
+	tableElem.html(str1);
+}
+
+function generateQryListData(data, selectElem){
+	selectElem.children().remove();
+	selectElem.append('<option value="default" >事件类型</option>');
+	data.forEach((elem, index) => {
+		selectElem.append('<option value="'+elem+'" >'+elem+'</option>');
+	})
+}
+/**
+* 获取数据去除重复
+*/
+function ArrayAppointColUnique(colName, arrs){
+	var results = [];
+    var keys = {};
+    for (var i = 0; i < arrs.length; i++) {
+        var val = arrs[i][colName];
+        if (!keys[val]) {
+            keys[val] = true;
+            results.push(val);
+        }
+    }
+    return results;
+}
+
+$(function(){
+
+	setLink($(".header_left img"));
+	currentDateObj = $('.timeText');
+	timingDate();
+
+	var container = $("#container");
+	var myChart = echarts.init(container.get(0));
+	var option = null;
+	ajax(baseUrl,"eventAlarm").then(res=>{
+		eventDataCache = res.data.tableVal;
+		generateQryListData(ArrayAppointColUnique('alarmType', eventDataCache), $('#eventType'));
+		$('#eventType').on('change', (event) => {
+			let findEventType = event.target.value;
+			let findResult = [];
+			for(let i = 0, len = eventDataCache.length; i < len; i++){
+				if (findEventType == eventDataCache[i]['alarmType']){
+					findResult.push(eventDataCache[i]);
+				}
+			}
+			generateTableList(findResult, $(".tb1 tbody"));
+		})
+		generateTableList(res.data.tableVal, $(".tb1 tbody"));
+	 	generateChart(res.data, myChart)
+	
+	});
+}); //jquery ready end;

@@ -6,7 +6,7 @@ function setData(data,opt){
 	return opt;
 }
 let deviceRunStatusChartColors = ['#38DABB','#00D3FE','#3B92DA','#663FA5','#511862'];
-
+let monitoryPointCacheData = [];
 /**
 * 日常现场图对象1
 */
@@ -489,7 +489,6 @@ function eventAlarmChart(datas){
 
 
 	datas.list.forEach((item,index)=>{
-		console.log(item);
 		$(".pie_eachrts5 ul")
 		.append($("<li></li>").css("width",item.value/sum*100+"%")
 			.append($("<div>"+item.value+"</div>").css("background",color[index]).attr("class","kitem")).
@@ -565,7 +564,7 @@ function realtimeMonitoring(chartRootElem, datas){
 	});
 	console.log(xAxisItem);*/
 	//图表x轴区间及刻度名称
-	let seriesData = datas.list.map(item=>{
+	let seriesData = datas.map(item=>{
 		let obj = {};
 		obj.type = "line",
 		obj.name = item.watchLine;
@@ -603,7 +602,7 @@ function realtimeMonitoring(chartRootElem, datas){
                 fontSize:0.15*rem
             },
             bottom:0,
-	        data:datas.list.map(item=>{return item.watchLine})
+	        data:datas.map(item=>{return item.watchLine})
 	    },
 	    grid: {
 	        top: 0.10*rem,
@@ -683,6 +682,19 @@ function safeHiddenTroubleTableList(rootElem, datas){
 	rootElem.html(str);
 }
 
+/**
+* 每次从后端获取数据后初始化监控点数据
+*
+*/
+function initMonitoryPoint(qryMonitoryRootElem, data){
+	monitoryPointCacheData = data;
+	qryMonitoryRootElem.children().remove();
+	qryMonitoryRootElem.append('<option value="default" >请选择监控点</option>');
+	for(var i = 0, len = data.length; i < len; i++){
+		qryMonitoryRootElem.append('<option value="'+data[i]['watchLine']+'" >'+data[i]['watchLine']+'</option>');
+	}
+}
+
 $(function(){
 	currentDateObj = $('.timeText');
 	timingDate();
@@ -711,9 +723,24 @@ $(function(){
 		//人员信息图
 		let mypersonInfoEchart = echarts.init(document.querySelector(".pie_eachrts6"));
 		personInfoChart(mypersonInfoEchart, res.data.ryxx);
+
+		initMonitoryPoint($('#monitoryPoint') ,res.data.ssjk.list);
+		$('#monitoryPoint').on('change', (event) => {
+			let key = event.target.value;
+			let result = [];
+			if (key != null){
+				for(var i = 0, len = monitoryPointCacheData.length; i < len ;i++){
+					if (key == monitoryPointCacheData[i]['watchLine']){
+						result.push(monitoryPointCacheData[i]);
+						break;
+					}
+				}
+				realtimeMonitoring(myrealtimeMonitoringChart, result);
+			}
+		});
 		//实时监控
 		var myrealtimeMonitoringChart = echarts.init($("#indexMonitoring").get(0));
-		realtimeMonitoring(myrealtimeMonitoringChart, res.data.ssjk);
+		realtimeMonitoring(myrealtimeMonitoringChart, res.data.ssjk.list);
 		//安全隐患
 		safeHiddenTroubleTableList($(".tb2 tbody"), res.data.aqyh);
 	});

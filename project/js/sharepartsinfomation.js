@@ -100,6 +100,8 @@ function sharepartsInfoChart(chartRootElem, datas){
 * 备件信息列表
 */
 function sharepartsInfoList(tb1, tb2, datas){
+	tb1.children().remove();
+	tb2.children().remove();
 	let str1 = "";
 	let str2 = "";
 	datas.slice(0,10).forEach((item,index)=>{

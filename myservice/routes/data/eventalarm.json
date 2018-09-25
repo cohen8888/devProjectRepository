@@ -11,7 +11,7 @@
 	},
 	{
 		"orderNum":"01",
-		"alarmType":"类型一",
+		"alarmType":"类型二",
 		"alarmContent":"内容一",
 		"alarmDatetime":"12:23:00",
 		"submitUsername":"张三",
@@ -20,7 +20,7 @@
 	},
 	{
 		"orderNum":"01",
-		"alarmType":"类型一",
+		"alarmType":"类型二",
 		"alarmContent":"内容一",
 		"alarmDatetime":"12:23:00",
 		"submitUsername":"张三",
@@ -46,7 +46,16 @@
 	},
 	{
 		"orderNum":"01",
-		"alarmType":"类型一",
+		"alarmType":"类型三",
+		"alarmContent":"内容一",
+		"alarmDatetime":"12:23:00",
+		"submitUsername":"张三",
+		"traceUsername":"李四",
+		"status":"正常"
+	},
+	{
+		"orderNum":"01",
+		"alarmType":"类型三",
 		"alarmContent":"内容一",
 		"alarmDatetime":"12:23:00",
 		"submitUsername":"张三",
@@ -82,16 +91,7 @@
 	},
 	{
 		"orderNum":"01",
-		"alarmType":"类型一",
-		"alarmContent":"内容一",
-		"alarmDatetime":"12:23:00",
-		"submitUsername":"张三",
-		"traceUsername":"李四",
-		"status":"正常"
-	},
-	{
-		"orderNum":"01",
-		"alarmType":"类型一",
+		"alarmType":"类型三",
 		"alarmContent":"内容一",
 		"alarmDatetime":"12:23:00",
 		"submitUsername":"张三",
