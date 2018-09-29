@@ -28,6 +28,7 @@ function renderTableData(rootElem, data, attrs){
 *
 */
 function viewpagerVideo(urls, playElem){
+	console.log(urls);
     var vLen = urls.length; 
     var curr = 0; 
     var video = $('.map');
@@ -56,11 +57,14 @@ $(function(){
 
 	currentDateObj = $('.timeText');
 	timingDate();
-
+	ajax({
+		
+	})
 	$.get(baseUrl, (res) => {
-		let data = JSON.parse(res).data;
 
-		console.log(data)
+		//let data = JSON.parse(res).data;
+		console.log(res)
+
 		viewpagerVideo(data.mapUrls, $('.map'));
 
 		renderTableData($('.section_left_top table') 
