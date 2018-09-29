@@ -3,7 +3,7 @@
 * date : 2018-09-03
 * 
 */
-baseUrl = baseUrl + "/api/";
+
 let lineColors = ['#F2DEF2', '#E8D897', '#AAD5B3', '#83F0FE', '#D6B9F2'];
 let eventDataCache = [];
 let pageSize = 16
@@ -185,7 +185,7 @@ $(function(){
 	var container = $("#container");
 	var myChart = echarts.init(container.get(0));
 	var option = null;
-	ajax(baseUrl,"eventAlarm").then(res=>{
+	ajax(baseUrl, "interf02").then(res=>{
 		eventDataCache = res.data.tableVal;
 		generateQryListData(ArrayAppointColUnique('alarmType', eventDataCache), $('#eventType'));
 		$('#eventType').on('change', (event) => {

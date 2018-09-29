@@ -3,7 +3,7 @@
 *
 */
 
-baseUrl = baseUrl + "/api/";
+baseUrl = baseUrl + "interf01";
 currentDateObj = null;
 
 /**
@@ -57,7 +57,7 @@ $(function(){
 	currentDateObj = $('.timeText');
 	timingDate();
 
-	$.get(baseUrl + "dailylive", (res) => {
+	$.get(baseUrl, (res) => {
 		let data = JSON.parse(res).data;
 
 		console.log(data)

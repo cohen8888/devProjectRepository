@@ -2,7 +2,7 @@
 * 
 *
 */
-baseUrl = baseUrl + "/api/";
+
 currentDateObj = null;
 
 function info(opt){
@@ -179,7 +179,7 @@ $(function(){
 	currentDateObj = $('.timeText');
 	timingDate();
 
-	ajax(baseUrl,"personnelinfomation").then(res => {
+	ajax(baseUrl,"interf04").then(res => {
 		info(res.data);
 		setCanvas(res.data);
 	});

@@ -4,7 +4,7 @@
  */
 
 //接口地址
-let baseUrl = "http://localhost:3000";
+let baseUrl = "http://39.104.135.24:8081/UTSP_INTER/screen.do?submitFlag=";
 let currentDateObj = null;
 
 let rem = document.documentElement.style.fontSize.substr(0,document.documentElement.style.fontSize.length-2)*1;

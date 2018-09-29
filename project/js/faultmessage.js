@@ -3,7 +3,6 @@
 * date : 2018-09-15
 * 
 */
-baseUrl = baseUrl + "/api/";
 
 let colors = ['#D8DA03', '#1CD38D', '#00A1E8','#7FCDF6','#EB6976','#F57223'];	//饼形图的颜色
 let cacheData = [];
@@ -143,7 +142,7 @@ $(function(){
 	timingDate();
 
 	//从后端获取数据
-	ajax(baseUrl,"faultmessage").then(res => {
+	ajax(baseUrl,"interf06").then(res => {
 		res.data.forEach((elem, index) => {
 			cacheData.push(elem.faultCode);
 		});
