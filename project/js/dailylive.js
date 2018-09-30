@@ -74,6 +74,7 @@ $(function(){
 			,["faultNum"
 			,"faultCode"
 			,"faultDescription"
+			,"reporter"
 			,"reportDatetime"
 			,"state"
 			,"checkMan"

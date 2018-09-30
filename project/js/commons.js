@@ -29,7 +29,6 @@ function ajax(baseUrl,file){
   return new Promise((resolve,reject)=>{
     let xhr = new XMLHttpRequest();
     let url = !file ? baseUrl :  baseUrl + file;
-    console.log(url);
     xhr.open("get" ,url ,true);
     xhr.send();
     xhr.onreadystatechange = function(){

@@ -1,479 +1,442 @@
 {
-	"rcxc":{
-		"maintain":{
-			"title":"维修",
-			"list":[{
-					"name":"维修",
-					"code":"maintaim",
-					"value":20
-				},
-				{
-					"name":"故障",
-					"code":"malfunction",
-					"value":10
-				}]
-		},
-		"malfunction":{
-			"title":"故障",
-			"list":[{
-					"name":"已排查",
-					"code":"hasCheck",
-					"value":40
-				},
-				{
-					"name":"排查中",
-					"code":"checking",
-					"value":10
-				},
-				{
-					"name":"已转工单",
-					"code":"workOrder",
-					"value":10
-				}]
-		},
-		"list":[{
-			"checkLine":"1",
-			"status":"巡检中",
-			"resultCode":"default",
-			"result":"正常"
-		},{
-			"checkLine":"2",
-			"status":"已完成",
-			"resultCode":"waring",
-			"result":"停检"
-		},
-		{
-			"checkLine":"3",
-			"status":"已完成",
-			"resultCode":"jg",
-			"result":"异常"
-		},
-		{
-			"checkLine":"4",
-			"status":"巡检中",
-			"resultCode":"1",
-			"result":"正常"
-		}]
-	},
-	"bzjx":{
-		"rack":{
-			"first":{
-				"name":"Lee",
-				"workId":"123123",
-				"score":"100"
-			},
-			"second":{
-				"name":"Zhang",
-				"workId":"123124",
-				"score":"90"
-			},
-			"third":{
-				"name":"Wang",
-				"workId":"123125",
-				"score":"80"
-			}
-		},
-		"list":[
-			{
-				"group":"班组1",
-				"data":[
-					{
-						"name":"进行中",
-						"value":8
-					},
-					{
-						"name":"故障",
-						"value":12
-					},
-					{
-						"name":"停工",
-						"value":25
-					}
-				]
-			},
-			{
-				"group":"班组2",
-				"data":[
-					{
-						"name":"进行中",
-						"value":7
-					},
-					{
-						"name":"故障",
-						"value":6
-					},
-					{
-						"name":"停工",
-						"value":2
-					}
-				]
-			},
-			{
-				"group":"班组3",
-				"data":[
-					{
-						"name":"进行中",
-						"value":21
-					},
-					{
-						"name":"故障",
-						"value":12
-					},
-					{
-						"name":"停工",
-						"value":17
-					}
-				]
-			},
-			{
-				"group":"班组4",
-				"data":[
-					{
-						"name":"进行中",
-						"value":15
-					},
-					{
-						"name":"故障",
-						"value":19
-					},
-					{
-						"name":"停工",
-						"value":35
-					}
-				]
-			}
-		]
-	},
-	"sbzt":{
-		"list":[
-			{
-				"type":"运行状态",
-				"data":[
-					{
-						"name":"运行中",
-						"value":"15"
-					},{
-						"name":"故障处理中",
-						"value":"15"
-					},{
-						"name":"停车",
-						"value":"15"
-					},{
-						"name":"a设备",
-						"value":"10"
-					},{
-						"name":"b设备",
-						"value":"10"
-					}
-				]
-			},
-			{
-				"type":"设备类别",
-				"data":[
-					{
-						"name":"某某设备",
-						"value":"15"
-					},{
-						"name":"某某设备",
-						"value":"15"
-					},{
-						"name":"某某设备",
-						"value":"15"
-					},{
-						"name":"某某设备",
-						"value":"30"
-					}
-				]
-			},
-			{
-				"type":"故障信息",
-				"data":[
-					{
-						"name":"运行中",
-						"value":"15"
-					},{
-						"name":"故障处理中",
-						"value":"15"
-					},{
-						"name":"停车",
-						"value":"15"
-					},{
-						"name":"某某设备",
-						"value":"15"
-					}
-				]
-			},
-			{
-				"type":"备件信息",
-				"data":[
-					{
-						"name":"某某设备",
-						"value":"15"
-					},{
-						"name":"某某设备",
-						"value":"15"
-					},{
-						"name":"某某设备",
-						"value":"15"
-					},{
-						"name":"b设备",
-						"value":"15"
-					}
-				]
-			}
-		]
-	},
-	"sjgj":{
-		"list":[
-			{
-				"name":"监测告警",
-				"value":20
-			},
-			{
-				"name":"安全事件",
-				"value":10
-			},
-			{
-				"name":"隐患风险",
-				"value":18
-			},
-			{
-				"name":"安防报警",
-				"value":10
-			}
-		]
-	},
-	"ryxx":{
-		"workGroup":"一组",
-		"workSum":30,
-		"workCount":27
-	},
-	"aqyh":{
-		"list":[
-			{
-				"troubleCode":1,
-				"findTime":"09.18",
-				"troubleContent":"螺丝松动",
-				"findWorker":"杠精",
-				"findWorkerGroup":"一班"
-			},
-			{
-				"troubleCode":2,
-				"findTime":"09.18",
-				"troubleContent":"螺丝松动",
-				"findWorker":"杠精",
-				"findWorkerGroup":"一班"
-			},
-			{
-				"troubleCode":3,
-				"findTime":"09.18",
-				"troubleContent":"螺丝松动",
-				"findWorker":"杠精",
-				"findWorkerGroup":"一班"
-			},
-			{
-				"troubleCode":4,
-				"findTime":"09.18",
-				"troubleContent":"螺丝松动",
-				"findWorker":"杠精",
-				"findWorkerGroup":"一班"
-			},
-			{
-				"troubleCode":5,
-				"findTime":"09.18",
-				"troubleContent":"螺丝松动",
-				"findWorker":"杠精",
-				"findWorkerGroup":"一班"
-			},
-			{
-				"troubleCode":6,
-				"findTime":"09.18",
-				"troubleContent":"螺丝松动",
-				"findWorker":"杠精",
-				"findWorkerGroup":"一班"
-			},
-			{
-				"troubleCode":7,
-				"findTime":"09.18",
-				"troubleContent":"螺丝松动",
-				"findWorker":"杠精",
-				"findWorkerGroup":"一班"
-			}
-		]
-	},
-	"ssjk":{
-		"list":[
-			{
-				"watchLine":"监控点1",
-				"data":[
-					{
-						"time":"00:00",
-						"value":"5"
-					},
-					{
-						"time":"02:00",
-						"value":"35"
-					},
-					{
-						"time":"04:00",
-						"value":"55"
-					},
-					{
-						"time":"06:00",
-						"value":"15"
-					},
-					{
-						"time":"08:00",
-						"value":"6"
-					},
-					{
-						"time":"10:00",
-						"value":"1"
-					},
-					{
-						"time":"12:00",
-						"value":"8"
-					},
-					{
-						"time":"14:00",
-						"value":"2"
-					},
-					{
-						"time":"16:00",
-						"value":"3"
-					},
-					{
-						"time":"18:00",
-						"value":"4"
-					},
-					{
-						"time":"20:00",
-						"value":"8"
-					},
-					{
-						"time":"22:00",
-						"value":"1"
-					},
-					{
-						"time":"24:00",
-						"value":"0"
-					}
-				]
-			},
-			{
-				"watchLine":"监控点2",
-				"data":[
-					{
-						"time":"00:00",
-						"value":"2"
-					},
-					{
-						"time":"02:00",
-						"value":"20"
-					},
-					{
-						"time":"04:00",
-						"value":"30"
-					},
-					{
-						"time":"06:00",
-						"value":"40"
-					},
-					{
-						"time":"08:00",
-						"value":"34"
-					},
-					{
-						"time":"10:00",
-						"value":"43"
-					},
-					{
-						"time":"12:00",
-						"value":"22"
-					},
-					{
-						"time":"14:00",
-						"value":"33"
-					},
-					{
-						"time":"16:00",
-						"value":"12"
-					},
-					{
-						"time":"18:00",
-						"value":"21"
-					},
-					{
-						"time":"20:00",
-						"value":"25"
-					},
-					{
-						"time":"22:00",
-						"value":"2"
-					},
-					{
-						"time":"24:00",
-						"value":"0"
-					}
-				]
-			},
-			{
-				"watchLine":"监控点3",
-				"data":[
-					{
-						"time":"00:00",
-						"value":"15"
-					},
-					{
-						"time":"02:00",
-						"value":"15"
-					},
-					{
-						"time":"04:00",
-						"value":"16"
-					},
-					{
-						"time":"06:00",
-						"value":"17"
-					},
-					{
-						"time":"08:00",
-						"value":"18"
-					},
-					{
-						"time":"10:00",
-						"value":"19"
-					},
-					{
-						"time":"12:00",
-						"value":"25"
-					},
-					{
-						"time":"14:00",
-						"value":"35"
-					},
-					{
-						"time":"16:00",
-						"value":"6"
-					},
-					{
-						"time":"18:00",
-						"value":"7"
-					},
-					{
-						"time":"20:00",
-						"value":"8"
-					},
-					{
-						"time":"22:00",
-						"value":"9"
-					},
-					{
-						"time":"24:00",
-						"value":"0"
-					}
-				]
-			}
-		]
-	}
-}
+    "aqyh": {
+      "list": [
+        {
+          "findTime": "2018-09-10 10:21:43",
+          "findWorker": "孙祥",
+          "findWorkerGroup": "一班组",
+          "troubleCode": "001",
+          "troubleContent": "管道破损泄露"
+        },
+        {
+          "findTime": "2018-09-10 11:11:43",
+          "findWorker": "李大海",
+          "findWorkerGroup": "一班组",
+          "troubleCode": "004",
+          "troubleContent": "松动未加固"
+        },
+        {
+          "findTime": "2018-09-11 12:10:43",
+          "findWorker": "李语轩",
+          "findWorkerGroup": "二班组",
+          "troubleCode": "005",
+          "troubleContent": "一氧化碳检测值超标"
+        }
+      ]
+    },
+    "bzjx": {
+      "list": [
+        {
+          "data": [
+            {
+              "name": "进行中",
+              "value": "18"
+            },
+            {
+              "name": "故障",
+              "value": "12"
+            },
+            {
+              "name": "停工",
+              "value": "15"
+            }
+          ],
+          "group": "一班组"
+        },
+        {
+          "data": [
+            {
+              "name": "进行中",
+              "value": "18"
+            },
+            {
+              "name": "故障",
+              "value": "12"
+            },
+            {
+              "name": "停工",
+              "value": "15"
+            }
+          ],
+          "group": "二班组"
+        },
+        {
+          "data": [
+            {
+              "name": "进行中",
+              "value": "18"
+            },
+            {
+              "name": "故障",
+              "value": "12"
+            },
+            {
+              "name": "停工",
+              "value": "15"
+            }
+          ],
+          "group": "三班组"
+        }
+      ],
+      "rack": {
+        "first": {
+          "name": "王川川",
+          "score": "100",
+          "workId": "001"
+        },
+        "second": {
+          "name": "赵东",
+          "score": "90",
+          "workId": "004"
+        },
+        "third": {
+          "name": "王铁",
+          "score": "80",
+          "workId": "009"
+        }
+      }
+    },
+    "rcxc": {
+      "list": [
+        {
+          "checkLine": "路线1",
+          "result": "正常",
+          "resultCode": "roo1",
+          "status": "巡检中"
+        },
+        {
+          "checkLine": "路线2",
+          "result": "停检",
+          "resultCode": "roo2",
+          "status": "已完成"
+        },
+        {
+          "checkLine": "路线3",
+          "result": "异常",
+          "resultCode": "roo3",
+          "status": "已完成"
+        },
+        {
+          "checkLine": "路线4",
+          "result": "正常",
+          "resultCode": "roo4",
+          "status": "巡检中"
+        }
+      ],
+      "maintain": {
+        "list": [
+          {
+            "code": "r001",
+            "name": "维修",
+            "value": "254"
+          },
+          {
+            "code": "f001",
+            "name": "故障",
+            "value": "10"
+          }
+        ],
+        "title": "维修"
+      },
+      "malfunction": {
+        "list": [
+          {
+            "code": "t01",
+            "name": "已排查",
+            "value": "40"
+          },
+          {
+            "code": "t02",
+            "name": "排查中",
+            "value": "30"
+          },
+          {
+            "code": "t03",
+            "name": "已转工单",
+            "value": "15"
+          }
+        ],
+        "title": "故障"
+      }
+    },
+    "ryxx": {
+      "workCount": "20",
+      "workGroup": "一班组",
+      "workSum": "30"
+    },
+    "sbzt": {
+      "list": [
+        {
+          "data": [
+            {
+              "name": "运行中",
+              "value": "15"
+            },
+            {
+              "name": "故障处理中",
+              "value": "15"
+            },
+            {
+              "name": "停车",
+              "value": "15"
+            },
+            {
+              "name": "风机设备",
+              "value": "15"
+            }
+          ],
+          "type": "运行状态"
+        },
+        {
+          "data": [
+            {
+              "name": "机电设备",
+              "value": "15"
+            },
+            {
+              "name": "照明设备",
+              "value": "23"
+            },
+            {
+              "name": "排水设备",
+              "value": "12"
+            },
+            {
+              "name": "监测设备",
+              "value": "32"
+            }
+          ],
+          "type": "设备类别"
+        },
+        {
+          "data": [
+            {
+              "name": "停工",
+              "value": "15"
+            },
+            {
+              "name": "故障",
+              "value": "15"
+            },
+            {
+              "name": "运行中",
+              "value": "15"
+            }
+          ],
+          "type": "故障信息"
+        },
+        {
+          "data": [
+            {
+              "name": "备件设备一",
+              "value": "15"
+            },
+            {
+              "name": "备件设备二",
+              "value": "15"
+            },
+            {
+              "name": "备件设备三",
+              "value": "15"
+            }
+          ],
+          "type": "备件信息"
+        }
+      ]
+    },
+    "sjgj": {
+      "list": [
+        {
+          "name": "监测告警",
+          "value": 10
+        },
+        {
+          "name": "安全事件",
+          "value": 10
+        },
+        {
+          "name": "隐患风险",
+          "value": 5
+        },
+        {
+          "name": "安防报警",
+          "value": 2
+        }
+      ]
+    },
+    "ssjk": {
+      "list": [
+        {
+          "data": [
+            {
+              "time": "0:00",
+              "value": "18"
+            },
+            {
+              "time": "2:00",
+              "value": "16"
+            },
+            {
+              "time": "4:00",
+              "value": "5"
+            },
+            {
+              "time": "6:00",
+              "value": "10"
+            },
+            {
+              "time": "8:00",
+              "value": "10"
+            },
+            {
+              "time": "10:00",
+              "value": "13"
+            },
+            {
+              "time": "12:00",
+              "value": "8"
+            },
+            {
+              "time": "14:00",
+              "value": "4"
+            },
+            {
+              "time": "16:00",
+              "value": "4"
+            },
+            {
+              "time": "18:00",
+              "value": "3"
+            },
+            {
+              "time": "20:00",
+              "value": "14"
+            },
+            {
+              "time": "22:00",
+              "value": "19"
+            },
+            {
+              "time": "24:00",
+              "value": "8"
+            }
+          ],
+          "watchLine": "监测点1"
+        },
+        {
+          "data": [
+            {
+              "time": "0:00",
+              "value": "0"
+            },
+            {
+              "time": "2:00",
+              "value": "19"
+            },
+            {
+              "time": "4:00",
+              "value": "11"
+            },
+            {
+              "time": "6:00",
+              "value": "4"
+            },
+            {
+              "time": "8:00",
+              "value": "2"
+            },
+            {
+              "time": "10:00",
+              "value": "7"
+            },
+            {
+              "time": "12:00",
+              "value": "18"
+            },
+            {
+              "time": "14:00",
+              "value": "19"
+            },
+            {
+              "time": "16:00",
+              "value": "5"
+            },
+            {
+              "time": "18:00",
+              "value": "10"
+            },
+            {
+              "time": "20:00",
+              "value": "12"
+            },
+            {
+              "time": "22:00",
+              "value": "9"
+            },
+            {
+              "time": "24:00",
+              "value": "0"
+            }
+          ],
+          "watchLine": "监测点2"
+        },
+        {
+          "data": [
+            {
+              "time": "0:00",
+              "value": "5"
+            },
+            {
+              "time": "2:00",
+              "value": "8"
+            },
+            {
+              "time": "4:00",
+              "value": "7"
+            },
+            {
+              "time": "6:00",
+              "value": "3"
+            },
+            {
+              "time": "8:00",
+              "value": "8"
+            },
+            {
+              "time": "10:00",
+              "value": "11"
+            },
+            {
+              "time": "12:00",
+              "value": "0"
+            },
+            {
+              "time": "14:00",
+              "value": "9"
+            },
+            {
+              "time": "16:00",
+              "value": "15"
+            },
+            {
+              "time": "18:00",
+              "value": "17"
+            },
+            {
+              "time": "20:00",
+              "value": "3"
+            },
+            {
+              "time": "22:00",
+              "value": "12"
+            },
+            {
+              "time": "24:00",
+              "value": "13"
+            }
+          ],
+          "watchLine": "监测点3"
+        }
+      ]
+    }
+  }

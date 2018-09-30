@@ -4,7 +4,7 @@
 * 
 */
 
-baseUrl = baseUrl + "/api/devicerunstatus";
+baseUrl = baseUrl +  "/api/devicerunstatus";
 
 /**
 * 生成表格数据

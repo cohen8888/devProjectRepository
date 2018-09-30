@@ -1,5 +1,6 @@
 baseUrl = baseUrl + "/api/index";
-function setData(data,opt){
+
+function setData(data ,opt){
 	for( k in data){
 		opt[k] = data[k];
 	}
@@ -7,6 +8,7 @@ function setData(data,opt){
 }
 let deviceRunStatusChartColors = ['#38DABB','#00D3FE','#3B92DA','#663FA5','#511862'];
 let monitoryPointCacheData = [];
+
 /**
 * 日常现场图对象1
 */
@@ -123,9 +125,8 @@ function generateDailyLive1Chart(chartRootElem, datas){
 * 日常现场图对象2
 */
 function generateDailyLive2Chart(chartRootElem, datas){
-	//颜色对象
-	let colorObj = {
-		"hasCheck":{itemStyle:{
+	console.log(datas);
+	let colorValues = [{itemStyle:{
         	color: {
 			    type: 'linear',
 			    x: 0,
@@ -146,19 +147,26 @@ function generateDailyLive2Chart(chartRootElem, datas){
 	    	label:{
     			color:"rgb(224,230,117)"
     		}
-		},
-		"checking":{itemStyle:{
+		},{itemStyle:{
             	color:"rgb(233,106,121)"
             }
-		},
-		"workOrder":{
+		},{
 			itemStyle:{color:"rgb(174,126,249)"}
-		}
-	}
+		}]
+	
+	let colorObj = {}
+	//颜色对象
+	datas.list.forEach((elem,index) => {
+		console.log(elem);
+		colorObj[elem['code']] = colorValues[index];
+	});
 	let legendData = datas.list.map((item,index) => {return item.name});
 	let seriesData = datas.list.map((item,index)=>{
-		return setData(item,colorObj[item.code]);
+		console.log(item.code)
+		console.log(colorObj)
+		return setData(item, colorObj[item.code]);
 	});
+
 	let option = {
 		title:{
 			text:"故障",
@@ -735,5 +743,3 @@ $(function(){
 		safeHiddenTroubleTableList($(".tb2 tbody"), res.data.aqyh);
 	});
 });
-
-
