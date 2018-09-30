@@ -7,7 +7,7 @@
 let lineColors = ['#F2DEF2', '#E8D897', '#AAD5B3', '#83F0FE', '#D6B9F2'];
 let eventDataCache = [];
 let pageSize = 16
-
+baseUrl = baseUrl + "/api/eventalarm";
 
 /**
 *
@@ -31,10 +31,7 @@ function generateChart(datas, chartRootElem){
 	let option = {
     	color: lineColors,
 	    tooltip: {
-	        trigger: 'none',
-	        axisPointer: {
-	            type: 'cross'
-	        }
+	        trigger: 'item',
 	    },
 		grid: {
 			left: '5%',//距离div左边的距离
@@ -60,6 +57,7 @@ function generateChart(datas, chartRootElem){
 	        {
 	        	
 	            type: 'category',
+	            boundaryGap:false,
 	            axisLine: {
 	                onZero: false,
 	                lineStyle: {
@@ -185,7 +183,7 @@ $(function(){
 	var container = $("#container");
 	var myChart = echarts.init(container.get(0));
 	var option = null;
-	ajax(baseUrl, "interf02").then(res=>{
+	ajax(baseUrl).then(res=>{
 		eventDataCache = res.data.tableVal;
 		generateQryListData(ArrayAppointColUnique('alarmType', eventDataCache), $('#eventType'));
 		$('#eventType').on('change', (event) => {

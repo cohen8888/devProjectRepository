@@ -4,7 +4,8 @@
  */
 
 //接口地址
-let baseUrl = "http://39.104.135.24:8081/UTSP_INTER/screen.do?submitFlag=";
+//let baseUrl = "http://39.104.135.24:8081/UTSP_INTER/screen.do?submitFlag=";
+let baseUrl = "http://localhost:3000";
 let currentDateObj = null;
 
 let rem = document.documentElement.style.fontSize.substr(0,document.documentElement.style.fontSize.length-2)*1;
@@ -27,7 +28,9 @@ function setLink(elem){
 function ajax(baseUrl,file){
   return new Promise((resolve,reject)=>{
     let xhr = new XMLHttpRequest();
-    xhr.open("get",baseUrl+file,true);
+    let url = !file ? baseUrl :  baseUrl + file;
+    console.log(url);
+    xhr.open("get" ,url ,true);
     xhr.send();
     xhr.onreadystatechange = function(){
       if(xhr.readyState == 4){

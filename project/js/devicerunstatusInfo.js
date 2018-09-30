@@ -4,7 +4,7 @@
 * 
 */
 
-baseUrl = baseUrl + "/api/";
+baseUrl = baseUrl + "/api/devicerunstatus";
 
 /**
 * 生成表格数据
@@ -31,7 +31,7 @@ $(function(){
 	setLink($(".header_left img"));
 	currentDateObj = $('.timeText');
 	timingDate();
-	ajax(baseUrl,"devicerunstatus").then(res => {
+	ajax(baseUrl).then(res => {
 		let str1 = "";
 		generateTableData($(".tb1 tbody"), res.data.otherData, function(event){
 			var e = event || window.event;

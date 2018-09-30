@@ -8,6 +8,11 @@ let colors = ['#D8DA03', '#1CD38D', '#00A1E8','#7FCDF6','#EB6976','#F57223'];	//
 let cacheData = [];
 let cacheAllData = [];
 let pageSize = 14;
+baseUrl = baseUrl + "/api/faultmessage";
+
+/**
+* 生成图形
+*/
 function genarateChart(chartRootElem, datas){
 
 	let option = {
@@ -142,7 +147,7 @@ $(function(){
 	timingDate();
 
 	//从后端获取数据
-	ajax(baseUrl,"interf06").then(res => {
+	ajax(baseUrl).then(res => {
 		res.data.forEach((elem, index) => {
 			cacheData.push(elem.faultCode);
 		});

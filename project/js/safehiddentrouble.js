@@ -4,7 +4,7 @@
 * 
 */
 
-baseUrl = baseUrl + "/api/";
+baseUrl = baseUrl + "/api/safehiddentrouble";
 let changeDataTimeInterval = 3000;								//切换数据时间
 let getChartDataTimeInterval = 15000;							//从后端取数据的间隔时间	
 let pageSize = 5;												//表格显示最大数据
@@ -217,7 +217,7 @@ function handlerData(data, pageSize){
 */
 function getBackendData(myChart, myChartPie){
 	clearInterval(timeId);
-	ajax(baseUrl,"safehiddentrouble").then(res => {
+	ajax(baseUrl).then(res => {
 		hiddentroubleFindListData = res.data.hiddenTroubleFindListData;
 		hiddentroubleCheckListData = res.data.hiddenTroubleCheckListData;
 

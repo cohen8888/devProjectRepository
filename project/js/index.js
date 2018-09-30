@@ -1,4 +1,4 @@
-baseUrl = baseUrl + "/api/";
+baseUrl = baseUrl + "/api/index";
 function setData(data,opt){
 	for( k in data){
 		opt[k] = data[k];
@@ -49,7 +49,6 @@ function generateDailyLive1Chart(chartRootElem, datas){
 		                    offset: 1, color: 'rgb(64,33,86)' // 100% 处的颜色
 		                }],
 		                globalCoord: false //缺省为 false
-
 		            }
 		        },
 				label:{
@@ -486,8 +485,6 @@ function eventAlarmChart(datas){
 	datas.list.forEach(item=>{
 		sum += item.value
 	})
-
-
 	datas.list.forEach((item,index)=>{
 		$(".pie_eachrts5 ul")
 		.append($("<li></li>").css("width",item.value/sum*100+"%")
@@ -559,10 +556,6 @@ function realtimeMonitoring(chartRootElem, datas){
 	let colors = ['#FFD5D9', '#FFD837', '#92DB85','#D6B9F2'];
 	let xAxisItem = ['00:00', '02:00','04:00','06:00','08:00','10:00','12:00','14:00',
         '16:00','18:00','20:00','22:00','24:00'];
-	/*var xAxisItem =  datas.list[0].data.map((item,index)=>{
-		return item.time;
-	});
-	console.log(xAxisItem);*/
 	//图表x轴区间及刻度名称
 	let seriesData = datas.map(item=>{
 		let obj = {};
@@ -590,11 +583,8 @@ function realtimeMonitoring(chartRootElem, datas){
 
 	let option = {
 		color: colors,
-	    tooltip: {
-	        trigger: 'none',
-	        axisPointer: {
-	            type: 'cross'
-	        }
+	  	tooltip: {
+	        trigger: 'item',
 	    },
 	    legend: {
 	    	 textStyle:{
@@ -605,8 +595,8 @@ function realtimeMonitoring(chartRootElem, datas){
 	        data:datas.map(item=>{return item.watchLine})
 	    },
 	    grid: {
-	        top: 0.10*rem,
-	        bottom: 0.8*rem
+	        top: 0.10 * rem,
+	        bottom: 0.8 * rem
 	    },
 	    xAxis: [
 	        {
@@ -699,7 +689,7 @@ $(function(){
 	currentDateObj = $('.timeText');
 	timingDate();
 	
-	ajax(baseUrl,"index").then(res=>{
+	ajax(baseUrl).then(res=>{
 		//日常现场图1
 		let myDaliyLive1Echart = echarts.init($(".pie_eachrts1").get(0));
 		generateDailyLive1Chart(myDaliyLive1Echart, res.data.rcxc.maintain);

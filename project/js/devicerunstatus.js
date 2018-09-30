@@ -4,7 +4,7 @@
 * date : 2018-09-03
 * 
 */
-
+baseUrl = baseUrl + "/api/devicerunstatus";
 let availableTags = [];
 let getDataTimeInterval = 100000;		//设置获取数据的时间间隔
 let cacheData = [];
@@ -208,7 +208,7 @@ function filterData(findKey){
 */
 function renderPage(myBarChart, myPieChart){
 	//从后端获取数据
-	ajax(baseUrl,"interf03").then(res => {
+	ajax(baseUrl).then(res => {
 		let categoryInfo = calcCavnasData(res.data.otherData);
 		
 		cacheData = res.data.otherData;		//从后端缓存的数据

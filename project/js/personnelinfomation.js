@@ -1,9 +1,9 @@
-/**
-* 
-*
-*/
+
 
 currentDateObj = null;
+
+baseUrl = baseUrl + "/api/personnelinfomation";
+
 
 function info(opt){
 	let str = "";
@@ -168,7 +168,7 @@ function setCanvas(obj){
 		        }
 		    ]
 		}
-		myEchart.setOption({title,legend,series})	
+		myEchart.setOption({title,legend,series});
 	})
 }
 
@@ -179,7 +179,7 @@ $(function(){
 	currentDateObj = $('.timeText');
 	timingDate();
 
-	ajax(baseUrl,"interf04").then(res => {
+	ajax(baseUrl).then(res => {
 		info(res.data);
 		setCanvas(res.data);
 	});

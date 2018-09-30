@@ -7,7 +7,7 @@
 */
 
 //初始化变量
-baseUrl = baseUrl + "/api/";
+baseUrl = baseUrl + "/api/realtimemonitoring";
 currentDateObj = null;
 //环境检测类型
 let monitoringTypes = ['环境监测', '设备监测', '本体监测'];
@@ -46,30 +46,33 @@ function genLengedData(datas){
 
 function genSeriesObjects(datas, lengeds){
 	var result = [];
-	for (var i = 0, len = datas.length > pageSize ? pageSize : datas.length; i < len; i++){
-		var obj = {};
-		obj['name'] = lengeds[i];
-		obj['type'] = 'line';
-		obj['data'] = datas[i]['data'];
-		obj['smooth'] = false;
-		obj['areaStyle'] = {
-            color: {
-                type: 'linear',
-                x: 0,
-                y: 0,
-                x2: 0,
-                y2: 1,
-                colorStops: [{
-                    offset: 0, color: '#301B55' // 0% 处的颜色
-                }, {
-                    offset: 1, color: '#3F2351' // 100% 处的颜色
-                }],
-                globalCoord: false // 缺省为 false
+	if (datas){
+		for (var i = 0, len = datas.length > pageSize ? pageSize : datas.length; i < len; i++){
+			var obj = {};
+			obj['name'] = lengeds[i];
+			obj['type'] = 'line';
+			obj['data'] = datas[i]['data'];
+			obj['smooth'] = false;
+			obj['areaStyle'] = {
+				color: {
+					type: 'linear',
+					x: 0,
+					y: 0,
+					x2: 0,
+					y2: 1,
+					colorStops: [{
+						offset: 0, color: '#301B55' // 0% 处的颜色
+					}, {
+						offset: 1, color: '#3F2351' // 100% 处的颜色
+					}],
+					globalCoord: false // 缺省为 false
 
-            }
-        }
-		result.push(obj);
+				}
+			}
+			result.push(obj);
+		}
 	}
+	
 	return result;
 }
 
@@ -78,16 +81,21 @@ function genSeriesObjects(datas, lengeds){
 */
 function generateList(elem, datas, catagory){
 	elem.children().remove();
-	for(var i = 0,len = datas.length > pageSize ? pageSize : datas.length; i < len; i++){
-		var tr = $('<tr></tr>');
-		tr.append('<td>'+datas[i]['monitoringPoint']+'</td>')
-			.append('<td>'+catagory+'</td>')
-			.append('<td>'+datas[i]['monitoringValue']+'</td>')
-			.append('<td>'+datas[i]['upperLimit']+'</td>')
-			.append('<td>'+datas[i]['lowerLimit']+'</td>')
-			.append('<td>'+datas[i]['sataus']+'</td>');
-			elem.append(tr);
-	}	
+	if (datas){
+		for(var i = 0,len = datas.length > pageSize ? pageSize : datas.length; i < len; i++){
+			var tr = $('<tr></tr>');
+			tr.append('<td>'+datas[i]['monitoringPoint']+'</td>')
+				.append('<td>'+catagory+'</td>')
+				.append('<td>'+datas[i]['monitoringValue']+'</td>')
+				.append('<td>'+datas[i]['upperLimit']+'</td>')
+				.append('<td>'+datas[i]['lowerLimit']+'</td>')
+				.append('<td>'+datas[i]['sataus']+'</td>');
+				elem.append(tr);
+		}
+	}else{
+		var tr = $('<tr><td>没有数据!</td></tr>');
+		elem.append(tr);
+	}
 }
 
 /**
@@ -96,16 +104,17 @@ function generateList(elem, datas, catagory){
 function generateMonitorLineColor(lineData){
 	let  preinstallColors = ['#F2DEF2', '#E8D897', '#AAD5B3', '#83F0FE', '#D6B9F2'];
 	let result = [];
-	for (var i = 0; i < lineData.length; i++){
-		var current = lineData[i]['monitoringValue'].slice(0,lineData[i]['monitoringValue'].length-2)
-		var lowWarning = lineData[i]['lowerLimit'].slice(0,lineData[i]['lowerLimit'].length-2)
-		if (current < lowWarning){
-			result.push('rgb(255, 0, 0)');
-		}else{
-			result.push(preinstallColors[i]);	
+	if(lineData){
+		for (var i = 0; i < lineData.length; i++){
+			var current = lineData[i]['monitoringValue'].slice(0,lineData[i]['monitoringValue'].length-2)
+			var lowWarning = lineData[i]['lowerLimit'].slice(0,lineData[i]['lowerLimit'].length-2)
+			if (current < lowWarning){
+				result.push('rgb(255, 0, 0)');
+			}else{
+				result.push(preinstallColors[i]);	
+			}
 		}
 	}
-
 	return result;
 }
 
@@ -123,10 +132,7 @@ function initChart(chartsObj, lcolors, xAxisItem, legendData, seriesData){
 	option = {
     	color:lcolors,
 	    tooltip:{
-	        trigger: 'none',
-	        axisPointer: {
-	            type: 'cross'
-	        }
+	        trigger: 'item'
 	    },
 	    legend: {
 	    	 textStyle:{
@@ -239,7 +245,7 @@ function registerSearchFn(elem, type, datas, chart, lineColor,tab){
 }
 
 function fromBackendData(chartsObjs,tablelists){
-	ajax(baseUrl,"realtimemonitoring").then(res => {
+	ajax(baseUrl).then(res => {
 		genderAutoData(res.data, monitoringTypes);	//获取监测点模糊搜索数据
 		$('#environmentMonitorPoint').autocomplete({
 			source : environmentMonitorPointAvailableTags

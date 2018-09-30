@@ -1,5 +1,5 @@
 
-baseUrl = baseUrl + '/api/';
+baseUrl = baseUrl + '/api/sparepartsinformation';
 currentDateObj = null;
 
 
@@ -135,7 +135,7 @@ $(function(){
 	currentDateObj = $('.timeText');
 	timingDate();
 	
-	ajax(baseUrl,"sparepartsinformation").then(res => {
+	ajax(baseUrl).then(res => {
 		sharepartsInfoList($(".tb1 tbody"), $(".tb2 tbody"), res.data.dataList);
 		sharepartsInfoChart(echarts.init($(".jrxcry_canvas1").get(0)),res.data.dataChart);
 	});

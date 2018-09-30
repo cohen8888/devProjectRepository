@@ -3,7 +3,7 @@
 *
 */
 
-baseUrl = baseUrl + "interf01";
+baseUrl = baseUrl + "/api/dailylive";
 currentDateObj = null;
 
 /**
@@ -28,7 +28,6 @@ function renderTableData(rootElem, data, attrs){
 *
 */
 function viewpagerVideo(urls, playElem){
-	console.log(urls);
     var vLen = urls.length; 
     var curr = 0; 
     var video = $('.map');
@@ -38,7 +37,6 @@ function viewpagerVideo(urls, playElem){
 	});  
      
     function play() {
-    	console.log(playElem.get(0))
         playElem.get(0).src = urls[curr];
         playElem.get(0).load();   
         playElem.get(0).play();  
@@ -57,16 +55,9 @@ $(function(){
 
 	currentDateObj = $('.timeText');
 	timingDate();
-	ajax({
-		
-	})
-	$.get(baseUrl, (res) => {
-
-		//let data = JSON.parse(res).data;
-		console.log(res)
-
+	ajax(baseUrl).then(res => {
+		let data = res.data;
 		viewpagerVideo(data.mapUrls, $('.map'));
-
 		renderTableData($('.section_left_top table') 
 			,data.data.maintain.data
 			,['workOrderCode'
