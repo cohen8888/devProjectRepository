@@ -224,12 +224,12 @@ function getBackendData(myChart, myChartPie){
     	renderTableData($(".tb1 tbody"), hiddentroubleFindListData, 
     		["potentialRisk","potentialRiskDate","findUser","group","potentialRiskContent"]);
     	renderTableData($(".tb2 tbody"), 
-				hiddentroubleCheckListData,['potentialRisk','checkUser','finishDate','group','status']);
+				hiddentroubleCheckListData,['potentialRisk','finishDate','checkUser','group','status']);
     	timeId = setInterval(function(){
     		hiddentroubleFindListData = handlerData(hiddentroubleFindListData, pageSize);
     		hiddentroubleCheckListData = handlerData(hiddentroubleCheckListData, pageSize);
     		renderTableData($(".tb1 tbody"), hiddentroubleFindListData, ["potentialRisk","potentialRiskDate","findUser","group","potentialRiskContent"]);
-    		renderTableData($(".tb2 tbody"), hiddentroubleCheckListData,['potentialRisk','checkUser','finishDate','group','status']);
+    		renderTableData($(".tb2 tbody"), hiddentroubleCheckListData,['potentialRisk','finishDate','checkUser','group','status']);
     	}, changeDataTimeInterval);
     	renderCharts(myChart, chartColumn, xColumNameData, res.data.hiddenTroubleValueData);
     	renderPieCharts(myChartPie,  res.data.hiddenTroubleFindData);
