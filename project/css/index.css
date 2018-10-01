@@ -99,14 +99,22 @@ header .timeText{
 }
 .rcTable{
 	font-size:0.30rem;
+	table-layout: fixed;
 }
 .rcTable tr{
-	line-height: 0.8rem;
+	line-height: 1rem;
 	text-align: center;
 }
 .rcTable tbody tr:nth-of-type(odd){
 	background: rgba(22,60,120,0.8)
 }
+
+table tr td{
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
+
 .default{
 	color:rgb(138,181,207)
 }

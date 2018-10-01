@@ -13,13 +13,19 @@ let monitoryPointCacheData = [];
 * 日常现场图对象1
 */
 function generateDailyLive1Chart(chartRootElem, datas){
-	let legendData = datas.list.map((item,index)=>{return item.name});
+	let sum = 0;
+	let legendData = datas.list.map((item,index)=>{
+		sum += Number(item.value);
+		return item.name
+	});
 	let seriesData = datas.list.map((item,index)=>{
 		if(item.name === "故障"){
 			return setData(item,{
 				itemStyle:{
 					color:"rgb(233,106,121)"
-				},
+				},label:{
+					show:true
+				}
 			})
 		}else{
 			return setData(item,{
@@ -38,7 +44,7 @@ function generateDailyLive1Chart(chartRootElem, datas){
 						globalCoord: false // 缺省为 false
 					}
 				},
-				 areaStyle: {
+				areaStyle: {
 		            color: {
 		                type: 'linear',
 		                x: 0,
@@ -51,11 +57,9 @@ function generateDailyLive1Chart(chartRootElem, datas){
 		                    offset: 1, color: 'rgb(64,33,86)' // 100% 处的颜色
 		                }],
 		                globalCoord: false //缺省为 false
+
 		            }
-		        },
-				label:{
-					color:"rgb(224,230,117)"
-				}
+		        }
 			})
 		}
 	})
@@ -73,7 +77,29 @@ function generateDailyLive1Chart(chartRootElem, datas){
 		},
 		tooltip: {
 			trigger: 'item',
-			formatter: "{a} <br/>{b}: {c} ({d}%)"
+			show:false,
+			formatter: "{a} <br/>{b}: {c} ({d}%)",
+			textStyle: {
+				fontSize : 0.5 * rem
+			}
+		},
+		graphic:{
+			elements:[{
+				type:'text',
+				left: sum > 99 ? 1.2 * rem : 1.43 * rem,
+				top:1.7*rem,
+				zlevel:100,
+				z:2,
+				style:{
+					text:sum,
+					textAlign:'center',
+					fill:'rgb(139,235,152)',
+					shadowColor:100,
+					width:40,
+					height:40,
+					fontSize : 1 * rem
+				}
+			},]
 		},
 		legend: {
 	        orient: 'horizontal',
@@ -91,82 +117,94 @@ function generateDailyLive1Chart(chartRootElem, datas){
 	    },series: [{
 	        name : '维修/故障',
 	        type : 'pie',
-	        radius : ["center", 1.25*rem],
+	        radius : ["center", 1.45*rem],
 	        center : ["center",2.20*rem],
 	        avoidLabelOverlap: false,
 	        label: {
 	            normal: {
-	                show: false,
-	                position: 'center',
-	                formatter:'{c}'
+	                show: true,
+	                position: 'inner',
+	                formatter:'{c}\n{d}%'
 	            },
 	            emphasis: {
 	            	show:true,
 	                textStyle: {
-	                    fontSize: 0.8 * rem,
+	                    fontSize: 0.4 * rem,
 	                    fontWeight: 700,
 	                }
 	            }
 	        },
 	        labelLine: {
 	            normal: {
-	                show: false
+	                show: false,
+	                length:0,
+	                length:0
 	            }
 	        },
 	        data:seriesData
 	    }]
 	}
 	if (option && typeof option === "object") {
+		/*
+		//zrender 的方法
+		var _zr = chartRootElem.getZr();  
+		_zr.add(new echarts.graphic.Text({
+			style: {              
+				x: _zr.getWidth() / 2,  
+				y: _zr.getHeight() / 2.5,  
+				color:'#666', 
+				text: '公里',  
+				textAlign: 'center',   
+				textFont : 'bold 20px verdana red'  
+			}
+		})); */ 
 	    chartRootElem.setOption(option, true);
-	}
+	 }
 }
 
 /**
 * 日常现场图对象2
 */
 function generateDailyLive2Chart(chartRootElem, datas){
-	console.log(datas);
-	let colorValues = [{itemStyle:{
-        	color: {
-			    type: 'linear',
-			    x: 0,
-			    y: 0,
-			    x2: 1,
-			    y2: 1,
-			    colorStops: [{
-			        offset: 0, color: "rgb(223,230,118)" // 0% 处的颜色
-			    }, {
-			        offset: 1, color: "rgb(139,235,152)" // 100% 处的颜色
-			    }],
-			    globalCoord: false // 缺省为 false
-				}
-    		},
-	    	emphasis:{
-	    		show:true
-	    	},
-	    	label:{
-    			color:"rgb(224,230,117)"
-    		}
-		},{itemStyle:{
-            	color:"rgb(233,106,121)"
-            }
-		},{
-			itemStyle:{color:"rgb(174,126,249)"}
-		}]
-	
-	let colorObj = {}
 	//颜色对象
+	let colorObj = {}
+	let colorValues = [{itemStyle:{
+    	color: {
+		    type: 'linear',
+		    x: 0,
+		    y: 0,
+		    x2: 1,
+		    y2: 1,
+		    colorStops: [{
+		        offset: 0, color: "rgb(223,230,118)" // 0% 处的颜色
+		    }, {
+		        offset: 1, color: "rgb(139,235,152)" // 100% 处的颜色
+		    }],
+		    globalCoord: false // 缺省为 false
+			}
+		},
+    	emphasis:{
+    		show:true
+    	},
+    	label:{
+			color:"rgb(224,230,117)"
+		}
+	},{itemStyle:{
+        	color:"rgb(233,106,121)"
+        }
+	},{
+		itemStyle:{color:"rgb(174,126,249)"}
+	}];
+	let sum = 0;
 	datas.list.forEach((elem,index) => {
-		console.log(elem);
 		colorObj[elem['code']] = colorValues[index];
 	});
+
 	let legendData = datas.list.map((item,index) => {return item.name});
 	let seriesData = datas.list.map((item,index)=>{
-		console.log(item.code)
-		console.log(colorObj)
+		sum += Number(item.value);
 		return setData(item, colorObj[item.code]);
 	});
-
 	let option = {
 		title:{
 			text:"故障",
@@ -180,9 +218,28 @@ function generateDailyLive2Chart(chartRootElem, datas){
 			x:"center"
 		},
 	    tooltip: {
+	    	show:false,
 	        trigger: 'item',
 	        formatter: "{a} <br/>{b}: {c} ({d}%)"
 	    },
+	    graphic:{
+			elements:[{
+				type:'text',
+				left: sum > 99 ? 1.2 * rem : 1.43 * rem,
+				top:1.7*rem,
+				zlevel:100,
+				z:2,
+				style:{
+					text:sum,
+					textAlign:'center',
+					fill:'rgb(139,235,152)',
+					shadowColor:100,
+					width:40,
+					height:40,
+					fontSize : 1 * rem
+				}
+			},]
+		},
 	    legend: {
 	        orient: 'horizontal',
 	        itemGap:2,
@@ -201,23 +258,24 @@ function generateDailyLive2Chart(chartRootElem, datas){
 	        {
 	            name:'维修/故障',
 	            type:'pie',
-	            radius: ["center", 1.25*rem],
+	            radius: ["center", 1.45*rem],
 	            center:["center",2.2*rem],
 	            avoidLabelOverlap: false,
-	            label: {
-	                normal: {
-	                    show: false,
-	                    position: 'center',
-	                    formatter:'{c}'
-	                },
-	                emphasis: {
-                    	show:true,
-	                    textStyle: {
-	                        fontSize: 0.8*rem,
-	                        fontWeight: 700,
-	                    }
-	                }
-	            },
+				label: {
+					    show: true,
+					    position: 'inner',
+					    color:'white',
+					    formatter:'{c}\n{d}%',
+	
+					emphasis: {
+						show:true,
+					    textStyle: {
+					    	color:'#fff',
+					        fontSize: 0.4 * rem,
+					        fontWeight: 700,
+					    }
+					}
+				},
 	            labelLine: {
 	                normal: {
 	                    show: false
@@ -268,7 +326,19 @@ function generateCurrentMonthGroupPerformanceChart(chartRootElem, datas){
 		}
 	}
 	let opttion = {
-		xAxis:  {
+		title:{
+			x:'left',
+			padding: [0, 10],
+			y:'top',
+			text:'单位：人',
+			align:'center',
+			verticalAlign:'middle',
+			textStyle:{
+				color:'#FFF',
+				fontSize:0.25*rem
+			}
+		},
+		xAxis : {
 			type: 'category',
 			splitLine:{
 				show:false,
@@ -507,6 +577,7 @@ function eventAlarmChart(datas){
 * 人学员信息图
 */
 function personInfoChart(chartRootElem, datas){
+	console.log(datas);
 	let option = {
 		series: [{
 			type:'pie',
@@ -526,7 +597,7 @@ function personInfoChart(chartRootElem, datas){
 				itemStyle:{
 					color:"#f27432"
 				}
-			},{
+				},{
 				value:datas.workCount,
 				name:'今日当班',
 				itemStyle:{
@@ -591,6 +662,18 @@ function realtimeMonitoring(chartRootElem, datas){
 
 	let option = {
 		color: colors,
+		title:{
+			x:'left',
+			padding: [5, 10],
+			y:'top',
+			text:'单位℃',
+			align:'center',
+			verticalAlign:'middle',
+			textStyle:{
+				color:'#FFF',
+				fontSize:0.25*rem
+			}
+		},
 	  	tooltip: {
 	        trigger: 'item',
 	    },
@@ -604,7 +687,7 @@ function realtimeMonitoring(chartRootElem, datas){
 	    },
 	    grid: {
 	        top: 0.10 * rem,
-	        bottom: 0.8 * rem
+	        bottom: 0.9 * rem
 	    },
 	    xAxis: [
 	        {
@@ -620,7 +703,7 @@ function realtimeMonitoring(chartRootElem, datas){
 	                interval:0,
 	                rotate:50,
 	                color:'white',
-	                fontSize:0.15*rem,
+	                fontSize:0.17*rem,
 	                align:'right',
 	                formatter: function (value, index) {
 	                    //使用函数模板，函数参数分别为刻度数值（类目），刻度的索引
@@ -651,8 +734,8 @@ function realtimeMonitoring(chartRootElem, datas){
 	            type: 'value',
 	            axisLabel:{
 	                color:'white',
-	                fontSize:0.15*rem,
-	                formatter: '{value} ℃'
+	                fontSize:0.2*rem,
+	                formatter: '{value}'
 	            }
 
 	        }
