@@ -4,8 +4,8 @@
 * 
 */
 
-baseUrl = baseUrl +  "/api/devicerunstatus";
-
+//baseUrl = baseUrl + "interf03";
+baseUrl = baseUrl + "/api/devicerunstatus";
 /**
 * 生成表格数据
 *

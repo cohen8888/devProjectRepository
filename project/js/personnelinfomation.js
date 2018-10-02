@@ -1,9 +1,8 @@
 
 
-currentDateObj = null;
-
+//baseUrl = baseUrl + "interf04";
 baseUrl = baseUrl + "/api/personnelinfomation";
-
+currentDateObj = null;
 
 function info(opt){
 	let str = "";
@@ -26,7 +25,9 @@ function setCanvas(obj){
 		canvasItem.className = "canvasItem";
 		canvasBox.appendChild(canvasItem);
 		canvasItem.style.width = 1/obj.group.length*100+"%";
+
 		let myEchart = echarts.init(canvasItem);
+		
 		let title = {
 			text:item.groupName,
 			textStyle:{
@@ -54,8 +55,7 @@ function setCanvas(obj){
 		}
 		let series;
 		if(item.workCount>0){
-			series = [
-		        {
+			series = [{
 		            name:item.groupName,
 		            type:'pie',
 		            center: ["center", 2.15*rem],
@@ -63,12 +63,12 @@ function setCanvas(obj){
 		            avoidLabelOverlap: false,
 		            label: {
 		                normal: {
-		                    show: false,
+		                    show: true,
 		                    position: 'center',
 		                    formatter:'总人数\n\n({c}/30)'
 		                },
 		                emphasis: {
-	                    	show:true,
+	                    	show:false,
 		                    textStyle: {
 		                        fontSize: 0.3*rem,
 		                        fontWeight: 100,
@@ -81,16 +81,18 @@ function setCanvas(obj){
 		                    show: false
 		                }
 		            },
-		            data:[
-		                {value:item.memberCount, name:'总人数',itemStyle:{
-		                	color:"rgb(215,216,24)"
+		            data:[{
+		                	value : item.memberCount,
+		                	name:'总人数',
+		                	itemStyle:{
+		                		color:"rgb(215,216,24)"
 		                }},
 		            ]
 		        },{
-		            name:item.groupName,
+		            name : item.groupName,
 		            type:'pie',
 		            center: ["center", 2.15*rem],
-		            radius:[1.25*rem,1.6*rem],
+		            radius:[1.25*rem,1.8*rem],
 		            avoidLabelOverlap: false,
 		            label: {
 		                normal: {
@@ -99,7 +101,7 @@ function setCanvas(obj){
 		                    formatter:'上班\n\n({c}/30)'
 		                },
 		                emphasis: {
-	                    	show:true,
+	                    	show:false,
 		                    textStyle: {
 		                        fontSize: 0.3*rem,
 		                        fontWeight: 100,
@@ -113,7 +115,10 @@ function setCanvas(obj){
 		                }
 		            },
 		            data:[
-		                {value:item.memberCount-item.workCount, name:'未到岗',itemStyle:{
+		                {
+		                	value : item.memberCount-item.workCount, 
+		                	name:'未到岗',
+		                	itemStyle:{
 		                	color:"rgb(215,216,24)"
 		                }},
 		                {
@@ -138,11 +143,11 @@ function setCanvas(obj){
 		            name:item.groupName,
 		            type:'pie',
 		            center: ["center", 2.15*rem],
-		            radius:[1.25*rem,1.6*rem],
+		            radius:[1.25*rem, 1.8*rem],
 		            avoidLabelOverlap: false,
 		            label: {
 		                normal: {
-		                    show: false,
+		                    show: true,
 		                    position: 'center',
 		                    formatter:'总人数\n\n({c}/30)'
 		                },
@@ -168,18 +173,43 @@ function setCanvas(obj){
 		        }
 		    ]
 		}
-		myEchart.setOption({title,legend,series});
+		myEchart.setOption({title,legend,series,avoidLabelOverlap: false});
 	})
 }
+
+function viewpagerVideo(urls, playElem){
+    var vLen = urls.length; 
+    var curr = 0; 
+
+    playElem.on('ended', function(){
+		play();
+	});  
+     
+    function play() {
+        playElem.get(0).src = urls[curr];
+        playElem.get(0).load();   
+        playElem.get(0).play();  
+        curr++;
+        if(curr >= vLen){  
+            curr = 0; //重新循环播放
+        }
+    }  
+    play();
+}
+
+ let urls = ["http://39.104.135.24:8081/public/video/rcxc.mp4", 
+	"http://39.104.135.24:8081/public/video/rcxc.mp4", 
+	"http://39.104.135.24:8081/public/video/rcxc.mp4"];
 
 //jQuery ready function start
 $(function(){
 	setLink($(".header_left img"));
-
+	//
 	currentDateObj = $('.timeText');
 	timingDate();
-
+	
 	ajax(baseUrl).then(res => {
+		viewpagerVideo(urls, $('.map'));
 		info(res.data);
 		setCanvas(res.data);
 	});

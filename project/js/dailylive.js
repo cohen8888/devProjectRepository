@@ -3,6 +3,7 @@
 *
 */
 
+//baseUrl = baseUrl + "interf01";
 baseUrl = baseUrl + "/api/dailylive";
 currentDateObj = null;
 
@@ -30,7 +31,6 @@ function renderTableData(rootElem, data, attrs){
 function viewpagerVideo(urls, playElem){
     var vLen = urls.length; 
     var curr = 0; 
-    var video = $('.map');
 
     playElem.on('ended', function(){
 		play();
@@ -52,11 +52,11 @@ function viewpagerVideo(urls, playElem){
 $(function(){
 
 	setLink($(".header_left img"));
-
 	currentDateObj = $('.timeText');
 	timingDate();
 	ajax(baseUrl).then(res => {
 		let data = res.data;
+		console.log(data.mapUrls);
 		viewpagerVideo(data.mapUrls, $('.map'));
 		renderTableData($('.section_left_top table') 
 			,data.data.maintain.data

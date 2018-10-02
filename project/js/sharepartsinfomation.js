@@ -1,4 +1,5 @@
 
+//baseUrl = baseUrl + 'interf08';
 baseUrl = baseUrl + '/api/sparepartsinformation';
 currentDateObj = null;
 
@@ -25,8 +26,8 @@ function sharepartsInfoChart(chartRootElem, datas){
 		return {
 			name:item.type,
 			type:'pie',
-			center: [(12.5+(index*25)+"%"), 2.15*rem],
-			radius:[1.25*rem,1.6*rem],
+			center: [(12.5+(index*25)+"%"), 2.45*rem],
+			radius:[1.25*rem,1.8*rem],
 			avoidLabelOverlap: false,
 			label: {
 				normal: {
@@ -62,20 +63,25 @@ function sharepartsInfoChart(chartRootElem, datas){
 							str += params.data.info;
 							return str;
 						},
+						fontStyle:0.1 * rem,
+							
 					},
 					labelLine:{
 						show:true,
-						length:30
+						length:0.1*rem
 					}
 				}
 			]
 		}
 	});
-	let dataLabel = {
-		show:true,
-		position:"outside"
-	}
 	let opt = {
+		grid: {
+			top :'middle',
+			left: '5%',//距离div左边的距离
+			right: '4%',//距离div右边的距离
+			//bottom: '5%',//距离下面
+			containLabel: true
+		},
 		legend: {
 			orient: 'horizontal',
 			itemGap:0.16*rem,

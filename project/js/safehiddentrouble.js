@@ -4,7 +4,9 @@
 * 
 */
 
-baseUrl = baseUrl + "/api/safehiddentrouble";
+//baseUrl = baseUrl + "interf05";realtimemonitoring
+baseUrl = baseUrl + "/api/realtimemonitoring";
+
 let changeDataTimeInterval = 3000;								//切换数据时间
 let getChartDataTimeInterval = 15000;							//从后端取数据的间隔时间	
 let pageSize = 5;												//表格显示最大数据
@@ -46,7 +48,7 @@ function renderCharts(chartRootElem, chartColumn, xAxisItem, datas){
 	var perilCheckData = datas.hiddenTroubleCheck;    //隐患排查数据
 	option = {
 		title:{
-			text: '隐患值',
+			text: '隐患值\n\n单位：天',
 			textStyle:{
 				color:'white',
 				verticalAlign:'top',
@@ -110,7 +112,7 @@ function renderCharts(chartRootElem, chartColumn, xAxisItem, datas){
 	            fontSize:0.3 * rem,
 	            formatter: function (value, index) {            
 	                //使用函数模板，函数参数分别为刻度数值（类目），刻度的索引
-	                return value + '天';
+	                return value;
 	            },
 	        },
 	        splitNumber:8,

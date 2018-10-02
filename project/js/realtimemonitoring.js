@@ -7,6 +7,7 @@
 */
 
 //初始化变量
+//baseUrl = baseUrl + "interf07";
 baseUrl = baseUrl + "/api/realtimemonitoring";
 currentDateObj = null;
 //环境检测类型
@@ -131,6 +132,18 @@ function initChart(chartsObj, lcolors, xAxisItem, legendData, seriesData){
 	let option = null;
 	option = {
     	color:lcolors,
+    	title:{
+			x:'left',
+			padding: [5, 0],
+			y:'top',
+			text:'单\n位\n℃',
+			align:'center',
+			verticalAlign:'middle',
+			textStyle:{
+				color:'#FFF',
+				fontSize:0.25*rem
+			}
+		},
 	    tooltip:{
 	        trigger: 'item'
 	    },
@@ -192,7 +205,7 @@ function initChart(chartsObj, lcolors, xAxisItem, legendData, seriesData){
 	            axisLabel:{
 	                color:'white',
 	                fontSize:15,
-	                formatter: '{value} ℃'
+	                formatter: '{value}'
 	            }
 	        }
 	    ],

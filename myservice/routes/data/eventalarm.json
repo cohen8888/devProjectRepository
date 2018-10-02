@@ -5,8 +5,8 @@
 		"alarmType":"类型一",
 		"alarmContent":"内容一",
 		"alarmDatetime":"12:23:00",
-		"submitUsername":"张三",
-		"traceUsername":"李四",
+		"submitUsername":"王天华",
+		"traceUsername":"李想",
 		"status":"正常"
 	},
 	{
@@ -14,8 +14,8 @@
 		"alarmType":"类型二",
 		"alarmContent":"内容一",
 		"alarmDatetime":"12:23:00",
-		"submitUsername":"张三",
-		"traceUsername":"李四",
+		"submitUsername":"王天华",
+		"traceUsername":"李想",
 		"status":"正常"
 	},
 	{
@@ -23,8 +23,8 @@
 		"alarmType":"类型二",
 		"alarmContent":"内容一",
 		"alarmDatetime":"12:23:00",
-		"submitUsername":"张三",
-		"traceUsername":"李四",
+		"submitUsername":"王天华",
+		"traceUsername":"李天一",
 		"status":"正常"
 	},
 	{
@@ -32,16 +32,16 @@
 		"alarmType":"类型一",
 		"alarmContent":"内容一",
 		"alarmDatetime":"12:23:00",
-		"submitUsername":"张三",
-		"traceUsername":"李四",
+		"submitUsername":"王天华",
+		"traceUsername":"李天一",
 		"status":"正常"
 	},{
 		"orderNum":"01",
 		"alarmType":"类型一",
 		"alarmContent":"内容一",
 		"alarmDatetime":"12:23:00",
-		"submitUsername":"张三",
-		"traceUsername":"李四",
+		"submitUsername":"王天华",
+		"traceUsername":"张孝廉",
 		"status":"正常"
 	},
 	{
@@ -49,8 +49,8 @@
 		"alarmType":"类型三",
 		"alarmContent":"内容一",
 		"alarmDatetime":"12:23:00",
-		"submitUsername":"张三",
-		"traceUsername":"李四",
+		"submitUsername":"王天华",
+		"traceUsername":"张孝廉",
 		"status":"正常"
 	},
 	{
@@ -58,8 +58,8 @@
 		"alarmType":"类型三",
 		"alarmContent":"内容一",
 		"alarmDatetime":"12:23:00",
-		"submitUsername":"张三",
-		"traceUsername":"李四",
+		"submitUsername":"王天华",
+		"traceUsername":"张孝廉",
 		"status":"正常"
 	},
 	{
@@ -67,26 +67,26 @@
 		"alarmType":"类型一",
 		"alarmContent":"内容一",
 		"alarmDatetime":"12:23:00",
-		"submitUsername":"张三",
-		"traceUsername":"李四",
+		"submitUsername":"王天华",
+		"traceUsername":"张三",
 		"status":"正常"
 	},
 	{
 		"orderNum":"01",
-		"alarmType":"类型一",
+		"alarmType":"类型二",
 		"alarmContent":"内容一",
 		"alarmDatetime":"12:23:00",
-		"submitUsername":"张三",
-		"traceUsername":"李四",
+		"submitUsername":"王天华",
+		"traceUsername":"李天一",
 		"status":"正常"
 	},
 	{
-		"orderNum":"01",
-		"alarmType":"类型一",
+		"orderNum":"03",
+		"alarmType":"类型二",
 		"alarmContent":"内容一",
 		"alarmDatetime":"12:23:00",
-		"submitUsername":"张三",
-		"traceUsername":"李四",
+		"submitUsername":"王天华",
+		"traceUsername":"李天一",
 		"status":"正常"
 	},
 	{
@@ -94,8 +94,8 @@
 		"alarmType":"类型三",
 		"alarmContent":"内容一",
 		"alarmDatetime":"12:23:00",
-		"submitUsername":"张三",
-		"traceUsername":"李四",
+		"submitUsername":"王天华",
+		"traceUsername":"李天一",
 		"status":"正常"
 	},
 	{
@@ -103,8 +103,26 @@
 		"alarmType":"类型一",
 		"alarmContent":"内容一",
 		"alarmDatetime":"12:23:00",
-		"submitUsername":"张三",
-		"traceUsername":"李四",
+		"submitUsername":"王天华",
+		"traceUsername":"李天一",
+		"status":"正常"
+	},
+	{
+		"orderNum":"01",
+		"alarmType":"类型四",
+		"alarmContent":"内容一",
+		"alarmDatetime":"12:23:00",
+		"submitUsername":"王天华",
+		"traceUsername":"李天一",
+		"status":"正常"
+	},
+	{
+		"orderNum":"01",
+		"alarmType":"类型四",
+		"alarmContent":"内容一",
+		"alarmDatetime":"12:23:00",
+		"submitUsername":"王天华",
+		"traceUsername":"李天一",
 		"status":"正常"
 	},
 	{
@@ -112,26 +130,8 @@
 		"alarmType":"类型一",
 		"alarmContent":"内容一",
 		"alarmDatetime":"12:23:00",
-		"submitUsername":"张三",
-		"traceUsername":"李四",
-		"status":"正常"
-	},
-	{
-		"orderNum":"01",
-		"alarmType":"类型一",
-		"alarmContent":"内容一",
-		"alarmDatetime":"12:23:00",
-		"submitUsername":"张三",
-		"traceUsername":"李四",
-		"status":"正常"
-	},
-	{
-		"orderNum":"01",
-		"alarmType":"类型一",
-		"alarmContent":"内容一",
-		"alarmDatetime":"12:23:00",
-		"submitUsername":"张三",
-		"traceUsername":"李四",
+		"submitUsername":"王天华",
+		"traceUsername":"李天一",
 		"status":"正常"
 	}
 	],
@@ -183,19 +183,19 @@
 			"type":"类型2",
 			"val":[{
 				"time":"00:00",
-				"val":"31"
+				"val":"1"
 			},{
 				"time":"02:00",
 				"val":"32"
 			},{
 				"time":"04:00",
-				"val":"34"
+				"val":"4"
 			},{
 				"time":"06:00",
-				"val":"32"
+				"val":"7"
 			},{
 				"time":"08:00",
-				"val":"32"
+				"val":"21"
 			},{
 				"time":"10:00",
 				"val":"32"
@@ -204,19 +204,19 @@
 				"val":"32"
 			},{
 				"time":"14:00",
-				"val":"32"
+				"val":"21"
 			},{
 				"time":"16:00",
-				"val":"32"
+				"val":"1"
 			},{
 				"time":"18:00",
-				"val":"32"
+				"val":"3"
 			},{
 				"time":"20:00",
-				"val":"32"
+				"val":"6"
 			},{
 				"time":"22:00",
-				"val":"32"
+				"val":"15"
 			},{
 				"time":"24:00",
 				"val":"32"
@@ -226,43 +226,43 @@
 			"type":"类型3",
 			"val":[{
 				"time":"00:00",
-				"val":"41"
+				"val":"0"
 			},{
 				"time":"02:00",
-				"val":"42"
+				"val":"3"
 			},{
 				"time":"04:00",
-				"val":"44"
+				"val":"8"
 			},{
 				"time":"06:00",
-				"val":"42"
+				"val":"10"
 			},{
 				"time":"08:00",
-				"val":"42"
+				"val":"15"
 			},{
 				"time":"10:00",
-				"val":"42"
+				"val":"7"
 			},{
 				"time":"12:00",
-				"val":"42"
+				"val":"8"
 			},{
 				"time":"14:00",
-				"val":"42"
+				"val":"6"
 			},{
 				"time":"16:00",
-				"val":"42"
+				"val":"5"
 			},{
 				"time":"18:00",
-				"val":"42"
+				"val":"3"
 			},{
 				"time":"20:00",
-				"val":"42"
+				"val":"2"
 			},{
 				"time":"22:00",
-				"val":"42"
+				"val":"16"
 			},{
 				"time":"24:00",
-				"val":"42"
+				"val":"1"
 			}]
 		},
 		{
@@ -272,40 +272,40 @@
 				"val":"11"
 			},{
 				"time":"02:00",
-				"val":"12"
+				"val":"5"
 			},{
 				"time":"04:00",
-				"val":"14"
+				"val":"24"
 			},{
 				"time":"06:00",
-				"val":"12"
+				"val":"32"
 			},{
 				"time":"08:00",
-				"val":"12"
+				"val":"35"
 			},{
 				"time":"10:00",
-				"val":"12"
+				"val":"36"
 			},{
 				"time":"12:00",
-				"val":"12"
+				"val":"27"
 			},{
 				"time":"14:00",
-				"val":"12"
+				"val":"25"
 			},{
 				"time":"16:00",
-				"val":"12"
+				"val":"24"
 			},{
 				"time":"18:00",
-				"val":"12"
+				"val":"22"
 			},{
 				"time":"20:00",
-				"val":"12"
+				"val":"15"
 			},{
 				"time":"22:00",
-				"val":"12"
+				"val":"5"
 			},{
 				"time":"24:00",
-				"val":"12"
+				"val":"1"
 			}]
 		}
 	]

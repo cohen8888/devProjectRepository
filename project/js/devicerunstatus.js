@@ -4,6 +4,7 @@
 * date : 2018-09-03
 * 
 */
+//baseUrl = baseUrl + "interf03";
 baseUrl = baseUrl + "/api/devicerunstatus";
 let availableTags = [];
 let getDataTimeInterval = 100000;		//设置获取数据的时间间隔
@@ -84,6 +85,18 @@ function drawBarChart(chartRootElem, xColumNameData, seriesData, columnarColor){
 	let option = null;
 	//图形显示选项，必须是个对象
 	option = {
+		title:{
+			x:'left',
+			padding: [ 0.1 * rem, 0.5 * rem],
+			y:'top',
+			text:'单位：天',
+			align:'center',
+			verticalAlign:'middle',
+			textStyle:{
+				color:'#FFF',
+				fontSize:0.25*rem
+			}
+		},
 		grid: {
 			left: '10%',
 			bottom:'15%',
@@ -117,7 +130,7 @@ function drawBarChart(chartRootElem, xColumNameData, seriesData, columnarColor){
 	        	fontSize:0.3 * rem,
 	        	formatter: function (value, index) {            
                     //使用函数模板，函数参数分别为刻度数值（类目），刻度的索引
-                    return value + '天';
+                    return value;
                 }
 	        },
 			splitLine:{

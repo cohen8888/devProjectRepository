@@ -4,11 +4,13 @@
 * 
 */
 
+//baseUrl = baseUrl + "interf06";
+baseUrl = baseUrl + "/api/faultmessage";
+
 let colors = ['#D8DA03', '#1CD38D', '#00A1E8','#7FCDF6','#EB6976','#F57223'];	//饼形图的颜色
 let cacheData = [];
 let cacheAllData = [];
 let pageSize = 14;
-baseUrl = baseUrl + "/api/faultmessage";
 
 /**
 * 生成图形

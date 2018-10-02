@@ -1,11 +1,18 @@
 baseUrl = baseUrl + "/api/index";
 
+let videoUrls = ['video/video1.mp4',
+	'video/video2.mp4',
+	'video/video3.mp4',
+	'video/video4.mp4'];
+//let videoUrls = ['http://localhost:3000/video/rcxc.mp4','http://localhost:3000/video/rcxc.mp4','http://localhost:3000/video/rcxc.mp4','http://localhost:3000/video/rcxc.mp4'];
+
 function setData(data ,opt){
 	for( k in data){
 		opt[k] = data[k];
 	}
 	return opt;
 }
+let giftImageUrls = ['img/绩效1.png', 'img/绩效2.png', 'img/绩效3.png']
 let deviceRunStatusChartColors = ['#38DABB','#00D3FE','#3B92DA','#663FA5','#511862'];
 let monitoryPointCacheData = [];
 
@@ -433,26 +440,29 @@ function generateCurrentMonthGroupPerformanceChart(chartRootElem, datas){
 	}
 }
 
+
 /**
 * 人员绩效列表
 */
 function personPerformanceList(listRoot, data){
-	let lis = `<li>
-		<img src="img/绩效1.png"/>
+
+
+	/*let lis = `<li>
+		<div id="first"></div>
 		<p>${data.first.name}</p>
 		<p>工号：${data.first.workId}</p>
 	</li>
 	<li>
-		<img src="img/绩效2.png"/>
+		<img src=""/>
 		<p>${data.second.name}</p>
 		<p>工号：${data.second.workId}</p>
 	</li>
 	<li>
-		<img src="img/绩效3.png"/>
+		<img src=""/>
 		<p>${data.third.name}</p>
 		<p>工号：${data.third.workId}</p>
 	</li>`
-	listRoot.html(lis);
+	listRoot.html(lis);*/
 }
 
 /**
@@ -577,7 +587,6 @@ function eventAlarmChart(datas){
 * 人学员信息图
 */
 function personInfoChart(chartRootElem, datas){
-	console.log(datas);
 	let option = {
 		series: [{
 			type:'pie',
@@ -776,10 +785,31 @@ function initMonitoryPoint(qryMonitoryRootElem, data){
 	}
 }
 
+
+function play(urls, playElem) {
+    playElem.src = urls;
+    playElem.load();   
+    playElem.play();
+} 
+function viewpagerVideo(urls, playElem){
+	playElem.addEventListener('ended', function(){
+		play(urls, playElem);
+	});
+	return function(){
+	    play(urls, playElem);
+	}
+}
+
+
 $(function(){
+
 	currentDateObj = $('.timeText');
 	timingDate();
 	
+	$('video').each((index, elem) => {
+			viewpagerVideo(videoUrls[index], elem)();
+	});
+
 	ajax(baseUrl).then(res=>{
 		//日常现场图1
 		let myDaliyLive1Echart = echarts.init($(".pie_eachrts1").get(0));
