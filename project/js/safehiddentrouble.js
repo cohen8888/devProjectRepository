@@ -5,14 +5,13 @@
 */
 
 //baseUrl = baseUrl + "interf05";realtimemonitoring
-baseUrl = baseUrl + "/api/realtimemonitoring";
+baseUrl = baseUrl + "/api/safehiddentrouble";
 
 let changeDataTimeInterval = 3000;								//切换数据时间
 let getChartDataTimeInterval = 15000;							//从后端取数据的间隔时间	
 let pageSize = 5;												//表格显示最大数据
 let chartColumn = ['隐患排查', '隐患发现'];	
-let xColumNameData =['00:00', '02:00','04:00','06:00','08:00','10:00',
-	'12:00','14:00','16:00','18:00','20:00','22:00','24:00'];	//图形x轴刻度标签值
+let xColumNameData =['周一', '周二','周三','周四','周五','周六','周日'];	//图形x轴刻度标签值
 let timeId = null;
 let getBackendTimeID = null;
 let hiddentroubleFindListData = null;							//隐患发现列表缓冲数据
@@ -29,11 +28,11 @@ function renderTableData(elem, datas, cols){
 	elem.children().remove();					
 	let str = "";
 	datas.slice(0, pageSize).forEach((item, index) => {
-			str+="<tr>"
-			for(var i = 0, len = cols.length; i < len; i++){
-				str += "<td>"+item[cols[i]]+"</td>"
-			}
-			str+="</tr>";
+		str+="<tr>"
+		for(var i = 0, len = cols.length; i < len; i++){
+			str += "<td>"+item[cols[i]]+"</td>"
+		}
+		str+="</tr>";
 	})
    	elem.html(str);
 }
@@ -226,12 +225,12 @@ function getBackendData(myChart, myChartPie){
     	renderTableData($(".tb1 tbody"), hiddentroubleFindListData, 
     		["potentialRisk","potentialRiskDate","findUser","group","potentialRiskContent"]);
     	renderTableData($(".tb2 tbody"), 
-				hiddentroubleCheckListData,['potentialRisk','finishDate','checkUser','group','status']);
+				hiddentroubleCheckListData,['potentialRisk','checkUser','finishDate','group','status']);
     	timeId = setInterval(function(){
     		hiddentroubleFindListData = handlerData(hiddentroubleFindListData, pageSize);
     		hiddentroubleCheckListData = handlerData(hiddentroubleCheckListData, pageSize);
     		renderTableData($(".tb1 tbody"), hiddentroubleFindListData, ["potentialRisk","potentialRiskDate","findUser","group","potentialRiskContent"]);
-    		renderTableData($(".tb2 tbody"), hiddentroubleCheckListData,['potentialRisk','finishDate','checkUser','group','status']);
+    		renderTableData($(".tb2 tbody"), hiddentroubleCheckListData,['potentialRisk','checkUser','finishDate','group','status']);
     	}, changeDataTimeInterval);
     	renderCharts(myChart, chartColumn, xColumNameData, res.data.hiddenTroubleValueData);
     	renderPieCharts(myChartPie,  res.data.hiddenTroubleFindData);

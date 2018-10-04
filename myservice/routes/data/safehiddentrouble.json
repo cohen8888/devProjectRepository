@@ -4,8 +4,8 @@
 		"groupProportion":[35, 30, 15, 20]
 	},
 	"hiddenTroubleValueData" : {
-		"hiddenTroubleFind" : [10, 3, 3, 5, 4, 30, 3, 6, 4, 7, 3, 4],
-		"hiddenTroubleCheck" : [5, 12, 11, 7, 9, 30, 45, 22, 33, 12, 11, 34]
+		"hiddenTroubleFind" : [10, 3, 3, 5, 4, 30, 3],
+		"hiddenTroubleCheck" : [5, 12, 11, 7, 9, 30, 32]
 	},
 	"hiddenTroubleFindListData" : [{
 			"potentialRisk":"A3301",

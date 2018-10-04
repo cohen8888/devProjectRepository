@@ -27,7 +27,7 @@ header{
 }
 /*本页面特有下拉列表样式*/
 select{
-	width: 2.36rem;
+	width: 3.36rem;
 	height: 0.78rem;
 	margin: 0.4rem 0rem 0.2rem 0.4rem;
 	line-height: 0.42rem;
@@ -58,7 +58,7 @@ section{
 }
 #container_1,#container_2,#container_3{
 	width: 9.9rem;
-	height: 4.7rem;
+	height: 4.8rem;
 	margin: 1.2rem auto;
 }
 .section_middle{

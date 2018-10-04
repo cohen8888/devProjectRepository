@@ -2,24 +2,9 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<link rel="stylesheet" type="text/css" href="../css/jquery-ui.min.css"/>
 		<link rel="stylesheet" type="text/css" href="../css/global.css"/>
 		<link rel="stylesheet" type="text/css" href="../css/font-awesome.min.css"/>
 		<link rel="stylesheet" type="text/css" href="../css/realtimemonitoring.css"/>
-		<style>
-			.ui-widget{
-				font-size: 0.3em;
-			}
-			.ui-autocomplete {
-		    	position: absolute;
-		    	top: 0;
-		    	left: 0;
-		    	cursor: default;
-		    	/* overflow-y:scroll; */
-		    	overflow-x:hidden; 
-		    	max-height: 300px; 
-		    }
-		</style>
 		<title>实时监测</title>
 	</head>
 	<body>
@@ -42,7 +27,10 @@
 						<p class="h3_titleText">环境监测</p>
 						<div class="keyWords">
 							<p class="h4_titleText">监测点</p>
-							<input placeholder="监测点名称" type="text" class="qryInput" id="environmentMonitorPoint">
+							<select name="environmentMonitorPointSelect" id="environmentMonitorPointSelect">
+								<option value="default" >请选择监测点</option>
+								<option value="" >1</option>
+							</select>
 						</div>
 						<div id="container_1"></div>
 						<div class="tableBox">
@@ -65,7 +53,10 @@
 						<p class="h3_titleText">设备监测</p>
 						<div class="keyWords">
 							<p class="h4_titleText">监测点</p>
-							<input placeholder="监测点名称" type="text" class="qryInput" id="equipmentMonitorPoint">
+							<select name="equipmentMonitorPointSelect" id="equipmentMonitorPointSelect" >
+								<option value="default" >请选择监测点</option>
+								<option value="" >1</option>
+							</select>
 						</div>
 						<div id="container_2"></div>
 						<div class="tableBox">
@@ -89,7 +80,10 @@
 						<p class="h3_titleText">本体监测</p>
 						<div class="keyWords">
 							<p class="h4_titleText">监测点</p>
-							<input placeholder="监测点名称" type="text" class="qryInput" id="noumenonMonitorPoint">
+							<select name="noumenonMonitorPointSelect" id="noumenonMonitorPointSelect" >
+								<option value="default" >请选择监测点</option>
+								<option value="" >1</option>
+							</select>
 						</div>
 						<div id="container_3"></div>
 						<div class="tableBox">
@@ -115,7 +109,6 @@
 	</body>
 	<script src="../js/rem.js" type="text/javascript" charset="utf-8"></script>
 	<script src="../js/jquery-3.3.1.js"></script>
-	<script src="../js/jquery-ui.min.js"></script>
 	<script src="../js/commons.js" type="text/javascript"   charset="UTF-8"></script>
 	<script src="../js/echarts.js" type="text/javascript"   charset="UTF-8"></script>
 	<script src="../js/realtimemonitoring.js" type="text/javascript" charset="UTF-8"></script>

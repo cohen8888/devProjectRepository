@@ -3,6 +3,10 @@
 //baseUrl = baseUrl + "interf04";
 baseUrl = baseUrl + "/api/personnelinfomation";
 currentDateObj = null;
+let urls = ["http://39.104.135.24:8081/public/video/ryxx.mp4", 
+	"http://39.104.135.24:8081/public/video/ryxx.mp4", 
+	"http://39.104.135.24:8081/public/video/ryxx.mp4"];
+
 
 function info(opt){
 	let str = "";
@@ -18,163 +22,157 @@ function info(opt){
 	$(".map").attr('src',opt.mapUrl);
 }
 
-function setCanvas(obj){
-	let canvasBox = document.querySelector(".canvasBox");
-	obj.group.forEach((item,index)=>{
-		let canvasItem = document.createElement("div");
-		canvasItem.className = "canvasItem";
-		canvasBox.appendChild(canvasItem);
-		canvasItem.style.width = 1/obj.group.length*100+"%";
+/**
+*
+*/
+function createChartContainerElem(rootElem, children, styles){
+	let result = {};
+	if (typeof styles == 'object' && styles instanceof Array){
+		for(let i = 0, len = styles.length; i < len; i++){
+			children.css(styles[i]);
+		}
+	}
+	rootElem.append(children);
+	return children;
+}
 
-		let myEchart = echarts.init(canvasItem);
-		
-		let title = {
-			text:item.groupName,
+
+function initChartOptionObject(datas){
+	let sum = 0;
+	let legendData = ['到岗人数',  '休息'];
+	let workStatus = '';
+	if (datas.workCount > 0){
+		workStatus = '上班';
+	}else{
+		workStatus = '休息';
+	}
+	let workColor = '#F57222';
+	let seriesData = [{
+		name : '到岗人数',
+		value : datas.workCount,
+		itemStyle:{
+			color:'#D8DA03'
+		},label:{
+			show:true
+		}
+	},{
+		name : '休息',
+		value : datas.memberCount - datas.workCount,
+		itemStyle:{
+			color: datas.workCount == 0 ? '#7FCEF4' : workColor
+		},
+		areaStyle: {
+            /*color: {
+                type: 'linear',
+                x: 0,
+                y: 0,
+                x2: 0,
+                y2: 1,
+                colorStops: [{
+                    offset: 0, color: 'rgb(101,67,97)' // 0% 处的颜色
+                }, {
+                    offset: 1, color: 'rgb(64,33,86)' // 100% 处的颜色
+                }],
+                globalCoord: false //缺省为 false
+            }*/
+        }
+	}];
+	let option = {
+		title:{
+			text:datas.groupName,
 			textStyle:{
-				color:"white",
-				fontWeight:1*rem,
-				fontSize:0.25*rem,
-				lineHeight:0.68*rem
+				color : "white",
+				fontWeight:100,
+				fontSize : 0.3 * rem,
+				lineHeight : 0.68 * rem
 			},
-			bottom:0.68*rem,
-			x:"center"
-		}
-		let legend = {
-			orient: 'horizontal',
-	        itemGap:0.16*rem,
-	        itemWidth:0.2*rem,
-	        itemHeight:0.2*rem,
-	        icon:"circle",
-	        x:'center',
-	        data:["总人数","到岗人数"],
-	        bottom:0.2*rem,
-	        textStyle:{
-	        	color:"#ccc",
-	        	fontSize:0.25*rem,
+			bottom : 0.4 * rem,
+			x : "center"
+		},
+		tooltip: {
+			trigger: 'item',
+			show:false,
+			formatter: "{a} <br/>{b}: {c} ({d}%)",
+			textStyle: {
+				fontSize : 0.5 * rem
+			}
+		},
+		graphic:{
+			elements:[{
+				type:'text',
+				left: 2 * rem,
+				top:1.7*rem,
+				zlevel:100,
+				z:2,
+				style:{
+					text: workStatus +'\n' + (datas.workCount + '/' + datas.memberCount),
+					textAlign:'center',
+					fill:'#7FCEF4',
+					shadowColor:100,
+					width:40,
+					height:40,
+					fontSize : 0.4 * rem
+				}
+			},]
+		},
+		legend: {
+	        orient: 'horizontal',
+	        itemGap : 0.16 * rem,
+	        itemWidth : 0.2 * rem,
+	        itemHeight : 0.2 * rem,
+	        icon : "circle",
+	        x : 'center',
+	        data : legendData,
+	        bottom : 0,
+	        textStyle : {
+	        	color : "#ccc",
+	        	fontSize : 0.25 * rem,
 	        }
-		}
-		let series;
-		if(item.workCount>0){
-			series = [{
-		            name:item.groupName,
-		            type:'pie',
-		            center: ["center", 2.15*rem],
-		            radius:[1.25*rem,1.6*rem],
-		            avoidLabelOverlap: false,
-		            label: {
-		                normal: {
-		                    show: true,
-		                    position: 'center',
-		                    formatter:'总人数\n\n({c}/30)'
-		                },
-		                emphasis: {
-	                    	show:false,
-		                    textStyle: {
-		                        fontSize: 0.3*rem,
-		                        fontWeight: 100,
-		                        color:"rgb(146,191,215)"
-		                    }
-		                }
-		            },
-		            labelLine: {
-		                normal: {
-		                    show: false
-		                }
-		            },
-		            data:[{
-		                	value : item.memberCount,
-		                	name:'总人数',
-		                	itemStyle:{
-		                		color:"rgb(215,216,24)"
-		                }},
-		            ]
-		        },{
-		            name : item.groupName,
-		            type:'pie',
-		            center: ["center", 2.15*rem],
-		            radius:[1.25*rem,1.8*rem],
-		            avoidLabelOverlap: false,
-		            label: {
-		                normal: {
-		                    show: false,
-		                    position: 'center',
-		                    formatter:'上班\n\n({c}/30)'
-		                },
-		                emphasis: {
-	                    	show:false,
-		                    textStyle: {
-		                        fontSize: 0.3*rem,
-		                        fontWeight: 100,
-		                        color:"rgb(146,191,215)"
-		                    }
-		                }
-		            },
-		            labelLine: {
-		                normal: {
-		                    show: false
-		                }
-		            },
-		            data:[
-		                {
-		                	value : item.memberCount-item.workCount, 
-		                	name:'未到岗',
-		                	itemStyle:{
-		                	color:"rgb(215,216,24)"
-		                }},
-		                {
-		                	value:item.workCount,
-		                	name:'到岗人数',
-		                	itemStyle:{
-			                	color: "rgb(242,114,49)"
-		                	},
-		                	emphasis:{
-		                		show:true
-		                	},
-		                	label:{
-		                		color:"rgb(224,230,117)"
-		                	}
-		                },
-		            ]
-		        }
-		    ]
-		}else{
-			series = [
-		        {
-		            name:item.groupName,
-		            type:'pie',
-		            center: ["center", 2.15*rem],
-		            radius:[1.25*rem, 1.8*rem],
-		            avoidLabelOverlap: false,
-		            label: {
-		                normal: {
-		                    show: true,
-		                    position: 'center',
-		                    formatter:'总人数\n\n({c}/30)'
-		                },
-		                emphasis: {
-	                    	show:true,
-		                    textStyle: {
-		                        fontSize: 0.3*rem,
-		                        fontWeight: 100,
-		                        color:"rgb(146,191,215)"
-		                    }
-		                }
-		            },
-		            labelLine: {
-		                normal: {
-		                    show: false
-		                }
-		            },
-		            data:[
-		                {value:item.memberCount, name:'总人数',itemStyle:{
-		                	color:"rgb(129,206,242)"
-		                }},
-		            ]
-		        }
-		    ]
-		}
-		myEchart.setOption({title,legend,series,avoidLabelOverlap: false});
-	})
+	    },series: [{
+	        type : 'pie',
+	        radius : ["center", 1.8*rem],
+	        center : ["center",2.20*rem],
+	        avoidLabelOverlap: false,
+	        label: {
+	            normal: {
+	                show: true,
+	                position: 'inner',
+	                formatter:'{d}%'
+	            },
+	            emphasis: {
+	            	show:true,
+	                textStyle: {
+	                    fontSize: 0.4 * rem,
+	                    fontWeight: 700,
+	                }
+	            }
+	        },
+	        labelLine: {
+	            normal: {
+	                show: false,
+	                length:0,
+	                length:0
+	            }
+	        },
+	        data:seriesData
+	    }]
+	}
+	console.log(datas.groupName)
+	return option;
+}
+
+
+function setCanvas(datas, chartRootElem){
+	let canvasBox = document.querySelector(".canvasBox");
+	datas.group.forEach((item,index)=>{
+		let echartContainer = createChartContainerElem(chartRootElem, 
+			$('<div class="canvasItem"></div>'), [{'width': (1 / datas.group.length) * 100 + "%"}]);
+		console.log(item);
+		let option = initChartOptionObject(item);
+
+		let myEchart = echarts.init(echartContainer.get(0));
+		myEchart.setOption(option);
+	});
 }
 
 function viewpagerVideo(urls, playElem){
@@ -183,7 +181,8 @@ function viewpagerVideo(urls, playElem){
 
     playElem.on('ended', function(){
 		play();
-	});  
+		console.log(urls[curr]);
+	});
      
     function play() {
         playElem.get(0).src = urls[curr];
@@ -197,9 +196,7 @@ function viewpagerVideo(urls, playElem){
     play();
 }
 
- let urls = ["http://39.104.135.24:8081/public/video/rcxc.mp4", 
-	"http://39.104.135.24:8081/public/video/rcxc.mp4", 
-	"http://39.104.135.24:8081/public/video/rcxc.mp4"];
+
 
 //jQuery ready function start
 $(function(){
@@ -207,13 +204,12 @@ $(function(){
 	//
 	currentDateObj = $('.timeText');
 	timingDate();
-	
+	viewpagerVideo(urls, $('.map'));
 	ajax(baseUrl).then(res => {
-		viewpagerVideo(urls, $('.map'));
+		//viewpagerVideo(urls, $('.map'));
 		info(res.data);
-		setCanvas(res.data);
+		setCanvas(res.data, $('.canvasBox'));
 	});
 });	//jQuery ready end;
 	
-
 

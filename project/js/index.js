@@ -26,6 +26,7 @@ function generateDailyLive1Chart(chartRootElem, datas){
 		return item.name
 	});
 	let seriesData = datas.list.map((item,index)=>{
+		console.log(item);
 		if(item.name === "故障"){
 			return setData(item,{
 				itemStyle:{
@@ -64,7 +65,6 @@ function generateDailyLive1Chart(chartRootElem, datas){
 		                    offset: 1, color: 'rgb(64,33,86)' // 100% 处的颜色
 		                }],
 		                globalCoord: false //缺省为 false
-
 		            }
 		        }
 			})
@@ -445,24 +445,22 @@ function generateCurrentMonthGroupPerformanceChart(chartRootElem, datas){
 * 人员绩效列表
 */
 function personPerformanceList(listRoot, data){
-
-
-	/*let lis = `<li>
-		<div id="first"></div>
+	let lis = `<li>
+		<div id="first"><img src="img/jixiao1.png"/></div>
 		<p>${data.first.name}</p>
 		<p>工号：${data.first.workId}</p>
 	</li>
 	<li>
-		<img src=""/>
+		<div id="first"><img src="img/jixiao2.png"/></div>
 		<p>${data.second.name}</p>
 		<p>工号：${data.second.workId}</p>
 	</li>
 	<li>
-		<img src=""/>
+		<div id="first"><img src="img/jixiao3.png"/></div>
 		<p>${data.third.name}</p>
 		<p>工号：${data.third.workId}</p>
 	</li>`
-	listRoot.html(lis);*/
+	listRoot.html(lis);
 }
 
 /**

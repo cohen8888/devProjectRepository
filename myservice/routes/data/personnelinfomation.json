@@ -1,9 +1,9 @@
 {
-	"mapUrl":"http://localhost:3000/video/rcxc.mp4",
+	"mapUrl":"http://39.104.135.24:8081/public/video/ryxx.mp4",
 	"group":[{
 		"groupId":"1",
 		"groupName":"一组",
-		"memberCount":30,
+		"memberCount":35,
 		"workCount":26
 	},{
 		"groupId":"2",

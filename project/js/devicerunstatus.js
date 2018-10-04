@@ -51,6 +51,7 @@ function calcCavansYData(xColumNameData, data){
 //设备类型下拉列表内容填充
 function optEquipType(categoryInfo, equipmentTypeElem){
 	equipmentTypeElem.children().remove();
+	equipmentTypeElem.append('<option value="default" >--设备名称--</option>')
 	for(category in categoryInfo){
 		equipmentTypeElem.append('<option value="' + category + '" >'+ category +'</option>')
 	}
@@ -228,6 +229,7 @@ function renderPage(myBarChart, myPieChart){
 		let xColumNameData = calcCavansColumnStyle(categoryInfo, {color: 'white'});
 		//柱状图数据，按顺序对应设备种类的名称
 		let seriesData = calcCavansYData(xColumNameData, categoryInfo);	
+
 		optEquipType(categoryInfo, $('#equipmentTypeName'));
 
 	    availableTags = getEquipmentName(res.data.otherData);
@@ -327,7 +329,12 @@ $(function(){
 			return;
 		}
 		var r = searchCatagoryData(cacheData, searchValue);
-		renderListData($(".tb1 tbody"), r);
+		if (searchValue == 'default'){
+			renderListData($(".tb1 tbody"), cacheData);
+		}else{
+			var r = searchCatagoryData(cacheData, searchValue);
+			renderListData($(".tb1 tbody"), r);
+		}
 	})
 	//搜索设备名称事件处理器
 	$("#equipmentNameAutocomplete").on('keyup',function(e){
