@@ -109,6 +109,7 @@ function generateAnnularChartData(data){
 		}
 	}
 	var j = 1;
+	console.log(key)
 	for (k in key){
 		var obj = {};
 		obj.value = key[k];

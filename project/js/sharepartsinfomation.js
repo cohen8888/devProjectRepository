@@ -1,8 +1,15 @@
 
 //baseUrl = baseUrl + 'interf08';
 baseUrl = baseUrl + '/api/sparepartsinformation';
-currentDateObj = null;
 
+let pageSize = 8;
+let dataCatagorys = ['班组1', '班组2'];
+let cacheListData = [];		//缓存列表数据
+let getDataTimeInterval = 10000;	//向后端获取数据时间间隔
+let changeDataTimeInterval = 5000;	//数据切换时间间隔
+let timeId = null;
+let colors = ['#FDA878','#FCFE89','#9BFFD9','#A3E5FF'];
+let colors1 = ['#F67324','#D8DA03','#1CD38C', '#00A1E7'];
 
 function rgb(){
 	return "rgb("+rand(255,0)+","+rand(255,0)+","+rand(255,0)+")";
@@ -12,14 +19,18 @@ function rand(max, min){
 	return parseInt(Math.random()*(max-min+1))+min;
 }
 
-
 /**
 * 备件信息图
 */
 function sharepartsInfoChart(chartRootElem, datas){
 	//图例数据
 	let legendData = datas.map((item,index)=>{
-		return item.type;
+		let obj = {};
+		obj.name = item.type;
+		obj.textStyle = {
+			color:colors[index]
+		}
+		return obj;
 	});
 	//图数据
 	let seriesData = datas.map((item,index)=>{
@@ -39,17 +50,17 @@ function sharepartsInfoChart(chartRootElem, datas){
 			},
 			data:[
 				{
-					value:item.count-item.haveUse,
+					value:item.count - item.haveUse,
 					name:"今日未使用",
 					itemStyle:{
-						color:rgb()
+						color:colors[index]
 					}
 				},{
 					value:item.haveUse,
 					name:'今日使用',
 					info:item.option,
 					itemStyle:{
-						color: rgb()
+						color: colors1[index]
 					},
 					label:{
 						show:true,
@@ -110,21 +121,24 @@ function sharepartsInfoList(tb1, tb2, datas){
 	tb2.children().remove();
 	let str1 = "";
 	let str2 = "";
-	datas.slice(0,10).forEach((item,index)=>{
-		if(index<=4){
+	datas.slice(0, pageSize).forEach((item,index)=>{
+
+		if (item.group == dataCatagorys[0]){
 			str1+="<tr>"
-			str1+="<td>"+item.workNum+"</td>";
-			str1+="<td>"+item.workUser+"</td>";
+			str1+="<td>"+item.sparepartCode+"</td>";
+			str1+="<td>"+item.sparepartName+"</td>";
+			str1+="<td>"+item.currentInventory+"</td>";
+			str1+="<td>"+item.todayReceive+"</td>";
 			str1+="<td>"+item.group+"</td>";
-			str1+="<td>"+item.workContent+"</td>";
 			str1+="<td>"+item.purpose+"</td>";
 			str1+="</tr>";
-		}else{
+		}else if(item.group == dataCatagorys[1]){
 			str2+="<tr>"
-			str2+="<td>"+item.workNum+"</td>";
-			str2+="<td>"+item.workUser+"</td>";
+			str2+="<td>"+item.sparepartCode+"</td>";
+			str2+="<td>"+item.sparepartName+"</td>";
+			str2+="<td>"+item.currentInventory+"</td>";
+			str2+="<td>"+item.todayReceive+"</td>";
 			str2+="<td>"+item.group+"</td>";
-			str2+="<td>"+item.workContent+"</td>";
 			str2+="<td>"+item.purpose+"</td>";
 			str2+="</tr>";
 		}
@@ -133,6 +147,25 @@ function sharepartsInfoList(tb1, tb2, datas){
 	tb2.html(str2);
 }
 
+function getBackendData(chartRootElem){
+	ajax(baseUrl).then(res => {
+		cacheListData = res.data.dataList;
+		sharepartsInfoList($(".tb1 tbody"), $(".tb2 tbody"), cacheListData);
+		sharepartsInfoChart(chartRootElem, res.data.dataChart);
+		//清楚定时器
+		clearInterval(timeId);	//
+		//启动定时器
+		timeId = setInterval(function(){
+			//折线图随着后端数据获取来更新
+
+			for(var i = 0; i < pageSize; i++){
+				var elem1 = cacheListData.shift();
+				cacheListData.push(elem1);
+			}
+			sharepartsInfoList($(".tb1 tbody"), $(".tb2 tbody"), cacheListData);
+		},changeDataTimeInterval);
+	});
+}
 
 //jQuery ready start
 $(function(){
@@ -140,11 +173,13 @@ $(function(){
 	setLink($(".header_left img"));
 	currentDateObj = $('.timeText');
 	timingDate();
-	
-	ajax(baseUrl).then(res => {
-		sharepartsInfoList($(".tb1 tbody"), $(".tb2 tbody"), res.data.dataList);
-		sharepartsInfoChart(echarts.init($(".jrxcry_canvas1").get(0)),res.data.dataChart);
-	});
 
+	let chartRootElem = echarts.init($(".jrxcry_canvas1").get(0));
+
+	getBackendData(chartRootElem);
+
+	setInterval(function(){
+		getBackendData(chartRootElem);
+	},getDataTimeInterval);
 
 }); //jQuery ready end;

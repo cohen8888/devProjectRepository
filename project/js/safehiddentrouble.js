@@ -10,14 +10,26 @@ baseUrl = baseUrl + "/api/safehiddentrouble";
 let changeDataTimeInterval = 3000;								//切换数据时间
 let getChartDataTimeInterval = 15000;							//从后端取数据的间隔时间	
 let pageSize = 5;												//表格显示最大数据
-let chartColumn = ['隐患排查', '隐患发现'];	
-let xColumNameData =['周一', '周二','周三','周四','周五','周六','周日'];	//图形x轴刻度标签值
+let chartColumn = ['隐患排查', '隐患发现'];
+
+
+let xColumNameData = ['周一', '周二','周三','周四','周五','周六','周日'];	//图形x轴刻度标签值
 let timeId = null;
 let getBackendTimeID = null;
 let hiddentroubleFindListData = null;							//隐患发现列表缓冲数据
 let hiddentroubleCheckListData = null;							//隐患排查列表缓冲数据
 let pieColors = ['rgb(70,194,252)','rgb(131,240,145)','rgb(236,232,93)','rgb(253,112,69)'];
 
+function calcXColumNameData(){
+	let result = [];
+	let currentDate = new Date();
+	let day = 1
+	for(let i = 0; i < 7; i++){
+		currentDate.setDate(currentDate.getDate() - day);
+		result.push(currentDate.Format('MM-DD'));
+	}
+	return result.reverse();
+}
 
 /**
 * 渲染表格数据
@@ -42,12 +54,13 @@ function renderTableData(elem, datas, cols){
 *渲染隐患值图
 */
 function renderCharts(chartRootElem, chartColumn, xAxisItem, datas){
+
 	option = null;
 	var perilFindData = datas.hiddenTroubleFind;    //隐患发现数据
 	var perilCheckData = datas.hiddenTroubleCheck;    //隐患排查数据
 	option = {
 		title:{
-			text: '隐患值\n\n单位：天',
+			text: '隐患值\n\n单位：件',
 			textStyle:{
 				color:'white',
 				verticalAlign:'top',
@@ -151,6 +164,7 @@ function renderCharts(chartRootElem, chartColumn, xAxisItem, datas){
 	}
 }
 
+
 function renderPieCharts(chartRootElem, datas){
 	let legendData = datas.group;
 	let seriesData = [];
@@ -164,7 +178,7 @@ function renderPieCharts(chartRootElem, datas){
 	for(var i = 0, len = datas['groupProportion'].length; i < len; i++){
 		let tmp = {};
 		tmp.name = legendData[i];
-		tmp.value = datas['groupProportion'][i];
+		tmp.value = Number(datas['groupProportion'][i]);
 		tmp.itemStyle ={color : pieColors[i],borderColor:'rgb(21,26,92,0.1)',borderWidth:10}
 		tmp.labelLine = {length:0.5 * rem, length2:0.4 * rem};
 		tmp.label = {
@@ -172,15 +186,27 @@ function renderPieCharts(chartRootElem, datas){
 			normal : {
 				fontSize : 0.3 * rem,
 				formatter: [
-					'{c}%',
-					'{b}'
-				].join('\n')	
+					'{b}',
+					'{c}件'
+				].join('\n')
 			}
 		};
 		obj.data.push(tmp);
 	}
 	seriesData.push(obj);
 	let option = {
+		title:{
+			x:'left',
+			padding: [10, 20],
+			y:'top',
+			text:'月隐患排查量（'+ (new Date().getMonth() + 1)+'月）',
+			align:'center',
+			verticalAlign:'middle',
+			textStyle:{
+				color:'#FFF',
+				fontSize:0.25*rem
+			}
+		},
 	    tooltip: {
 	        trigger: 'item',
 	        formatter: "{b}: {c} ({d}%)"
@@ -245,7 +271,7 @@ $(function(){
 	setLink($(".header_left img"));
 	currentDateObj = $('.timeText');
 	timingDate();
-
+	xColumNameData = calcXColumNameData();
 	var myChart = echarts.init($("#container").get(0));	//柱状图根元素
 	var myChartPie = echarts.init($("#containerPie").get(0));	//饼形图根元素
 

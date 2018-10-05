@@ -7,7 +7,7 @@
 baseUrl = baseUrl + "/api/eventalarm";
 let lineColors = ['#F2DEF2', '#E8D897', '#AAD5B3', '#83F0FE', '#D6B9F2'];
 let eventDataCache = [];
-let pageSize = 16;
+let pageSize = 15;
 let xColumNameData =['周一', '周二','周三','周四','周五','周六','周日'];	//图形x轴刻度标签值
 /**
 *
@@ -51,12 +51,12 @@ function generateChart(datas, chartRootElem){
 	    legend: {
 	    	left:'center',
 			padding:[0.1 * rem, 2.9 * rem],
-			itemWidth:0.5 * rem,
+			itemWidth:0.3 * rem,
 			itemHeight:0.2 * rem,
 			textStyle:{
 				color:'white',
-				fontSize : 0.3 * rem,
-				width:0.3 * rem
+				fontSize : 0.2 * rem,
+				width:0.2 * rem
 			},
 			bottom:'0%',
 			data:datas.echartVal.map((item,index) => {
@@ -120,7 +120,7 @@ function generateChart(datas, chartRootElem){
 	            axisLabel:{
 	                color:'white',
 	                fontSize:0.3 * rem,
-	                formatter: '{value}(件)'
+	                formatter: '{value}'
 	            },
 	            splitLine:{
 	                show:true,
@@ -197,7 +197,6 @@ $(function(){
 	
 	ajax(baseUrl).then(res=>{
 		eventDataCache = res.data.tableVal;
-		console.log(eventDataCache)
 		generateQryListData(ArrayAppointColUnique('alarmType', eventDataCache), $('#eventType'));
 		$('#eventType').on('change', (event) => {
 			let findEventType = event.target.value;
@@ -220,320 +219,5 @@ $(function(){
 	});
 }); //jquery ready end;
 
-
-
-/*
-let tmpData = {
-	"tableVal":[
-	{
-		"orderNum":"01",
-		"alarmType":"类型一",
-		"alarmContent":"内容一",
-		"alarmDatetime":"12:23:00",
-		"submitUsername":"王天华",
-		"traceUsername":"李想",
-		"status":"正常"
-	},
-	{
-		"orderNum":"01",
-		"alarmType":"类型二",
-		"alarmContent":"内容一",
-		"alarmDatetime":"12:23:00",
-		"submitUsername":"王天华",
-		"traceUsername":"李想",
-		"status":"正常"
-	},
-	{
-		"orderNum":"01",
-		"alarmType":"类型二",
-		"alarmContent":"内容一",
-		"alarmDatetime":"12:23:00",
-		"submitUsername":"王天华",
-		"traceUsername":"李天一",
-		"status":"正常"
-	},
-	{
-		"orderNum":"01",
-		"alarmType":"类型一",
-		"alarmContent":"内容一",
-		"alarmDatetime":"12:23:00",
-		"submitUsername":"王天华",
-		"traceUsername":"李天一",
-		"status":"正常"
-	},{
-		"orderNum":"01",
-		"alarmType":"类型一",
-		"alarmContent":"内容一",
-		"alarmDatetime":"12:23:00",
-		"submitUsername":"王天华",
-		"traceUsername":"张孝廉",
-		"status":"正常"
-	},
-	{
-		"orderNum":"01",
-		"alarmType":"类型三",
-		"alarmContent":"内容一",
-		"alarmDatetime":"12:23:00",
-		"submitUsername":"王天华",
-		"traceUsername":"张孝廉",
-		"status":"正常"
-	},
-	{
-		"orderNum":"01",
-		"alarmType":"类型三",
-		"alarmContent":"内容一",
-		"alarmDatetime":"12:23:00",
-		"submitUsername":"王天华",
-		"traceUsername":"张孝廉",
-		"status":"正常"
-	},
-	{
-		"orderNum":"01",
-		"alarmType":"类型一",
-		"alarmContent":"内容一",
-		"alarmDatetime":"12:23:00",
-		"submitUsername":"王天华",
-		"traceUsername":"张三",
-		"status":"正常"
-	},
-	{
-		"orderNum":"01",
-		"alarmType":"类型二",
-		"alarmContent":"内容一",
-		"alarmDatetime":"12:23:00",
-		"submitUsername":"王天华",
-		"traceUsername":"李天一",
-		"status":"正常"
-	},
-	{
-		"orderNum":"03",
-		"alarmType":"类型二",
-		"alarmContent":"内容一",
-		"alarmDatetime":"12:23:00",
-		"submitUsername":"王天华",
-		"traceUsername":"李天一",
-		"status":"正常"
-	},
-	{
-		"orderNum":"01",
-		"alarmType":"类型三",
-		"alarmContent":"内容一",
-		"alarmDatetime":"12:23:00",
-		"submitUsername":"王天华",
-		"traceUsername":"李天一",
-		"status":"正常"
-	},
-	{
-		"orderNum":"01",
-		"alarmType":"类型一",
-		"alarmContent":"内容一",
-		"alarmDatetime":"12:23:00",
-		"submitUsername":"王天华",
-		"traceUsername":"李天一",
-		"status":"正常"
-	},
-	{
-		"orderNum":"01",
-		"alarmType":"类型四",
-		"alarmContent":"内容一",
-		"alarmDatetime":"12:23:00",
-		"submitUsername":"王天华",
-		"traceUsername":"李天一",
-		"status":"正常"
-	},
-	{
-		"orderNum":"01",
-		"alarmType":"类型四",
-		"alarmContent":"内容一",
-		"alarmDatetime":"12:23:00",
-		"submitUsername":"王天华",
-		"traceUsername":"李天一",
-		"status":"正常"
-	},
-	{
-		"orderNum":"01",
-		"alarmType":"类型一",
-		"alarmContent":"内容一",
-		"alarmDatetime":"12:23:00",
-		"submitUsername":"王天华",
-		"traceUsername":"李天一",
-		"status":"正常"
-	}
-	],
-	"echartVal":[
-		{
-			"type":"类型1",
-			"val":[{
-				"time":"00:00",
-				"val":"21"
-			},{
-				"time":"02:00",
-				"val":"2"
-			},{
-				"time":"04:00",
-				"val":"24"
-			},{
-				"time":"06:00",
-				"val":"4"
-			},{
-				"time":"08:00",
-				"val":"22"
-			},{
-				"time":"10:00",
-				"val":"22"
-			},{
-				"time":"12:00",
-				"val":"6"
-			},{
-				"time":"14:00",
-				"val":"22"
-			},{
-				"time":"16:00",
-				"val":"10"
-			},{
-				"time":"18:00",
-				"val":"22"
-			},{
-				"time":"20:00",
-				"val":"23"
-			},{
-				"time":"22:00",
-				"val":"35"
-			},{
-				"time":"24:00",
-				"val":"22"
-			}]
-		},
-		{
-			"type":"类型2",
-			"val":[{
-				"time":"00:00",
-				"val":"1"
-			},{
-				"time":"02:00",
-				"val":"32"
-			},{
-				"time":"04:00",
-				"val":"4"
-			},{
-				"time":"06:00",
-				"val":"7"
-			},{
-				"time":"08:00",
-				"val":"21"
-			},{
-				"time":"10:00",
-				"val":"32"
-			},{
-				"time":"12:00",
-				"val":"32"
-			},{
-				"time":"14:00",
-				"val":"21"
-			},{
-				"time":"16:00",
-				"val":"1"
-			},{
-				"time":"18:00",
-				"val":"3"
-			},{
-				"time":"20:00",
-				"val":"6"
-			},{
-				"time":"22:00",
-				"val":"15"
-			},{
-				"time":"24:00",
-				"val":"32"
-			}]
-		},
-		{
-			"type":"类型3",
-			"val":[{
-				"time":"00:00",
-				"val":"0"
-			},{
-				"time":"02:00",
-				"val":"3"
-			},{
-				"time":"04:00",
-				"val":"8"
-			},{
-				"time":"06:00",
-				"val":"10"
-			},{
-				"time":"08:00",
-				"val":"15"
-			},{
-				"time":"10:00",
-				"val":"7"
-			},{
-				"time":"12:00",
-				"val":"8"
-			},{
-				"time":"14:00",
-				"val":"6"
-			},{
-				"time":"16:00",
-				"val":"5"
-			},{
-				"time":"18:00",
-				"val":"3"
-			},{
-				"time":"20:00",
-				"val":"2"
-			},{
-				"time":"22:00",
-				"val":"16"
-			},{
-				"time":"24:00",
-				"val":"1"
-			}]
-		},
-		{
-			"type":"类型4",
-			"val":[{
-				"time":"00:00",
-				"val":"11"
-			},{
-				"time":"02:00",
-				"val":"5"
-			},{
-				"time":"04:00",
-				"val":"24"
-			},{
-				"time":"06:00",
-				"val":"32"
-			},{
-				"time":"08:00",
-				"val":"35"
-			},{
-				"time":"10:00",
-				"val":"36"
-			},{
-				"time":"12:00",
-				"val":"27"
-			},{
-				"time":"14:00",
-				"val":"25"
-			},{
-				"time":"16:00",
-				"val":"24"
-			},{
-				"time":"18:00",
-				"val":"22"
-			},{
-				"time":"20:00",
-				"val":"15"
-			},{
-				"time":"22:00",
-				"val":"5"
-			},{
-				"time":"24:00",
-				"val":"1"
-			}]
-		}
-	]
-};*/
 
 

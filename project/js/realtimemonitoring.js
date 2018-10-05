@@ -18,7 +18,7 @@ let xColumNameData =['00:00', '02:00','04:00','06:00','08:00','10:00','12:00','1
 let changeDataTimeInterval = 5000;	//每20秒，表格刷新一次数据
 let timeIntervalGetData = 7200000;	//每间隔两个小时，从后端获取一次数据
 //缓存到页面端的数据
-let preinstallColors = ['#F2DEF2', '#E8D897', '#AAD5B3', '#83F0FE', '#D6B9F2', '#DD4922'];
+let preinstallColors = ['#F2DEF2', '#E8D897', '#AAD5B3', '#83F0FE', '#D6B9F2', '#F29200'];
 let warnColor = 'RGB(255, 0, 0)';
 let cacheDatas = {};
 let pageSize = 5;		//列表页的每页数据数

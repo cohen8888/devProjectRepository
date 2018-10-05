@@ -87,6 +87,11 @@ table tr td{
 	text-overflow: ellipsis;
 	overflow: hidden;
 }
+table tr td:hover{
+	white-space: normal;
+	overflow: visible;
+	line-height: 0.45rem;
+}
 .default{
 	color:rgb(138,181,207);
 }

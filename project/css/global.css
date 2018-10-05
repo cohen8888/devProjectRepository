@@ -147,3 +147,9 @@ select option{
 .header_left,.header_back{
 	cursor:pointer;
 }
+
+table tr td:hover{
+	white-space: normal;
+	overflow: visible;
+	line-height: 0.45rem;
+}

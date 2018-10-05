@@ -1,0 +1,493 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script language="javascript" type="text/javascript" src="json2.js" ></script>
+</head>
+
+<body onLoad="myLoad()">
+
+<div id="div2" style=" position:absolute; left:210px; top:20px; width:1260px; height:814px;border:1px solid #0000FF">默认加载图层<br /><br /> 。 </div>
+<script language="javascript" type="text/javascript">
+
+///-------------------------------------------------环境监测------------------------------------------------------------------------------------
+// 超限范围 差
+var dl=0;
+var tt=[
+	{
+		"type" : "环境监测",
+		"data" : [{
+		  "monitoringPoint":"监测点4",
+		  "monitorProject" :"温度监测",
+		  "unit" : "°C",
+		  "upperLimit":"28",
+		  "lowerLimit":"16",
+		  "sataus":"正常",
+		  "data":[{"name":"00:00","value":21}]
+		}]	
+	}
+];
+    
+	//生成实时监测数据
+	function createReturnObj(){
+	  var rObj=[];
+	  rObj[0]=createEnvironmentObj();
+	  rObj[1]=createEquipmentObj();
+	  rObj[2]=createBTObj();
+	  return rObj;
+	}
+
+	//生成环境监测数据
+	function createEnvironmentObj(){
+	 var eObj={
+		"type" : "环境监测",
+		"data" : []	
+	   };
+	   eObj.data[0]=createBaseObj("监测点1","温度监测","℃",45,10,0);
+	   eObj.data[1]=createBaseObj("监测点2","温度监测","℃",30,20,0);
+	   eObj.data[2]=createBaseObj("监测点3","温度监测","℃",35,20,1);
+	   eObj.data[3]=createBaseObj("监测点4","温度监测","℃",40,15,0);
+	   eObj.data[4]=createBaseObj("监测点5","温度监测","℃",30,20,0);
+	   eObj.data[5]=createBaseObj("监测点6","温度监测","℃",60,0,1);
+	   eObj.data[6]=createBaseObj("监测点1","电力监测","KW",300,100,0);
+	   eObj.data[7]=createBaseObj("监测点2","电力监测","KW",350,20,0);
+	   eObj.data[8]=createBaseObj("监测点3","电力监测","KW",450,200,0);
+	   eObj.data[9]=createBaseObj("监测点4","电力监测","KW",400,150,0);
+	   eObj.data[10]=createBaseObj("监测点5","电力监测","KW",300,200,0);
+	   eObj.data[11]=createBaseObj("监测点6","电力监测","KW",600,200,0);
+	   
+	   return eObj;
+	   
+	}
+	//生成设备监测数据
+	function createEquipmentObj(){
+	 var eObj={
+		"type" : "设备监测",
+		"data" : []	
+	   };
+	   eObj.data[0]=createBaseObj("监测点1","机电设备","℃",60,10,0);
+	   eObj.data[1]=createBaseObj("监测点2","机电设备","℃",30,20,0);
+	   eObj.data[2]=createBaseObj("监测点3","机电设备","℃",85,0,1);
+	   eObj.data[3]=createBaseObj("监测点4","机电设备","℃",40,15,0);
+	   eObj.data[4]=createBaseObj("监测点5","机电设备","℃",30,20,0);
+	   eObj.data[5]=createBaseObj("监测点6","机电设备","℃",60,40,1);
+	   eObj.data[6]=createBaseObj("监测点1","风机设备","℃",120,20,0);
+	   eObj.data[7]=createBaseObj("监测点2","风机设备","℃",90,20,0);
+	   eObj.data[8]=createBaseObj("监测点3","风机设备","℃",70,20,0);
+	   eObj.data[9]=createBaseObj("监测点4","风机设备","℃",80,15,0);
+	   eObj.data[10]=createBaseObj("监测点5","风机设备","℃",50,20,0);
+	   eObj.data[11]=createBaseObj("监测点6","风机设备","℃",60,20,0);
+	   
+	   return eObj;
+	   
+	}
+	//生成本体监测数据
+	function createBTObj(){
+	 var eObj={
+		"type" : "本体监测",
+		"data" : []	
+	   };
+	   eObj.data[0]=createBaseObj("监测点1","甲烷监测","LEL",100,0,0);
+	   eObj.data[1]=createBaseObj("监测点2","甲烷监测","LEL",80,20,0);
+	   eObj.data[2]=createBaseObj("监测点3","甲烷监测","LEL",85,0,1);
+	   eObj.data[3]=createBaseObj("监测点4","甲烷监测","LEL",90,15,0);
+	   eObj.data[4]=createBaseObj("监测点5","甲烷监测","LEL",60,20,0);
+	   eObj.data[5]=createBaseObj("监测点6","甲烷监测","LEL",90,40,1);
+	   eObj.data[6]=createBaseObj("监测点1","一氧化碳","ppm",50,0,0);
+	   eObj.data[7]=createBaseObj("监测点2","一氧化碳","ppm",200,20,0);
+	   eObj.data[8]=createBaseObj("监测点3","一氧化碳","ppm",400,20,0);
+	   eObj.data[9]=createBaseObj("监测点4","一氧化碳","ppm",200,50,0);
+	   eObj.data[10]=createBaseObj("监测点5","一氧化碳","ppm",50,0,0);
+	   eObj.data[11]=createBaseObj("监测点6","一氧化碳","ppm",400,200,0);
+	   
+	   return eObj;
+	   
+	}
+	
+	function initDataObj(){
+	   return [
+	   {"name":"00:00","value":1},{"name":"02:00","value":1},{"name":"04:00","value":1},{"name":"06:00","value":1},{"name":"08:00","value":1},{"name":"10:00","value":1},
+	   {"name":"12:00","value":1},{"name":"14:00","value":1},{"name":"16:00","value":1},{"name":"18:00","value":1},{"name":"20:00","value":1},{"name":"22:00","value":1},
+	   {"name":"00:00","value":1},{"name":"02:00","value":1},{"name":"04:00","value":1},{"name":"06:00","value":1},{"name":"08:00","value":1},{"name":"10:00","value":1},
+	   {"name":"12:00","value":1},{"name":"14:00","value":1},{"name":"16:00","value":1},{"name":"18:00","value":1},{"name":"20:00","value":1},{"name":"22:00","value":1}
+	   ];
+	}
+	//环境监测，温度监测
+	function createBaseObj(name,mp,uD,maxV,minV,dN){
+	   var arr={
+		  "monitoringPoint":"监测点",
+		  "monitorProject" :"温度监测",
+		  "unit" : "°C",
+		  "upperLimit":28,
+		  "lowerLimit":16,
+		  "data":[{"name":"00:00","value":21}]
+		};
+		arr.monitoringPoint=name;
+		arr.monitorProject=mp;
+		arr.unit=uD;
+		arr.upperLimit=maxV;
+		arr.lowerLimit=minV;
+	   var dObj=initDataObj();	
+	   for (var i=0;i<dObj.length;i++){
+	     dObj[i].value=randomNum(arr.upperLimit+dl,arr.lowerLimit-dl,dN);
+	   }
+	   arr.data=dObj;
+	   return arr;
+	}
+	
+	
+///^^^^^^^^^^^^^^^^^^^^^^^^^^环境监测^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+
+///-------------------------------------------------事件告警------------------------------------------------------------------------------------
+//参数arrLen 是想生成的条目数。
+function getRandomItem(arrLen){
+  var items=initItems();
+  var myItems=[];
+  var index=0;
+  var temp=null;
+  for(var i=0;i<arrLen;i++){
+     index=parseInt(Math.random()*items.length);
+	 temp=items[index];
+	 temp.alarmDatetime=getRandomDate();
+	 myItems[i]=temp;
+  }
+  return myItems;
+   
+}
+
+//按报警时间倒序
+function bubbleSort(arr) {
+　　var len = arr.length;
+　　for (var i = 0; i < len; i++) {
+　　　　for (var j = 0; j < len - 1 - i; j++) {
+　　　　　　if (arr[j].alarmDatetime < arr[j+1].alarmDatetime) {
+　　　　　　　　var temp = arr[j+1]; 
+　　　　　　　　arr[j+1] = arr[j];
+　　　　　　　　arr[j] = temp;
+　　　　　　}
+　　　　}
+　　}
+　　return arr;
+}
+
+
+// 获取当天 9点到当前时间之间的随机时间。
+function getRandomDate(){
+  var dt=new Date();
+  var myDate= getRandomDateBetween(getCurrentDate(dt,'09') ,dt);
+  return dateToStr(myDate,2);
+}
+// *获取当前时间 mm 指定小时	 	
+function getCurrentDate(now,mm) {	 	  
+var year = now.getFullYear(); 	  
+var month = now.getMonth();	 
+ var date = now.getDate();	
+ var dt=null;
+ month = month + 1;	  
+ if (month < 10) month = "0" + month;	  
+ if (date < 10) date = "0" + date;	
+ dt = new Date(year + "/" + month + "/" + date+" "+mm+":00:00");	 
+ return dt;
+}
+
+//type 1返回年月日，2返回时分秒字符串 3返回年月日时分秒字符串。
+function dateToStr(dt,type){
+var year = dt.getFullYear(); 	  
+var month = dt.getMonth();	 
+ var date = dt.getDate();
+ var hh=dt.getHours();       //获取当前小时数(0-23)
+ var mm=dt.getMinutes();     //获取当前分钟数(0-59)
+ var ss=dt.getSeconds();  
+ month = month + 1;	  
+ if (month < 10) month = "0" + month;	  
+ if (date < 10) date = "0" + date;
+ if (hh < 10) hh = "0" + hh;	  
+ if (mm < 10) mm = "0" + mm; 
+ if (ss < 10) ss = "0" + ss;  
+ var yymmddStr=year+"/"+month+"/"+date;
+ var hhmmssStr=hh+":"+mm+":"+ss;
+ if(type==1) return yymmddStr;
+ else if (type==2)return hhmmssStr;
+ else if(type==3)return yymmddStr+" "+hhmmssStr;
+ return null;
+}
+// 要求a, b 都是Date类型, 且a < b  
+function getRandomDateBetween(a, b) { 
+var date = new Date();
+a = a.getTime();
+b = b.getTime();
+date.setTime(Math.random()*(b - a) + a);
+
+return date;
+} 
+
+function initItems(){
+	var itemArray=[	];
+	itemArray[0]={
+		"orderNum":"01",
+		"alarmType":"安防类告警",
+		"alarmContent":"综合仓因氧化腐蚀有泄露隐患",
+		"alarmDatetime":"12:23:00",
+		"submitUsername":"李超",
+		"traceUsername":"王川川",
+		"status":"正常"
+	};
+	itemArray[1]={
+		"orderNum":"02",
+		"alarmType":"安防类告警",
+		"alarmContent":"综合仓消防设备数量不足",
+		"alarmDatetime":"12:23:00",
+		"submitUsername":"李超",
+		"traceUsername":"王川川",
+		"status":"异常"
+	};
+	itemArray[2]={
+		"orderNum":"03",
+		"alarmType":"生产类告警",
+		"alarmContent":"巡检路线未全部完成",
+		"alarmDatetime":"12:23:00",
+		"submitUsername":"赵东",
+		"traceUsername":"孙建",
+		"status":"正常"
+	};
+	itemArray[3]={
+		"orderNum":"04",
+		"alarmType":"生产类告警",
+		"alarmContent":"综合仓备件数量不足",
+		"alarmDatetime":"12:23:00",
+		"submitUsername":"赵东",
+		"traceUsername":"孙建",
+		"status":"异常"
+	};
+	itemArray[4]={
+		"orderNum":"05",
+		"alarmType":"个人安全",
+		"alarmContent":"未戴安全帽",
+		"alarmDatetime":"12:23:00",
+		"submitUsername":"杜江",
+		"traceUsername":"邢海涛",
+		"status":"正常"
+	};
+	itemArray[5]={
+		"orderNum":"06",
+		"alarmType":"个人安全",
+		"alarmContent":"未带防爆PDA",
+		"alarmDatetime":"12:23:00",
+		"submitUsername":"杜江",
+		"traceUsername":"邢海涛",
+		"status":"正常"
+	};
+	itemArray[6]={
+		"orderNum":"07",
+		"alarmType":"设备故障",
+		"alarmContent":"FJ-001设备运行时间超过计划运行时间",
+		"alarmDatetime":"12:23:00",
+		"submitUsername":"孙祥",
+		"traceUsername":"李大海",
+		"status":"异常"
+	};
+	itemArray[7]={
+		"orderNum":"08",
+		"alarmType":"设备故障",
+		"alarmContent":"JD-001备件没有按时更换",
+		"alarmDatetime":"12:23:00",
+		"submitUsername":"孙祥",
+		"traceUsername":"李大海",
+		"status":"异常"
+	};itemArray[8]={
+		"orderNum":"09",
+		"alarmType":"安防类告警",
+		"alarmContent":"危险源防护栏杆损坏",
+		"alarmDatetime":"12:23:00",
+		"submitUsername":"李超",
+		"traceUsername":"王川川",
+		"status":"正常"
+	};
+	itemArray[9]={
+		"orderNum":"10",
+		"alarmType":"安防类告警",
+		"alarmContent":"消防通道有杂物堆积",
+		"alarmDatetime":"12:23:00",
+		"submitUsername":"李超",
+		"traceUsername":"王川川",
+		"status":"异常"
+	};
+	itemArray[10]={
+		"orderNum":"11",
+		"alarmType":"生产类告警",
+		"alarmContent":"一氧化碳监测含量过高",
+		"alarmDatetime":"12:23:00",
+		"submitUsername":"赵东",
+		"traceUsername":"孙建",
+		"status":"正常"
+	};
+	itemArray[11]={
+		"orderNum":"12",
+		"alarmType":"生产类告警",
+		"alarmContent":"换气设备动力不足",
+		"alarmDatetime":"12:23:00",
+		"submitUsername":"赵东",
+		"traceUsername":"孙建",
+		"status":"异常"
+	};
+	itemArray[12]={
+		"orderNum":"13",
+		"alarmType":"个人安全",
+		"alarmContent":"危害气体含量过高环境下工作",
+		"alarmDatetime":"12:23:00",
+		"submitUsername":"杜江",
+		"traceUsername":"邢海涛",
+		"status":"异常"
+	};
+	itemArray[13]={
+		"orderNum":"14",
+		"alarmType":"个人安全",
+		"alarmContent":"防护服破损",
+		"alarmDatetime":"12:23:00",
+		"submitUsername":"杜江",
+		"traceUsername":"邢海涛",
+		"status":"正常"
+	};
+	itemArray[14]={
+		"orderNum":"15",
+		"alarmType":"设备故障",
+		"alarmContent":"3#风机停车",
+		"alarmDatetime":"12:23:00",
+		"submitUsername":"孙祥",
+		"traceUsername":"李大海",
+		"status":"异常"
+	};
+	itemArray[15]={
+		"orderNum":"16",
+		"alarmType":"设备故障",
+		"alarmContent":"3-32离心泵动力不足",
+		"alarmDatetime":"12:23:00",
+		"submitUsername":"孙祥",
+		"traceUsername":"李大海",
+		"status":"异常"
+	};
+	itemArray[16]={
+		"orderNum":"17",
+		"alarmType":"设备故障",
+		"alarmContent":"5#可燃报警器损坏",
+		"alarmDatetime":"12:23:00",
+		"submitUsername":"孙祥",
+		"traceUsername":"李大海",
+		"status":"异常"
+	};
+	itemArray[17]={
+		"orderNum":"18",
+		"alarmType":"设备故障",
+		"alarmContent":"4-72离心通风机故障",
+		"alarmDatetime":"12:23:00",
+		"submitUsername":"孙祥",
+		"traceUsername":"李大海",
+		"status":"异常"
+	};itemArray[18]={
+		"orderNum":"19",
+		"alarmType":"设备故障",
+		"alarmContent":"3-45一氧化碳监测仪故障",
+		"alarmDatetime":"12:23:00",
+		"submitUsername":"孙祥",
+		"traceUsername":"李大海",
+		"status":"异常"
+	};
+	itemArray[19]={
+		"orderNum":"20",
+		"alarmType":"设备故障",
+		"alarmContent":"离心泵动力不足",
+		"alarmDatetime":"12:23:00",
+		"submitUsername":"孙祥",
+		"traceUsername":"李大海",
+		"status":"异常"
+	};itemArray[20]={
+		"orderNum":"21",
+		"alarmType":"安防类告警",
+		"alarmContent":"4-75电子巡更点有巡视死角",
+		"alarmDatetime":"12:23:00",
+		"submitUsername":"李超",
+		"traceUsername":"王川川",
+		"status":"正常"
+	};
+	itemArray[21]={
+		"orderNum":"22",
+		"alarmType":"安防类告警",
+		"alarmContent":"4-56安防警示牌破损",
+		"alarmDatetime":"12:23:00",
+		"submitUsername":"李超",
+		"traceUsername":"王川川",
+		"status":"异常"
+	};
+	itemArray[22]={
+		"orderNum":"23",
+		"alarmType":"生产类告警",
+		"alarmContent":"4-23照明设备故障",
+		"alarmDatetime":"12:23:00",
+		"submitUsername":"赵东",
+		"traceUsername":"孙建",
+		"status":"正常"
+	};
+	itemArray[23]={
+		"orderNum":"24",
+		"alarmType":"生产类告警",
+		"alarmContent":"4-24 有积水情况",
+		"alarmDatetime":"12:23:00",
+		"submitUsername":"赵东",
+		"traceUsername":"孙建",
+		"status":"异常"
+	};
+	itemArray[24]={
+		"orderNum":"25",
+		"alarmType":"生产类告警",
+		"alarmContent":"4-24 下水管道堵塞",
+		"alarmDatetime":"12:23:00",
+		"submitUsername":"赵东",
+		"traceUsername":"孙建",
+		"status":"异常"
+	};
+	itemArray[25]={
+		"orderNum":"26",
+		"alarmType":"生产类告警",
+		"alarmContent":"4-25 通风口有杂物堆积",
+		"alarmDatetime":"12:23:00",
+		"submitUsername":"赵东",
+		"traceUsername":"孙建",
+		"status":"异常"
+	};
+	return itemArray;
+}
+
+
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^事件告警^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+
+	function randomNum(maxV,minV,dNum){
+	  var r=-1;
+	  if(dNum==0){
+      r= parseInt(Math.random()*(maxV-minV+1)+minV);}
+	  else if(dNum==1){
+	  r=  parseInt(Math.random()*(10*maxV-10*minV+1)+10*minV)/10;
+	  } 
+	  else if(dNum==2){
+	  r=  parseInt(Math.random()*(100*maxV-100*minV+1)+100*minV)/100;
+	  }
+	  return r;     
+	}
+	function myLoad(){
+	//生成 告警表数据 时间和内容随机，按时间倒排顺序（离现在近的在前面）
+	 document.getElementById("div2").innerHTML= JSON.stringify(bubbleSort(getRandomItem(12)));
+	 //生成 实时监测数据 
+	 // document.getElementById("div2").innerHTML= JSON.stringify(createReturnObj);
+	 
+	// document.getElementById("div2").innerHTML= JSON.stringify(initDataObj());
+	 //alert(tt);
+	}	
+	</script>
+<form id="form1" name="form1" method="post" action="">
+  <label>获取json字符串
+  <input type="button" onClick="javascript:myLoad()"   value="获取" />
+  </label>
+</form>
+</body>
+</html>

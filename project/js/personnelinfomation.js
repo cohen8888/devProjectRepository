@@ -3,9 +3,9 @@
 //baseUrl = baseUrl + "interf04";
 baseUrl = baseUrl + "/api/personnelinfomation";
 currentDateObj = null;
-let urls = ["http://39.104.135.24:8081/public/video/ryxx.mp4", 
-	"http://39.104.135.24:8081/public/video/ryxx.mp4", 
-	"http://39.104.135.24:8081/public/video/ryxx.mp4"];
+let urls = ["http://39.104.135.24:8081/public/video/rcxc.mp4", 
+	"http://39.104.135.24:8081/public/video/rcxc.mp4", 
+	"http://39.104.135.24:8081/public/videorcxc.mp4"];
 
 
 function info(opt){

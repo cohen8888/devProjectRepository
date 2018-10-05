@@ -38,7 +38,7 @@ function renderListData(rootElem, datas, eventCallBack){
 //设备类型下拉列表内容填充
 function optEquipType(categoryInfo, equipmentTypeElem){
 	equipmentTypeElem.children().remove();
-	equipmentTypeElem.append('<option value="default" >--设备名称--</option>')
+	equipmentTypeElem.append('<option value="default" >--设备类别--</option>')
 	for(category in categoryInfo){
 		equipmentTypeElem.append('<option value="' + category + '" >'+ category +'</option>')
 	}

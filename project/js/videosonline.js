@@ -1,12 +1,8 @@
-currentDateObj = null;
+
 let videoUrls = ['../video/video1.mp4','../video/video2.mp4','../video/video3.mp4',
 	'../video/video4.mp4','../video/video5.mp4','../video/video6.mp4','../video/video7.mp4',
-	'../video/video8.mp4','../video/video9.mp4','../video/video10.mp4','../video/video11.mp4']
+	'../video/video8.mp4','../video/video9.mp4','../video/video10.mp4','../video/video11.mp4'];
 
-/**
-* 
-*
-*/
 function viewpagerVideo(urls, playElem){
     //var vLen = urls.length; 
    // var curr = 0; 
@@ -32,10 +28,31 @@ function viewpagerVideo(urls, playElem){
 $(function(){
 	
 	setLink($(".header_left img"));
-	$("video").each((index, elem) => {
+  currentDateObj = $('.timeText');
+  timingDate();
+
+/*	$("video").each((index, elem) => {
 		//console.log(videoUrls[index]);
 		viewpagerVideo(videoUrls[index+1], $(elem));
-	});
-	currentDateObj = $('.timeText');
-	timingDate();
+	});*/
+	
+  $( document ).tooltip({
+    items: "img",
+    content: function() {
+      var element = $( this );
+      if ( element.is( "img" ) && element.attr('class') == 'fullscreen') {
+        return "最大化";
+      }
+      if (element.is( "img" ) && element.attr('class') == 'markFullscreen'){
+        return '最小化'
+      }
+      if (element.is( "img" ) && element.attr('class') == 'replay'){
+        return '录像'
+      }
+      if (element.is( "img" ) && element.attr('class') == 'markReplay'){
+        return '录像'
+      }
+    }
+  });
+
 });	//jQuery ready function end;

@@ -6,7 +6,9 @@
 //baseUrl = baseUrl + "interf01";
 baseUrl = baseUrl + "/api/dailylive";
 currentDateObj = null;
-
+tmpUrls = ["http://39.104.135.24:8081/public/video/ryxx.mp4", 
+	"http://39.104.135.24:8081/public/video/ryxx.mp4", 
+	"http://39.104.135.24:8081/public/video/ryxx.mp4"];
 /**
 * 渲染维修列表
 * @rootElem 要渲染的容器
@@ -54,10 +56,11 @@ $(function(){
 	setLink($(".header_left img"));
 	currentDateObj = $('.timeText');
 	timingDate();
+
+	viewpagerVideo(tmpUrls, $('.map'));
 	ajax(baseUrl).then(res => {
 		let data = res.data;
-		console.log(data.mapUrls);
-		viewpagerVideo(data.mapUrls, $('.map'));
+		//viewpagerVideo(data.mapUrls, $('.map'));
 		renderTableData($('.section_left_top table') 
 			,data.data.maintain.data
 			,['workOrderCode'

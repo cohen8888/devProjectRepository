@@ -1,10 +1,10 @@
 baseUrl = baseUrl + "/api/index";
 
-let videoUrls = ['video/video1.mp4',
+/*let videoUrls = ['video/video1.mp4',
 	'video/video2.mp4',
 	'video/video3.mp4',
-	'video/video4.mp4'];
-//let videoUrls = ['http://localhost:3000/video/rcxc.mp4','http://localhost:3000/video/rcxc.mp4','http://localhost:3000/video/rcxc.mp4','http://localhost:3000/video/rcxc.mp4'];
+	'video/video4.mp4'];*/
+let videoUrls = ['http://localhost:3000/video/rcxc.mp4','http://localhost:3000/video/rcxc.mp4','http://localhost:3000/video/rcxc.mp4','http://localhost:3000/video/rcxc.mp4'];
 
 function setData(data ,opt){
 	for( k in data){
@@ -12,7 +12,7 @@ function setData(data ,opt){
 	}
 	return opt;
 }
-let giftImageUrls = ['img/绩效1.png', 'img/绩效2.png', 'img/绩效3.png']
+let giftImageUrls = ['img/jixiao1.png', 'img/jixiao2.png', 'img/jixiao3.png']
 let deviceRunStatusChartColors = ['#38DABB','#00D3FE','#3B92DA','#663FA5','#511862'];
 let monitoryPointCacheData = [];
 
@@ -26,7 +26,6 @@ function generateDailyLive1Chart(chartRootElem, datas){
 		return item.name
 	});
 	let seriesData = datas.list.map((item,index)=>{
-		console.log(item);
 		if(item.name === "故障"){
 			return setData(item,{
 				itemStyle:{
@@ -445,18 +444,32 @@ function generateCurrentMonthGroupPerformanceChart(chartRootElem, datas){
 * 人员绩效列表
 */
 function personPerformanceList(listRoot, data){
+	$(document).tooltip({
+		items: "#jixiaoImg1, #jixiaoImg2, #jixiaoImg3",
+	 	content: function () {
+	 		if ($(this).is("#jixiaoImg1")) {
+	 			return "绩效分：" + data.first.score;
+	 		}
+	 		if ($(this).is("#jixiaoImg2")) {
+	 			return "绩效分：" + data.second.score;
+	 		}
+	 		if ($(this).is("#jixiaoImg3")) {
+	 			return "绩效分：" + data.third.score;
+	 		}
+		}
+	});
 	let lis = `<li>
-		<div id="first"><img src="img/jixiao1.png"/></div>
+		<div id="first"><img src="img/jixiao1.png" id="jixiaoImg1"/></div>
 		<p>${data.first.name}</p>
 		<p>工号：${data.first.workId}</p>
 	</li>
 	<li>
-		<div id="first"><img src="img/jixiao2.png"/></div>
+		<div id="first"><img src="img/jixiao2.png" id="jixiaoImg2"/></div>
 		<p>${data.second.name}</p>
 		<p>工号：${data.second.workId}</p>
 	</li>
 	<li>
-		<div id="first"><img src="img/jixiao3.png"/></div>
+		<div id="first"><img src="img/jixiao3.png" id="jixiaoImg3"/></div>
 		<p>${data.third.name}</p>
 		<p>工号：${data.third.workId}</p>
 	</li>`
@@ -805,8 +818,10 @@ $(function(){
 	timingDate();
 	
 	$('video').each((index, elem) => {
-			viewpagerVideo(videoUrls[index], elem)();
+		viewpagerVideo(videoUrls[index], elem)();
 	});
+
+	
 
 	ajax(baseUrl).then(res=>{
 		//日常现场图1

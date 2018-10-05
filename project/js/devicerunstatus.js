@@ -51,7 +51,7 @@ function calcCavansYData(xColumNameData, data){
 //设备类型下拉列表内容填充
 function optEquipType(categoryInfo, equipmentTypeElem){
 	equipmentTypeElem.children().remove();
-	equipmentTypeElem.append('<option value="default" >--设备名称--</option>')
+	equipmentTypeElem.append('<option value="default" >--设备类型--</option>')
 	for(category in categoryInfo){
 		equipmentTypeElem.append('<option value="' + category + '" >'+ category +'</option>')
 	}
@@ -267,9 +267,9 @@ function drawPieChart(chartRootElem, data){
 	obj.data = [];
 
 	for(var i = 0, len = data['title'].length; i < len; i++){
-		legendData.push(data['data'][i] + '% ' +  data['title'][i]);
+		legendData.push(data['title'][i] + data['data'][i]) ;
 		let dataObj = {};
-		dataObj.name = data['data'][i] + '% ' +  data['title'][i];
+		dataObj.name = data['title'][i] + ' ' + data['data'][i];
 		dataObj.value = data['data'][i];
 		dataObj.itemStyle = {color:pieColors[i]};
 		dataObj.label = {fontSize:0.3 * rem};

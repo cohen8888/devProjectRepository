@@ -1,55 +1,87 @@
 {
-	"mapUrls" : ["http://localhost:3000/video/rcxc.mp4",
-	"http://localhost:3000/video/rcxc.mp4",
-	"http://localhost:3000/video/rcxc.mp4"],
-	"data" : {
-		"maintain" : {
-			"data" : [{
-				"workOrderCode" : "A00987",
-				"workStation" : "01",
-				"maintenanceContent" : "维修内容一",
-				"craft" : "工艺一",
-				"maintenaceMan" : "张三",
-				"group" : "一组",
-				"maintenanceState" : "正常",
-				"maintenanceDatetime" : "2018-09-16 20:35:12"
-			},{
-				"workOrderCode" : "A10987",
-				"workStation" : "021",
-				"maintenanceContent" : "维修内容二",
-				"craft" : "工艺八",
-				"maintenaceMan" : "张三",
-				"group" : "一组",
-				"maintenanceState" : "正常",
-				"maintenanceDatetime" : "2018-09-16 20:35:12"
-			}]
-		},
-		"fault" : {
-			"data" : [{
-				"faultNum" : "A09876",
-				"faultCode" : "87",
-				"faultDescription" : "故障描述一",
-				"reportDatetime" : "2018-09-14 20:35:12",
-				"state" : "正常",
-				"checkMan" : "李四",
-				"group" : "一组"
-			},{
-				"faultNum" : "A09832",
-				"faultCode" : "233",
-				"faultDescription" : "故障描述二",
-				"reportDatetime" : "2018-09-14 20:35:12",
-				"state" : "正常",
-				"checkMan" : "李大四",
-				"group" : "三组"
-			},{
-				"faultNum" : "A01832",
-				"faultCode" : "23",
-				"faultDescription" : "故障描述六",
-				"reportDatetime" : "2018-09-04 20:35:12",
-				"state" : "正常",
-				"checkMan" : "李小四",
-				"group" : "二组"
-			}]
-		}
-	}
+  "data": {
+    "fault": {
+      "data": [
+        {
+          "checkMan": "杜江",
+          "faultCode": "06",
+          "faultDescription": "综合仓1101-001点供配电设备出现异常",
+          "faultNum": "gz0080001",
+          "group": "一班组",
+          "reportDatetime": "2018/9/7",
+          "reporter": "孙祥",
+          "state": "正常"
+        },
+        {
+          "checkMan": "杜江",
+          "faultCode": "05",
+          "faultDescription": "3#风机停止运行",
+          "faultNum": "gz0080002",
+          "group": "一班组",
+          "reportDatetime": "2018/9/7",
+          "reporter": "孙祥",
+          "state": "正常"
+        }
+      ]
+    },
+    "maintain": {
+      "data": [
+        {
+          "craft": "手工更换",
+          "group": "机动部",
+          "maintenaceMan": "孙祥",
+          "maintenanceContent": "3#风机停止运行-维修",
+          "maintenanceDatetime": "2018-09-07",
+          "maintenanceState": "已完工",
+          "workOrderCode": "zh20180907002",
+          "workStation": "102-001"
+        },
+        {
+          "craft": "乙炔焊接",
+          "group": "机动部",
+          "maintenaceMan": "李大海",
+          "maintenanceContent": "预防性维修，更换备件",
+          "maintenanceDatetime": "2018-09-07",
+          "maintenanceState": "已完工",
+          "workOrderCode": "zh20180907003",
+          "workStation": "102-001"
+        },
+        {
+          "craft": "机械手操作",
+          "group": "机动部",
+          "maintenaceMan": "赵东",
+          "maintenanceContent": "更换监测设备",
+          "maintenanceDatetime": "2018-09-07",
+          "maintenanceState": "执行中",
+          "workOrderCode": "zh20180907004",
+          "workStation": "101-001"
+        },
+        {
+          "craft": "手工更换",
+          "group": "机动部",
+          "maintenaceMan": "王伟",
+          "maintenanceContent": "调整报警位置",
+          "maintenanceDatetime": "2018-09-07",
+          "maintenanceState": "待审核",
+          "workOrderCode": "zh20180907005",
+          "workStation": "101-002"
+        },
+        {
+          "craft": "乙炔焊接",
+          "group": "机动部",
+          "maintenaceMan": "李大海",
+          "maintenanceContent": "综合仓1101-001点供配电",
+          "maintenanceDatetime": "2018-09-07",
+          "maintenanceState": "已完工",
+          "workOrderCode": "zh20180907001",
+          "workStation": "102-001"
+        }
+      ]
+    }
+  },
+  "mapUrls": [
+    "http://39.104.135.24:8081/public/video/rcxc.mp4",
+    "http://39.104.135.24:8081/public/video/rcxc.mp4",
+    "http://39.104.135.24:8081/public/video/rcxc.mp4"
+  ]
 }
