@@ -7,8 +7,19 @@
 baseUrl = baseUrl + "/api/eventalarm";
 let lineColors = ['#F2DEF2', '#E8D897', '#AAD5B3', '#83F0FE', '#D6B9F2'];
 let eventDataCache = [];
-let pageSize = 15;
+let pageSize = 5;
 let xColumNameData =['周一', '周二','周三','周四','周五','周六','周日'];	//图形x轴刻度标签值
+
+function calcXColumNameData(){
+	let result = [];
+	let currentDate = new Date();
+	let day = 1
+	for(let i = 0; i < 7; i++){
+		currentDate.setDate(currentDate.getDate() - day);
+		result.push(currentDate.Format('MM-DD'));
+	}
+	return result.reverse();
+}
 /**
 *
 * 事件类型折线图
@@ -39,7 +50,7 @@ function generateChart(datas, chartRootElem){
 			verticalAlign:'bottom',
 			textStyle:{
 				color:'#FFF',
-				fontSize:0.25*rem
+				fontSize:0.2*rem
 			}
 		},
 		grid: {
@@ -70,7 +81,6 @@ function generateChart(datas, chartRootElem){
 	            boundaryGap:false,
 	            axisLine: {
 	                onZero: true,
-
 	                lineStyle: {
 	                	color:'white',
 	                	type:'solid'
@@ -80,7 +90,7 @@ function generateChart(datas, chartRootElem){
 	                interval : 0,
 	                rotate : 50,
 	                color: 'white',
-	                fontSize : 0.4 * rem,
+	                fontSize : 0.2 * rem,
 	                align : 'right',
 	                formatter: function (value, index) {            
 	                    //使用函数模板，函数参数分别为刻度数值（类目），刻度的索引
@@ -119,7 +129,7 @@ function generateChart(datas, chartRootElem){
 				interval:10,
 	            axisLabel:{
 	                color:'white',
-	                fontSize:0.3 * rem,
+	                fontSize:0.25 * rem,
 	                formatter: '{value}'
 	            },
 	            splitLine:{
@@ -196,6 +206,7 @@ $(function(){
 	var option = null;
 	
 	ajax(baseUrl).then(res=>{
+		xColumNameData = calcXColumNameData();
 		eventDataCache = res.data.tableVal;
 		generateQryListData(ArrayAppointColUnique('alarmType', eventDataCache), $('#eventType'));
 		$('#eventType').on('change', (event) => {

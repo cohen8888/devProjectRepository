@@ -18,12 +18,13 @@ function calcCavnasData(data){
 	if (typeof data == 'object' && data instanceof Array){
 		for(let i = 0; i < data.length;i++){
 			if(data[i]['equipmentType'] in key){
-				key[data[i]['equipmentType']]++;
+				key[data[i]['equipmentType']] = key[data[i]['equipmentType']] + data[i]['runDayCount'];
 			}else{
-				key[data[i]['equipmentType']] = 1;
+				key[data[i]['equipmentType']] = data[i]['runDayCount'];
 			}
 		}
 	}
+	console.log(key);
 	return key;
 }
 

@@ -193,7 +193,7 @@ function generateDailyLive2Chart(chartRootElem, datas){
     		show:true
     	},
     	label:{
-			color:"rgb(224,230,117)"
+			color:"white"
 		}
 	},{itemStyle:{
         	color:"rgb(233,106,121)"
@@ -209,7 +209,8 @@ function generateDailyLive2Chart(chartRootElem, datas){
 	let legendData = datas.list.map((item,index) => {return item.name});
 	let seriesData = datas.list.map((item,index)=>{
 		sum += Number(item.value);
-		return setData(item, colorObj[item.code]);
+		let result = setData(item, colorObj[item.code]);
+		return result;
 	});
 	let option = {
 		title:{
@@ -512,7 +513,12 @@ function deviceRunStatusChart(chartRootElem, datas, title){
 		dataObj.label = {
 			normal:{
 				show:true,
-				formatter: '{c}\n{b}',
+				formatter: function(a){
+					let name = a.data.name;
+					name = name.substring(0,2) + '\n' + name.substring(2);
+					let value = a.data.value;
+					return name + '\n' + value;
+				},
 				fontSize: 0.2 * rem,
 				color: 'white',
 				align: 'center',
@@ -696,6 +702,7 @@ function realtimeMonitoring(chartRootElem, datas){
 		},
 	  	tooltip: {
 	        trigger: 'item',
+	        formatter:'{a}<br/>{b}<br/>{c}'
 	    },
 	    legend: {
 	    	 textStyle:{

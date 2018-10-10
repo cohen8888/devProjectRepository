@@ -2,9 +2,10 @@
 //baseUrl = baseUrl + 'interf08';
 baseUrl = baseUrl + '/api/sparepartsinformation';
 
-let pageSize = 8;
-let dataCatagorys = ['班组1', '班组2'];
-let cacheListData = [];		//缓存列表数据
+let pageSize = 2;
+let dataCatagorys = ['一班组', '二班组'];
+let cacheTB1ListData = [];		//缓存列表数据
+let cacheTB2ListData = [];		//缓存列表数据
 let getDataTimeInterval = 10000;	//向后端获取数据时间间隔
 let changeDataTimeInterval = 5000;	//数据切换时间间隔
 let timeId = null;
@@ -116,14 +117,10 @@ function sharepartsInfoChart(chartRootElem, datas){
 /**
 * 备件信息列表
 */
-function sharepartsInfoList(tb1, tb2, datas){
-	tb1.children().remove();
-	tb2.children().remove();
+function sharepartsInfoList(tb, datas){
+	tb.children().remove();
 	let str1 = "";
-	let str2 = "";
 	datas.slice(0, pageSize).forEach((item,index)=>{
-
-		if (item.group == dataCatagorys[0]){
 			str1+="<tr>"
 			str1+="<td>"+item.sparepartCode+"</td>";
 			str1+="<td>"+item.sparepartName+"</td>";
@@ -132,25 +129,27 @@ function sharepartsInfoList(tb1, tb2, datas){
 			str1+="<td>"+item.group+"</td>";
 			str1+="<td>"+item.purpose+"</td>";
 			str1+="</tr>";
-		}else if(item.group == dataCatagorys[1]){
-			str2+="<tr>"
-			str2+="<td>"+item.sparepartCode+"</td>";
-			str2+="<td>"+item.sparepartName+"</td>";
-			str2+="<td>"+item.currentInventory+"</td>";
-			str2+="<td>"+item.todayReceive+"</td>";
-			str2+="<td>"+item.group+"</td>";
-			str2+="<td>"+item.purpose+"</td>";
-			str2+="</tr>";
-		}
 	});
-	tb1.html(str1);
-	tb2.html(str2);
+	tb.html(str1);
 }
+
+function filterData(group, datas){
+	let result = [];
+	for(let i = 0, len = datas.length; i < len; i++){
+		if(datas[i]['group'] == group){
+			result.push(datas[i]);
+		}
+	}
+	return result;
+}
+
 
 function getBackendData(chartRootElem){
 	ajax(baseUrl).then(res => {
-		cacheListData = res.data.dataList;
-		sharepartsInfoList($(".tb1 tbody"), $(".tb2 tbody"), cacheListData);
+		cacheTB1ListData = filterData(dataCatagorys[0], res.data.dataList);
+		cacheTB2ListData = filterData(dataCatagorys[1], res.data.dataList);
+		sharepartsInfoList($(".tb1 tbody"), cacheTB1ListData);
+		sharepartsInfoList($(".tb2 tbody"), cacheTB2ListData);
 		sharepartsInfoChart(chartRootElem, res.data.dataChart);
 		//清楚定时器
 		clearInterval(timeId);	//
@@ -159,10 +158,13 @@ function getBackendData(chartRootElem){
 			//折线图随着后端数据获取来更新
 
 			for(var i = 0; i < pageSize; i++){
-				var elem1 = cacheListData.shift();
-				cacheListData.push(elem1);
+				var elem1 = cacheTB1ListData.shift();
+				var elem2 = cacheTB2ListData.shift();
+				cacheTB1ListData.push(elem1);
+				cacheTB2ListData.push(elem2);
 			}
-			sharepartsInfoList($(".tb1 tbody"), $(".tb2 tbody"), cacheListData);
+			sharepartsInfoList($(".tb1 tbody"), cacheTB1ListData);
+			sharepartsInfoList($(".tb2 tbody"), cacheTB2ListData);
 		},changeDataTimeInterval);
 	});
 }

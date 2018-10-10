@@ -2,17 +2,17 @@
 	"mapUrl":"http://39.104.135.24:8081/public/video/ryxx.mp4",
 	"group":[{
 		"groupId":"1",
-		"groupName":"班组1",
+		"groupName":"一班组",
 		"memberCount":12,
 		"workCount":10
 	},{
 		"groupId":"2",
-		"groupName":"班组2",
+		"groupName":"二班组",
 		"memberCount":30,
 		"workCount":0
 	},{
 		"groupId":"3",
-		"groupName":"三组",
+		"groupName":"三班组",
 		"memberCount":30,
 		"workCount":0
 	}],
@@ -20,84 +20,84 @@
 		{
 			"workNum":"001",						
 			"name":"王川川",							
-			"groupName":"班组1",
+			"groupName":"一班组",
 			"groupId":"01",							
 			"workContent":"现场人员整体协调管理"						
 		},
 		{	
 			"workNum":"002",						
 			"name":"李超",							
-			"groupName":"班组1",
+			"groupName":"一班组",
 			"groupId":"02",						
 			"workContent":"生产巡检负责人"						
 		},
 		{	
 			"workNum":"003",						
 			"name":"孙健",							
-			"groupName":"班组1",
+			"groupName":"一班组",
 			"groupId":"01",							
 			"workContent":"安全巡检负责人"						
 		},
 		{	
 			"workNum":"004",						
 			"name":"赵东",							
-			"groupName":"班组1",
+			"groupName":"一班组",
 			"groupId":"02",						
 			"workContent":"设备巡检负责人"					
 		},
 		{	
 			"workNum":"005",						
 			"name":"邢海涛",							
-			"groupName":"班组1",
+			"groupName":"一班组",
 			"groupId":"01",						
 			"workContent":"个人安全巡检负责人"						
 		},
 		{	
 			"workNum":"006",						
 			"name":"杜江",							
-			"groupName":"班组1",
+			"groupName":"一班组",
 			"groupId":"02",						
 			"workContent":"1#巡检员"						
 		},
 		{	
 			"workNum":"007",						
 			"name":"李大海",							
-			"groupName":"班组1",
+			"groupName":"一班组",
 			"groupId":"04",						
 			"workContent":"2#巡检员"						
 		},
 		{	
 			"workNum":"008",						
 			"name":"孙祥",							
-			"groupName":"班组1",
+			"groupName":"一班组",
 			"groupId":"02",						
 			"workContent":"3#巡检员"						
 		},
 		{	
 			"workNum":"009",						
 			"name":"王铁",							
-			"groupName":"班组1",
+			"groupName":"一班组",
 			"groupId":"02",						
 			"workContent":"生产巡检员"						
 		},
 		{	
 			"workNum":"010",						
 			"name":"李超",							
-			"groupName":"班组1",
+			"groupName":"一班组",
 			"groupId":"04",						
 			"workContent":"安全巡检员"						
 		},
 		{	
 			"workNum":"011",						
 			"name":"王伟",							
-			"groupName":"班组1",
+			"groupName":"一班组",
 			"groupId":"02",						
 			"workContent":"设备巡检员"						
 		},
 		{	
 			"workNum":"012",						
 			"name":"李浩楠",							
-			"groupName":"班组1",
+			"groupName":"一班组",
 			"groupId":"02",						
 			"workContent":"个人安全员"						
 		}

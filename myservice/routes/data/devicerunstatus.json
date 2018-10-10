@@ -15,38 +15,42 @@
     {
       "codeNum": "JC-002",
       "cumulativeRuntime": "166:41:41",
-      "equipmentCurrentStatus": "1",
+      "equipmentCurrentStatus": "正常",
       "equipmentName": "可燃气体报警器",
       "equipmentType": "监测设备",
       "lastStopDatetime": "2018-09-10 12:13:32",
-      "thisRuntime": "320:31:30"
+      "thisRuntime": "320:31:30",
+      "runDayCount":6
     },
     {
       "codeNum": "JD-001",
       "cumulativeRuntime": "166:41:41",
-      "equipmentCurrentStatus": "1",
+      "equipmentCurrentStatus": "正常",
       "equipmentName": "离心泵",
       "equipmentType": "机电设备",
       "lastStopDatetime": "2018-09-10 12:13:32",
-      "thisRuntime": "320:31:30"
+      "thisRuntime": "320:31:30",
+      "runDayCount":5
     },
     {
       "codeNum": "JC-001",
       "cumulativeRuntime": "166:41:41",
-      "equipmentCurrentStatus": "1",
+      "equipmentCurrentStatus": "正常",
       "equipmentName": "一氧化碳检测仪",
       "equipmentType": "监测设备",
       "lastStopDatetime": "2018-09-10 12:13:32",
-      "thisRuntime": "320:31:30"
+      "thisRuntime": "320:31:30",
+      "runDayCount":6
     },
     {
       "codeNum": "FJ-001",
       "cumulativeRuntime": "166:41:41",
-      "equipmentCurrentStatus": "3",
+      "equipmentCurrentStatus": "正常",
       "equipmentName": "通风机",
       "equipmentType": "风机设备",
       "lastStopDatetime": "2018-09-10 12:13:32",
-      "thisRuntime": "320:31:30"
+      "thisRuntime": "320:31:30",
+      "runDayCount":7
     }
   ]
 }

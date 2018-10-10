@@ -7,9 +7,9 @@
 */
 
 //初始化变量
-//baseUrl = baseUrl + "interf07";
+////baseUrl = baseUrl + "interf07";
+//baseUrl = 'http://39.104.135.24:8081/public/data/realtimemonitoring.json'
 baseUrl = baseUrl + "/api/realtimemonitoring";
-currentDateObj = null;
 //环境检测类型
 let monitoringTypes = ['环境监测', '设备监测', '本体监测'];
 //图形x轴刻度标签值
@@ -161,7 +161,8 @@ function initChart(chartsObj, lcolors, xColumNameData, legendData, seriesData, u
 			}
 		},
 	    tooltip:{
-	        trigger: 'item'
+	        trigger: 'item',
+	        formatter:'{a}<br/>{b}<br/>{c}'
 	    },
 	    legend: {
 	    	 textStyle:{
@@ -233,10 +234,9 @@ function handlerSeriesData(datas, monitorName, lowerLimit, upperLimit){
 	let count = 0;
 	let legend = [];
 	let data = [];
-	let item = datas.reverse();
+	let item = datas.slice().reverse();
 	let findOk = false;
 	let isWarn = false;
-	
 	
 	for (let i = 0, len = item.length; i < len; i++){
 		if (item[i]['name'] == timeStr){
@@ -254,12 +254,13 @@ function handlerSeriesData(datas, monitorName, lowerLimit, upperLimit){
 			break;
 		}
 	}
+	legend.reverse();
+	data.reverse();
 	result['legend'] = legend;
 	result['data'] = data;
 	result.monitorName = monitorName;
 	result['isWarn'] = isWarn;
-	legend.reverse();
-	data.reverse();
+	console.log(result);
 	return result;
 }
 
@@ -290,7 +291,11 @@ function registerSearchFn(elem, type, datas, chart, tab){
 			for(let i = 0, len = datas[type].length; i < len; i++){
 				if (datas[type][i]['monitorProject'] == key){
 					unit = datas[type][i]['unit'];
-					let chartData = handlerSeriesData(datas[type][i]['data'], datas[type][i]['monitoringPoint'],datas[type][i]['lowerLimit'] , datas[type][i]['upperLimit']);
+					let chartData = handlerSeriesData(datas[type][i]['data'], 
+						datas[type][i]['monitoringPoint'],
+						datas[type][i]['lowerLimit'] , 
+						datas[type][i]['upperLimit']);
+					
 					legendDatas.push(chartData['monitorName']);
 					seriesDatas.push(chartData['data']);
 					xColumNameData = chartData['legend'];
@@ -363,6 +368,8 @@ function getBackendData(chartsObjs, tablelists){
 		for(var i = 0,len = res.data.length; i < len; i++){
 			cacheDatas[res.data[i]['type']] = res.data[i]['data'];
 		}
+		
+
 		//添加监测点选择数据
 		addMonitorSelectData($('#environmentMonitorPointSelect'), environmentMonitorPointAvailableTags);
 		addMonitorSelectData($('#equipmentMonitorPointSelect'), equipmentMonitorPointAvailableTags);
@@ -412,7 +419,7 @@ function generateTableData(datas, monitoringPoints, monitoringTypes){
 		for(let j = 0, llen = datas[monitoringTypes[i]].length; j < llen; j++){
 			if (monitoringPoints[i] == datas[monitoringTypes[i]][j]['monitorProject']){
 				//温度监控数据
-				let mPointData = datas[monitoringTypes[i]][j]['data'];
+				let mPointData = datas[monitoringTypes[i]][j]['data'].slice();
 				let mPointName = datas[monitoringTypes[i]][j]['monitoringPoint'];
 				let mLowerLimit = datas[monitoringTypes[i]][j]['lowerLimit'];
 				let mUpperLimit =  datas[monitoringTypes[i]][j]['upperLimit'];

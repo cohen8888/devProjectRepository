@@ -1,108 +1,105 @@
 {
-  "dataChart": [
-    {
-      "count": "675",
-      "haveUse": "13",
-      "option": "用途一",
-      "type": "生产备件"
-    },
-    {
-      "count": "768",
-      "haveUse": "16",
-      "option": "用途二",
-      "type": "安全备件"
-    },
-    {
-      "count": "897",
-      "haveUse": "32",
-      "option": "用途四",
-      "type": "机电备件"
-    },
-    {
-      "count": "453",
-      "haveUse": "32",
-      "option": "用途三",
-      "type": "风机备件"
+  "dataChart":[{
+      "type":"A0986 生产设备类",
+      "count":"66",
+      "haveUse":"32",
+      "option":"排水、供水、照明设备等"
+    },{
+      "type":"A0987 安全设备类",
+      "count":"45",
+      "haveUse":"21",
+      "option":"监控设备、感应监测、消防设施等"
+    },{
+      "type":"A098 机电设备",
+      "count":"27",
+      "haveUse":"15",
+      "option":"大型机械、电控设备等"
+    },{
+      "type":"A0987 风机设备",
+      "count":"98",
+      "haveUse":"77",
+      "option":"换气设备、空调设备等"
     }
   ],
-  "dataList": [
-    {
-      "group": "班组1",
-      "currentInventory": "1",
-      "sparepartName": "111",
-      "sparepartCode": "111111",
-      "purpose": "维护",
-       "todayReceive":0
+  "dataList":[{
+      "sparepartCode":"SC10_101",
+      "sparepartName":"照明灯管",
+      "currentInventory":66,
+      "group":"一班组",
+      "todayReceive":3,
+      "purpose":"更换3#地顶灯。"
     },
     {
-      "group": "班组2",
-      "currentInventory": "1",
-      "sparepartName": "111",
-      "sparepartCode": "111111",
-      "purpose": "维护",
-      "todayReceive":0
+      "sparepartCode":"SC10_205",
+      "sparepartName":"供水阀门",
+      "currentInventory":88,
+      "group":"一班组",
+      "todayReceive":7,
+      "purpose":"批量更新老化阀门。"
     },
     {
-      "group": "班组3",
-      "currentInventory": "1",
-      "sparepartName": "111",
-      "sparepartCode": "111111",
-      "purpose": "维护",
-       "todayReceive":0
+      "sparepartCode":"SC10_302",
+      "sparepartName":"综合仓加固栓",
+      "currentInventory":12,
+      "group":"一班组",
+      "todayReceive":2,
+      "purpose":"加固栓脱落"
     },
     {
-      "group": "班组4",
-      "currentInventory": "1",
-      "sparepartName": "111",
-      "sparepartCode": "111111",
-      "purpose": "维护",
-       "todayReceive":0
+      "sparepartCode":"AQ09_102",
+      "sparepartName":"摄像头云台支架",
+      "currentInventory":43,
+      "group":"一班组",
+      "todayReceive":5,
+      "purpose":"新安装监控点摄像头"
     },
     {
-      "group": "班组5",
-      "currentInventory": "1",
-      "sparepartName": "111",
-      "sparepartCode": "111111",
-      "purpose": "维护"
-    }, {
-      "group": "班组1",
-      "currentInventory": "1",
-      "sparepartName": "111",
-      "sparepartCode": "111111",
-      "purpose": "维护",
-       "todayReceive":0
+      "sparepartCode":"AQ14_231",
+      "sparepartName":"消防栓",
+      "currentInventory":166,
+      "group":"一班组",
+      "todayReceive":12,
+      "purpose":"更换过期消防栓"
     },
     {
-      "group": "班组2",
-      "currentInventory": "1",
-      "sparepartName": "111",
-      "sparepartCode": "111111",
-      "purpose": "维护",
-       "todayReceive":0
+      "sparepartCode":"AQ23_307",
+      "sparepartName":"温度传感器",
+      "currentInventory":86,
+      "group":"一班组",
+      "todayReceive":65,
+      "purpose":"4#地安装一批温度传感器"
     },
     {
-      "group": "班组3",
-      "currentInventory": "1",
-      "sparepartName": "111",
-      "sparepartCode": "111111",
-      "purpose": "维护",
-       "todayReceive":0
+      "sparepartCode":"JD09_102",
+      "sparepartName":"电磁继电器",
+      "currentInventory":36,
+      "group":"一班组",
+      "todayReceive":13,
+      "purpose":"更新老化电器件。"
     },
     {
-      "group": "班组4",
-      "currentInventory": "1",
-      "sparepartName": "111",
-      "sparepartCode": "111111",
-      "purpose": "维护",
-       "todayReceive":0
+      "sparepartCode":"JD09_142",
+      "sparepartName":"UPS电源",
+      "currentInventory":16,
+      "group":"二班组",
+      "todayReceive":2,
+      "purpose":"接通应急电源"
     },
     {
-      "group": "班组5",
-      "currentInventory": "1",
-      "sparepartName": "111",
-      "sparepartCode": "111111",
-      "purpose": "维护",
-       "todayReceive":0
+      "sparepartCode":"FJ12_141",
+      "sparepartName":"风机轴承",
+      "currentInventory":56,
+      "group":"二班组",
+      "todayReceive":32,
+      "purpose":"统一更换风机轴承。"
+    },
+    {
+      "sparepartCode":"FJ12_141",
+      "sparepartName":"风机扇叶",
+      "currentInventory":90,
+      "group":"二班组",
+      "todayReceive":70,
+      "purpose":"更换磨损的风机扇叶。"
     }
   ]
 }

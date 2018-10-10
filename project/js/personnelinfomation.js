@@ -7,10 +7,11 @@ let urls = ["http://39.104.135.24:8081/public/video/rcxc.mp4",
 	"http://39.104.135.24:8081/public/video/rcxc.mp4", 
 	"http://39.104.135.24:8081/public/videorcxc.mp4"];
 
+let pageSize = 5;
 
 function info(opt){
 	let str = "";
-	opt.users.forEach((item,index)=>{
+	opt.users.slice(0, pageSize).forEach((item,index)=>{
 		str+=`<tr>`;
 		str+=`<td>${item.workNum}</td>`;
 		str+=`<td>${item.name}</td>`;
