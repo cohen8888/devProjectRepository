@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>故障信息</title>
+		<link rel="stylesheet" type="text/css" href="../css/global.css"/>
+		<link rel="stylesheet" href="../css/font-awesome.min.css" />
+		<link rel="stylesheet" type="text/css" href="../css/jquery-ui.min.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/faultmessage.css"/>
+		<style>
+			.ui-widget{
+				font-size: 0.3em;
+			}
+			.ui-autocomplete {
+		    	position: absolute;
+		    	top: 0;
+		    	left: 0;
+		    	cursor: default;
+		    	/* overflow-y:scroll; */
+		    	overflow-x:hidden; 
+		    	max-height: 300px; 
+		    }
+		</style>
+	</head>
+	<body>
+		<div class="wrap">
+			<div class="content">
+				<header>
+					<div class="header_left">
+						<img src="../img/backBtn.png"/>
+					</div>
+					<div class="header_right">
+						<h2 class="h2_titleText">故障信息</h2>
+						<p class="timeText"><span class="fa fa-clock-o fa"></span><span>2018.09.04</span>  <span>14:30:32</span></p>
+					</div>
+				</header>
+				<section class="clear_float">
+					<div class="section_left">
+						<div id="canvasWrap" style="width: 100%; height: 9.2rem;">
+							
+						</div>
+						<div class="titleGroup">
+							<ul>
+								<li><p>故障来源</p></li>
+								<li><p>01永久性故障</p></li>
+								<li><p>02间断性故障</p></li>
+								<li><p>03磨损性故障</p></li>
+								<li><p>04人为性故障</p></li>
+								<li><p>05设计性故障</p></li>
+							</ul>
+						</div>
+					</div>
+					<div class="section_right">
+						<div class="select_group clear_float" style="line-height: 0.1rem">
+							<select name="" id="codeSearch">
+								<option value="">故障代码</option>
+							</select>
+							<input placeholder="设备名称|设备编号" type="text" class="qryInput" id="equipmentNameCode">
+						</div>
+						<div class="tableBox">
+							<table id="faultinfotable">
+								<thead>
+									<tr>
+										<th>故障代码</th>
+										<th>所属设备</th>
+										<th>发现时间</th>
+										<th>当前状态</th>
+									</tr>
+								</thead>
+								<tbody></tbody>
+							</table>
+						</div>
+					</div>
+				</section>
+			</div>
+		</div>
+	</body>
+	<script src="../js/rem.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../js/jquery-3.3.1.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../js/jquery-ui.min.js"></script>
+	<script src="../js/echarts.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../js/commons.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../js/faultmessage.js" type="text/javascript" charset="utf-8"></script>
+	
+</html>

@@ -1,438 +1,442 @@
 {
     "aqyh": {
-      "list": [
-        {
-          "findTime": "2018-09-10 10:21:43",
-          "findWorker": "孙祥",
-          "findWorkerGroup": "一班组",
-          "troubleCode": "001",
-          "troubleContent": "管道破损泄露"
-        },
-        {
-          "findTime": "2018-09-10 11:11:43",
-          "findWorker": "李大海",
-          "findWorkerGroup": "一班组",
-          "troubleCode": "004",
-          "troubleContent": "松动未加固"
-        },
-        {
-          "findTime": "2018-09-11 12:10:43",
-          "findWorker": "李语轩",
-          "findWorkerGroup": "二班组",
-          "troubleCode": "005",
-          "troubleContent": "一氧化碳检测值超标"
-        }
-      ]
+        "list": [
+            {
+                "findTime": "2018-09-10 10:21:43",
+                "findWorker": "孙祥",
+                "findWorkerGroup": "一班组",
+                "troubleCode": "001",
+                "troubleContent": "管道破损泄露"
+            },
+            {
+                "findTime": "2018-09-10 11:11:43",
+                "findWorker": "李大海",
+                "findWorkerGroup": "一班组",
+                "troubleCode": "004",
+                "troubleContent": "松动未加固"
+            },
+            {
+                "findTime": "2018-09-11 12:10:43",
+                "findWorker": "李语轩",
+                "findWorkerGroup": "二班组",
+                "troubleCode": "005",
+                "troubleContent": "一氧化碳检测值超标"
+            }
+        ]
     },
     "bzjx": {
-      "list": [
-        {
-          "data": [
+        "list": [
             {
-              "name": "进行中",
-              "value": "18"
+                "data": [
+                    {
+                        "name": "进行中",
+                        "value": "18"
+                    },
+                    {
+                        "name": "故障",
+                        "value": "12"
+                    },
+                    {
+                        "name": "停工",
+                        "value": "15"
+                    }
+                ],
+                "group": "一班组"
             },
             {
-              "name": "故障",
-              "value": "12"
+                "data": [
+                    {
+                        "name": "进行中",
+                        "value": "18"
+                    },
+                    {
+                        "name": "故障",
+                        "value": "12"
+                    },
+                    {
+                        "name": "停工",
+                        "value": "15"
+                    }
+                ],
+                "group": "二班组"
             },
             {
-              "name": "停工",
-              "value": "15"
+                "data": [
+                    {
+                        "name": "进行中",
+                        "value": "18"
+                    },
+                    {
+                        "name": "故障",
+                        "value": "12"
+                    },
+                    {
+                        "name": "停工",
+                        "value": "15"
+                    }
+                ],
+                "group": "三班组"
             }
-          ],
-          "group": "一班组"
-        },
-        {
-          "data": [
-            {
-              "name": "进行中",
-              "value": "18"
+        ],
+        "rack": {
+            "first": {
+                "name": "王川川",
+                "score": "100",
+                "workId": "001"
             },
-            {
-              "name": "故障",
-              "value": "12"
+            "second": {
+                "name": "赵东",
+                "score": "90",
+                "workId": "004"
             },
-            {
-              "name": "停工",
-              "value": "15"
+            "third": {
+                "name": "王铁",
+                "score": "80",
+                "workId": "009"
             }
-          ],
-          "group": "二班组"
-        },
-        {
-          "data": [
-            {
-              "name": "进行中",
-              "value": "18"
-            },
-            {
-              "name": "故障",
-              "value": "12"
-            },
-            {
-              "name": "停工",
-              "value": "15"
-            }
-          ],
-          "group": "三班组"
         }
-      ],
-      "rack": {
-        "first": {
-          "name": "王川川",
-          "score": "100",
-          "workId": "001"
-        },
-        "second": {
-          "name": "赵东",
-          "score": "90",
-          "workId": "004"
-        },
-        "third": {
-          "name": "王铁",
-          "score": "80",
-          "workId": "009"
-        }
-      }
     },
     "rcxc": {
-      "list": [
-        {
-          "checkLine": "路线1",
-          "result": "正常",
-          "resultCode": "roo1",
-          "status": "巡检中"
+        "list": [
+            {
+                "checkLine": "路线1",
+                "result": "正常",
+                "resultCode": "roo1",
+                "status": "巡检中"
+            },
+            {
+                "checkLine": "路线2",
+                "result": "停检",
+                "resultCode": "roo2",
+                "status": "已完成"
+            },
+            {
+                "checkLine": "路线3",
+                "result": "异常",
+                "resultCode": "roo3",
+                "status": "已完成"
+            },
+            {
+                "checkLine": "路线4",
+                "result": "正常",
+                "resultCode": "roo4",
+                "status": "巡检中"
+            }
+        ],
+        "maintain": {
+            "list": [
+                {
+                    "code": "r001",
+                    "name": "维修",
+                    "value": "254"
+                },
+                {
+                    "code": "f001",
+                    "name": "故障",
+                    "value": "10"
+                }
+            ],
+            "title": "维修"
         },
-        {
-          "checkLine": "路线2",
-          "result": "停检",
-          "resultCode": "roo2",
-          "status": "已完成"
-        },
-        {
-          "checkLine": "路线3",
-          "result": "异常",
-          "resultCode": "roo3",
-          "status": "已完成"
-        },
-        {
-          "checkLine": "路线4",
-          "result": "正常",
-          "resultCode": "roo4",
-          "status": "巡检中"
+        "malfunction": {
+            "list": [
+                {
+                    "code": "t01",
+                    "name": "已排查",
+                    "value": "40"
+                },
+                {
+                    "code": "t02",
+                    "name": "排查中",
+                    "value": "30"
+                },
+                {
+                    "code": "t03",
+                    "name": "已转工单",
+                    "value": "15"
+                }
+            ],
+            "title": "故障"
         }
-      ],
-      "maintain": {
-        "list": [
-          {
-            "code": "r001",
-            "name": "维修",
-            "value": "25"
-          },
-          {
-            "code": "f001",
-            "name": "故障",
-            "value": "10"
-          }
-        ],
-        "title": "维修"
-      },
-      "malfunction": {
-        "list": [
-          {
-            "code": "t01",
-            "name": "已排查",
-            "value": "40"
-          },
-          {
-            "code": "t02",
-            "name": "排查中",
-            "value": "30"
-          },
-          {
-            "code": "t03",
-            "name": "已转工单",
-            "value": "15"
-          }
-        ],
-        "title": "故障"
-      }
     },
     "ryxx": {
-      "workCount": "20",
-      "workGroup": "一班组",
-      "workSum": "30"
+        "workCount": "20",
+        "workGroup": "一班组",
+        "workSum": "30"
     },
     "sbzt": {
-      "list": [
-        {
-          "data": [
+        "list": [
             {
-              "name": "运行中",
-              "value": "256"
+                "data": [
+                    {
+                        "name": "运行中",
+                        "value": "15"
+                    },
+                    {
+                        "name": "故障处理中",
+                        "value": "15"
+                    },
+                    {
+                        "name": "停车",
+                        "value": "15"
+                    },
+                    {
+                        "name": "风机设备",
+                        "value": "15"
+                    }
+                ],
+                "type": "运行状态"
             },
             {
-              "name": "故障处理中",
-              "value": "58"
+                "data": [
+                    {
+                        "name": "机电设备",
+                        "value": "15"
+                    },
+                    {
+                        "name": "照明设备",
+                        "value": "23"
+                    },
+                    {
+                        "name": "排水设备",
+                        "value": "12"
+                    },
+                    {
+                        "name": "监测设备",
+                        "value": "32"
+                    }
+                ],
+                "type": "设备类别"
             },
             {
-              "name": "停车",
-              "value": "189"
+                "data": [
+                    {
+                        "name": "停工",
+                        "value": "15"
+                    },
+                    {
+                        "name": "故障",
+                        "value": "15"
+                    },
+                    {
+                        "name": "运行中",
+                        "value": "15"
+                    }
+                ],
+                "type": "故障信息"
+            },
+            {
+                "data": [
+                    {
+                        "name": "备件设备一",
+                        "value": "15"
+                    },
+                    {
+                        "name": "备件设备二",
+                        "value": "15"
+                    },
+                    {
+                        "name": "备件设备三",
+                        "value": "15"
+                    }
+                ],
+                "type": "备件信息"
             }
-          ],
-          "type": "运行状态"
-        },
-        {
-          "data": [
-            {
-              "name": "机电设备",
-              "value": "15"
-            },
-            {
-              "name": "照明设备",
-              "value": "23"
-            },
-            {
-              "name": "排水设备",
-              "value": "12"
-            },
-            {
-              "name": "监测设备",
-              "value": "32"
-            }
-          ],
-          "type": "设备类别"
-        },
-        {
-          "data": [
-            {
-              "name": "停工",
-              "value": "15"
-            },
-            {
-              "name": "故障",
-              "value": "15"
-            },
-            {
-              "name": "运行中",
-              "value": "15"
-            }
-          ],
-          "type": "故障信息"
-        },
-        {
-          "data": [
-            {
-              "name": "备件设备一",
-              "value": "15"
-            },
-            {
-              "name": "备件设备二",
-              "value": "15"
-            },
-            {
-              "name": "备件设备三",
-              "value": "15"
-            }
-          ],
-          "type": "备件信息"
-        }
-      ]
+        ]
     },
     "sjgj": {
-      "list": [
-        {
-          "name": "监测告警",
-          "value": 10
-        },
-        {
-          "name": "安全事件",
-          "value": 10
-        },
-        {
-          "name": "隐患风险",
-          "value": 5
-        },
-        {
-          "name": "安防报警",
-          "value": 2
-        }
-      ]
+        "list": [
+            {
+                "name": "监测告警",
+                "value": 10
+            },
+            {
+                "name": "安全事件",
+                "value": 10
+            },
+            {
+                "name": "隐患风险",
+                "value": 5
+            },
+            {
+                "name": "安防报警",
+                "value": 2
+            }
+        ]
     },
     "ssjk": {
-      "list": [
-        {
-          "data": [
+        "list": [
             {
-              "time": "0:00",
-              "value": "18"
+                "data": [
+                    {
+                        "time": "0:00",
+                        "value": "11"
+                    },
+                    {
+                        "time": "2:00",
+                        "value": "5"
+                    },
+                    {
+                        "time": "4:00",
+                        "value": "11"
+                    },
+                    {
+                        "time": "6:00",
+                        "value": "12"
+                    },
+                    {
+                        "time": "8:00",
+                        "value": "1"
+                    },
+                    {
+                        "time": "10:00",
+                        "value": "2"
+                    },
+                    {
+                        "time": "12:00",
+                        "value": "8"
+                    },
+                    {
+                        "time": "14:00",
+                        "value": "14"
+                    },
+                    {
+                        "time": "16:00",
+                        "value": "16"
+                    },
+                    {
+                        "time": "18:00",
+                        "value": "10"
+                    },
+                    {
+                        "time": "20:00",
+                        "value": "18"
+                    },
+                    {
+                        "time": "22:00",
+                        "value": "6"
+                    },
+                    {
+                        "time": "24:00",
+                        "value": "2"
+                    }
+                ],
+                "watchLine": "监测点1"
             },
             {
-              "time": "2:00",
-              "value": "16"
+                "data": [
+                    {
+                        "time": "0:00",
+                        "value": "15"
+                    },
+                    {
+                        "time": "2:00",
+                        "value": "11"
+                    },
+                    {
+                        "time": "4:00",
+                        "value": "9"
+                    },
+                    {
+                        "time": "6:00",
+                        "value": "4"
+                    },
+                    {
+                        "time": "8:00",
+                        "value": "4"
+                    },
+                    {
+                        "time": "10:00",
+                        "value": "1"
+                    },
+                    {
+                        "time": "12:00",
+                        "value": "5"
+                    },
+                    {
+                        "time": "14:00",
+                        "value": "8"
+                    },
+                    {
+                        "time": "16:00",
+                        "value": "15"
+                    },
+                    {
+                        "time": "18:00",
+                        "value": "10"
+                    },
+                    {
+                        "time": "20:00",
+                        "value": "17"
+                    },
+                    {
+                        "time": "22:00",
+                        "value": "7"
+                    },
+                    {
+                        "time": "24:00",
+                        "value": "9"
+                    }
+                ],
+                "watchLine": "监测点2"
             },
             {
-              "time": "4:00",
-              "value": "5"
-            },
-            {
-              "time": "6:00",
-              "value": "10"
-            },
-            {
-              "time": "8:00",
-              "value": "10"
-            },
-            {
-              "time": "10:00",
-              "value": "13"
-            },
-            {
-              "time": "12:00",
-              "value": "8"
-            },
-            {
-              "time": "14:00",
-              "value": "4"
-            },
-            {
-              "time": "16:00",
-              "value": "4"
-            },
-            {
-              "time": "18:00",
-              "value": "3"
-            },
-            {
-              "time": "20:00",
-              "value": "14"
-            },
-            {
-              "time": "22:00",
-              "value": "19"
-            },
-            {
-              "time": "24:00",
-              "value": "8"
+                "data": [
+                    {
+                        "time": "0:00",
+                        "value": "3"
+                    },
+                    {
+                        "time": "2:00",
+                        "value": "0"
+                    },
+                    {
+                        "time": "4:00",
+                        "value": "4"
+                    },
+                    {
+                        "time": "6:00",
+                        "value": "17"
+                    },
+                    {
+                        "time": "8:00",
+                        "value": "17"
+                    },
+                    {
+                        "time": "10:00",
+                        "value": "17"
+                    },
+                    {
+                        "time": "12:00",
+                        "value": "19"
+                    },
+                    {
+                        "time": "14:00",
+                        "value": "14"
+                    },
+                    {
+                        "time": "16:00",
+                        "value": "15"
+                    },
+                    {
+                        "time": "18:00",
+                        "value": "5"
+                    },
+                    {
+                        "time": "20:00",
+                        "value": "6"
+                    },
+                    {
+                        "time": "22:00",
+                        "value": "17"
+                    },
+                    {
+                        "time": "24:00",
+                        "value": "16"
+                    }
+                ],
+                "watchLine": "监测点3"
             }
-          ],
-          "watchLine": "监测点1"
-        },
-        {
-          "data": [
-            {
-              "time": "0:00",
-              "value": "0"
-            },
-            {
-              "time": "2:00",
-              "value": "19"
-            },
-            {
-              "time": "4:00",
-              "value": "11"
-            },
-            {
-              "time": "6:00",
-              "value": "4"
-            },
-            {
-              "time": "8:00",
-              "value": "2"
-            },
-            {
-              "time": "10:00",
-              "value": "7"
-            },
-            {
-              "time": "12:00",
-              "value": "18"
-            },
-            {
-              "time": "14:00",
-              "value": "19"
-            },
-            {
-              "time": "16:00",
-              "value": "5"
-            },
-            {
-              "time": "18:00",
-              "value": "10"
-            },
-            {
-              "time": "20:00",
-              "value": "12"
-            },
-            {
-              "time": "22:00",
-              "value": "9"
-            },
-            {
-              "time": "24:00",
-              "value": "0"
-            }
-          ],
-          "watchLine": "监测点2"
-        },
-        {
-          "data": [
-            {
-              "time": "0:00",
-              "value": "5"
-            },
-            {
-              "time": "2:00",
-              "value": "8"
-            },
-            {
-              "time": "4:00",
-              "value": "7"
-            },
-            {
-              "time": "6:00",
-              "value": "3"
-            },
-            {
-              "time": "8:00",
-              "value": "8"
-            },
-            {
-              "time": "10:00",
-              "value": "11"
-            },
-            {
-              "time": "12:00",
-              "value": "0"
-            },
-            {
-              "time": "14:00",
-              "value": "9"
-            },
-            {
-              "time": "16:00",
-              "value": "15"
-            },
-            {
-              "time": "18:00",
-              "value": "17"
-            },
-            {
-              "time": "20:00",
-              "value": "3"
-            },
-            {
-              "time": "22:00",
-              "value": "12"
-            },
-            {
-              "time": "24:00",
-              "value": "13"
-            }
-          ],
-          "watchLine": "监测点3"
-        }
-      ]
+        ]
     }
-  }
+}

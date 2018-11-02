@@ -1,11 +1,16 @@
 /**
-* author : Cohen.Lee
-* date : 2018-09-03
-* 
-*/
+ * 
+ * module：设备运行状态
+ * author：Cohen.Lee
+ * date：2018-09-03
+ * 
+ */
+
 
 //baseUrl = baseUrl + "interf03";
 baseUrl = baseUrl + "/api/devicerunstatus";
+
+
 let searchCatagoryResult = [];
 let availableTags = [];
 let cacheData = [];
@@ -38,7 +43,7 @@ function renderListData(rootElem, datas, eventCallBack){
 //设备类型下拉列表内容填充
 function optEquipType(categoryInfo, equipmentTypeElem){
 	equipmentTypeElem.children().remove();
-	equipmentTypeElem.append('<option value="default" >--设备类别--</option>')
+	equipmentTypeElem.append('<option value="default" >--设备名称--</option>')
 	for(category in categoryInfo){
 		equipmentTypeElem.append('<option value="' + category + '" >'+ category +'</option>')
 	}

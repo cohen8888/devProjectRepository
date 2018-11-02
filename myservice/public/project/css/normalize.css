@@ -1,0 +1,43 @@
+html,body,div,p,dl,dd,dt,ul,li,a,span,img,h1,h2,h3,h4,h5,ol,header,footer,section,aside,article,nav,input{
+	padding: 0;
+	margin: 0;
+	text-decoration: none;
+	list-style: none;
+}
+.h3_titleText{
+	color: rgb(231,231,236);
+	font-size: 16px;
+	text-shadow: 0px 0px 10px purple;
+	line-height: 44px;
+	text-indent: 10px;
+}
+.boxBorder{
+	border:1px solid rgb(71,147,225);
+    border-image: -webkit-linear-gradient(rgb(34,70,224),rgb(84,185,227)) 30 30;
+    border-image: -moz-linear-gradient(rgb(34,70,224),rgb(84,185,227)) 30 30;
+    border-image: linear-gradient(rgb(34,70,224),rgb(84,185,227)) 30 30;
+    border-radius: 6px;
+    box-sizing: border-box;
+}
+.w322{
+	width: 322px;
+}
+.w260{
+	width: 260px;
+}
+.clear_float:after{
+	content: "";
+	display: block;
+	height: 0;
+	visibility: hidden;
+	clear:both
+}
+.default{
+	color:rgb(138,181,207)
+}
+.waring{
+	color: rgb(227,73,79);
+}
+.jg{
+	color: rgb(214,154,12);
+}

@@ -1,4 +1,8 @@
-
+/**
+ * module：备件信息
+ * author：Cohen.lee
+ * date：2018-09-21
+ */
 //baseUrl = baseUrl + 'interf08';
 baseUrl = baseUrl + '/api/sparepartsinformation';
 
@@ -28,6 +32,7 @@ function sharepartsInfoChart(chartRootElem, datas){
 	let legendData = datas.map((item,index)=>{
 		let obj = {};
 		obj.name = item.type;
+		obj.icon = 'circle';
 		obj.textStyle = {
 			color:colors[index]
 		}
@@ -37,6 +42,7 @@ function sharepartsInfoChart(chartRootElem, datas){
 	let seriesData = datas.map((item,index)=>{
 		return {
 			name:item.type,
+			color:colors[index],
 			type:'pie',
 			center: [(12.5+(index*25)+"%"), 2.45*rem],
 			radius:[1.25*rem,1.8*rem],
@@ -55,6 +61,22 @@ function sharepartsInfoChart(chartRootElem, datas){
 					name:"今日未使用",
 					itemStyle:{
 						color:colors[index]
+					},
+					label:{
+						show:true,
+						position:"outside",
+						formatter:function(params){
+							let str = "";
+							str += params.name;
+							str += "\n";
+							str += params.value;
+							return str;
+						},
+						fontStyle:0.1 * rem,
+					},
+					labelLine:{
+						show:true,
+						length:0.1*rem
 					}
 				},{
 					value:item.haveUse,
@@ -72,11 +94,10 @@ function sharepartsInfoChart(chartRootElem, datas){
 							str += "\n";
 							str += params.value;
 							str += "\n";
-							str += params.data.info;
+							str += params.data.info.replaceAll('、','\n');
 							return str;
 						},
 						fontStyle:0.1 * rem,
-							
 					},
 					labelLine:{
 						show:true,
@@ -99,13 +120,12 @@ function sharepartsInfoChart(chartRootElem, datas){
 			itemGap:0.16*rem,
 			itemWidth:0.2*rem,
 			itemHeight:0.2*rem,
-			icon:"circle",
 			x:'center',
 			data:legendData,
 			bottom:0.2*rem,
 			textStyle:{
 				color:"#ccc",
-				fontSize:0.25*rem,
+				fontSize:0.3*rem,
 			}
 		},
 		series: seriesData

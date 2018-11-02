@@ -1,16 +1,19 @@
 /**
-* 设备运行状态
-* author : Cohen.Lee
-* date : 2018-09-03
+* module：设备运行状态
+* author：Cohen.Lee
+* date：2018-09-03
 * 
 */
+
+
 //baseUrl = baseUrl + "interf03";
 baseUrl = baseUrl + "/api/devicerunstatus";
 let availableTags = [];
 let getDataTimeInterval = 100000;		//设置获取数据的时间间隔
 let cacheData = [];
 let searchCatagoryResult = [];
-let pieColors = ['rgb(249,92,75)','rgb(235,232,93)','rgb(235,162,251)','rgb(165,185,238)','rgb(204,252,251)','rgb(208,150,191)'];
+let pieColors = ['rgb(249,92,75)','rgb(235,232,93)','rgb(235,162,251)',
+'rgb(165,185,238)','rgb(204,252,251)','rgb(208,150,191)'];
 
 //计算设备类型数量
 function calcCavnasData(data){
@@ -24,7 +27,6 @@ function calcCavnasData(data){
 			}
 		}
 	}
-	console.log(key);
 	return key;
 }
 
@@ -68,19 +70,23 @@ function generateColumnarColor(lowRangeColor, HightRangeColor){
 	}]);
 }
 
-//柱形图，的每根柱子的颜色
+// //柱形图，的每根柱子的颜色
+// function columnarColor(params){
+// 	//每个柱子的颜色即为colorList数组里的每一项，如果柱子数目多于colorList的长度，则柱子颜色循环使用该数组					
+// 	var colorList = [
+// 		generateColumnarColor('#D197C0','#F9F2C5'),
+// 		generateColumnarColor('#CDFCF8','#F3DC9E'),
+// 		generateColumnarColor('#A5B9EE','#EDBAEA'),
+// 		generateColumnarColor('#EDA4F9','#F8C9C3'),
+// 		generateColumnarColor('#EBE861','#F7BAE5'),
+// 		generateColumnarColor('#FA5C4B','#F4C05C'),
+// 		generateColumnarColor('#bA534B','#abC05C')
+// 	];
+// 	return colorList[params.dataIndex];
+// }
+
 function columnarColor(params){
-	//每个柱子的颜色即为colorList数组里的每一项，如果柱子数目多于colorList的长度，则柱子颜色循环使用该数组					
-	var colorList = [
-		generateColumnarColor('#D197C0','#F9F2C5'),
-		generateColumnarColor('#CDFCF8','#F3DC9E'),
-		generateColumnarColor('#A5B9EE','#EDBAEA'),
-		generateColumnarColor('#EDA4F9','#F8C9C3'),
-		generateColumnarColor('#EBE861','#F7BAE5'),
-		generateColumnarColor('#FA5C4B','#F4C05C'),
-		generateColumnarColor('#bA534B','#abC05C')
-	];
-	return colorList[params.dataIndex];
+	return pieColors[params.dataIndex];
 }
 
 function drawBarChart(chartRootElem, xColumNameData, seriesData, columnarColor){
@@ -239,7 +245,7 @@ function renderPage(myBarChart, myPieChart){
 		});
 	    
 	    drawBarChart(myBarChart,xColumNameData,seriesData,columnarColor);
-	    drawPieChart(myPieChart, res.data.chartPieData);
+	    //drawPieChart(myPieChart, res.data.chartPieData);
 		renderListData($(".tb1 tbody"), res.data.otherData);
 	});
 }
@@ -322,7 +328,7 @@ $(function(){
 	let container = $("#container");
 	let containerPie = $('#containerPie');
 	let myBarChart = echarts.init(container.get(0));
-	let myPieChart = echarts.init(containerPie.get(0));
+	//let myPieChart = echarts.init(containerPie.get(0));
 	//类别搜索下拉列表
 	$("#equipmentTypeName").on('change',(event) => {
 		let searchValue = event.target.value;
@@ -345,7 +351,7 @@ $(function(){
     	}
     });
 
-	renderPage(myBarChart,myPieChart);
+	renderPage(myBarChart,null);
 
 	setInterval(function(){
 		renderPage(myBarChart,myPieChart);

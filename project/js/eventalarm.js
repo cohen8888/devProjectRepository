@@ -1,8 +1,14 @@
 /**
-* author : Cohen.Lee
-* date : 2018-09-03
+ * 
+ * module：事件告警
+ * author：Cohen.Lee
+ * date：2018-09-03
+* 
+* 
 * 
 */
+
+
 //baseUrl = baseUrl + "interf02";
 baseUrl = baseUrl + "/api/eventalarm";
 let lineColors = ['#F2DEF2', '#E8D897', '#AAD5B3', '#83F0FE', '#D6B9F2'];
@@ -10,6 +16,9 @@ let eventDataCache = [];
 let pageSize = 5;
 let xColumNameData =['周一', '周二','周三','周四','周五','周六','周日'];	//图形x轴刻度标签值
 
+/**
+ * 计算列名数据
+ */
 function calcXColumNameData(){
 	let result = [];
 	let currentDate = new Date();
@@ -45,28 +54,28 @@ function generateChart(datas, chartRootElem){
 			x:'left',
 			padding: [ 0.5 * rem, 0.2 * rem],
 			y:'top',
-			text:'单位:天',
+			text:'单位:件',
 			align:'center',
 			verticalAlign:'bottom',
 			textStyle:{
 				color:'#FFF',
-				fontSize:0.2*rem
+				fontSize:0.3*rem
 			}
 		},
 		grid: {
-			left: '5%',//距离div左边的距离
-			right: '4%',//距离div右边的距离
-			bottom: '10%',//距离下面
+			left: '1%',//距离div左边的距离
+			right: '1%',//距离div右边的距离
+			bottom: '9%',//距离下面
 			containLabel: true
 		},
 	    legend: {
 	    	left:'center',
-			padding:[0.1 * rem, 2.9 * rem],
-			itemWidth:0.3 * rem,
+			padding:[0.1 * rem, 1.0 * rem],
+			itemWidth:0.5 * rem,
 			itemHeight:0.2 * rem,
 			textStyle:{
 				color:'white',
-				fontSize : 0.2 * rem,
+				fontSize : 0.3 * rem,
 				width:0.2 * rem
 			},
 			bottom:'0%',
@@ -174,7 +183,7 @@ function generateTableList(data, tableElem){
 
 function generateQryListData(data, selectElem){
 	selectElem.children().remove();
-	selectElem.append('<option value="default" >事件类型</option>');
+	selectElem.append('<option value="default" >告警类型</option>');
 	data.forEach((elem, index) => {
 		selectElem.append('<option value="'+elem+'" >'+elem+'</option>');
 	})
@@ -212,7 +221,6 @@ $(function(){
 		$('#eventType').on('change', (event) => {
 			let findEventType = event.target.value;
 			let findResult = [];
-			console.log(findEventType);
 			if (findEventType == 'default'){
 				findResult = eventDataCache;
 			}else{

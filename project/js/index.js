@@ -1,10 +1,24 @@
+/**
+ * 首页
+ * author ： cohen
+ * date : cohen.lee
+ */
+
+
+//baseUrl = baseUrl + "interf09";
 baseUrl = baseUrl + "/api/index";
 
-/*let videoUrls = ['video/video1.mp4',
+/*
+//首页视频地址
+let videoUrls = ['video/video1.mp4',
 	'video/video2.mp4',
 	'video/video3.mp4',
 	'video/video4.mp4'];*/
-let videoUrls = ['http://localhost:3000/video/rcxc.mp4','http://localhost:3000/video/rcxc.mp4','http://localhost:3000/video/rcxc.mp4','http://localhost:3000/video/rcxc.mp4'];
+
+let videoUrls = ['http://localhost:3000/video/rcxc.mp4',
+'http://localhost:3000/video/rcxc.mp4',
+'http://localhost:3000/video/rcxc.mp4',
+'http://localhost:3000/video/rcxc.mp4'];
 
 function setData(data ,opt){
 	for( k in data){
@@ -84,7 +98,7 @@ function generateDailyLive1Chart(chartRootElem, datas){
 		tooltip: {
 			trigger: 'item',
 			show:false,
-			formatter: "{a} <br/>{b}: {c} ({d}%)",
+			formatter: "{a} <br/>{b}: {c}",
 			textStyle: {
 				fontSize : 0.5 * rem
 			}
@@ -130,7 +144,7 @@ function generateDailyLive1Chart(chartRootElem, datas){
 	            normal: {
 	                show: true,
 	                position: 'inner',
-	                formatter:'{c}\n{d}%'
+	                formatter:'{c}'
 	            },
 	            emphasis: {
 	            	show:true,
@@ -227,7 +241,7 @@ function generateDailyLive2Chart(chartRootElem, datas){
 	    tooltip: {
 	    	show:false,
 	        trigger: 'item',
-	        formatter: "{a} <br/>{b}: {c} ({d}%)"
+	        formatter: "{a} <br/>{b}: {c}"
 	    },
 	    graphic:{
 			elements:[{
@@ -272,7 +286,7 @@ function generateDailyLive2Chart(chartRootElem, datas){
 					    show: true,
 					    position: 'inner',
 					    color:'white',
-					    formatter:'{c}\n{d}%',
+					    formatter:'{c}',
 	
 					emphasis: {
 						show:true,
@@ -345,6 +359,13 @@ function generateCurrentMonthGroupPerformanceChart(chartRootElem, datas){
 				fontSize:0.25*rem
 			}
 		},
+		legend: {
+			data:['进行中','故障','停工'],
+			textStyle:{
+				color:'white'
+			},
+			bottom:0.01*rem,
+		},
 		xAxis : {
 			type: 'category',
 			splitLine:{
@@ -382,13 +403,14 @@ function generateCurrentMonthGroupPerformanceChart(chartRootElem, datas){
 		},
 		series: [
 			{
-				name: '',
+				name: '进行中',
 				type: 'bar',
 				stack: '总量',
 				label: {
 					normal: {
 							show: true,
-							position: 'inside'
+							position: 'inside',
+							fontSize:0.3*rem
 					}
 				},
 				itemStyle:{
@@ -404,13 +426,14 @@ function generateCurrentMonthGroupPerformanceChart(chartRootElem, datas){
 				data : pedingArr
 			},
 			{
-				name: '',
+				name: '故障',
 				type: 'bar',
 				stack: '总量',
 				label: {
 					normal: {
 						show: true,
-						position: 'inside'
+						position: 'inside',
+						fontSize:0.3*rem
 					}
 				},
 				itemStyle:{
@@ -418,13 +441,14 @@ function generateCurrentMonthGroupPerformanceChart(chartRootElem, datas){
 				},
 				data : badwork
 			},{
-				name: '',
+				name: '停工',
 				type: 'bar',
 				stack: '总量',
 				label: {
 					normal: {
 						show: true,
-						position: 'inside'
+						position: 'inside',
+						fontSize:0.3*rem
 					}
 				},
 				itemStyle:{
@@ -601,7 +625,7 @@ function eventAlarmChart(datas){
 
 
 /**
-* 人学员信息图
+* 人员信息图
 */
 function personInfoChart(chartRootElem, datas){
 	let option = {
@@ -635,8 +659,8 @@ function personInfoChart(chartRootElem, datas){
 					formatter:function(params){
 						let str = "";
 						str += params.name;
-						str += "\n";
-						str += datas.workGroup;
+						// str += "\n";
+						// str += datas.workGroup;
 						return str;
 					},
 
@@ -705,15 +729,16 @@ function realtimeMonitoring(chartRootElem, datas){
 	        formatter:'{a}<br/>{b}<br/>{c}'
 	    },
 	    legend: {
-	    	 textStyle:{
+			itemWidth:0.5 * rem,
+	    	textStyle:{
                 color:'white',
-                fontSize:0.15*rem
+                fontSize:0.2*rem
             },
             bottom:0,
 	        data:datas.map(item=>{return item.watchLine})
 	    },
 	    grid: {
-	        top: 0.10 * rem,
+	        top: 0.08 * rem,
 	        bottom: 0.9 * rem
 	    },
 	    xAxis: [
@@ -728,7 +753,7 @@ function realtimeMonitoring(chartRootElem, datas){
 	            boundaryGap:false,
 	            axisLabel: {  //x轴坐标字样式，rotate设置文字斜着显示
 	                interval:0,
-	                rotate:50,
+	                rotate:30,
 	                color:'white',
 	                fontSize:0.17*rem,
 	                align:'right',
@@ -797,7 +822,7 @@ function safeHiddenTroubleTableList(rootElem, datas){
 function initMonitoryPoint(qryMonitoryRootElem, data){
 	monitoryPointCacheData = data;
 	qryMonitoryRootElem.children().remove();
-	qryMonitoryRootElem.append('<option value="default" >请选择监控点</option>');
+	qryMonitoryRootElem.append('<option value="default" ></option>');
 	for(var i = 0, len = data.length; i < len; i++){
 		qryMonitoryRootElem.append('<option value="'+data[i]['watchLine']+'" >'+data[i]['watchLine']+'</option>');
 	}
@@ -859,7 +884,7 @@ $(function(){
 		$('#monitoryPoint').on('change', (event) => {
 			let key = event.target.value;
 			let result = [];
-			if (key != null){
+			if (key != null && key != 'default'){
 				for(var i = 0, len = monitoryPointCacheData.length; i < len ;i++){
 					if (key == monitoryPointCacheData[i]['watchLine']){
 						result.push(monitoryPointCacheData[i]);
@@ -867,6 +892,8 @@ $(function(){
 					}
 				}
 				realtimeMonitoring(myrealtimeMonitoringChart, result);
+			}else if(key == 'default'){
+				realtimeMonitoring(myrealtimeMonitoringChart, res.data.ssjk.list);
 			}
 		});
 		//实时监控

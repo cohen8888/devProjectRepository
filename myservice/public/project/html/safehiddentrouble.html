@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" type="text/css" href="../css/global.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/font-awesome.min.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/safehiddentrouble.css"/>
+		
+		<title>安全隐患</title>
+	</head>
+	<body>
+		<div class="wrap">
+			<div class="content">
+				<header>
+					<div class="header_left">
+						<img src="../img/backBtn.png"/>
+					</div>
+					<div id="titleAndTime">
+						<h2 class="h2_titleText">安全隐患</h2>
+						<div class="imgAndTime">
+							<p class="timeText"><span class="fa fa-clock-o fa"></span><span>2018.09.04</span>  <span>14:30:32</span></p>
+						</div>
+					</div>
+				</header>
+				<div class="sectionBg">
+				<section>
+					<div class="section_left">
+						<div id="containerPie"></div> <!--第一个容器放饼状图-->
+						<div id="container"></div>   <!--第二个容器放堆叠柱状图-->
+					</div>
+					<div class="section_right">
+						<div class="section_right_table_top">
+							<p class="h4_titleText">隐患发现</p>
+							<div class="tableBox">
+								<table class="default tb1" cellpadding="0" cellspacing="0" border="0" >
+									<thead>
+										<tr>
+											<th width="15%">隐患代码</th>
+											<th width="25%">发现时间</th>
+											<th width="10%">发现人</th>
+											<th width="15%">发现班组</th>
+											<th width="35%" >隐患内容</th>
+										</tr>
+									</thead>
+									<tbody></tbody>
+								</table>
+							</div>
+						</div>
+						<div class="section_right_table_bottom">
+							<p class="h4_titleText">隐患排查</p>
+							<div class="tableBox_1">
+								<table class="default tb2" cellpadding="0" cellspacing="0" border="0" >
+									<thead>
+										<tr>
+											<th width="20%">隐患代码</th>
+											<th width="15%">排查人</th>
+											<th width="30%">排查时间</th>
+											<th width="20%">排查班组</th>
+											<th width="15%">状态</th>
+										</tr>
+									</thead>
+									<tbody></tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</section>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script src="../js/rem.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../js/jquery-3.3.1.js"></script>
+	<script src="../js/commons.js" type="text/javascript"  charset="UTF-8"></script>
+	<script src="../js/echarts.js" type="text/javascript"  charset="UTF-8"></script>
+	<script src="../js/safehiddentrouble.js" type="text/javascript" charset="UTF-8"></script>
+</html>

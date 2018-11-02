@@ -1,12 +1,16 @@
+/**
+ * module：人员信息
+ * author：cohen.lee
+ * date：2018-09-03
+ */
 
-
+ 
 //baseUrl = baseUrl + "interf04";
 baseUrl = baseUrl + "/api/personnelinfomation";
-currentDateObj = null;
-let urls = ["http://39.104.135.24:8081/public/video/rcxc.mp4", 
-	"http://39.104.135.24:8081/public/video/rcxc.mp4", 
-	"http://39.104.135.24:8081/public/videorcxc.mp4"];
-
+//视频地址
+let urls = ["http://39.104.135.24:8081/public/video/ryxx.mp4", 
+	"http://39.104.135.24:8081/public/video/ryxx.mp4", 
+	"http://39.104.135.24:8081/public/video/ryxx.mp4"];
 let pageSize = 5;
 
 function info(opt){
@@ -52,7 +56,7 @@ function initChartOptionObject(datas){
 		name : '到岗人数',
 		value : datas.workCount,
 		itemStyle:{
-			color:'#D8DA03'
+			color:'#b7fbf9'
 		},label:{
 			show:true
 		}
@@ -102,13 +106,13 @@ function initChartOptionObject(datas){
 			elements:[{
 				type:'text',
 				left: 2 * rem,
-				top:1.7*rem,
+				top:1.8 * rem,
 				zlevel:100,
 				z:2,
 				style:{
 					text: workStatus +'\n' + (datas.workCount + '/' + datas.memberCount),
 					textAlign:'center',
-					fill:'#7FCEF4',
+					fill:'#a45759',
 					shadowColor:100,
 					width:40,
 					height:40,
@@ -138,7 +142,10 @@ function initChartOptionObject(datas){
 	            normal: {
 	                show: true,
 	                position: 'inner',
-	                formatter:'{d}%'
+	                formatter:'{d}%',
+					textStyle:{
+						color : "#000000"
+					}
 	            },
 	            emphasis: {
 	            	show:true,
@@ -182,7 +189,6 @@ function viewpagerVideo(urls, playElem){
 
     playElem.on('ended', function(){
 		play();
-		console.log(urls[curr]);
 	});
      
     function play() {
@@ -196,9 +202,6 @@ function viewpagerVideo(urls, playElem){
     }  
     play();
 }
-
-
-
 //jQuery ready function start
 $(function(){
 	setLink($(".header_left img"));

@@ -1,11 +1,12 @@
 /**
-* 安全隐患模块
-* author : cohen.Lee
-* 
+* moudle：安全隐患模块
+* author：Cohen.Lee
+* date：2018-09-09
 */
 
-//baseUrl = baseUrl + "interf05";realtimemonitoring
+//baseUrl = baseUrl + "interf05";
 baseUrl = baseUrl + "/api/safehiddentrouble";
+
 
 let changeDataTimeInterval = 3000;								//切换数据时间
 let getChartDataTimeInterval = 15000;							//从后端取数据的间隔时间	
@@ -60,11 +61,11 @@ function renderCharts(chartRootElem, chartColumn, xAxisItem, datas){
 	var perilCheckData = datas.hiddenTroubleCheck;    //隐患排查数据
 	option = {
 		title:{
-			text: '隐患值\n\n单位：件',
+			text: '隐患值\n\n单\n位\n：\n件',
 			textStyle:{
 				color:'white',
 				verticalAlign:'top',
-				fontSize:0.2*rem
+				fontSize:0.3*rem
 			}
 		},
 	    tooltip : {
@@ -204,7 +205,7 @@ function renderPieCharts(chartRootElem, datas){
 			verticalAlign:'middle',
 			textStyle:{
 				color:'#FFF',
-				fontSize:0.25*rem
+				fontSize:0.3*rem
 			}
 		},
 	    tooltip: {

@@ -1,8 +1,8 @@
 /**
-* author : Cohen.Lee
-* date : 2018-09-15
-* 
-*/
+ * module：故障信息
+ * author：Cohen.Lee
+ * date：2018-09-15
+ */
 
 //baseUrl = baseUrl + "interf06";
 baseUrl = baseUrl + "/api/faultmessage";
@@ -30,11 +30,11 @@ function genarateChart(chartRootElem, datas){
 	        	color:'#A4B4EC',
 	        },
 	    },
-	    tooltip: {
-	        trigger: 'item',
-	        formatter: "{a} <br/>{b}: {c} " 
-			//formatter: "{a} <br/>{b}: {c} ({d}%)" 
-	    },
+	    // tooltip: {
+	    //     trigger: 'item',
+	    //     formatter: "{a} <br/>{b}: {c} " 
+		// 	//formatter: "{a} <br/>{b}: {c} ({d}%)" 
+	    // },
 		color:colors,
 		series: [{	
 		    name :'设备类型',

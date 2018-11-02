@@ -1,7 +1,10 @@
- /**
- * 公共的函数库
- *
- */
+/**
+* module：公共的函数库
+* author：Cohen.Lee
+* date：2018-09-03
+* 
+*/
+
 
 //接口地址
 //let baseUrl = "http://39.104.135.24:8081/UTSP_INTER/screen.do?submitFlag=";
@@ -20,7 +23,9 @@ function setLink(elem){
     history.back(-1);
   });
 }
-
+String.prototype.replaceAll = function(s1,s2){
+　　return this.replace(new RegExp(s1,"gm"),s2);
+}
 
 /**
 * 异步ajax获取数据的方法
@@ -34,7 +39,7 @@ function ajax(baseUrl,file){
     xhr.onreadystatechange = function(){
       if(xhr.readyState == 4){
         if(xhr.status == 200){
-          resolve(JSON.parse(xhr.responseText))
+			resolve(JSON.parse(xhr.responseText));
         }else{
           reject(xhr.status);
         }

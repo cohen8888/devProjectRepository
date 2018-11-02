@@ -1,16 +1,14 @@
-
-/****
+/**
 * module：实时检测
 * author：cohen.Lee
-* date： 2018-09-15
+* date：2018-09-15
 * 
 */
 
 //初始化变量
-////baseUrl = baseUrl + "interf07";
-//baseUrl = 'http://39.104.135.24:8081/public/data/realtimemonitoring.json'
+//baseUrl = baseUrl + "interf07";
 baseUrl = baseUrl + "/api/realtimemonitoring";
-//环境检测类型
+	//环境检测类型
 let monitoringTypes = ['环境监测', '设备监测', '本体监测'];
 //图形x轴刻度标签值
 let xColumNameData =['00:00', '02:00','04:00','06:00','08:00','10:00','12:00','14:00','16:00','18:00','20:00','22:00','24:00'];
@@ -44,7 +42,7 @@ function generateList(elem, datas){
 	if (datas){
 		for(var i = 0,len = datas.length > pageSize ? pageSize : datas.length; i < len; i++){
 			var tr = $('<tr></tr>');
-			tr.append('<td>'+datas[i]['monitoringPoint']+'</td>')
+			tr.append('<td>'+datas[i]['monitoringPoint'] ? datas[i]['monitoringPoint'] : '' +'</td>')
 				.append('<td>'+datas[i]['monitorProject']+'</td>')
 				.append('<td>'+datas[i]['monitorValue']+'</td>')
 				.append('<td>'+datas[i]['upperLimit']+'</td>')
@@ -152,7 +150,7 @@ function initChart(chartsObj, lcolors, xColumNameData, legendData, seriesData, u
 			x:'left',
 			padding: [5, 0],
 			y:'top',
-			text:'单\n位\n' + unit,
+			text:'单\n位\n' + (unit.length > 2 ? unit.substring(0,2) + '\n' + unit.substring(2) : unit),
 			align:'center',
 			verticalAlign:'middle',
 			textStyle:{
@@ -260,7 +258,6 @@ function handlerSeriesData(datas, monitorName, lowerLimit, upperLimit){
 	result['data'] = data;
 	result.monitorName = monitorName;
 	result['isWarn'] = isWarn;
-	console.log(result);
 	return result;
 }
 
@@ -368,7 +365,6 @@ function getBackendData(chartsObjs, tablelists){
 		for(var i = 0,len = res.data.length; i < len; i++){
 			cacheDatas[res.data[i]['type']] = res.data[i]['data'];
 		}
-		
 
 		//添加监测点选择数据
 		addMonitorSelectData($('#environmentMonitorPointSelect'), environmentMonitorPointAvailableTags);
@@ -502,6 +498,7 @@ function genderAutoData(datas, mTypes){
 			}
 		}
 	}
+	
 }
 
 /**
@@ -524,8 +521,6 @@ function addMonitorSelectData(selectElem, data){
 		}	
 	}
 }
-
-
 
 
 //jQuery ready function start

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" type="text/css" href="../css/global.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/font-awesome.min.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/devicerunstatus.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/jquery-ui.min.css"/>
+		<style>
+			.ui-widget{
+				font-size: 0.3em;
+			}
+			.ui-autocomplete {
+		    	position: absolute;
+		    	top: 0;
+		    	left: 0;
+		    	cursor: default;
+		    	/* overflow-y:scroll; */
+		    	overflow-x:hidden; 
+		    	max-height: 300px; 
+		    }
+		</style>
+		<title>设备运行状态</title>
+	</head>
+	<body>
+		
+		<div class="wrap">
+			<div class="content">
+				<header>
+					<div class="header_left">
+						<div class="header_back" >
+							<img src="../img/backBtn.png"/>
+						</div>
+						<div id="titleAndTime">
+							<h2 class="h2_titleText">设备运行状态</h2>
+							<div class="imgAndTime">
+								<p class="timeText">
+									<span class="fa fa-clock-o fa"></span>
+									<span>2018.09.04</span>  
+									<span>14:30:32</span>
+								</p>
+							</div>
+						</div>
+					</div>
+					<div id="keyWords">
+						<p class="h3_titleText">设备类别</p>
+							<select id="equipmentTypeName" name="equipmentTypeName" >
+								<option value="" >设备类别</option>
+							</select>
+						<p class="h3_titleText" >设备</p>
+							<input placeholder="设备名称|设备编号" type="text" name="equipmentName" class="qryInput" id="equipmentNameAutocomplete">
+					</div>
+				</header>
+				<section>
+					<div class="section_left">
+						<!--<div id="containerPie" ></div>   第一个容器放饼状图-->
+						<div id="container" ></div>   <!--第二个容器放柱状图-->
+					</div>
+					<div class="section_right">
+						<div class="tableBox">
+							<table class="default tb1" cellpadding="0" cellspacing="0" border="0" >
+								<thead>
+									<tr>
+										<th width="10%">编码</th>
+										<th width="12%">设备名称</th>
+										<th width="10%">设备类别</th>
+										<th width="14%">当前运行状态</th>
+										<th width="18%">上次停车时间</th>
+										<th width="18%">本次运行时间</th>
+										<th width="18%">累计运行时间</th>
+									</tr>
+								</thead>
+								<tbody></tbody>
+							</table>
+						</div>
+					</div>
+				</section>
+			</div>
+		</div>
+	</body>
+	<script src="../js/rem.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../js/commons.js" type="text/javascript"></script>
+	<script src="../js/jquery-3.3.1.min.js"></script>
+	<script src="../js/jquery-ui.min.js"></script>
+	<script src="../js/echarts.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../js/devicerunstatus.js" >type="text/javascript"</script>
+</html>
