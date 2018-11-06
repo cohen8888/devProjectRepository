@@ -1,16 +1,10 @@
-/**
- * module：人员信息
- * author：cohen.lee
- * date：2018-09-03
- */
 
- 
+
 //baseUrl = baseUrl + "interf04";
 baseUrl = baseUrl + "/api/personnelinfomation";
-//视频地址
-let urls = ["http://39.104.135.24:8081/public/video/ryxx.mp4", 
-	"http://39.104.135.24:8081/public/video/ryxx.mp4", 
-	"http://39.104.135.24:8081/public/video/ryxx.mp4"];
+let urls = ["http://39.104.135.24:8081/project/video/ryxx.mp4", 
+	"http://39.104.135.24:8081/project/video/ryxx.mp4", 
+	"http://39.104.135.24:8081/project/video/ryxx.mp4"];
 let pageSize = 5;
 
 function info(opt){
@@ -165,7 +159,6 @@ function initChartOptionObject(datas){
 	        data:seriesData
 	    }]
 	}
-	console.log(datas.groupName)
 	return option;
 }
 
@@ -175,7 +168,6 @@ function setCanvas(datas, chartRootElem){
 	datas.group.forEach((item,index)=>{
 		let echartContainer = createChartContainerElem(chartRootElem, 
 			$('<div class="canvasItem"></div>'), [{'width': (1 / datas.group.length) * 100 + "%"}]);
-		console.log(item);
 		let option = initChartOptionObject(item);
 
 		let myEchart = echarts.init(echartContainer.get(0));
@@ -184,21 +176,17 @@ function setCanvas(datas, chartRootElem){
 }
 
 function viewpagerVideo(urls, playElem){
-    var vLen = urls.length; 
-    var curr = 0; 
 
     playElem.on('ended', function(){
 		play();
 	});
      
     function play() {
-        playElem.get(0).src = urls[curr];
+		console.log(urls)
+        playElem.get(0).src = urls; //urls[curr];
         playElem.get(0).load();   
         playElem.get(0).play();  
-        curr++;
-        if(curr >= vLen){  
-            curr = 0; //重新循环播放
-        }
+
     }  
     play();
 }
@@ -208,9 +196,9 @@ $(function(){
 	//
 	currentDateObj = $('.timeText');
 	timingDate();
-	viewpagerVideo(urls, $('.map'));
+	viewpagerVideo(urls[0], $('.map'));
 	ajax(baseUrl).then(res => {
-		//viewpagerVideo(urls, $('.map'));
+		viewpagerVideo(urls[0], $('.map'));
 		info(res.data);
 		setCanvas(res.data, $('.canvasBox'));
 	});
